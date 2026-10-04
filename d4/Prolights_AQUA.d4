@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="AQUA" ShortName="AQUA" Company="Prolights">
+  <Copyright Notice="© Avolites Ltd. 2016" />
+  <History Date="20-10-15" Author="Ermanno Valvason" Comment="Created" />
+  <History Date="25-10-15" Author="Nic Morris" Comment="Increased wheel resolution.  Added conditionals to colour and standardised." />
+  <History Date="25-10-15" Author="Nic Morris" Comment="Added hilight/lolight.  Added palettes.  Moved effect into effect wheel map slot in order that the attribute group is aligned for associated functions." />
+  <History Date="25-10-15" Author="Nic Morris" Comment="Added classic ref" />
+  <History Date="14-08-16" Author="Nic Morris" Comment="Changed colour open to locate at zero and added no scroll to start of scroll condition." />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Effect" Name="Effect" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Spin" Display="'No Spin'" Dmx="0~0" />
+      <Function ID="2" Name="Spin CW" Display="'Spin CW %.1f%%',0.0~100.0" Dmx="134~255" />
+      <Function ID="3" Name="No Spin" Display="'No Spin'" Dmx="123~133" />
+      <Function ID="4" Name="Spin CCW" Display="'Spin CCW %.1f%%',100.0~0.0" Dmx="1~122" />
+    </Attribute>
+    <Attribute ID="Colour1Func" Name="Colour Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" Highlight="1" Lowlight="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="2" Name="Split Gel" Display="'Split Gel'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="3" Name="Scroll" Display="'Scroll'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" Highlight="5" Lowlight="4" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6" If="'Colour1Func'==1" />
+      <Condition Name="Split" ID="7,8,9,10,11,12" If="'Colour1Func'==2" />
+      <Condition Name="Scroll" ID="13,14,15,16" If="'Colour1Func'==3" />
+      <Else ID="17" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Aqua" Display="'Aqua'" Dmx="22~31" Colour="220,240,255" />
+      <Function ID="3" Name="Blue" Display="'Blue'" Dmx="43~52" Colour="0,0,255" />
+      <Function ID="4" Name="Dark Blue" Display="'Deep Blue'" Dmx="64~74" Colour="0,0,180" />
+      <Function ID="5" Name="Amber" Display="'Amber'" Dmx="85~95" Colour="255,100,0" />
+      <Function ID="6" Name="Red" Display="'Red'" Dmx="106~116" Colour="255,0,0" />
+      <Function ID="7" Name="Op/ Aqua" Display="'Op/ Aqua'" Dmx="11~21" Colour="255,255,255" />
+      <Function ID="8" Name="Aq/ Blue" Display="'Aq/ Blue'" Dmx="32~42" Colour="220,240,255" />
+      <Function ID="9" Name="Bl/ Dk Bl" Display="'Bl/ Dk Bl'" Dmx="53~63" Colour="0,0,255" />
+      <Function ID="10" Name="Dk Bl/ Amb" Display="'Dk Bl/ Amb'" Dmx="75~84" Colour="0,0,180" />
+      <Function ID="11" Name="Amb/ Red" Display="'Amb/ Red'" Dmx="96~105" Colour="255,100,0" />
+      <Function ID="12" Name="Red/ Op" Display="'Red/ Op'" Dmx="117~127" Colour="255,0,0" />
+      <Function ID="13" Name="No Scroll" Display="'No Scroll'" Dmx="189~194" Colour="255,255,255" />
+      <Function ID="14" Name="Scroll CW" Display="'Scroll CW %.f%%',0~100" Dmx="195~255" Colour="0,0,0" />
+      <Function ID="15" Name="No Scroll" Display="'No Scroll'" Dmx="189~194" Colour="255,255,255" />
+      <Function ID="16" Name="Scroll CCW" Display="'Scroll CCW %.f%%',100~0" Dmx="128~188" Colour="0,0,0" />
+      <Function ID="17" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+  </Control>
+  <Mode Name="Standard" Channels="3">
+    <Import PearlRef="PGAQUA" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Colour1Func" Wheel="7" />
+      <Attribute ID="Colour1" ChannelOffset="2" Wheel="8" />
+      <Attribute ID="Effect" ChannelOffset="3" Wheel="22" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Colour1:1,Colour1Func:1" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Colour1:6,Colour1Func:1" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Colour1:5,Colour1Func:1" />
+      <Palette ID="4" Name="Amber" Number="4" Page="1" SetControl="Colour1:5,Colour1Func:1" />
+      <Palette ID="5" Name="Amber" Number="0" Page="1" SetControl="Colour1:5,Colour1Func:1" />
+      <Palette ID="6" Name="Scroll CW" Number="5" Page="1" SetControl="Colour1:13:50,Colour1Func:3" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Colour1:2,Colour1Func:1" />
+      <Palette ID="8" Name="Aqua" Number="6" Page="1" SetControl="Colour1:2,Colour1Func:1" />
+      <Palette ID="9" Name="Blue" Number="0" Page="1" SetControl="Colour1:3,Colour1Func:1" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Colour1:3,Colour1Func:1" />
+      <Palette ID="11" Name="Blue" Number="9" Page="1" SetControl="Colour1:3,Colour1Func:1" />
+      <Palette ID="12" Name="Aqua" Number="10" Page="1" SetControl="Colour1:2,Colour1Func:1" />
+      <Palette ID="13" Name="Red" Number="0" Page="1" SetControl="Colour1:6,Colour1Func:1" />
+      <Palette ID="14" Name="Aqua" Number="8" Page="1" SetControl="Colour1:2,Colour1Func:1" />
+      <Palette ID="15" Name="Blue" Number="0" Page="1" SetControl="Colour1:3,Colour1Func:1" />
+    </Group>
+  </Palettes>
+</Fixture>

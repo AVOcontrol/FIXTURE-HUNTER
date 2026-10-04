@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Hippotizer Timeline V4" ShortName="HippoTime" Company="Green Hippo">
+  <Copyright Notice="© Avolites Ltd. 2016" />
+  <History Date="20-11-16" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Timeline_Sel" Name="Timeline Sel" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Timeline" Display="'No Timeline'" Dmx="0~0" />
+      <Function ID="2" Name="Timeline" Display="'Timeline %.f',1~255" Dmx="1~255" />
+    </Attribute>
+    <Attribute ID="Playback_Cmd" Name="Playback Cmd" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Play" Display="'Play'" Dmx="10~19" />
+      <Function ID="3" Name="Pause" Display="'Pause'" Dmx="20~29" />
+      <Function ID="4" Name="Stop" Display="'Stop'" Dmx="30~39" />
+      <Function ID="5" Name="Go Cue and Play" Display="'Go Cue and Play'" Dmx="40~49" />
+      <Function ID="6" Name="Go Cue and Pause" Display="'Go Cue and Pause'" Dmx="50~59" />
+    </Attribute>
+    <Attribute ID="Recall_Cues_Cmd" Name="Recall Cues Cmd" Description="" Group="S" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Cue" Display="'%.2f',0.00~656.00" Dmx="0~65535" />
+    </Attribute>
+  </Control>
+  <Mode Name="4 DMX" Channels="4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Timeline_Sel" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Playback_Cmd" ChannelOffset="2" Wheel="29" />
+      <Attribute ID="Recall_Cues_Cmd" ChannelOffset="3,4" Wheel="30" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Play">
+      <Set Channel="Playback_Cmd:2" Delay="500" />
+      <Set Channel="Playback_Cmd:1" Delay="0" />
+    </Macro>
+    <Macro Name="Pause">
+      <Set Channel="Playback_Cmd:3" Delay="500" />
+      <Set Channel="Playback_Cmd:1" Delay="0" />
+    </Macro>
+    <Macro Name="Stop">
+      <Set Channel="Playback_Cmd:4" Delay="500" />
+      <Set Channel="Playback_Cmd:1" Delay="0" />
+    </Macro>
+    <Macro Name="Go Cue and Play">
+      <Set Channel="Playback_Cmd:5" Delay="500" />
+      <Set Channel="Playback_Cmd:1" Delay="0" />
+    </Macro>
+    <Macro Name="Go Cue and Pause">
+      <Set Channel="Playback_Cmd:6" Delay="500" />
+      <Set Channel="Playback_Cmd:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

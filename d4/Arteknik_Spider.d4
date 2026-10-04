@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Spider" ShortName="Spider" Company="Arteknik">
+  <Copyright Notice="© Avolites Ltd. 2015" />
+  <History Date="25-09-15" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Pan" Name="Pan" Description="" Group="P">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Pan" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Tilt" Name="Tilt" Description="" Group="P">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Tilt" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~9" Intensity="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="10~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+  </Control>
+  <Mode Name="13 DMX" Channels="13">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="630" TiltMax="185" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Pan" ChannelOffset="1" Wheel="2" />
+        <Attribute ID="Tilt" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="4" Wheel="5" />
+        <Attribute ID="Shutter" ChannelOffset="5" Wheel="4" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Tilt 1" ChannelOffset="2" ModeLink="Tilt Cell" X="0" Y="0">
+        <AttributeLink SourceId="Tilt" TargetId="Tilt" />
+      </Cell>
+      <Cell ID="Cell2" Name="Tilt 2" ChannelOffset="3" ModeLink="Tilt Cell" X="0" Y="1">
+        <AttributeLink SourceId="Tilt" TargetId="Tilt" />
+      </Cell>
+      <Cell ID="Cell3" Name="LED 1" ChannelOffset="6" ModeLink="Dim Cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="LED 2" ChannelOffset="7" ModeLink="Dim Cell" X="0" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="LED 3" ChannelOffset="8" ModeLink="Dim Cell" X="0" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="LED 4" ChannelOffset="9" ModeLink="Dim Cell" X="0" Y="5">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="LED 5" ChannelOffset="10" ModeLink="Dim Cell" X="0" Y="6">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="LED 6" ChannelOffset="11" ModeLink="Dim Cell" X="0" Y="7">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="LED 7" ChannelOffset="12" ModeLink="Dim Cell" X="0" Y="8">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="LED 8" ChannelOffset="13" ModeLink="Dim Cell" X="0" Y="9">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Dim Cell" Channels="1" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="630" TiltMax="185" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Tilt Cell" Channels="1" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="630" TiltMax="185" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Tilt" ChannelOffset="1" Wheel="3" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Position">
+      <Palette ID="1" Name="Middle" Number="21" Page="1" SetControl="Pan:1:50,Tilt:1:50" />
+      <Palette ID="2" Name="Left" Number="22" Page="1" SetControl="Pan:1:31,Tilt:1:50" />
+      <Palette ID="3" Name="Right" Number="23" Page="1" SetControl="Pan:1:69,Tilt:1:50" />
+      <Palette ID="4" Name="Top" Number="24" Page="1" SetControl="Pan:1:50,Tilt:1:31" />
+      <Palette ID="5" Name="Bottom" Number="25" Page="1" SetControl="Pan:1:50,Tilt:1:69" />
+      <Palette ID="6" Name="TLeft" Number="26" Page="1" SetControl="Pan:1:31,Tilt:1:31" />
+      <Palette ID="7" Name="TRight" Number="27" Page="1" SetControl="Pan:1:69,Tilt:1:69" />
+      <Palette ID="8" Name="BLeft" Number="28" Page="1" SetControl="Pan:1:31,Tilt:1:69" />
+      <Palette ID="9" Name="BRight" Number="29" Page="1" SetControl="Pan:1:69,Tilt:1:31" />
+    </Group>
+  </Palettes>
+</Fixture>

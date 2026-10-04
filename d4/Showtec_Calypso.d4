@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Calypso" ShortName="Calypso" Company="Showtec">
+  <Copyright Notice="© Avolites Ltd. 2013" />
+  <History Date="11-12-13" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Mix Auto" Display="'Mix Auto'" Dmx="0~15" Update="Programs, Shutter" />
+      <Function ID="2" Name="Macro Edit" Display="'Macro Edit'" Dmx="16~127" Update="Programs, Shutter" />
+      <Function ID="3" Name="Sound Single" Display="'Sound Single'" Dmx="128~139" Update="Programs, Shutter" />
+      <Function ID="4" Name="Sound Mix" Display="'Sound Mix'" Dmx="240~255" Update="Programs, Shutter" />
+      <Function ID="5" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Programs, Shutter" />
+    </Attribute>
+    <Attribute ID="Programs" Name="Programs" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Sound" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15" If="'Control'==3||'Control'==4" />
+      <Condition Name="Macro" ID="16,17,18,19,20" If="'Control'==2" />
+      <Condition Name="Mix" ID="21" If="'Control'==1" />
+      <Else ID="22" />
+      <Function ID="1" Name="Show 1" Display="'Show 1'" Dmx="0~17" />
+      <Function ID="2" Name="Show 2" Display="'Show 2'" Dmx="18~34" />
+      <Function ID="3" Name="Show 3" Display="'Show 3'" Dmx="35~51" />
+      <Function ID="4" Name="Show 4" Display="'Show 4'" Dmx="52~68" />
+      <Function ID="5" Name="Show 5" Display="'Show 5'" Dmx="69~85" />
+      <Function ID="6" Name="Show 6" Display="'Show 6'" Dmx="86~102" />
+      <Function ID="7" Name="Show 7" Display="'Show 7'" Dmx="103~119" />
+      <Function ID="8" Name="Show 8" Display="'Show 8'" Dmx="120~136" />
+      <Function ID="9" Name="Show 9" Display="'Show 9'" Dmx="137~153" />
+      <Function ID="10" Name="Show 10" Display="'Show 10'" Dmx="154~170" />
+      <Function ID="11" Name="Show 11" Display="'Show 11'" Dmx="171~187" />
+      <Function ID="12" Name="Show 12" Display="'Show 12'" Dmx="188~204" />
+      <Function ID="13" Name="Show 13" Display="'Show 13'" Dmx="205~221" />
+      <Function ID="14" Name="Show 14" Display="'Show 14'" Dmx="222~238" />
+      <Function ID="15" Name="Show 15" Display="'Show 15'" Dmx="239~255" />
+      <Function ID="16" Name="Sync" Display="'Sync'" Dmx="0~15" />
+      <Function ID="17" Name="Slave 1" Display="'Slave 1'" Dmx="16~90" />
+      <Function ID="18" Name="Slave 2" Display="'Slave 2'" Dmx="91~165" />
+      <Function ID="19" Name="Slave 3" Display="'Slave 3'" Dmx="166~239" />
+      <Function ID="20" Name="Slave 4" Display="'Slave 4'" Dmx="240~255" />
+      <Function ID="21" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="22" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="4" PowerOn="1" />
+      <Condition Name="Macro" ID="1,2,3,4" If="'Control'&lt;5" />
+      <Else ID="5" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="0~7" Intensity="0~0" />
+      <Function ID="2" Name="39 Scenes" Display="'39 Scenes %.1f%%',0.0~100.0" Dmx="8~241" Intensity="0~0" />
+      <Function ID="3" Name="Speedy Flash" Display="'Speedy Flash'" Dmx="242~247" Intensity="0~0" />
+      <Function ID="4" Name="Open" Display="'Open'" Dmx="248~255" Intensity="0~0" />
+      <Function ID="5" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+  </Control>
+  <Mode Name="4 DMX" Channels="4">
+    <Import PearlRef="SHCLYPSO" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="3" Wheel="4" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Control" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Programs" ChannelOffset="2" Wheel="22" />
+    </Include>
+  </Mode>
+</Fixture>

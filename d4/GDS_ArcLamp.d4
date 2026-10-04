@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="ArcLamp" ShortName="ArcLamp" Company="GDS">
+  <Copyright Notice="© Avolites Ltd. 2018" />
+  <History Date="29-08-18" Author="Nic Morris" Comment="Created (limited information)" />
+  <History Date="30-08-18" Author="Nic Morris" Comment="Swapped ranges." />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Condition Name="Flicker" ID="2" If="'Mode'==2" />
+      <Else ID="1" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="128~255" />
+      <Function ID="2" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~125" />
+    </Attribute>
+    <Attribute ID="Mode" Name="Mode" Description="" Group="I" Size="0">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Normal" Display="'Normal'" Dmx="0~0" Update="Dimmer" />
+      <Function ID="2" Name="Flicker" Display="'Flicker'" Dmx="0~0" Update="Dimmer" />
+    </Attribute>
+  </Control>
+  <Mode Name="1 DMX" Channels="1">
+    <Import PearlRef="UKGDSARC" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Mode" Wheel="4" />
+    </Include>
+  </Mode>
+</Fixture>

@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LUXED-12" ShortName="LUXED-12" Company="Lightstar" Version="22">
+  <Copyright Notice="© Avolites Ltd. 2022" />
+  <Thumbnail>731a0d23-ec4f-47a0-9378-2c0be9f9e5f7</Thumbnail>
+  <History Date="30-07-21" Author="Nic Morris" Comment="Created (note controller selection not currently supported - implemented as separate modes. pixel layout not available - guessed)" Version="0" />
+  <History Date="31-07-21" Author="Nic Morris" Comment="Added Atlabase ID's." Version="3" />
+  <History Date="26-11-22" Author="Nic Morris" Comment="Updated in line with latest charts (documentation is a mess. very confusing and littered with errors.  made best guess.  v1.0 effects have range conflicts - assumed should be the same as v2.0)" Version="4" />
+  <History Date="28-11-22" Author="Nic Morris" Comment="(re)Created from Lightstar LUXED-4" Version="20" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="3e871142-0309-4ef0-a3e1-9a511a1e370b" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="CTO" Name="CCT" Description="" Group="C">
+      <Locate Locate="1:2800" PowerOn="1:2800" />
+      <Function ID="1" Name="CCT C-Mix" Display="'%.fK',2800~6500" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:1" PowerOn="1:1" />
+      <Function ID="1" Name="Strobe" Display="'%.f Hz',1~50" Dmx="0~50" />
+      <Function ID="2" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Duration" Name="Duration" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.f%%',1~99" Dmx="1~99" />
+      <Function ID="3" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Mode(Wall)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Wall" Display="''" Dmx="0~0" />
+    </Attribute>
+    <Attribute ID="Mode(Rank)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Rank" Display="''" Dmx="50~99" />
+    </Attribute>
+    <Attribute ID="Mode(Individual)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Individual" Display="''" Dmx="100~149" />
+    </Attribute>
+  </Control>
+  <Mode Name="Wall, 2 DMX" Channels="2">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="9719985c-5e1e-4773-9e99-09025fe10646" />
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CTO" ChannelOffset="2" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="Rank, 6 DMX" Channels="6">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="1c4bbb47-f86a-4edf-a950-d709ebfe93cc" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="CTO" Wheel="38" />
+      </Master>
+      <Cell ID="Cell1" Name="Rank 1" ChannelOffset="1" ModeLink="Standard cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell2" Name="Rank 2" ChannelOffset="3" ModeLink="Standard cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell3" Name="Rank 3" ChannelOffset="5" ModeLink="Standard cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Controller (Wall), 5 DMX" Channels="5">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="2ed0cfdd-b7cd-43b2-9e76-c88828b98991" />
+    <Include>
+      <Attribute ID="Mode(Wall)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dimmer" ChannelOffset="2" Wheel="1" />
+      <Attribute ID="CTO" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="Shutter" ChannelOffset="4" Wheel="5" />
+      <Attribute ID="Duration" ChannelOffset="5" Wheel="6" />
+    </Include>
+  </Mode>
+  <Mode Name="Controller (Rank), 13 DMX" Channels="13">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="f8aaf1d9-f519-4503-9110-eecb7eef0ad3" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Mode(Rank)" ChannelOffset="1" Wheel="28" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="CTO" Wheel="38" />
+        <Attribute ID="Shutter" Wheel="5" />
+        <Attribute ID="Duration" Wheel="6" />
+      </Master>
+      <Cell ID="Cell1" Name="Rank 1" ChannelOffset="2" ModeLink="Controller cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell2" Name="Rank 2" ChannelOffset="6" ModeLink="Controller cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell3" Name="Rank 3" ChannelOffset="10" ModeLink="Controller cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Controller (Individual), 49 DMX" Channels="49">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="0de5ccc0-b753-41e5-ac71-c069f3b0888c" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Mode(Individual)" ChannelOffset="1" Wheel="28" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="CTO" Wheel="38" />
+        <Attribute ID="Shutter" Wheel="5" />
+        <Attribute ID="Duration" Wheel="6" />
+      </Master>
+      <Cell ID="Cell1" Name="Light 1" ChannelOffset="2" ModeLink="Controller cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell2" Name="Light 2" ChannelOffset="6" ModeLink="Controller cell" X="1" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell3" Name="Light 3" ChannelOffset="10" ModeLink="Controller cell" X="2" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell4" Name="Light 4" ChannelOffset="14" ModeLink="Controller cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell5" Name="Light 5" ChannelOffset="18" ModeLink="Controller cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell6" Name="Light 6" ChannelOffset="22" ModeLink="Controller cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell7" Name="Light 7" ChannelOffset="26" ModeLink="Controller cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell8" Name="Light 8" ChannelOffset="30" ModeLink="Controller cell" X="1" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell9" Name="Light 9" ChannelOffset="34" ModeLink="Controller cell" X="2" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell10" Name="Light 10" ChannelOffset="38" ModeLink="Controller cell" X="0" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell11" Name="Light 11" ChannelOffset="42" ModeLink="Controller cell" X="1" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+      <Cell ID="Cell12" Name="Light 12" ChannelOffset="46" ModeLink="Controller cell" X="2" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Individual, 24 DMX" Channels="24">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="8a4ffbb4-eac1-4ddf-b80e-4ad603c6c8a8" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="CTO" Wheel="38" />
+      </Master>
+      <Cell ID="Cell1" Name="Light 1" ChannelOffset="1" ModeLink="Standard cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell2" Name="Light 2" ChannelOffset="3" ModeLink="Standard cell" X="1" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell3" Name="Light 3" ChannelOffset="5" ModeLink="Standard cell" X="2" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell4" Name="Light 4" ChannelOffset="7" ModeLink="Standard cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell5" Name="Light 5" ChannelOffset="9" ModeLink="Standard cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell6" Name="Light 6" ChannelOffset="11" ModeLink="Standard cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell7" Name="Light 7" ChannelOffset="13" ModeLink="Standard cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell8" Name="Light 8" ChannelOffset="15" ModeLink="Standard cell" X="1" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell9" Name="Light 9" ChannelOffset="17" ModeLink="Standard cell" X="2" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell10" Name="Light 10" ChannelOffset="19" ModeLink="Standard cell" X="0" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell11" Name="Light 11" ChannelOffset="21" ModeLink="Standard cell" X="1" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+      <Cell ID="Cell12" Name="Light 12" ChannelOffset="23" ModeLink="Standard cell" X="2" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Standard cell" Channels="2" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CTO" ChannelOffset="2" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="Controller cell" Channels="4" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CTO" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="Shutter" ChannelOffset="3" Wheel="5" />
+      <Attribute ID="Duration" ChannelOffset="4" Wheel="6" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Shutter">
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:1:26" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:1:50" />
+    </Group>
+    <Group Name="Colour" />
+  </Palettes>
+  <swatchLibrary>
+    <Swatch id="731a0d23-ec4f-47a0-9378-2c0be9f9e5f7">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</Swatch>
+  </swatchLibrary>
+</Fixture>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LED Color Bar 1W-27" ShortName="ColBar1-27" Company="Lightmaxx" Version="0">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <History Date="17-01-23" Author="Nic Morris" Comment="Created (poor documentation.  note spec title says 1W x 54PCS but in subsequent details it is 27x1W.  DMX specs are 2, 3, 4, 5 and 12 channel but only 12 channel mode detailed)" Version="0" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Mode" Name="Mode" Description="" Group="E">
+      <Locate Locate="2" PowerOn="1" />
+      <Function ID="1" Name="Blackout" Display="'Blackout'" Dmx="0~0" Update="Red, Green, Master_Dimmer" />
+      <Function ID="2" Name="Individual Pixel" Display="'Individual Pixel'" Dmx="1~15" Update="Red, Green, Master_Dimmer" />
+      <Function ID="3" Name="Single Pixel" Display="'Single Pixel'" Dmx="16~31" Update="Red, Green, Master_Dimmer" />
+      <Function ID="4" Name="Red" Display="'Red'" Dmx="32~47" Update="Red, Green, Master_Dimmer" />
+      <Function ID="5" Name="Green" Display="'Green'" Dmx="48~63" Update="Red, Green, Master_Dimmer" />
+      <Function ID="6" Name="Blue" Display="'Blue'" Dmx="64~79" Update="Red, Green, Master_Dimmer" />
+      <Function ID="7" Name="Purple" Display="'Purple'" Dmx="80~95" Update="Red, Green, Master_Dimmer" />
+      <Function ID="8" Name="Yellow" Display="'Yellow'" Dmx="96~111" Update="Red, Green, Master_Dimmer" />
+      <Function ID="9" Name="Cyan" Display="'Cyan'" Dmx="112~127" Update="Red, Green, Master_Dimmer" />
+      <Function ID="10" Name="White" Display="'White'" Dmx="128~143" Update="Red, Green, Master_Dimmer" />
+      <Function ID="11" Name="Col Change" Display="'Col Change'" Dmx="144~159" Update="Red, Green, Master_Dimmer" />
+      <Function ID="12" Name="Col Chase" Display="'Col Chase'" Dmx="160~175" Update="Red, Green, Master_Dimmer" />
+      <Function ID="13" Name="Col Fade" Display="'Col Fade'" Dmx="176~191" Update="Red, Green, Master_Dimmer" />
+      <Function ID="14" Name="Multi Col Chase" Display="'Multi Col Chase'" Dmx="192~207" Update="Red, Green, Master_Dimmer" />
+      <Function ID="15" Name="Fading Flow" Display="'Fading Flow'" Dmx="208~223" Update="Red, Green, Master_Dimmer" />
+      <Function ID="16" Name="2 Col Flow" Display="'2 Col Flow'" Dmx="224~239" Update="Red, Green, Master_Dimmer" />
+      <Function ID="17" Name="Sound" Display="'Sound'" Dmx="240~255" Update="Red, Green, Master_Dimmer" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Strobe %" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Else ID="1" />
+      <Condition Name="Col Select" ID="2" If="'Mode'==15||'Mode'==16" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+      <Function ID="2" Name="Colour" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Else ID="1" />
+      <Condition Name="Col Select" ID="2" If="'Mode'==16" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+      <Function ID="2" Name="Colour" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Else ID="1" />
+      <Condition Name="Speed" ID="2" If="'Mode'&gt;10&amp;&amp;'Mode'&lt;17" />
+      <Condition Name="Sensitivity" ID="3" If="'Mode'==17" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="2" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Sensitivity" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="12 DMX" Channels="12">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Mode" ChannelOffset="1" Wheel="22" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="2" Wheel="4" />
+        <Attribute ID="Shutter" ChannelOffset="3" Wheel="5" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="4" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="7" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="10" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="3" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+    <Group Name="Shutter">
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:1:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

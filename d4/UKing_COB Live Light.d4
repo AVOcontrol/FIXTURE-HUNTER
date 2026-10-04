@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="COB Live Light" ShortName="COB Live" Company="UKing" Version="0">
+  <Copyright Notice="© Avolites Ltd. 2024" />
+  <History Date="05-01-24" Author="Nic Morris" Comment="Created" Version="0" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="WarmWhite" Name="Warm White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="White" Name="White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Strobe %" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Auto" Name="Auto" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" Update="Auto_Spd" />
+      <Function ID="2" Name="Col Select" Display="'Col Select'" Dmx="1~62" Update="Auto_Spd" />
+      <Function ID="3" Name="Jump" Display="'Jump'" Dmx="63~124" Update="Auto_Spd" />
+      <Function ID="4" Name="Gradient" Display="'Gradient'" Dmx="125~186" Update="Auto_Spd" />
+      <Function ID="5" Name="Pulse" Display="'Pulse'" Dmx="187~249" Update="Auto_Spd" />
+      <Function ID="6" Name="Sound" Display="'Sound'" Dmx="250~255" Update="Auto_Spd" />
+    </Attribute>
+    <Attribute ID="Auto_Spd" Name="Auto Spd" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Else ID="1" />
+      <Condition Name="Col Select" ID="2" If="'Auto'==2" />
+      <Condition Name="Sound" ID="3" If="'Auto'==6" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="2" Name="Colour" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Sensitivity" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="A001, 6 DMX" Channels="6" Id="ca2669e9-d256-4a02-b467-b2cd08d23fd2">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="WarmWhite" ChannelOffset="2" Wheel="10" />
+      <Attribute ID="White" ChannelOffset="3" Wheel="11" />
+      <Attribute ID="Shutter" ChannelOffset="4" Wheel="5" />
+      <Attribute ID="Auto" ChannelOffset="5" Wheel="22" />
+      <Attribute ID="Auto_Spd" ChannelOffset="6" Wheel="23" />
+    </Include>
+  </Mode>
+  <Mode Name="D001, 6 DMX" Channels="6" Id="415c3e27-8eb5-42a6-8ff7-e47fc58e9c24">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Shutter" ChannelOffset="2" Wheel="5" />
+      <Attribute ID="Auto" ChannelOffset="3" Wheel="22" />
+      <Attribute ID="Auto_Spd" ChannelOffset="4" Wheel="23" />
+      <Attribute ID="WarmWhite" ChannelOffset="5" Wheel="10" />
+      <Attribute ID="White" ChannelOffset="6" Wheel="11" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Shutter">
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:1:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

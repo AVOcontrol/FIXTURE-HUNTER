@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="20 Channel DMX Decoder" ShortName="20ch Decod" Company="Unknown">
+  <Copyright Notice="© Avolites Ltd. 2017" />
+  <History Date="30-11-17" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Colour_Macro" Name="Colour Macro" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Macro" Display="'No Macro'" Dmx="255~255" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="2" Name="Blackout" Display="'Blackout'" Dmx="0~0" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="3" Name="Red" Display="'Red'" Dmx="12~23" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="4" Name="Green" Display="'Green'" Dmx="24~35" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="5" Name="Blue" Display="'Blue'" Dmx="36~47" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="6" Name="Yellow" Display="'Yellow'" Dmx="48~59" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="7" Name="Cyan" Display="'Cyan'" Dmx="60~71" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="8" Name="Purple" Display="'Purple'" Dmx="72~83" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="9" Name="White" Display="'White'" Dmx="84~95" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="10" Name="7 Col Change" Display="'7 Col Change'" Dmx="96~107" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="11" Name="Col Fade" Display="'Col Fade'" Dmx="108~119" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="12" Name="Slow Red" Display="'Slow Red'" Dmx="120~131" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="13" Name="Slow Green" Display="'Slow Green'" Dmx="132~143" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="14" Name="Slow Blue" Display="'Slow Blue'" Dmx="144~155" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="15" Name="Slow Yellow" Display="'Slow Yellow'" Dmx="156~167" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="16" Name="Slow Cyan" Display="'Slow Cyan'" Dmx="168~179" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="17" Name="Slow Purple" Display="'Slow Purple'" Dmx="180~191" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="18" Name="Slow White" Display="'Slow White'" Dmx="192~203" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="19" Name="Slow Colour" Display="'Slow Colour'" Dmx="204~215" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="20" Name="2 Col Change" Display="'2 Col Change'" Dmx="216~227" Update="Red, Green, Blue" Colour="255,255,255" />
+      <Function ID="21" Name="Auto" Display="'Auto'" Dmx="228~239" Update="Red, Green, Blue" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="No Function" ID="2" If="'Colour_Macro'==2||'Colour_Macro'==3||'Colour_Macro'==4||'Colour_Macro'==5||'Colour_Macro'==6||'Colour_Macro'==7||'Colour_Macro'==8||'Colour_Macro'==9||'Colour_Macro'==21" />
+      <Condition Name="Speed" ID="3" If="'Colour_Macro'&gt;9&amp;&amp;'Colour_Macro'&lt;21" />
+      <Else ID="1" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+      <Function ID="2" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="3" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="No Function" ID="2" If="'Colour_Macro'==2||'Colour_Macro'==11||'Colour_Macro'==12||'Colour_Macro'==13||'Colour_Macro'==14||'Colour_Macro'==15||'Colour_Macro'==16||'Colour_Macro'==17||'Colour_Macro'==18||'Colour_Macro'==19||'Colour_Macro'==21" />
+      <Condition Name="Audio" ID="3" If="'Colour_Macro'==3||'Colour_Macro'==4||'Colour_Macro'==5||'Colour_Macro'==6||'Colour_Macro'==7||'Colour_Macro'==8||'Colour_Macro'==9||'Colour_Macro'==10||'Colour_Macro'==20" />
+      <Else ID="1" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+      <Function ID="2" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="3" Name="Audio" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Condition Name="No Function" ID="2" If="'Colour_Macro'&gt;1" />
+      <Else ID="1" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+      <Function ID="2" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="4 DMX" Channels="4">
+    <Import PearlRef="UK20CHDC" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Colour_Macro" ChannelOffset="1" Wheel="9" />
+      <Attribute ID="Red" ChannelOffset="2" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="3" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="4" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

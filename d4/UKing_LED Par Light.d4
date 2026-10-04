@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LED Par Light" ShortName="LED Par" Company="UKing">
+  <Copyright Notice="© Avolites Ltd. 2017" />
+  <History Date="06-09-17" Author="Nic Morris" Comment="Created (very poor documentation)" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Macro" Name="Macro" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Macro" Display="'No Macro'" Dmx="0~0" />
+      <Function ID="2" Name="Macro 1" Display="'Macro 1'" Dmx="11~50" />
+      <Function ID="3" Name="Macro 2" Display="'Macro 2'" Dmx="51~100" />
+      <Function ID="4" Name="Macro 3" Display="'Macro 3'" Dmx="101~150" />
+      <Function ID="5" Name="Macro 4" Display="'Macro 4'" Dmx="151~200" />
+      <Function ID="6" Name="Macro 5" Display="'Macro 5'" Dmx="201~255" />
+    </Attribute>
+    <Attribute ID="Colour_Macro" Name="Colour Macro" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Speed" Name="Speed" Description="" Group="S">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="UV" Name="UV" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="UV C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="100,0,255" />
+    </Attribute>
+  </Control>
+  <Mode Name="8 DMX" Channels="8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Macro" ChannelOffset="1" Wheel="22" />
+        <Attribute ID="Colour_Macro" ChannelOffset="2" Wheel="7" />
+        <Attribute ID="Speed" ChannelOffset="3" Wheel="25" />
+        <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+        <Attribute ID="UV" Wheel="8" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="5" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="UV" TargetId="UV" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="6" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="UV" TargetId="UV" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="7" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="UV" TargetId="UV" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="8" ModeLink="Cell" X="0" Y="3">
+        <AttributeLink SourceId="UV" TargetId="UV" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="1" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="UV" ChannelOffset="1" Wheel="8" />
+    </Include>
+  </Mode>
+</Fixture>

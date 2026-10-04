@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="114-ROX-BAR-163TRI" ShortName="114 RoxBar" Company="Irradiant">
+  <Copyright Notice="© Avolites Ltd. 2015" />
+  <History Date="21-02-15" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="3:100" PowerOn="3:0" />
+      <Function ID="1" Name="Blackout" Display="'Blackout'" Dmx="0~40" Update="Shutter, Red, Green, Blue, Colour1" />
+      <Function ID="2" Name="Cell RGB" Display="'Cell RGB %.f%%',0~100" Dmx="41~80" Update="Shutter, Red, Green, Blue, Colour1" />
+      <Function ID="3" Name="All RGB" Display="'All RGB %.f%%',0~100" Dmx="81~120" Update="Shutter, Red, Green, Blue, Colour1" />
+      <Function ID="4" Name="Col Flash" Display="'Col Flash %.f%%',0~100" Dmx="121~160" Update="Shutter, Red, Green, Blue, Colour1" />
+      <Function ID="5" Name="Col 1" Display="'Col 1 %.f%%',0~100" Dmx="161~200" Update="Shutter, Red, Green, Blue, Colour1" />
+      <Function ID="6" Name="Col 2" Display="'Col 2 %.f%%',0~100" Dmx="201~240" Update="Shutter, Red, Green, Blue, Colour1" />
+      <Function ID="7" Name="Dream Flow" Display="'Dream Flow %.f%%',0~100" Dmx="241~255" Update="Shutter, Red, Green, Blue, Colour1" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Speed" ID="2" If="'Control'&gt;4" />
+      <Condition Name="No Function" ID="3" If="'Control'==1" />
+      <Else ID="1" />
+      <Function ID="1" Name="Strobe %" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+      <Function ID="2" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="0~0" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="Cell RGB" ID="2,3,4,5,6,7,8,9" If="'Control'==2" />
+      <Condition Name="Col Flash" ID="10" If="'Control'==4" />
+      <Condition Name="Prog Sel" ID="11" If="'Control'==6" />
+      <Condition Name="Fade" ID="12" If="'Control'==7" />
+      <Condition Name="No Function" ID="13" If="'Control'==1||'Control'==5" />
+      <Else ID="1" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+      <Function ID="2" Name="Cell 1" Display="'Cell 1'" Dmx="0~30" Colour="255,255,255" />
+      <Function ID="3" Name="Cell 2" Display="'Cell 2'" Dmx="31~60" Colour="255,255,255" />
+      <Function ID="4" Name="Cell 3" Display="'Cell 3'" Dmx="61~90" Colour="255,255,255" />
+      <Function ID="5" Name="Cell 4" Display="'Cell 4'" Dmx="91~120" Colour="255,255,255" />
+      <Function ID="6" Name="Cell 5" Display="'Cell 5'" Dmx="121~150" Colour="255,255,255" />
+      <Function ID="7" Name="Cell 6" Display="'Cell 6'" Dmx="151~180" Colour="255,255,255" />
+      <Function ID="8" Name="Cell 7" Display="'Cell 7'" Dmx="181~210" Colour="255,255,255" />
+      <Function ID="9" Name="Cell 8" Display="'Cell 8'" Dmx="211~255" Colour="255,255,255" />
+      <Function ID="10" Name="Colour" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+      <Function ID="11" Name="Prog Select" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+      <Function ID="12" Name="Fade" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+      <Function ID="13" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="Red" ID="2" If="'Control'==2" />
+      <Condition Name="Program" ID="3,4,5,6,7,8,9,10" If="'Control'==7" />
+      <Condition Name="No Function" ID="11" If="'Control'&gt;3&amp;&amp;'Control'&lt;7" />
+      <Else ID="1" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+      <Function ID="2" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+      <Function ID="3" Name="Program 1" Display="'Program 1'" Dmx="0~29" Colour="255,255,255" />
+      <Function ID="4" Name="Program 2" Display="'Program 2'" Dmx="30~59" Colour="255,255,255" />
+      <Function ID="5" Name="Program 3" Display="'Program 3'" Dmx="60~89" Colour="255,255,255" />
+      <Function ID="6" Name="Program 4" Display="'Program 4'" Dmx="90~119" Colour="255,255,255" />
+      <Function ID="7" Name="Program 5" Display="'Program 5'" Dmx="120~149" Colour="255,255,255" />
+      <Function ID="8" Name="Program 6" Display="'Program 6'" Dmx="150~179" Colour="255,255,255" />
+      <Function ID="9" Name="Program 7" Display="'Program 7'" Dmx="180~209" Colour="255,255,255" />
+      <Function ID="10" Name="Program 8" Display="'Program 8'" Dmx="210~255" Colour="255,255,255" />
+      <Function ID="11" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Condition Name="Green" ID="2" If="'Control'==2" />
+      <Condition Name="No Function" ID="3" If="'Control'&gt;3" />
+      <Else ID="1" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+      <Function ID="2" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+      <Function ID="3" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Blue" ID="2" If="'Control'==2" />
+      <Else ID="1" />
+      <Function ID="1" Name="No Function" Display="''" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+  </Control>
+  <Mode Name="6 DMX" Channels="6">
+    <Import PearlRef="UKIRR114" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="2" Wheel="4" />
+      <Attribute ID="Red" ChannelOffset="3" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="4" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="5" Wheel="12" />
+      <Attribute ID="Colour1" ChannelOffset="6" Wheel="8" />
+      <Attribute ID="Control" ChannelOffset="1" Wheel="28" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

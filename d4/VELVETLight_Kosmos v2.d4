@@ -1,0 +1,1537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Kosmos v2" ShortName="Kosmos v2" Company="VELVETLight" Version="27">
+  <Copyright Notice="© Avolites Ltd. 2022" />
+  <History Date="03-10-19" Author="Nic Morris" Comment="Created (note 'Changing' modes not implemented)" Version="1" />
+  <History Date="09-10-19" Author="Nic Morris" Comment="Added Atlabase ID's." Version="2" />
+  <History Date="03-08-20" Author="Nic Morris" Comment="Created from VELVETLight EVO1 (note 16bit charts not available - assumed identical.  'Changing' modes not implemented)" Version="3" />
+  <History Date="03-11-20" Author="Nic Morris" Comment="Added Individual modes in line with latest information in response to manufacturer request." Version="4" />
+  <History Date="13-05-22" Author="Nic Morris" Comment="Updated in line with latest charts (Firmware v0204-30-March-22.  Significant differences, particularly 16bit modes.  Documentation linked from website still show original mappings)" Version="5" />
+  <History Date="13-05-22" Author="Nic Morris" Comment="(Very confusing.  Impemented full modes as split patch.  Note 8bit and 16 bit full modes appear to have different options and looks wrong)." Version="5" />
+  <History Date="13-05-22" Author="Nic Morris" Comment="(Lightsources and non-full mode effect ranges not documented - left unchanged for now.  Gels not documented - left as raw)" Version="5" />
+  <History Date="13-05-22" Author="Nic Morris" Comment="(Tried to imply effect parameters from full modes)" Version="8" />
+  <History Date="18-05-22" Author="Nic Morris" Comment="Created from VELVETLight VELVET CYC" Version="21" />
+  <History Date="18-05-22" Author="Nic Morris" Comment="(Changing modes not implemented as they change control resolution dynamically which is not currently supported)" Version="22" />
+  <History Date="18-05-22" Author="Nic Morris" Comment="(note 8bit effect mode details as 14 channels but only 13 listed.  assumed is 14 with zoom on offset 13.  similarly, 16bit effect mode details as 16 channels but only 15 listed.  assumed is 15)" Version="22" />
+  <History Date="18-05-22" Author="Nic Morris" Comment="(also note full 8bit gels overlaps full 8bit lightsources.  assumed this is incorrect and adjusted patch offsets of lightsources and all subsequent modes to suit)" Version="22" />
+  <History Date="18-05-22" Author="Nic Morris" Comment="(seems strange that the 'full' modes do not have a zoom control)" Version="22" />
+  <History Date="18-05-22" Author="Nic Morris" Comment="Revised full mode control functions." Version="27" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="CCT" Name="CCT" Description="" Group="C">
+      <Locate Locate="1:2500" PowerOn="1:2500" />
+      <Function ID="1" Name="CTO C-Mix" Display="'%.fK',2500~10000" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Green/Magenta" Name="Green/Magenta" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Neutral" Display="'Neutral'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="+Magenta" Display="'+Magenta %.1f%%',100.0~1.0" Dmx="1~121" Colour="255,255,255" />
+      <Function ID="3" Name="Neutral" Display="'Neutral'" Dmx="122~132" Colour="255,255,255" />
+      <Function ID="4" Name="+Green" Display="'+Green %.1f%%',1.0~100.0" Dmx="133~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="ColourIntensity" Name="Intensity" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Intensity" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Saturation" Name="Saturation" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Saturation" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Hue" Name="Hue" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Hue" Display="'%.f°',0~359" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="xSaturation" Name="Saturation" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Saturation" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="White" Name="White" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="White C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Gel_Family" Name="Gel Family" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="LEE" Display="'LEE'" Dmx="0~0" Update="Gel_Number" Colour="255,255,255" />
+      <Function ID="2" Name="Rosco" Display="'Rosco'" Dmx="255~255" Update="Gel_Number" Colour="255,255,255" />
+      <Function ID="3" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Gel_Number" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Gel_Number" Name="Gel Number" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="LEE" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137" If="'Gel_Family'==1" />
+      <Condition Name="Rosco" ID="138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,256,257,258,259" If="'Gel_Family'==2" />
+      <Else ID="260" />
+      <Function ID="1" Name="L197 (Alice Blue)" Display="'L197 (Alice Blue)'" Dmx="0~0" Colour="0,0,0" />
+      <Function ID="2" Name="L147 (Apricot)" Display="'L147 (Apricot)'" Dmx="1~1" Colour="0,0,0" />
+      <Function ID="3" Name="L162 (Bastard Amber)" Display="'L162 (Bastard Amber)'" Dmx="2~2" Colour="0,0,0" />
+      <Function ID="4" Name="L779 (Bastard Pink)" Display="'L779 (Bastard Pink)'" Dmx="3~3" Colour="0,0,0" />
+      <Function ID="5" Name="L712 (Bedford Blue)" Display="'L712 (Bedford Blue)'" Dmx="4~4" Colour="0,0,0" />
+      <Function ID="6" Name="L721 (Berry Blue)" Display="'L721 (Berry Blue)'" Dmx="5~5" Colour="0,0,0" />
+      <Function ID="7" Name="L128 (Bright Pink)" Display="'L128 (Bright Pink)'" Dmx="6~6" Colour="0,0,0" />
+      <Function ID="8" Name="L148 (Bright Rose)" Display="'L148 (Bright Rose)'" Dmx="7~7" Colour="0,0,0" />
+      <Function ID="9" Name="L773 (Cardbox Amber)" Display="'L773 (Cardbox Amber)'" Dmx="8~8" Colour="0,0,0" />
+      <Function ID="10" Name="L179 (Chrome orange)" Display="'L179 (Chrome orange)'" Dmx="9~9" Colour="0,0,0" />
+      <Function ID="11" Name="L711 (Cold Blue)" Display="'L711 (Cold Blue)'" Dmx="10~10" Colour="0,0,0" />
+      <Function ID="12" Name="L703 (Cold Lavender)" Display="'L703 (Cold Lavender)'" Dmx="11~11" Colour="0,0,0" />
+      <Function ID="13" Name="L719 (Colour Wash Blue)" Display="'L719 (Colour Wash Blue)'" Dmx="12~12" Colour="0,0,0" />
+      <Function ID="14" Name="L708 (Cool Lavender)" Display="'L708 (Cool Lavender)'" Dmx="13~13" Colour="0,0,0" />
+      <Function ID="15" Name="L189 (Cosm.Silver Moss)" Display="'L189 (Cosm.Silver Moss)'" Dmx="14~14" Colour="0,0,0" />
+      <Function ID="16" Name="L186 (Cosm.Silver Rose)" Display="'L186 (Cosm.Silver Rose)'" Dmx="15~15" Colour="0,0,0" />
+      <Function ID="17" Name="L191 (Cosmet.Aqua Blue)" Display="'L191 (Cosmet.Aqua Blue)'" Dmx="16~16" Colour="0,0,0" />
+      <Function ID="18" Name="L188 (Cosmet.Highlight)" Display="'L188 (Cosmet.Highlight)'" Dmx="17~17" Colour="0,0,0" />
+      <Function ID="19" Name="L184 (Cosmetic Peach)" Display="'L184 (Cosmetic Peach)'" Dmx="18~18" Colour="0,0,0" />
+      <Function ID="20" Name="L187 (Cosmetic Rouge)" Display="'L187 (Cosmetic Rouge)'" Dmx="19~19" Colour="0,0,0" />
+      <Function ID="21" Name="L733 (Damp Squib)" Display="'L733 (Damp Squib)'" Dmx="20~20" Colour="0,0,0" />
+      <Function ID="22" Name="L22 (Dark Amber)" Display="'L22 (Dark Amber)'" Dmx="21~21" Colour="0,0,0" />
+      <Function ID="23" Name="L124 (Dark Green)" Display="'L124 (Dark Green)'" Dmx="22~22" Colour="0,0,0" />
+      <Function ID="24" Name="L180 (Dark Lavender)" Display="'L180 (Dark Lavender)'" Dmx="23~23" Colour="0,0,0" />
+      <Function ID="25" Name="L111 (Dark Pink)" Display="'L111 (Dark Pink)'" Dmx="24~24" Colour="0,0,0" />
+      <Function ID="26" Name="L8 (Dark Salmon)" Display="'L8 (Dark Salmon)'" Dmx="25~25" Colour="0,0,0" />
+      <Function ID="27" Name="L174 (Dark Steel Blue)" Display="'L174 (Dark Steel Blue)'" Dmx="26~26" Colour="0,0,0" />
+      <Function ID="28" Name="L165 (Daylight Blue)" Display="'L165 (Daylight Blue)'" Dmx="27~27" Colour="0,0,0" />
+      <Function ID="29" Name="L224 (Daylight Blue Frost)" Display="'L224 (Daylight Blue Frost)'" Dmx="28~28" Colour="0,0,0" />
+      <Function ID="30" Name="L104 (Deep Amber)" Display="'L104 (Deep Amber)'" Dmx="29~29" Colour="0,0,0" />
+      <Function ID="31" Name="L135 (Deep Golden Amb.)" Display="'L135 (Deep Golden Amb.)'" Dmx="30~30" Colour="0,0,0" />
+      <Function ID="32" Name="L170 (Deep Lavender)" Display="'L170 (Deep Lavender)'" Dmx="31~31" Colour="0,0,0" />
+      <Function ID="33" Name="L731 (Dirty Ice)" Display="'L731 (Dirty Ice)'" Dmx="32~32" Colour="0,0,0" />
+      <Function ID="34" Name="L744 (Dirty White)" Display="'L744 (Dirty White)'" Dmx="33~33" Colour="0,0,0" />
+      <Function ID="35" Name="L750 (Durham Frost)" Display="'L750 (Durham Frost)'" Dmx="34~34" Colour="0,0,0" />
+      <Function ID="36" Name="L709 (Electric Lilac)" Display="'L709 (Electric Lilac)'" Dmx="35~35" Colour="0,0,0" />
+      <Function ID="37" Name="L714 (Elysian Blue)" Display="'L714 (Elysian Blue)'" Dmx="36~36" Colour="0,0,0" />
+      <Function ID="38" Name="L108 (English Rose)" Display="'L108 (English Rose)'" Dmx="37~37" Colour="0,0,0" />
+      <Function ID="39" Name="L75 (Evening Blue)" Display="'L75 (Evening Blue)'" Dmx="38~38" Colour="0,0,0" />
+      <Function ID="40" Name="L122 (Fern Green)" Display="'L122 (Fern Green)'" Dmx="39~39" Colour="0,0,0" />
+      <Function ID="41" Name="L19 (Fire)" Display="'L19 (Fire)'" Dmx="40~40" Colour="0,0,0" />
+      <Function ID="42" Name="L164 (Flame Red)" Display="'L164 (Flame Red)'" Dmx="41~41" Colour="0,0,0" />
+      <Function ID="43" Name="L192 (Flesh Pink)" Display="'L192 (Flesh Pink)'" Dmx="42~42" Colour="0,0,0" />
+      <Function ID="44" Name="L328 (Follies Pink)" Display="'L328 (Follies Pink)'" Dmx="43~43" Colour="0,0,0" />
+      <Function ID="45" Name="L21 (Gold Amber)" Display="'L21 (Gold Amber)'" Dmx="44~44" Colour="0,0,0" />
+      <Function ID="46" Name="L151 (Gold Tint)" Display="'L151 (Gold Tint)'" Dmx="45~45" Colour="0,0,0" />
+      <Function ID="47" Name="L134 (Golden Amber)" Display="'L134 (Golden Amber)'" Dmx="46~46" Colour="0,0,0" />
+      <Function ID="48" Name="L718 (Half Shanklin Fr)" Display="'L718 (Half Shanklin Fr)'" Dmx="47~47" Colour="0,0,0" />
+      <Function ID="49" Name="L749 (Hampshire Rose)" Display="'L749 (Hampshire Rose)'" Dmx="48~48" Colour="0,0,0" />
+      <Function ID="50" Name="L651 (HI Sodium)" Display="'L651 (HI Sodium)'" Dmx="49~49" Colour="0,0,0" />
+      <Function ID="51" Name="L513 (Ice and Slice)" Display="'L513 (Ice and Slice)'" Dmx="50~50" Colour="0,0,0" />
+      <Function ID="52" Name="L650 (Industry Sodium)" Display="'L650 (Industry Sodium)'" Dmx="51~51" Colour="0,0,0" />
+      <Function ID="53" Name="L738 (JAS Green)" Display="'L738 (JAS Green)'" Dmx="52~52" Colour="0,0,0" />
+      <Function ID="54" Name="L79 (Just Blue)" Display="'L79 (Just Blue)'" Dmx="53~53" Colour="0,0,0" />
+      <Function ID="55" Name="L243 (L. Fluoresc.3600K)" Display="'L243 (L. Fluoresc.3600K)'" Dmx="54~54" Colour="0,0,0" />
+      <Function ID="56" Name="L242 (L. Fluoresc.4300K)" Display="'L242 (L. Fluoresc.4300K)'" Dmx="55~55" Colour="0,0,0" />
+      <Function ID="57" Name="L241 (L. Fluoresc.5700K)" Display="'L241 (L. Fluoresc.5700K)'" Dmx="56~56" Colour="0,0,0" />
+      <Function ID="58" Name="L219 (L. Fluoresc.Green)" Display="'L219 (L. Fluoresc.Green)'" Dmx="57~57" Colour="0,0,0" />
+      <Function ID="59" Name="L121 (L. Green)" Display="'L121 (L. Green)'" Dmx="58~58" Colour="0,0,0" />
+      <Function ID="60" Name="L765 (L. Yellow)" Display="'L765 (L. Yellow)'" Dmx="59~59" Colour="0,0,0" />
+      <Function ID="61" Name="L212 (L.C.T. Yellow)" Display="'L212 (L.C.T. Yellow)'" Dmx="60~60" Colour="0,0,0" />
+      <Function ID="62" Name="L3 (Lavender Tint)" Display="'L3 (Lavender Tint)'" Dmx="61~61" Colour="0,0,0" />
+      <Function ID="63" Name="L730 (Liberty Green)" Display="'L730 (Liberty Green)'" Dmx="62~62" Colour="0,0,0" />
+      <Function ID="64" Name="L102 (Light Amber)" Display="'L102 (Light Amber)'" Dmx="63~63" Colour="0,0,0" />
+      <Function ID="65" Name="L118 (Light Blue)" Display="'L118 (Light Blue)'" Dmx="64~64" Colour="0,0,0" />
+      <Function ID="66" Name="L52 (Light Lavender)" Display="'L52 (Light Lavender)'" Dmx="65~65" Colour="0,0,0" />
+      <Function ID="67" Name="L35 (Light Pink)" Display="'L35 (Light Pink)'" Dmx="66~66" Colour="0,0,0" />
+      <Function ID="68" Name="L107 (Light Rose)" Display="'L107 (Light Rose)'" Dmx="67~67" Colour="0,0,0" />
+      <Function ID="69" Name="L109 (Light Salmon)" Display="'L109 (Light Salmon)'" Dmx="68~68" Colour="0,0,0" />
+      <Function ID="70" Name="L169 (Lilac Tint)" Display="'L169 (Lilac Tint)'" Dmx="69~69" Colour="0,0,0" />
+      <Function ID="71" Name="L704 (Lily)" Display="'L704 (Lily)'" Dmx="70~70" Colour="0,0,0" />
+      <Function ID="72" Name="L88 (Lime Green)" Display="'L88 (Lime Green)'" Dmx="71~71" Colour="0,0,0" />
+      <Function ID="73" Name="L176 (Loving Amber)" Display="'L176 (Loving Amber)'" Dmx="72~72" Colour="0,0,0" />
+      <Function ID="74" Name="L113 (Magenta)" Display="'L113 (Magenta)'" Dmx="73~73" Colour="0,0,0" />
+      <Function ID="75" Name="L795 (Magical Magenta)" Display="'L795 (Magical Magenta)'" Dmx="74~74" Colour="0,0,0" />
+      <Function ID="76" Name="L131 (Marine Blue)" Display="'L131 (Marine Blue)'" Dmx="75~75" Colour="0,0,0" />
+      <Function ID="77" Name="L4 (Medium Bastard Amber)" Display="'L4 (Medium Bastard Amber)'" Dmx="76~76" Colour="0,0,0" />
+      <Function ID="78" Name="L20 (Medium Amber)" Display="'L20 (Medium Amber)'" Dmx="77~77" Colour="0,0,0" />
+      <Function ID="79" Name="L36 (Medium Pink)" Display="'L36 (Medium Pink)'" Dmx="78~78" Colour="0,0,0" />
+      <Function ID="80" Name="L10 (Medium Yellow)" Display="'L10 (Medium Yellow)'" Dmx="79~79" Colour="0,0,0" />
+      <Function ID="81" Name="L110 (Middle Rose)" Display="'L110 (Middle Rose)'" Dmx="80~80" Colour="0,0,0" />
+      <Function ID="82" Name="L778 (Millennium Gold)" Display="'L778 (Millennium Gold)'" Dmx="81~81" Colour="0,0,0" />
+      <Function ID="83" Name="L61 (Mist Blue)" Display="'L61 (Mist Blue)'" Dmx="82~82" Colour="0,0,0" />
+      <Function ID="84" Name="L603 (Moonlight White)" Display="'L603 (Moonlight White)'" Dmx="83~83" Colour="0,0,0" />
+      <Function ID="85" Name="L791 (Moroccan Frost)" Display="'L791 (Moroccan Frost)'" Dmx="84~84" Colour="0,0,0" />
+      <Function ID="86" Name="L790 (Moroccan Pink)" Display="'L790 (Moroccan Pink)'" Dmx="85~85" Colour="0,0,0" />
+      <Function ID="87" Name="L89 (Moss Green)" Display="'L89 (Moss Green)'" Dmx="86~86" Colour="0,0,0" />
+      <Function ID="88" Name="L776 (Nectarine)" Display="'L776 (Nectarine)'" Dmx="87~87" Colour="0,0,0" />
+      <Function ID="89" Name="L144 (No Color Blue)" Display="'L144 (No Color Blue)'" Dmx="88~88" Colour="0,0,0" />
+      <Function ID="90" Name="L159 (No Color Straw)" Display="'L159 (No Color Straw)'" Dmx="89~89" Colour="0,0,0" />
+      <Function ID="91" Name="L724 (Ocean Blue)" Display="'L724 (Ocean Blue)'" Dmx="90~90" Colour="0,0,0" />
+      <Function ID="92" Name="L725 (Old Steel Blue)" Display="'L725 (Old Steel Blue)'" Dmx="91~91" Colour="0,0,0" />
+      <Function ID="93" Name="L9 (Pale Amber Gold)" Display="'L9 (Pale Amber Gold)'" Dmx="92~92" Colour="0,0,0" />
+      <Function ID="94" Name="L63 (Pale Blue)" Display="'L63 (Pale Blue)'" Dmx="93~93" Colour="0,0,0" />
+      <Function ID="95" Name="L152 (Pale Gold)" Display="'L152 (Pale Gold)'" Dmx="94~94" Colour="0,0,0" />
+      <Function ID="96" Name="L138 (Pale Green)" Display="'L138 (Pale Green)'" Dmx="95~95" Colour="0,0,0" />
+      <Function ID="97" Name="L136 (Pale Lavender)" Display="'L136 (Pale Lavender)'" Dmx="96~96" Colour="0,0,0" />
+      <Function ID="98" Name="L154 (Pale Rose)" Display="'L154 (Pale Rose)'" Dmx="97~97" Colour="0,0,0" />
+      <Function ID="99" Name="L153 (Pale Salmon)" Display="'L153 (Pale Salmon)'" Dmx="98~98" Colour="0,0,0" />
+      <Function ID="100" Name="L142 (Pale Violet)" Display="'L142 (Pale Violet)'" Dmx="99~99" Colour="0,0,0" />
+      <Function ID="101" Name="L7 (Pale Yellow)" Display="'L7 (Pale Yellow)'" Dmx="100~100" Colour="0,0,0" />
+      <Function ID="102" Name="L53 (Paler Lavender)" Display="'L53 (Paler Lavender)'" Dmx="101~101" Colour="0,0,0" />
+      <Function ID="103" Name="L115 (Peacock Blue)" Display="'L115 (Peacock Blue)'" Dmx="102~102" Colour="0,0,0" />
+      <Function ID="104" Name="L157 (Pink)" Display="'L157 (Pink)'" Dmx="103~103" Colour="0,0,0" />
+      <Function ID="105" Name="L794 (Pretty n Pink)" Display="'L794 (Pretty n Pink)'" Dmx="104~104" Colour="0,0,0" />
+      <Function ID="106" Name="L139 (Primary Green)" Display="'L139 (Primary Green)'" Dmx="105~105" Colour="0,0,0" />
+      <Function ID="107" Name="L106 (Primary Red)" Display="'L106 (Primary Red)'" Dmx="106~106" Colour="0,0,0" />
+      <Function ID="108" Name="L199 (Regal Blue)" Display="'L199 (Regal Blue)'" Dmx="107~107" Colour="0,0,0" />
+      <Function ID="109" Name="L2 (Rose Pink)" Display="'L2 (Rose Pink)'" Dmx="108~108" Colour="0,0,0" />
+      <Function ID="110" Name="L48 (Rose Purple)" Display="'L48 (Rose Purple)'" Dmx="109~109" Colour="0,0,0" />
+      <Function ID="111" Name="L24 (Scarlet)" Display="'L24 (Scarlet)'" Dmx="110~110" Colour="0,0,0" />
+      <Function ID="112" Name="L748 (Seedy Pink)" Display="'L748 (Seedy Pink)'" Dmx="111~111" Colour="0,0,0" />
+      <Function ID="113" Name="L717 (Shanklin Frost)" Display="'L717 (Shanklin Frost)'" Dmx="112~112" Colour="0,0,0" />
+      <Function ID="114" Name="L68 (Sky Blue)" Display="'L68 (Sky Blue)'" Dmx="113~113" Colour="0,0,0" />
+      <Function ID="115" Name="L161 (Slate Blue)" Display="'L161 (Slate Blue)'" Dmx="114~114" Colour="0,0,0" />
+      <Function ID="116" Name="L774 (Soft Amber Key 1)" Display="'L774 (Soft Amber Key 1)'" Dmx="115~115" Colour="0,0,0" />
+      <Function ID="117" Name="L775 (Soft Amber Key 2)" Display="'L775 (Soft Amber Key 2)'" Dmx="116~116" Colour="0,0,0" />
+      <Function ID="118" Name="L322 (Soft green)" Display="'L322 (Soft green)'" Dmx="117~117" Colour="0,0,0" />
+      <Function ID="119" Name="L702 (Special Pale Lavender)" Display="'L702 (Special Pale Lavender)'" Dmx="118~118" Colour="0,0,0" />
+      <Function ID="120" Name="L137 (Special Lavender)" Display="'L137 (Special Lavender)'" Dmx="119~119" Colour="0,0,0" />
+      <Function ID="121" Name="L710 (Spir Special Blu)" Display="'L710 (Spir Special Blu)'" Dmx="120~120" Colour="0,0,0" />
+      <Function ID="122" Name="L100 (Spring Yellow)" Display="'L100 (Spring Yellow)'" Dmx="121~121" Colour="0,0,0" />
+      <Function ID="123" Name="L117 (Steel Blue)" Display="'L117 (Steel Blue)'" Dmx="122~122" Colour="0,0,0" />
+      <Function ID="124" Name="L728 (Steel Green)" Display="'L728 (Steel Green)'" Dmx="123~123" Colour="0,0,0" />
+      <Function ID="125" Name="L103 (Straw)" Display="'L103 (Straw)'" Dmx="124~124" Colour="0,0,0" />
+      <Function ID="126" Name="L13 (Straw Tint)" Display="'L13 (Straw Tint)'" Dmx="125~125" Colour="0,0,0" />
+      <Function ID="127" Name="L140 (Summer Blue)" Display="'L140 (Summer Blue)'" Dmx="126~126" Colour="0,0,0" />
+      <Function ID="128" Name="L764 (Sun Colour Straw)" Display="'L764 (Sun Colour Straw)'" Dmx="127~127" Colour="0,0,0" />
+      <Function ID="129" Name="L25 (Sunset Red)" Display="'L25 (Sunset Red)'" Dmx="128~128" Colour="0,0,0" />
+      <Function ID="130" Name="L17 (Surprise Peach)" Display="'L17 (Surprise Peach)'" Dmx="129~129" Colour="0,0,0" />
+      <Function ID="131" Name="L194 (Surprise Pink)" Display="'L194 (Surprise Pink)'" Dmx="130~130" Colour="0,0,0" />
+      <Function ID="132" Name="L196 (True Blue)" Display="'L196 (True Blue)'" Dmx="131~131" Colour="0,0,0" />
+      <Function ID="133" Name="L652 (Urban Sodium)" Display="'L652 (Urban Sodium)'" Dmx="132~132" Colour="0,0,0" />
+      <Function ID="134" Name="L344 (Violet)" Display="'L344 (Violet)'" Dmx="133~133" Colour="0,0,0" />
+      <Function ID="135" Name="L763 (Wheat)" Display="'L763 (Wheat)'" Dmx="134~134" Colour="0,0,0" />
+      <Function ID="136" Name="L213 (White Flame Green)" Display="'L213 (White Flame Green)'" Dmx="135~135" Colour="0,0,0" />
+      <Function ID="137" Name="L101 (Yellow)" Display="'L101 (Yellow)'" Dmx="136~136" Colour="0,0,0" />
+      <Function ID="138" Name="R378 (Alice Blue)" Display="'R378 (Alice Blue)'" Dmx="0~0" Colour="0,0,0" />
+      <Function ID="139" Name="R363 (Aquamarine)" Display="'R363 (Aquamarine)'" Dmx="1~1" Colour="0,0,0" />
+      <Function ID="140" Name="R2 (Bastard Amber)" Display="'R2 (Bastard Amber)'" Dmx="2~2" Colour="0,0,0" />
+      <Function ID="141" Name="R376 (Bermuda Blue)" Display="'R376 (Bermuda Blue)'" Dmx="3~3" Colour="0,0,0" />
+      <Function ID="142" Name="R4215 (Blue 15)" Display="'R4215 (Blue 15)'" Dmx="4~4" Colour="0,0,0" />
+      <Function ID="143" Name="R4230 (Blue 30)" Display="'R4230 (Blue 30)'" Dmx="5~5" Colour="0,0,0" />
+      <Function ID="144" Name="R4260 (Blue 60)" Display="'R4260 (Blue 60)'" Dmx="6~6" Colour="0,0,0" />
+      <Function ID="145" Name="R364 (Blue Bell)" Display="'R364 (Blue Bell)'" Dmx="7~7" Colour="0,0,0" />
+      <Function ID="146" Name="R93 (Blue Green)" Display="'R93 (Blue Green)'" Dmx="8~8" Colour="0,0,0" />
+      <Function ID="147" Name="R62 (Booster Blue)" Display="'R62 (Booster Blue)'" Dmx="9~9" Colour="0,0,0" />
+      <Function ID="148" Name="R339 (Broadway pink)" Display="'R339 (Broadway pink)'" Dmx="10~10" Colour="0,0,0" />
+      <Function ID="149" Name="R312 (Canary)" Display="'R312 (Canary)'" Dmx="11~11" Colour="0,0,0" />
+      <Function ID="150" Name="R375 (Cerulean Blue)" Display="'R375 (Cerulean Blue)'" Dmx="12~12" Colour="0,0,0" />
+      <Function ID="151" Name="R389 (Chroma Green)" Display="'R389 (Chroma Green)'" Dmx="13~13" Colour="0,0,0" />
+      <Function ID="152" Name="R360 (Clearwater)" Display="'R360 (Clearwater)'" Dmx="14~14" Colour="0,0,0" />
+      <Function ID="153" Name="R66 (Cool Blue)" Display="'R66 (Cool Blue)'" Dmx="15~15" Colour="0,0,0" />
+      <Function ID="154" Name="R4315 (Cyan 15)" Display="'R4315 (Cyan 15)'" Dmx="16~16" Colour="0,0,0" />
+      <Function ID="155" Name="R4330 (Cyan 30)" Display="'R4330 (Cyan 30)'" Dmx="17~17" Colour="0,0,0" />
+      <Function ID="156" Name="R4360 (Cyan 60)" Display="'R4360 (Cyan 60)'" Dmx="18~18" Colour="0,0,0" />
+      <Function ID="157" Name="R4307 (Cyan 7)" Display="'R4307 (Cyan 7)'" Dmx="19~19" Colour="0,0,0" />
+      <Function ID="158" Name="R4390 (Cyan 90)" Display="'R4390 (Cyan 90)'" Dmx="20~20" Colour="0,0,0" />
+      <Function ID="159" Name="R310 (Daffodil)" Display="'R310 (Daffodil)'" Dmx="21~21" Colour="0,0,0" />
+      <Function ID="160" Name="R90 (Dark Yellow Green)" Display="'R90 (Dark Yellow Green)'" Dmx="22~22" Colour="0,0,0" />
+      <Function ID="161" Name="R65 (Daylight Blue)" Display="'R65 (Daylight Blue)'" Dmx="23~23" Colour="0,0,0" />
+      <Function ID="162" Name="R22 (Deep Amber)" Display="'R22 (Deep Amber)'" Dmx="24~24" Colour="0,0,0" />
+      <Function ID="163" Name="R43 (Deep Pink)" Display="'R43 (Deep Pink)'" Dmx="25~25" Colour="0,0,0" />
+      <Function ID="164" Name="R42 (Deep Salmon)" Display="'R42 (Deep Salmon)'" Dmx="26~26" Colour="0,0,0" />
+      <Function ID="165" Name="R15 (Deep Straw)" Display="'R15 (Deep Straw)'" Dmx="27~27" Colour="0,0,0" />
+      <Function ID="166" Name="R393 (Emerald Green)" Display="'R393 (Emerald Green)'" Dmx="28~28" Colour="0,0,0" />
+      <Function ID="167" Name="R19 (Fire)" Display="'R19 (Fire)'" Dmx="29~29" Colour="0,0,0" />
+      <Function ID="168" Name="R18 (Flame)" Display="'R18 (Flame)'" Dmx="30~30" Colour="0,0,0" />
+      <Function ID="169" Name="R34 (Flesh Pink)" Display="'R34 (Flesh Pink)'" Dmx="31~31" Colour="0,0,0" />
+      <Function ID="170" Name="R3310 (Fluorofilter)" Display="'R3310 (Fluorofilter)'" Dmx="32~32" Colour="0,0,0" />
+      <Function ID="171" Name="R344 (Follies pink)" Display="'R344 (Follies pink)'" Dmx="33~33" Colour="0,0,0" />
+      <Function ID="172" Name="R316 (Gallo Gold)" Display="'R316 (Gallo Gold)'" Dmx="34~34" Colour="0,0,0" />
+      <Function ID="173" Name="R388 (Gaslight Green)" Display="'R388 (Gaslight Green)'" Dmx="35~35" Colour="0,0,0" />
+      <Function ID="174" Name="R21 (Golden Amber)" Display="'R21 (Golden Amber)'" Dmx="36~36" Colour="0,0,0" />
+      <Function ID="175" Name="R4415 (Green 15)" Display="'R4415 (Green 15)'" Dmx="37~37" Colour="0,0,0" />
+      <Function ID="176" Name="R4430 (Green 30)" Display="'R4430 (Green 30)'" Dmx="38~38" Colour="0,0,0" />
+      <Function ID="177" Name="R4460 (Green 60)" Display="'R4460 (Green 60)'" Dmx="39~39" Colour="0,0,0" />
+      <Function ID="178" Name="R4490 (Green 90)" Display="'R4490 (Green 90)'" Dmx="40~40" Colour="0,0,0" />
+      <Function ID="179" Name="R3150 (Industrial Vapor)" Display="'R3150 (Industrial Vapor)'" Dmx="41~41" Colour="0,0,0" />
+      <Function ID="180" Name="R370 (Italian Blue)" Display="'R370 (Italian Blue)'" Dmx="42~42" Colour="0,0,0" />
+      <Function ID="181" Name="R366 (Jordan Blue)" Display="'R366 (Jordan Blue)'" Dmx="43~43" Colour="0,0,0" />
+      <Function ID="182" Name="R94 (Kelly Green)" Display="'R94 (Kelly Green)'" Dmx="44~44" Colour="0,0,0" />
+      <Function ID="183" Name="R57 (Lavender)" Display="'R57 (Lavender)'" Dmx="45~45" Colour="0,0,0" />
+      <Function ID="184" Name="R4915 (Lavender 15)" Display="'R4915 (Lavender 15)'" Dmx="46~46" Colour="0,0,0" />
+      <Function ID="185" Name="R4930 (Lavender 30)" Display="'R4930 (Lavender 30)'" Dmx="47~47" Colour="0,0,0" />
+      <Function ID="186" Name="R4960 (Lavender 60)" Display="'R4960 (Lavender 60)'" Dmx="48~48" Colour="0,0,0" />
+      <Function ID="187" Name="R386 (Leaf Green)" Display="'R386 (Leaf Green)'" Dmx="49~49" Colour="0,0,0" />
+      <Function ID="188" Name="R16 (Light Amber)" Display="'R16 (Light Amber)'" Dmx="50~50" Colour="0,0,0" />
+      <Function ID="189" Name="R17 (Light Flame)" Display="'R17 (Light Flame)'" Dmx="51~51" Colour="0,0,0" />
+      <Function ID="190" Name="R88 (Light Green)" Display="'R88 (Light Green)'" Dmx="52~52" Colour="0,0,0" />
+      <Function ID="191" Name="R40 (Light Salmon)" Display="'R40 (Light Salmon)'" Dmx="53~53" Colour="0,0,0" />
+      <Function ID="192" Name="R67 (Light Sky Blue)" Display="'R67 (Light Sky Blue)'" Dmx="54~54" Colour="0,0,0" />
+      <Function ID="193" Name="R64 (Light Steel Blue)" Display="'R64 (Light Steel Blue)'" Dmx="55~55" Colour="0,0,0" />
+      <Function ID="194" Name="R11 (Light Straw)" Display="'R11 (Light Straw)'" Dmx="56~56" Colour="0,0,0" />
+      <Function ID="195" Name="R55 (Lilac)" Display="'R55 (Lilac)'" Dmx="57~57" Colour="0,0,0" />
+      <Function ID="196" Name="R96 (Lime)" Display="'R96 (Lime)'" Dmx="58~58" Colour="0,0,0" />
+      <Function ID="197" Name="R4715 (Magenta 15)" Display="'R4715 (Magenta 15)'" Dmx="59~59" Colour="0,0,0" />
+      <Function ID="198" Name="R4730 (Magenta 30)" Display="'R4730 (Magenta 30)'" Dmx="60~60" Colour="0,0,0" />
+      <Function ID="199" Name="R4760 (Magenta 60)" Display="'R4760 (Magenta 60)'" Dmx="61~61" Colour="0,0,0" />
+      <Function ID="200" Name="R318 (Mayan Sun)" Display="'R318 (Mayan Sun)'" Dmx="62~62" Colour="0,0,0" />
+      <Function ID="201" Name="R20 (Medium Amber)" Display="'R20 (Medium Amber)'" Dmx="63~63" Colour="0,0,0" />
+      <Function ID="202" Name="R36 (Medium Pink)" Display="'R36 (Medium Pink)'" Dmx="64~64" Colour="0,0,0" />
+      <Function ID="203" Name="R32 (Medium Salmon Pink)" Display="'R32 (Medium Salmon Pink)'" Dmx="65~65" Colour="0,0,0" />
+      <Function ID="204" Name="R14 (Medium Straw)" Display="'R14 (Medium Straw)'" Dmx="66~66" Colour="0,0,0" />
+      <Function ID="205" Name="R10 (Medium Yellow)" Display="'R10 (Medium Yellow)'" Dmx="67~67" Colour="0,0,0" />
+      <Function ID="206" Name="R44 (Middle Rose)" Display="'R44 (Middle Rose)'" Dmx="68~68" Colour="0,0,0" />
+      <Function ID="207" Name="R61 (Mist Blue)" Display="'R61 (Mist Blue)'" Dmx="69~69" Colour="0,0,0" />
+      <Function ID="208" Name="R89 (Moss Green)" Display="'R89 (Moss Green)'" Dmx="70~70" Colour="0,0,0" />
+      <Function ID="209" Name="R343 (Neon pink)" Display="'R343 (Neon pink)'" Dmx="71~71" Colour="0,0,0" />
+      <Function ID="210" Name="R70 (Nile Blue)" Display="'R70 (Nile Blue)'" Dmx="72~72" Colour="0,0,0" />
+      <Function ID="211" Name="R60 (No Color Blue)" Display="'R60 (No Color Blue)'" Dmx="73~73" Colour="0,0,0" />
+      <Function ID="212" Name="R33 (No Color Pink)" Display="'R33 (No Color Pink)'" Dmx="74~74" Colour="0,0,0" />
+      <Function ID="213" Name="R6 (No Color Straw)" Display="'R6 (No Color Straw)'" Dmx="75~75" Colour="0,0,0" />
+      <Function ID="214" Name="R23 (Orange)" Display="'R23 (Orange)'" Dmx="76~76" Colour="0,0,0" />
+      <Function ID="215" Name="R392 (Pacific Green)" Display="'R392 (Pacific Green)'" Dmx="77~77" Colour="0,0,0" />
+      <Function ID="216" Name="R302 (Pale Bastard Amb)" Display="'R302 (Pale Bastard Amb)'" Dmx="78~78" Colour="0,0,0" />
+      <Function ID="217" Name="R63 (Pale Blue)" Display="'R63 (Pale Blue)'" Dmx="79~79" Colour="0,0,0" />
+      <Function ID="218" Name="R8 (Pale Gold)" Display="'R8 (Pale Gold)'" Dmx="80~80" Colour="0,0,0" />
+      <Function ID="219" Name="R37 (Pale Rose Pink)" Display="'R37 (Pale Rose Pink)'" Dmx="81~81" Colour="0,0,0" />
+      <Function ID="220" Name="R355 (Pale Violet)" Display="'R355 (Pale Violet)'" Dmx="82~82" Colour="0,0,0" />
+      <Function ID="221" Name="R87 (Pale Yellow Grn.)" Display="'R87 (Pale Yellow Grn.)'" Dmx="83~83" Colour="0,0,0" />
+      <Function ID="222" Name="R86 (Pea Green)" Display="'R86 (Pea Green)'" Dmx="84~84" Colour="0,0,0" />
+      <Function ID="223" Name="R73 (Peacock Blue)" Display="'R73 (Peacock Blue)'" Dmx="85~85" Colour="0,0,0" />
+      <Function ID="224" Name="R4815 (Pink 15)" Display="'R4815 (Pink 15)'" Dmx="86~86" Colour="0,0,0" />
+      <Function ID="225" Name="R4830 (Pink 30)" Display="'R4830 (Pink 30)'" Dmx="87~87" Colour="0,0,0" />
+      <Function ID="226" Name="R4860 (Pink 60)" Display="'R4860 (Pink 60)'" Dmx="88~88" Colour="0,0,0" />
+      <Function ID="227" Name="R4615 (Red 15)" Display="'R4615 (Red 15)'" Dmx="89~89" Colour="0,0,0" />
+      <Function ID="228" Name="R4630 (Red 30)" Display="'R4630 (Red 30)'" Dmx="90~90" Colour="0,0,0" />
+      <Function ID="229" Name="R4660 (Red 60)" Display="'R4660 (Red 60)'" Dmx="91~91" Colour="0,0,0" />
+      <Function ID="230" Name="R342 (Rose pink)" Display="'R342 (Rose pink)'" Dmx="92~92" Colour="0,0,0" />
+      <Function ID="231" Name="R41 (Salmon)" Display="'R41 (Salmon)'" Dmx="93~93" Colour="0,0,0" />
+      <Function ID="232" Name="R24 (Scarlet)" Display="'R24 (Scarlet)'" Dmx="94~94" Colour="0,0,0" />
+      <Function ID="233" Name="R71 (Sea Blue)" Display="'R71 (Sea Blue)'" Dmx="95~95" Colour="0,0,0" />
+      <Function ID="234" Name="R374 (Sea Green)" Display="'R374 (Sea Green)'" Dmx="96~96" Colour="0,0,0" />
+      <Function ID="235" Name="R331 (Shell pink)" Display="'R331 (Shell pink)'" Dmx="97~97" Colour="0,0,0" />
+      <Function ID="236" Name="R321 (Soft Golden Amb.)" Display="'R321 (Soft Golden Amb.)'" Dmx="98~98" Colour="0,0,0" />
+      <Function ID="237" Name="R54 (Special Lavender)" Display="'R54 (Special Lavender)'" Dmx="99~99" Colour="0,0,0" />
+      <Function ID="238" Name="R12 (Straw)" Display="'R12 (Straw)'" Dmx="100~100" Colour="0,0,0" />
+      <Function ID="239" Name="R13 (Straw Tint)" Display="'R13 (Straw Tint)'" Dmx="101~101" Colour="0,0,0" />
+      <Function ID="240" Name="R51 (Surprise Pink)" Display="'R51 (Surprise Pink)'" Dmx="102~102" Colour="0,0,0" />
+      <Function ID="241" Name="R369 (Tahitian Blue)" Display="'R369 (Tahitian Blue)'" Dmx="103~103" Colour="0,0,0" />
+      <Function ID="242" Name="R365 (Tharon Delft Blu)" Display="'R365 (Tharon Delft Blu)'" Dmx="104~104" Colour="0,0,0" />
+      <Function ID="243" Name="R371 (Theatre Booster 1)" Display="'R371 (Theatre Booster 1)'" Dmx="105~105" Colour="0,0,0" />
+      <Function ID="244" Name="R372 (Theatre Booster 2)" Display="'R372 (Theatre Booster 2)'" Dmx="106~106" Colour="0,0,0" />
+      <Function ID="245" Name="R362 (Tipton Blue)" Display="'R362 (Tipton Blue)'" Dmx="107~107" Colour="0,0,0" />
+      <Function ID="246" Name="R3134 (Tough MT 54)" Display="'R3134 (Tough MT 54)'" Dmx="108~108" Colour="0,0,0" />
+      <Function ID="247" Name="R3102 (Tough MT2)" Display="'R3102 (Tough MT2)'" Dmx="109~109" Colour="0,0,0" />
+      <Function ID="248" Name="R3106 (Tough MTY)" Display="'R3106 (Tough MTY)'" Dmx="110~110" Colour="0,0,0" />
+      <Function ID="249" Name="R3107 (Tough Y-1)" Display="'R3107 (Tough Y-1)'" Dmx="111~111" Colour="0,0,0" />
+      <Function ID="250" Name="R337 (True Pink)" Display="'R337 (True Pink)'" Dmx="112~112" Colour="0,0,0" />
+      <Function ID="251" Name="R92 (Turquoise)" Display="'R92 (Turquoise)'" Dmx="113~113" Colour="0,0,0" />
+      <Function ID="252" Name="R3152 (Urban Vapor)" Display="'R3152 (Urban Vapor)'" Dmx="114~114" Colour="0,0,0" />
+      <Function ID="253" Name="R2005 (VS Cyan)" Display="'R2005 (VS Cyan)'" Dmx="115~115" Colour="0,0,0" />
+      <Function ID="254" Name="R2002 (VS Orange)" Display="'R2002 (VS Orange)'" Dmx="116~116" Colour="0,0,0" />
+      <Function ID="255" Name="R2003 (VS Yellow)" Display="'R2003 (VS Yellow)'" Dmx="117~117" Colour="0,0,0" />
+      <Function ID="256" Name="R368 (Winkler Blue)" Display="'R368 (Winkler Blue)'" Dmx="118~118" Colour="0,0,0" />
+      <Function ID="257" Name="R4515 (Yellow 15)" Display="'R4515 (Yellow 15)'" Dmx="119~119" Colour="0,0,0" />
+      <Function ID="258" Name="R4530 (Yellow 30)" Display="'R4530 (Yellow 30)'" Dmx="120~120" Colour="0,0,0" />
+      <Function ID="259" Name="R4560 (Yellow 60)" Display="'R4560 (Yellow 60)'" Dmx="121~121" Colour="0,0,0" />
+      <Function ID="260" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Lightsource" Name="Lightsource" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Blue Screen" Display="'Blue Screen'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Green Screen" Display="'Green Screen'" Dmx="1~1" Colour="255,255,255" />
+      <Function ID="3" Name="Candle" Display="'Candle'" Dmx="2~2" Colour="255,255,255" />
+      <Function ID="4" Name="Tungsten" Display="'Tungsten'" Dmx="3~3" Colour="255,255,255" />
+      <Function ID="5" Name="Halogen" Display="'Halogen'" Dmx="4~4" Colour="255,255,255" />
+      <Function ID="6" Name="Carbon Arc" Display="'Carbon Arc'" Dmx="5~5" Colour="255,255,255" />
+      <Function ID="7" Name="Fluorescent Warm" Display="'Fluorescent Warm'" Dmx="6~6" Colour="255,255,255" />
+      <Function ID="8" Name="Fluorescent Standard" Display="'Fluorescent Standard'" Dmx="7~7" Colour="255,255,255" />
+      <Function ID="9" Name="Fluorescent Cool" Display="'Fluorescent Cool'" Dmx="8~8" Colour="255,255,255" />
+      <Function ID="10" Name="Fluorescent Black Light" Display="'Fluorescent Black Light'" Dmx="9~9" Colour="255,255,255" />
+      <Function ID="11" Name="HMI" Display="'HMI'" Dmx="10~10" Colour="255,255,255" />
+      <Function ID="12" Name="Mercury Vapour" Display="'Mercury Vapour'" Dmx="11~11" Colour="255,255,255" />
+      <Function ID="13" Name="Moonlight" Display="'Moonlight'" Dmx="12~12" Colour="255,255,255" />
+      <Function ID="14" Name="Sky Blue" Display="'Sky Blue'" Dmx="13~13" Colour="255,255,255" />
+      <Function ID="15" Name="Sky Overcast" Display="'Sky Overcast'" Dmx="14~14" Colour="255,255,255" />
+      <Function ID="16" Name="Sodium High Pressure" Display="'Sodium High Pressure'" Dmx="15~15" Colour="255,255,255" />
+      <Function ID="17" Name="Sodium Vapour" Display="'Sodium Vapour'" Dmx="16~16" Colour="255,255,255" />
+      <Function ID="18" Name="Sunlight" Display="'Sunlight'" Dmx="17~17" Colour="255,255,255" />
+      <Function ID="19" Name="Sunset Sun" Display="'Sunset Sun'" Dmx="18~18" Colour="255,255,255" />
+      <Function ID="20" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Preset" Name="Preset" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Effect" Name="FX" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Disco" Display="'Disco'" Dmx="0~0" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+      <Function ID="2" Name="Flame" Display="'Flame'" Dmx="1~1" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+      <Function ID="3" Name="Police" Display="'Police'" Dmx="2~2" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+      <Function ID="4" Name="Pulse" Display="'Pulse'" Dmx="3~3" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+      <Function ID="5" Name="Strobe" Display="'Strobe'" Dmx="4~4" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+      <Function ID="6" Name="TV" Display="'TV'" Dmx="5~5" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+      <Function ID="7" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Effect_Param_1, Effect_Param_2, Effect_Param_3, Effect_Param_4, Effect_Param_5, Effect_Param_6" />
+    </Attribute>
+    <Attribute ID="Effect_Param_1" Name="FX Param 1" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Loop Speed" ID="1" If="'Effect'==1||'Effect'==3||'Effect'==4||'Effect'==6" />
+      <Condition Name="Saturation" ID="2" If="'Effect'==5" />
+      <Condition Name="Flicker Speed" ID="3" If="'Effect'==2" />
+      <Else ID="4" />
+      <Function ID="1" Name="Loop Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="2" Name="Saturation" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Flicker Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_2" Name="FX Param 2" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Saturation" ID="1" If="'Effect'==2||'Effect'==1||'Effect'==6" />
+      <Condition Name="Flash Time" ID="2" If="'Effect'==4" />
+      <Condition Name="Hue 1" ID="3" If="'Effect'==3" />
+      <Condition Name="Hue" ID="4" If="'Effect'==5" />
+      <Else ID="5" />
+      <Function ID="1" Name="Saturation" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="2" Name="Flash Time" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Hue 1" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="4" Name="Hue" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="5" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_3" Name="FX Param 3" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Hue" ID="1" If="'Effect'==1||'Effect'==2" />
+      <Condition Name="Hue 2" ID="2" If="'Effect'==3" />
+      <Condition Name="Fade Out" ID="3" If="'Effect'==4" />
+      <Condition Name="Kelvin" ID="5" If="'Effect'==5" />
+      <Condition Name="Hue 1" ID="6" If="'Effect'==6" />
+      <Else ID="4" />
+      <Function ID="1" Name="Hue" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="2" Name="Hue 2" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Fade Out" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="5" Name="Kelvin" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="6" Name="Hue 1" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_4" Name="FX Param 4" Description="" Group="E">
+      <Locate Locate="2:0" PowerOn="2:0" />
+      <Condition Name="Saturation" ID="1" If="'Effect'==4" />
+      <Condition Name="Kelvin" ID="2" If="'Effect'==1||'Effect'==2||'Effect'==3" />
+      <Condition Name="Flash Time" ID="4" If="'Effect'==5" />
+      <Condition Name="Hue 2" ID="5" If="'Effect'==6" />
+      <Else ID="3" />
+      <Function ID="1" Name="Saturation" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="2" Name="Kelvin" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="4" Name="Flash Time" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="5" Name="Hue 2" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_5" Name="FX Param 5" Description="" Group="E">
+      <Locate Locate="2:0" PowerOn="2:0" />
+      <Condition Name="Smoothness" ID="2" If="'Effect'==1||'Effect'==2||'Effect'==3||'Effect'==6" />
+      <Condition Name="Hue" ID="3" If="'Effect'==4" />
+      <Else ID="1" />
+      <Function ID="2" Name="Smoothness" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Hue" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_6" Name="FX Param 6" Description="" Group="E">
+      <Locate Locate="2:0" PowerOn="2:0" />
+      <Condition Name="Direction" ID="2" If="'Effect'==1||'Effect'==6" />
+      <Condition Name="Kelvin" ID="3" If="'Effect'==4" />
+      <Else ID="1" />
+      <Function ID="2" Name="Direction" Display="'%.f',0~255" Dmx="0~255" />
+      <Function ID="3" Name="Kelvin" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_7" Name="FX Param 7" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_8" Name="FX Param 8" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_9" Name="FX Param 9" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Effect_Param_10" Name="FX Param 10" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Base Col" Display="'Base Col'" Dmx="0~0" />
+      <Function ID="2" Name="Gels" Display="'Gels'" Dmx="10~29" />
+      <Function ID="3" Name="Lightsources" Display="'Lightsources'" Dmx="20~39" />
+      <Function ID="4" Name="Presets" Display="'Presets'" Dmx="30~49" />
+      <Function ID="5" Name="FX Disco" Display="'FX Disco'" Dmx="40~59" />
+      <Function ID="6" Name="FX Flame" Display="'FX Flame'" Dmx="50~69" />
+      <Function ID="7" Name="FX Police" Display="'FX Police'" Dmx="60~79" />
+      <Function ID="8" Name="FX Pulse" Display="'FX Pulse'" Dmx="70~89" />
+      <Function ID="9" Name="FX Strobe" Display="'FX Strobe'" Dmx="80~99" />
+      <Function ID="10" Name="FX TV" Display="'FX TV'" Dmx="90~109" />
+      <Function ID="11" Name="FX Paparazzi" Display="'FX Paparazzi'" Dmx="100~109" />
+      <Function ID="12" Name="FX Sunrise" Display="'FX Sunrise'" Dmx="110~119" />
+      <Function ID="13" Name="FX Transition" Display="'FX Transition'" Dmx="120~129" />
+      <Function ID="14" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Loop_Speed" Name="Loop Speed" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Loop Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Hue_1" Name="Hue 1" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Hue 1" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Hue_2" Name="Hue 2" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Hue 2" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Smoothness" Name="Smoothness" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Smoothness" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Direction" Name="Direction" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Flicker_Speed" Name="Flicker Speed" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Flicker Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Flash_Time" Name="Flash Time" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Flash Time" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Fade_Out" Name="Fade Out" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Fade Out" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="ColdWhite" Name="Cold White" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="White C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="200,200,255" />
+    </Attribute>
+    <Attribute ID="Zoom" Name="Zoom" Description="" Group="B">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Zoom" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Fan" Name="Fan" Description="" Group="S">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Silence" Display="'Silence'" Dmx="0~0" />
+      <Function ID="2" Name="Dynamic" Display="'Dynamic'" Dmx="10~19" />
+      <Function ID="3" Name="Full Speed" Display="'Full Speed'" Dmx="20~29" />
+    </Attribute>
+    <Attribute ID="Time" Name="Time" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Time" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Zoom_Start" Name="Zoom Start" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Zoom Start" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Zoom_End" Name="Zoom End" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Zoom End" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Zoom_Speed" Name="Zoom Speed" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Zoom Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Intensity_1" Name="Intensity 1" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Intensity 1" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Intensity_2" Name="Intensity 2" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Intensity 2" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="CCT (8bit), 5 DMX" Channels="5">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="Zoom" ChannelOffset="4" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="5" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="CCT (16bit), 6 DMX" Channels="6">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="4" Wheel="38" />
+      <Attribute ID="Zoom" ChannelOffset="5" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="6" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="CCT+HSI (8bit), 7 DMX" Channels="7">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="ColourIntensity" ChannelOffset="1" Wheel="9" VirtualControl="Dimmer" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="Saturation" ChannelOffset="4" Wheel="8" />
+      <Attribute ID="Hue" ChannelOffset="5" Wheel="7" />
+      <Attribute ID="Dimmer" Wheel="1" />
+      <Attribute ID="Zoom" ChannelOffset="6" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="7" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="CCT+HSI (16bit), 8 DMX" Channels="8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="ColourIntensity" ChannelOffset="1,2" Wheel="9" VirtualControl="Dimmer" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="4" Wheel="38" />
+      <Attribute ID="Saturation" ChannelOffset="5" Wheel="8" />
+      <Attribute ID="Hue" ChannelOffset="6" Wheel="7" />
+      <Attribute ID="Dimmer" Wheel="1" />
+      <Attribute ID="Zoom" ChannelOffset="7" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="8" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="CCT+RGB (8bit), 9 DMX" Channels="9">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="8" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="9" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="CCT+RGB (16bit), 13 DMX" Channels="13">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="4" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="5" Wheel="39" />
+      <Attribute ID="Red" ChannelOffset="6,7" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="8,9" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="10,11" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="12" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="13" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="RGBWW (8bit), 8 DMX" Channels="8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="2" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="3" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="4" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="5" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="6" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="7" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="8" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="RGBWW (16bit), 14 DMX" Channels="14">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="3,4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5,6" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="7,8" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="9,10" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="11,12" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="13" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="14" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Gels (8bit), 11 DMX" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Gel_Family" ChannelOffset="5" Wheel="67" />
+      <Attribute ID="Gel_Number" ChannelOffset="6" Wheel="68" />
+      <Attribute ID="Red" ChannelOffset="7" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="10" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Gels (16bit), 15 DMX" Channels="15">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="4" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="5" Wheel="39" />
+      <Attribute ID="Gel_Family" ChannelOffset="6" Wheel="67" />
+      <Attribute ID="Gel_Number" ChannelOffset="7" Wheel="68" />
+      <Attribute ID="Red" ChannelOffset="8,9" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="10,11" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="12,13" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="14" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="15" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Lightsources (8bit), 12 DMX" Channels="12">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Lightsource" ChannelOffset="5" Wheel="69" />
+      <Attribute ID="Red" ChannelOffset="6" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="9" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="10" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="11" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="12" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Lightsources (16bit), 18 DMX" Channels="18">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="4" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="5" Wheel="39" />
+      <Attribute ID="Lightsource" ChannelOffset="6" Wheel="69" />
+      <Attribute ID="Red" ChannelOffset="7,8" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="9,10" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="11,12" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="13,14" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="15,16" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="17" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="18" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Presets (8bit), 12 DMX" Channels="12">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="3" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Preset" ChannelOffset="5" Wheel="97" />
+      <Attribute ID="Red" ChannelOffset="6" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="9" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="10" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="11" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="12" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Presets (16bit), 18 DMX" Channels="18">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="4" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="5" Wheel="39" />
+      <Attribute ID="Preset" ChannelOffset="6" Wheel="97" />
+      <Attribute ID="Red" ChannelOffset="7,8" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="9,10" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="11,12" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="13,14" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="15,16" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="17" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="18" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Effects (8bit), 14 DMX" Channels="14">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Effect" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Effect_Param_1" ChannelOffset="3" Wheel="143" />
+      <Attribute ID="Effect_Param_2" ChannelOffset="4" Wheel="144" />
+      <Attribute ID="Effect_Param_3" ChannelOffset="5" Wheel="172" />
+      <Attribute ID="Effect_Param_4" ChannelOffset="6" Wheel="173" />
+      <Attribute ID="Effect_Param_5" ChannelOffset="7" Wheel="174" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="8" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="9" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="10" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="11" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="12" Wheel="233" />
+      <Attribute ID="Zoom" ChannelOffset="13" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="14" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Effects (16bit), 15 DMX" Channels="15">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="Effect" ChannelOffset="3" Wheel="22" />
+      <Attribute ID="Effect_Param_1" ChannelOffset="4" Wheel="143" />
+      <Attribute ID="Effect_Param_2" ChannelOffset="5" Wheel="144" />
+      <Attribute ID="Effect_Param_3" ChannelOffset="6" Wheel="172" />
+      <Attribute ID="Effect_Param_4" ChannelOffset="7" Wheel="173" />
+      <Attribute ID="Effect_Param_5" ChannelOffset="8" Wheel="174" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="9" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="10" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="11" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="12" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="13" Wheel="233" />
+      <Attribute ID="Zoom" ChannelOffset="14" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="15" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b Master, 2 DMX" Channels="2">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Control" ChannelOffset="2" Wheel="28" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b Base Col (patch@master+2)" Channels="10">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Red" ChannelOffset="4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="6" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="7" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="8" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="9" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="10" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b Gels (patch@master+12)" Channels="10">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Gel_Family" ChannelOffset="4" Wheel="67" />
+      <Attribute ID="Gel_Number" ChannelOffset="5" Wheel="68" />
+      <Attribute ID="Red" ChannelOffset="6" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="9" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="10" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b Lightsources (patch@master+22)" Channels="9">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Lightsource" ChannelOffset="4" Wheel="69" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="8" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="9" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b Presets (patch@master+31)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Preset" ChannelOffset="4" Wheel="97" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="8" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="9" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="10" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Disco (patch@master+42)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="Saturation" ChannelOffset="2" Wheel="8" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="CCT" ChannelOffset="5" Wheel="37" />
+      <Attribute ID="Smoothness" ChannelOffset="6" Wheel="24" />
+      <Attribute ID="Direction" ChannelOffset="7" Wheel="52" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Flame (patch@master+53)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Flicker_Speed" ChannelOffset="1" Wheel="113" />
+      <Attribute ID="xSaturation" ChannelOffset="2" Wheel="39" />
+      <Attribute ID="Hue" ChannelOffset="3" Wheel="7" />
+      <Attribute ID="CCT" ChannelOffset="4" Wheel="37" />
+      <Attribute ID="Smoothness" ChannelOffset="5" Wheel="24" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Police (patch@master+64)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="Hue_1" ChannelOffset="2" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="3" Wheel="99" />
+      <Attribute ID="CCT" ChannelOffset="4" Wheel="37" />
+      <Attribute ID="Smoothness" ChannelOffset="5" Wheel="24" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Pulse (patch@master+75)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="Flash_Time" ChannelOffset="2" Wheel="114" />
+      <Attribute ID="Fade_Out" ChannelOffset="3" Wheel="142" />
+      <Attribute ID="xSaturation" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Hue" ChannelOffset="5" Wheel="7" />
+      <Attribute ID="CCT" ChannelOffset="6" Wheel="37" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Strobe (patch@master+86)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="xSaturation" ChannelOffset="1" Wheel="39" />
+      <Attribute ID="Hue" ChannelOffset="2" Wheel="7" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Flash_Time" ChannelOffset="4" Wheel="114" />
+      <Attribute ID="Effect_Param_5" ChannelOffset="5" Wheel="174" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX TV (patch@master+97)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="xSaturation" ChannelOffset="2" Wheel="39" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="Smoothness" ChannelOffset="5" Wheel="24" />
+      <Attribute ID="Direction" ChannelOffset="6" Wheel="52" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Paparazzi (patch@master+108)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Flicker_Speed" ChannelOffset="2" Wheel="113" />
+      <Attribute ID="Flash_Time" ChannelOffset="3" Wheel="114" />
+      <Attribute ID="Effect_Param_4" ChannelOffset="4" Wheel="173" />
+      <Attribute ID="Effect_Param_5" ChannelOffset="5" Wheel="174" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Sunrise (patch@master+119)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Saturation" ChannelOffset="1" Wheel="8" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="Time" ChannelOffset="5" Wheel="82" />
+      <Attribute ID="Zoom_Start" ChannelOffset="6" Wheel="83" />
+      <Attribute ID="Zoom_End" ChannelOffset="7" Wheel="84" />
+      <Attribute ID="Zoom_Speed" ChannelOffset="8" Wheel="112" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 8b FX Transition (patch@master+130)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Intensity_1" ChannelOffset="1" Wheel="53" />
+      <Attribute ID="Intensity_2" ChannelOffset="2" Wheel="54" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="Time" ChannelOffset="5" Wheel="82" />
+      <Attribute ID="Zoom_Start" ChannelOffset="6" Wheel="83" />
+      <Attribute ID="Zoom_End" ChannelOffset="7" Wheel="84" />
+      <Attribute ID="Zoom_Speed" ChannelOffset="8" Wheel="112" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b Master, 3 DMX" Channels="3">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="Control" ChannelOffset="3" Wheel="28" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b Base Col (patch@master+3)" Channels="15">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="10,11" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="12,13" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="14" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="15" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b Gels (patch@master+18)" Channels="13">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Gel_Family" ChannelOffset="4" Wheel="67" />
+      <Attribute ID="Gel_Number" ChannelOffset="5" Wheel="68" />
+      <Attribute ID="Red" ChannelOffset="6,7" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="8,9" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="10,11" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="12" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="13" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b Lightsources (patch@master+31)" Channels="12">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Lightsource" ChannelOffset="4" Wheel="69" />
+      <Attribute ID="Red" ChannelOffset="5,6" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="7,8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9,10" Wheel="12" />
+      <Attribute ID="Zoom" ChannelOffset="11" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="12" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b Presets (patch@master+43)" Channels="16">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Green/Magenta" ChannelOffset="2" Wheel="38" />
+      <Attribute ID="xSaturation" ChannelOffset="3" Wheel="39" />
+      <Attribute ID="Preset" ChannelOffset="4" Wheel="97" />
+      <Attribute ID="Red" ChannelOffset="5,6" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="7,8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9,10" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="11,12" Wheel="40" />
+      <Attribute ID="White" ChannelOffset="13,14" Wheel="41" />
+      <Attribute ID="Zoom" ChannelOffset="15" Wheel="19" />
+      <Attribute ID="Fan" ChannelOffset="16" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Disco (patch@master+59)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="xSaturation" ChannelOffset="2" Wheel="39" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="CCT" ChannelOffset="5" Wheel="37" />
+      <Attribute ID="Smoothness" ChannelOffset="6" Wheel="24" />
+      <Attribute ID="Direction" ChannelOffset="7" Wheel="52" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Flame (patch@master+70)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Flicker_Speed" ChannelOffset="1" Wheel="113" />
+      <Attribute ID="xSaturation" ChannelOffset="2" Wheel="39" />
+      <Attribute ID="Hue" ChannelOffset="3" Wheel="7" />
+      <Attribute ID="CCT" ChannelOffset="4" Wheel="37" />
+      <Attribute ID="Smoothness" ChannelOffset="5" Wheel="24" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Police (patch@master+81)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="Hue_1" ChannelOffset="2" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="3" Wheel="99" />
+      <Attribute ID="CCT" ChannelOffset="4" Wheel="37" />
+      <Attribute ID="Smoothness" ChannelOffset="5" Wheel="24" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Pulse (patch@master+92)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="Flash_Time" ChannelOffset="2" Wheel="114" />
+      <Attribute ID="Fade_Out" ChannelOffset="3" Wheel="142" />
+      <Attribute ID="xSaturation" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Hue" ChannelOffset="5" Wheel="7" />
+      <Attribute ID="CCT" ChannelOffset="6" Wheel="37" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Strobe (patch@master+103)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="xSaturation" ChannelOffset="1" Wheel="39" />
+      <Attribute ID="Hue" ChannelOffset="2" Wheel="7" />
+      <Attribute ID="CCT" ChannelOffset="3" Wheel="37" />
+      <Attribute ID="Flash_Time" ChannelOffset="4" Wheel="114" />
+      <Attribute ID="Effect_Param_5" ChannelOffset="5" Wheel="174" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX TV (patch@master+114)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Loop_Speed" ChannelOffset="1" Wheel="23" />
+      <Attribute ID="xSaturation" ChannelOffset="2" Wheel="39" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="Smoothness" ChannelOffset="5" Wheel="24" />
+      <Attribute ID="Direction" ChannelOffset="6" Wheel="52" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Paparazzi (patch@master+125)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="CCT" ChannelOffset="1" Wheel="37" />
+      <Attribute ID="Flicker_Speed" ChannelOffset="2" Wheel="113" />
+      <Attribute ID="Flash_Time" ChannelOffset="3" Wheel="114" />
+      <Attribute ID="Effect_Param_4" ChannelOffset="4" Wheel="173" />
+      <Attribute ID="Effect_Param_5" ChannelOffset="5" Wheel="174" />
+      <Attribute ID="Effect_Param_6" ChannelOffset="6" Wheel="202" />
+      <Attribute ID="Effect_Param_7" ChannelOffset="7" Wheel="203" />
+      <Attribute ID="Effect_Param_8" ChannelOffset="8" Wheel="204" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Sunrise (patch@master+136)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Saturation" ChannelOffset="1" Wheel="8" />
+      <Attribute ID="CCT" ChannelOffset="2" Wheel="37" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="Time" ChannelOffset="5" Wheel="82" />
+      <Attribute ID="Zoom_Start" ChannelOffset="6" Wheel="83" />
+      <Attribute ID="Zoom_End" ChannelOffset="7" Wheel="84" />
+      <Attribute ID="Zoom_Speed" ChannelOffset="8" Wheel="112" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Full 16b FX Transtion (patch@master+147)" Channels="11">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Intensity_1" ChannelOffset="1" Wheel="53" />
+      <Attribute ID="Intensity_2" ChannelOffset="2" Wheel="54" />
+      <Attribute ID="Hue_1" ChannelOffset="3" Wheel="98" />
+      <Attribute ID="Hue_2" ChannelOffset="4" Wheel="99" />
+      <Attribute ID="Time" ChannelOffset="5" Wheel="82" />
+      <Attribute ID="Zoom_Start" ChannelOffset="6" Wheel="83" />
+      <Attribute ID="Zoom_End" ChannelOffset="7" Wheel="84" />
+      <Attribute ID="Zoom_Speed" ChannelOffset="8" Wheel="112" />
+      <Attribute ID="Effect_Param_9" ChannelOffset="9" Wheel="232" />
+      <Attribute ID="Effect_Param_10" ChannelOffset="10" Wheel="233" />
+      <Attribute ID="Fan" ChannelOffset="11" Wheel="25" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

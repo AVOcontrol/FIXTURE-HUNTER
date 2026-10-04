@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Player" ShortName="Player" Company="Hive" Version="16">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <History Date="23-09-23" Author="Nic Morris" Comment="Created (confusing charts.  contains some range conflicts.  note 32bit controls not currently supported - defined as 1x24bit + 1x8bit for now.  8bit parts have '+' suffix in attribute name.  default values not specified - made best guess)" Version="0" />
+  <History Date="23-09-23" Author="Nic Morris" Comment="(note used percentage for display ranges for all 24bit controls at the moment as raw values cause errors)" Version="16" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="File" Name="File Select" Description="" Group="G" Size="2">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Black" Display="'Black'" Dmx="0~0" />
+      <Function ID="2" Name="File" Display="'File %.f',1~65535" Dmx="1~65535" />
+    </Attribute>
+    <Attribute ID="In_Frame" Name="In Frame" Description="" Group="G" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Frame" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="In_Frame_LSB" Name="In Frame+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Out_Frame" Name="Out Frame" Description="" Group="G" Size="3">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Frame" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="Out_Frame_LSB" Name="Out Frame+" Description="" Group="S">
+      <Locate Locate="1:255" PowerOn="1:255" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Play_Mode" Name="Play Mode" Description="" Group="G">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="In Frame" Display="'In Frame'" Dmx="0~0" />
+      <Function ID="2" Name="Out Frame" Display="'Out Frame'" Dmx="1~1" />
+      <Function ID="3" Name="Loop FWD" Display="'Loop FWD'" Dmx="2~2" />
+      <Function ID="4" Name="Loop REV" Display="'Loop REV'" Dmx="3~3" />
+      <Function ID="5" Name="Play Once FWD" Display="'Play Once FWD'" Dmx="4~4" />
+      <Function ID="6" Name="Play Once REV" Display="'Play Once REV'" Dmx="5~5" />
+      <Function ID="7" Name="Stop" Display="'Stop'" Dmx="6~6" />
+      <Function ID="8" Name="Pause" Display="'Pause'" Dmx="7~7" />
+      <Function ID="9" Name="Bounce" Display="'Bounce'" Dmx="8~8" />
+      <Function ID="10" Name="Take Over Frame" Display="'Take Over Frame'" Dmx="9~9" />
+      <Function ID="11" Name="Loop FWD w/ Pause on 0 intensity" Display="'Loop FWD w/ Pause on 0 intensity'" Dmx="10~10" />
+      <Function ID="12" Name="Loop REV w/ Pause on 0 intensity" Display="'Loop REV w/ Pause on 0 intensity'" Dmx="11~11" />
+      <Function ID="13" Name="Play Once FWD w/ Pause on 0 intensity" Display="'Play Once FWD w/ Pause on 0 intensity'" Dmx="12~12" />
+      <Function ID="14" Name="Play Once REV w/ Pause on 0 intensity" Display="'Play Once REV w/ Pause on 0 intensity'" Dmx="13~13" />
+      <Function ID="15" Name="Bounce w/ Pause on 0 intensity" Display="'Bounce w/ Pause on 0 intensity'" Dmx="15~15" />
+      <Function ID="16" Name="Sync to TC" Display="'Sync to TC'" Dmx="20~20" />
+      <Function ID="17" Name="Loop FWD w/ re-trigger on intensity" Display="'Loop FWD w/ re-trigger on intensity'" Dmx="40~40" />
+      <Function ID="18" Name="Loop REV w/ re-trigger on intensity" Display="'Loop REV w/ re-trigger on intensity'" Dmx="41~41" />
+      <Function ID="19" Name="Play Once FWD w/ retrigger on intensity" Display="'Play Once FWD w/ retrigger on intensity'" Dmx="42~42" />
+      <Function ID="20" Name="Play Once REV w/ retrigger on intensity" Display="'Play Once REV w/ retrigger on intensity'" Dmx="43~43" />
+      <Function ID="21" Name="Bounce w/ retrigger on intensity" Display="'Bounce w/ retrigger on intensity'" Dmx="45~45" />
+      <Function ID="22" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Play_Speed" Name="Play Speed" Description="" Group="G" Size="2">
+      <Locate Locate="3" PowerOn="1" />
+      <Function ID="1" Name="Stop" Display="'Stop'" Dmx="0~0" />
+      <Function ID="2" Name="Slower" Display="'Slower %.2f%%',100.00~0.00" Dmx="1~32759" />
+      <Function ID="3" Name="100%" Display="'100%'" Dmx="32760~32775" />
+      <Function ID="4" Name="Faster" Display="'Faster %.2f%%',0.00~100.00" Dmx="32776~65535" />
+    </Attribute>
+    <Attribute ID="Scale" Name="Scale" Description="" Group="B" Size="3">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Out" Display="'Out %.2f%%',100.00~0.00" Dmx="0~8388606" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="8388607~8388607" />
+      <Function ID="3" Name="In" Display="'In %.2f%%',0.00~100.00" Dmx="8388608~16777215" />
+    </Attribute>
+    <Attribute ID="Scale_LSB" Name="Scale+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Framing_Mode" Name="Framing Mode" Description="" Group="B">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Letterbox" Display="'Letterbox'" Dmx="0~0" />
+      <Function ID="2" Name="Crop" Display="'Crop'" Dmx="1~1" />
+      <Function ID="3" Name="Stretch" Display="'Stretch'" Dmx="2~2" />
+      <Function ID="4" Name="Multi Letterbox" Display="'Multi Letterbox'" Dmx="3~3" />
+      <Function ID="5" Name="Centered" Display="'Centered'" Dmx="4~4" />
+      <Function ID="6" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Aspect_Ratio" Name="Aspect Ratio" Description="" Group="B" Size="3">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Adjustment" Display="'No Adjustment'" Dmx="0~0" />
+      <Function ID="2" Name="Horiz" Display="'Horiz %.2f%%',0.00~100.00" Dmx="1~8388606" />
+      <Function ID="3" Name="Center" Display="'Center'" Dmx="8388607~8388607" />
+      <Function ID="4" Name="Vert" Display="'Vert %.2f%%',0.00~100.00" Dmx="8388608~16777215" />
+    </Attribute>
+    <Attribute ID="Aspect_Ratio_LSB" Name="Aspect Ratio+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Pan" Name="Position X" Description="" Group="P" Size="3">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Left" Display="'Left %.2f%%',100.00~0.00" Dmx="0~8388606" />
+      <Function ID="2" Name="Center" Display="'Center'" Dmx="8388607~8388607" />
+      <Function ID="3" Name="Right" Display="'Right %.2f%%',0.00~100.00" Dmx="8388608~16777215" />
+    </Attribute>
+    <Attribute ID="Position_X_LSB" Name="Position X+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Tilt" Name="Position Y" Description="" Group="P" Size="3">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Above" Display="'Above %.2f%%',100.00~0.00" Dmx="0~8388606" />
+      <Function ID="2" Name="Center" Display="'Center'" Dmx="8388607~8388607" />
+      <Function ID="3" Name="Below" Display="'Below %.2f%%',0.00~100.00" Dmx="8388608~16777215" />
+    </Attribute>
+    <Attribute ID="Position_Y_LSB" Name="Position Y+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Rotation_X" Name="Rotation X" Description="" Group="B" Size="3">
+      <Locate Locate="3" PowerOn="3" />
+      <Function ID="1" Name="Spin CCW" Display="'Spin CCW %.2f%%',100.00~0.00" Dmx="4194303~0" />
+      <Function ID="2" Name="Index -" Display="'Index - %.2f%%',0.00~100.00" Dmx="4194304~8388606" />
+      <Function ID="3" Name="No Rotate" Display="'No Rotate'" Dmx="8388607~8388607" />
+      <Function ID="4" Name="Index +" Display="'Index + %.2f%%',0.00~100.00" Dmx="8388608~12582911" />
+      <Function ID="5" Name="Spin CW" Display="'Spin CW %.2f%%',0.00~100.00" Dmx="12582912~16777215" />
+    </Attribute>
+    <Attribute ID="Rotation_X_LSB" Name="Rotation X+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Rotation_Y" Name="Rotation Y" Description="" Group="B" Size="3">
+      <Locate Locate="3" PowerOn="3" />
+      <Function ID="1" Name="Spin CCW" Display="'Spin CCW %.2f%%',100.00~0.00" Dmx="4194303~0" />
+      <Function ID="2" Name="Index -" Display="'Index - %.2f%%',0.00~100.00" Dmx="4194304~8388606" />
+      <Function ID="3" Name="No Rotate" Display="'No Rotate'" Dmx="8388607~8388607" />
+      <Function ID="4" Name="Index +" Display="'Index + %.2f%%',0.00~100.00" Dmx="8388608~12582911" />
+      <Function ID="5" Name="Spin CW" Display="'Spin CW %.2f%%',0.00~100.00" Dmx="12582912~16777215" />
+    </Attribute>
+    <Attribute ID="Rotation_Y_LSB" Name="Rotation Y+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Rotation_Z" Name="Rotation Z" Description="" Group="B" Size="3">
+      <Locate Locate="3" PowerOn="3" />
+      <Function ID="1" Name="Spin CCW" Display="'Spin CCW %.2f%%',100.00~0.00" Dmx="4194303~0" />
+      <Function ID="2" Name="Index -" Display="'Index - %.2f%%',0.00~100.00" Dmx="4194304~8388606" />
+      <Function ID="3" Name="No Rotate" Display="'No Rotate'" Dmx="8388607~8388607" />
+      <Function ID="4" Name="Index +" Display="'Index + %.2f%%',0.00~100.00" Dmx="8388608~12582911" />
+      <Function ID="5" Name="Spin CW" Display="'Spin CW %.2f%%',0.00~100.00" Dmx="12582912~16777215" />
+    </Attribute>
+    <Attribute ID="Rotation_Z_LSB" Name="Rotation Z+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Content_Re-Trigger)" Name="Reserved (43)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Last_Frame_Black)" Name="Reserved (44)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Blend_Mode" Name="Blend Mode" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Alpha" Display="'Alpha'" Dmx="0~0" />
+      <Function ID="2" Name="Additive" Display="'Additive'" Dmx="1~1" />
+      <Function ID="3" Name="Multiply" Display="'Multiply'" Dmx="2~2" />
+      <Function ID="4" Name="Difference" Display="'Difference'" Dmx="3~3" />
+      <Function ID="5" Name="Screen" Display="'Screen'" Dmx="4~4" />
+      <Function ID="6" Name="Preserve Luma" Display="'Preserve Luma'" Dmx="5~5" />
+      <Function ID="7" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Intensity" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Intensity" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Red_Adjust" Name="Red Adjust" Description="" Group="C" Size="2">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="-" Display="'- %.2f%%',100.00~0.00" Dmx="0~32767" Colour="255,0,0" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="32768~32768" Colour="255,0,0" />
+      <Function ID="3" Name="+" Display="'+ %.2f%%',0.00~100.00" Dmx="32769~65535" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green_Adjust" Name="Green Adjust" Description="" Group="C" Size="2">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="-" Display="'- %.2f%%',100.00~0.00" Dmx="0~32767" Colour="0,255,0" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="32768~32768" Colour="0,255,0" />
+      <Function ID="3" Name="+" Display="'+ %.2f%%',0.00~100.00" Dmx="32769~65535" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue_Adjust" Name="Blue Adjust" Description="" Group="C" Size="2">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="-" Display="'- %.2f%%',100.00~0.00" Dmx="0~32767" Colour="0,0,255" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="32768~32768" Colour="0,0,255" />
+      <Function ID="3" Name="+" Display="'+ %.2f%%',0.00~100.00" Dmx="32769~65535" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="xHue" Name="Hue" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Hue" Display="'%.2f°',0.00~360.00" Dmx="0~65535" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="xSaturation" Name="Saturation" Description="" Group="C" Size="2">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="-" Display="'- %.2f%%',100.00~0.00" Dmx="0~32767" Colour="0,0,0" />
+      <Function ID="2" Name="Normal" Display="'Normal'" Dmx="32768~32768" Colour="0,0,0" />
+      <Function ID="3" Name="+" Display="'+ %.2f%%',0.00~100.00" Dmx="32769~65535" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Contrast" Name="Contrast" Description="" Group="C" Size="2">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="-" Display="'- %.2f%%',100.00~0.00" Dmx="0~32767" Colour="0,0,0" />
+      <Function ID="2" Name="Normal" Display="'Normal'" Dmx="32768~32768" Colour="0,0,0" />
+      <Function ID="3" Name="+" Display="'+ %.2f%%',0.00~100.00" Dmx="32769~65535" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="LUT" Name="LUT" Description="" Group="S" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="LUT" Display="'LUT %.f',0~32767" Dmx="0~32767" />
+      <Function ID="2" Name="Raw DMX" Display="'Raw DMX %.f',0~65535" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Strobe" Description="" Group="I" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="On Off" Display="'On Off %.2f%%',0.00~100.00" Dmx="0~32767" />
+      <Function ID="2" Name="Punch" Display="'Punch %.2f%%',0.00~100.00" Dmx="32768~65535" />
+    </Attribute>
+    <Attribute ID="TC_Hour" Name="TC Hour" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Hour" Display="'Hour %.f',0~24" Dmx="0~24" />
+      <Function ID="2" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="TC_Minute" Name="TC Minute" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Minute" Display="'Minute %.f',0~60" Dmx="0~60" />
+      <Function ID="2" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="TC_Second" Name="TC Second" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Second" Display="'Second %.f',0~60" Dmx="0~60" />
+      <Function ID="2" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="TC_Frame" Name="TC Frame" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Frame" Display="'Frame %.f',0~60" Dmx="0~60" />
+      <Function ID="2" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Select" Name="FX1 Select" Description="" Group="E" Size="2">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="2" Name="Old TV" Display="'Old TV'" Dmx="1~1" />
+      <Function ID="3" Name="Sepia" Display="'Sepia'" Dmx="2~2" />
+      <Function ID="4" Name="Feedback" Display="'Feedback'" Dmx="3~3" />
+      <Function ID="5" Name="Blue" Display="'Blue'" Dmx="4~4" />
+      <Function ID="6" Name="Crystalise" Display="'Crystalise'" Dmx="5~5" />
+      <Function ID="7" Name="Fractal Soup" Display="'Fractal Soup'" Dmx="6~6" />
+      <Function ID="8" Name="Radar" Display="'Radar'" Dmx="7~7" />
+      <Function ID="9" Name="Pixelise" Display="'Pixelise'" Dmx="8~8" />
+      <Function ID="10" Name="Soft Edge Oval" Display="'Soft Edge Oval'" Dmx="9~9" />
+      <Function ID="11" Name="Tile" Display="'Tile'" Dmx="10~10" />
+      <Function ID="12" Name="Infinity Zoom" Display="'Infinity Zoom'" Dmx="11~11" />
+      <Function ID="13" Name="Dot Grid" Display="'Dot Grid'" Dmx="12~12" />
+      <Function ID="14" Name="Kaleidoscope" Display="'Kaleidoscope'" Dmx="13~13" />
+      <Function ID="15" Name="Multi Mirror" Display="'Multi Mirror'" Dmx="14~14" />
+      <Function ID="16" Name="Rebelle Distort" Display="'Rebelle Distort'" Dmx="15~15" />
+      <Function ID="17" Name="Raw DMX" Display="'Raw DMX %.f',0~65535" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="FX1_Opacity" Name="FX1 Opacity" Description="" Group="E" Merge="HTP" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Opacity" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="FX1_Param_1" Name="FX1 Param 1" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_1_LSB" Name="FX1 Param 1+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_2" Name="FX1 Param 2" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_2_LSB" Name="FX1 Param 2+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_3" Name="FX1 Param 3" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_3_LSB" Name="FX1 Param 3+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_4" Name="FX1 Param 4" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_4_LSB" Name="FX1 Param 4+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_5" Name="FX1 Param 5" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_5_LSB" Name="FX1 Param 5+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_6" Name="FX1 Param 6" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_6_LSB" Name="FX1 Param 6+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_7" Name="FX1 Param 7" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_7_LSB" Name="FX1 Param 7+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_8" Name="FX1 Param 8" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_8_LSB" Name="FX1 Param 8+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_9" Name="FX1 Param 9" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_9_LSB" Name="FX1 Param 9+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_10" Name="FX1 Param 10" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_10_LSB" Name="FX1 Param 10+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_11" Name="FX1 Param 11" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_11_LSB" Name="FX1 Param 11+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_12" Name="FX1 Param 12" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_12_LSB" Name="FX1 Param 12+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_13" Name="FX1 Param 13" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_13_LSB" Name="FX1 Param 13+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_14" Name="FX1 Param 14" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_14_LSB" Name="FX1 Param 14+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_15" Name="FX1 Param 15" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_15_LSB" Name="FX1 Param 15+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX1_Param_16" Name="FX1 Param 16" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX1_Param_16_LSB" Name="FX1 Param 16+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Select" Name="FX2 Select" Description="" Group="E" Size="2">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="2" Name="Old TV" Display="'Old TV'" Dmx="1~1" />
+      <Function ID="3" Name="Sepia" Display="'Sepia'" Dmx="2~2" />
+      <Function ID="4" Name="Feedback" Display="'Feedback'" Dmx="3~3" />
+      <Function ID="5" Name="Blue" Display="'Blue'" Dmx="4~4" />
+      <Function ID="6" Name="Crystalise" Display="'Crystalise'" Dmx="5~5" />
+      <Function ID="7" Name="Fractal Soup" Display="'Fractal Soup'" Dmx="6~6" />
+      <Function ID="8" Name="Radar" Display="'Radar'" Dmx="7~7" />
+      <Function ID="9" Name="Pixelise" Display="'Pixelise'" Dmx="8~8" />
+      <Function ID="10" Name="Soft Edge Oval" Display="'Soft Edge Oval'" Dmx="9~9" />
+      <Function ID="11" Name="Tile" Display="'Tile'" Dmx="10~10" />
+      <Function ID="12" Name="Infinity Zoom" Display="'Infinity Zoom'" Dmx="11~11" />
+      <Function ID="13" Name="Dot Grid" Display="'Dot Grid'" Dmx="12~12" />
+      <Function ID="14" Name="Kaleidoscope" Display="'Kaleidoscope'" Dmx="13~13" />
+      <Function ID="15" Name="Multi Mirror" Display="'Multi Mirror'" Dmx="14~14" />
+      <Function ID="16" Name="Rebelle Distort" Display="'Rebelle Distort'" Dmx="15~15" />
+      <Function ID="17" Name="Raw DMX" Display="'Raw DMX %.f',0~65535" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="FX2_Opacity" Name="FX2 Opacity" Description="" Group="E" Merge="HTP" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Opacity" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="FX2_Param_1" Name="FX2 Param 1" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_1_LSB" Name="FX2 Param 1+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_2" Name="FX2 Param 2" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_2_LSB" Name="FX2 Param 2+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_3" Name="FX2 Param 3" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_3_LSB" Name="FX2 Param 3+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_4" Name="FX2 Param 4" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_4_LSB" Name="FX2 Param 4+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_5" Name="FX2 Param 5" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_5_LSB" Name="FX2 Param 5+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_6" Name="FX2 Param 6" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_6_LSB" Name="FX2 Param 6+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_7" Name="FX2 Param 7" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_7_LSB" Name="FX2 Param 7+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_8" Name="FX2 Param 8" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_8_LSB" Name="FX2 Param 8+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_9" Name="FX2 Param 9" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_9_LSB" Name="FX2 Param 9+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_10" Name="FX2 Param 10" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_10_LSB" Name="FX2 Param 10+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_11" Name="FX2 Param 11" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_11_LSB" Name="FX2 Param 11+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_12" Name="FX2 Param 12" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_12_LSB" Name="FX2 Param 12+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_13" Name="FX2 Param 13" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_13_LSB" Name="FX2 Param 13+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_14" Name="FX2 Param 14" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_14_LSB" Name="FX2 Param 14+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_15" Name="FX2 Param 15" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_15_LSB" Name="FX2 Param 15+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="FX2_Param_16" Name="FX2 Param 16" Description="" Group="E" Size="3">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Param" Display="'%.2f%%',0.00~100.00" Dmx="0~16777215" />
+    </Attribute>
+    <Attribute ID="FX2_Param_16_LSB" Name="FX2 Param 16+" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_1)" Name="Reserved (204)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_2)" Name="Reserved (205)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_3)" Name="Reserved (206)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_4)" Name="Reserved (207)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_5)" Name="Reserved (208)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_6)" Name="Reserved (209)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_7)" Name="Reserved (210)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Start_Time_8)" Name="Reserved (211)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Volume" Name="Volume" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Volume" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Frame_Blending" Name="Frame Blending" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Disabled" Display="'Disabled'" Dmx="0~0" />
+      <Function ID="2" Name="Enabled" Display="'Enabled'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_1)" Name="Reserved (215)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_2_" Name="Reserved (216)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_3_" Name="Reserved (217)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_4)" Name="Reserved (218)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_5)" Name="Reserved (219)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_6)" Name="Reserved (220)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_7)" Name="Reserved (221)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Sync_Pause_Frame_8)" Name="Reserved (222)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_1)" Name="Reserved (223)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_2)" Name="Reserved (224)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_3)" Name="Reserved (225)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_4)" Name="Reserved (226)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_5)" Name="Reserved (227)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_6)" Name="Reserved (228)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_7)" Name="Reserved (229)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Set_Time_8)" Name="Reserved (230)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_1)" Name="Reserved (231)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_2)" Name="Reserved (232)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_3)" Name="Reserved (233)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_4)" Name="Reserved (234)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_5)" Name="Reserved (235)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_6)" Name="Reserved (236)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_7)" Name="Reserved (237)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Stop_Time_8)" Name="Reserved (238)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_1)" Name="Reserved (239)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_2)" Name="Reserved (240)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_3)" Name="Reserved (241)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_4)" Name="Reserved (242)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_5)" Name="Reserved (243)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_6)" Name="Reserved (244)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_7)" Name="Reserved (245)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Time_8)" Name="Reserved (246)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_1)" Name="Reserved (247)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_2)" Name="Reserved (248)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_3)" Name="Reserved (249)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_4)" Name="Reserved (250)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_5)" Name="Reserved (251)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_6)" Name="Reserved (252)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_7)" Name="Reserved (253)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Pause_Time_8)" Name="Reserved (254)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Reserved_(Timeline_Play_Mode)" Name="Reserved (255)" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="255 DMX" Channels="255" Id="fd7f1a59-acef-494e-bf2e-fe09d1476092">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="File" ChannelOffset="1,2" Wheel="13" />
+      <Attribute ID="In_Frame" ChannelOffset="3,4,5" Wheel="14" />
+      <Attribute ID="In_Frame_LSB" ChannelOffset="6" Wheel="60" />
+      <Attribute ID="Out_Frame" ChannelOffset="7,8,9" Wheel="15" />
+      <Attribute ID="Out_Frame_LSB" ChannelOffset="10" Wheel="88" />
+      <Attribute ID="Play_Mode" ChannelOffset="11" Wheel="43" />
+      <Attribute ID="Play_Speed" ChannelOffset="12,13" Wheel="44" />
+      <Attribute ID="Scale" ChannelOffset="14,15,16" Wheel="19" />
+      <Attribute ID="Scale_LSB" ChannelOffset="17" Wheel="89" />
+      <Attribute ID="Framing_Mode" ChannelOffset="18" Wheel="20" />
+      <Attribute ID="Aspect_Ratio" ChannelOffset="19,20,21" Wheel="21" />
+      <Attribute ID="Aspect_Ratio_LSB" ChannelOffset="22" Wheel="90" />
+      <Attribute ID="Pan" ChannelOffset="23,24,25" Wheel="2" />
+      <Attribute ID="Position_X_LSB" ChannelOffset="26" Wheel="118" />
+      <Attribute ID="Tilt" ChannelOffset="27,28,29" Wheel="3" />
+      <Attribute ID="Position_Y_LSB" ChannelOffset="30" Wheel="119" />
+      <Attribute ID="Rotation_X" ChannelOffset="31,32,33" Wheel="49" />
+      <Attribute ID="Rotation_X_LSB" ChannelOffset="34" Wheel="120" />
+      <Attribute ID="Rotation_Y" ChannelOffset="35,36,37" Wheel="50" />
+      <Attribute ID="Rotation_Y_LSB" ChannelOffset="38" Wheel="148" />
+      <Attribute ID="Rotation_Z" ChannelOffset="39,40,41" Wheel="51" />
+      <Attribute ID="Rotation_Z_LSB" ChannelOffset="42" Wheel="149" />
+      <Attribute ID="Reserved_(Content_Re-Trigger)" ChannelOffset="43" Wheel="479" />
+      <Attribute ID="Reserved_(Last_Frame_Black)" ChannelOffset="44" Wheel="480" />
+      <Attribute ID="Blend_Mode" ChannelOffset="45" Wheel="4" />
+      <Attribute ID="Dimmer" ChannelOffset="46,47" Wheel="1" />
+      <Attribute ID="Red_Adjust" ChannelOffset="48,49" Wheel="10" />
+      <Attribute ID="Green_Adjust" ChannelOffset="50,51" Wheel="11" />
+      <Attribute ID="Blue_Adjust" ChannelOffset="52,53" Wheel="12" />
+      <Attribute ID="xHue" ChannelOffset="54,55" Wheel="7" />
+      <Attribute ID="xSaturation" ChannelOffset="56,57" Wheel="8" />
+      <Attribute ID="Contrast" ChannelOffset="58,59" Wheel="9" />
+      <Attribute ID="LUT" ChannelOffset="60,61" Wheel="28" />
+      <Attribute ID="Shutter" ChannelOffset="62,63" Wheel="5" />
+      <Attribute ID="TC_Hour" ChannelOffset="64" Wheel="29" />
+      <Attribute ID="TC_Minute" ChannelOffset="65" Wheel="30" />
+      <Attribute ID="TC_Second" ChannelOffset="66" Wheel="58" />
+      <Attribute ID="TC_Frame" ChannelOffset="67" Wheel="59" />
+      <Attribute ID="FX1_Select" ChannelOffset="68,69" Wheel="22" />
+      <Attribute ID="FX1_Opacity" ChannelOffset="70,71" Wheel="23" />
+      <Attribute ID="FX1_Param_1" ChannelOffset="72,73,74" Wheel="24" />
+      <Attribute ID="FX1_Param_1_LSB" ChannelOffset="75" Wheel="150" />
+      <Attribute ID="FX1_Param_2" ChannelOffset="76,77,78" Wheel="52" />
+      <Attribute ID="FX1_Param_2_LSB" ChannelOffset="79" Wheel="178" />
+      <Attribute ID="FX1_Param_3" ChannelOffset="80,81,82" Wheel="53" />
+      <Attribute ID="FX1_Param_3_LSB" ChannelOffset="83" Wheel="179" />
+      <Attribute ID="FX1_Param_4" ChannelOffset="84,85,86" Wheel="54" />
+      <Attribute ID="FX1_Param_4_LSB" ChannelOffset="87" Wheel="180" />
+      <Attribute ID="FX1_Param_5" ChannelOffset="88,89,90" Wheel="82" />
+      <Attribute ID="FX1_Param_5_LSB" ChannelOffset="91" Wheel="208" />
+      <Attribute ID="FX1_Param_6" ChannelOffset="92,93,94" Wheel="83" />
+      <Attribute ID="FX1_Param_6_LSB" ChannelOffset="95" Wheel="209" />
+      <Attribute ID="FX1_Param_7" ChannelOffset="96,97,98" Wheel="84" />
+      <Attribute ID="FX1_Param_7_LSB" ChannelOffset="99" Wheel="210" />
+      <Attribute ID="FX1_Param_8" ChannelOffset="100,101,102" Wheel="112" />
+      <Attribute ID="FX1_Param_8_LSB" ChannelOffset="103" Wheel="238" />
+      <Attribute ID="FX1_Param_9" ChannelOffset="104,105,106" Wheel="113" />
+      <Attribute ID="FX1_Param_9_LSB" ChannelOffset="107" Wheel="239" />
+      <Attribute ID="FX1_Param_10" ChannelOffset="108,109,110" Wheel="114" />
+      <Attribute ID="FX1_Param_10_LSB" ChannelOffset="111" Wheel="240" />
+      <Attribute ID="FX1_Param_11" ChannelOffset="112,113,114" Wheel="142" />
+      <Attribute ID="FX1_Param_11_LSB" ChannelOffset="115" Wheel="268" />
+      <Attribute ID="FX1_Param_12" ChannelOffset="116,117,118" Wheel="143" />
+      <Attribute ID="FX1_Param_12_LSB" ChannelOffset="119" Wheel="269" />
+      <Attribute ID="FX1_Param_13" ChannelOffset="120,121,122" Wheel="144" />
+      <Attribute ID="FX1_Param_13_LSB" ChannelOffset="123" Wheel="270" />
+      <Attribute ID="FX1_Param_14" ChannelOffset="124,125,126" Wheel="172" />
+      <Attribute ID="FX1_Param_14_LSB" ChannelOffset="127" Wheel="298" />
+      <Attribute ID="FX1_Param_15" ChannelOffset="128,129,130" Wheel="173" />
+      <Attribute ID="FX1_Param_15_LSB" ChannelOffset="131" Wheel="299" />
+      <Attribute ID="FX1_Param_16" ChannelOffset="132,133,134" Wheel="174" />
+      <Attribute ID="FX1_Param_16_LSB" ChannelOffset="135" Wheel="300" />
+      <Attribute ID="FX2_Select" ChannelOffset="136,137" Wheel="202" />
+      <Attribute ID="FX2_Opacity" ChannelOffset="138,139" Wheel="203" />
+      <Attribute ID="FX2_Param_1" ChannelOffset="140,141,142" Wheel="204" />
+      <Attribute ID="FX2_Param_1_LSB" ChannelOffset="143" Wheel="328" />
+      <Attribute ID="FX2_Param_2" ChannelOffset="144,145,146" Wheel="232" />
+      <Attribute ID="FX2_Param_2_LSB" ChannelOffset="147" Wheel="329" />
+      <Attribute ID="FX2_Param_3" ChannelOffset="148,149,150" Wheel="233" />
+      <Attribute ID="FX2_Param_3_LSB" ChannelOffset="151" Wheel="330" />
+      <Attribute ID="FX2_Param_4" ChannelOffset="152,153,154" Wheel="234" />
+      <Attribute ID="FX2_Param_4_LSB" ChannelOffset="155" Wheel="358" />
+      <Attribute ID="FX2_Param_5" ChannelOffset="156,157,158" Wheel="262" />
+      <Attribute ID="FX2_Param_5_LSB" ChannelOffset="159" Wheel="359" />
+      <Attribute ID="FX2_Param_6" ChannelOffset="160,161,162" Wheel="263" />
+      <Attribute ID="FX2_Param_6_LSB" ChannelOffset="163" Wheel="360" />
+      <Attribute ID="FX2_Param_7" ChannelOffset="164,165,166" Wheel="264" />
+      <Attribute ID="FX2_Param_7_LSB" ChannelOffset="167" Wheel="388" />
+      <Attribute ID="FX2_Param_8" ChannelOffset="168,169,170" Wheel="292" />
+      <Attribute ID="FX2_Param_8_LSB" ChannelOffset="171" Wheel="389" />
+      <Attribute ID="FX2_Param_9" ChannelOffset="172,173,174" Wheel="293" />
+      <Attribute ID="FX2_Param_9_LSB" ChannelOffset="175" Wheel="390" />
+      <Attribute ID="FX2_Param_10" ChannelOffset="176,177,178" Wheel="294" />
+      <Attribute ID="FX2_Param_10_LSB" ChannelOffset="179" Wheel="418" />
+      <Attribute ID="FX2_Param_11" ChannelOffset="180,181,182" Wheel="322" />
+      <Attribute ID="FX2_Param_11_LSB" ChannelOffset="183" Wheel="419" />
+      <Attribute ID="FX2_Param_12" ChannelOffset="184,185,186" Wheel="323" />
+      <Attribute ID="FX2_Param_12_LSB" ChannelOffset="187" Wheel="420" />
+      <Attribute ID="FX2_Param_13" ChannelOffset="188,189,190" Wheel="324" />
+      <Attribute ID="FX2_Param_13_LSB" ChannelOffset="191" Wheel="448" />
+      <Attribute ID="FX2_Param_14" ChannelOffset="192,193,194" Wheel="352" />
+      <Attribute ID="FX2_Param_14_LSB" ChannelOffset="195" Wheel="449" />
+      <Attribute ID="FX2_Param_15" ChannelOffset="196,197,198" Wheel="353" />
+      <Attribute ID="FX2_Param_15_LSB" ChannelOffset="199" Wheel="450" />
+      <Attribute ID="FX2_Param_16" ChannelOffset="200,201,202" Wheel="354" />
+      <Attribute ID="FX2_Param_16_LSB" ChannelOffset="203" Wheel="478" />
+      <Attribute ID="Reserved_(Sync_Start_Time_1)" ChannelOffset="204" Wheel="508" />
+      <Attribute ID="Reserved_(Sync_Start_Time_2)" ChannelOffset="205" Wheel="509" />
+      <Attribute ID="Reserved_(Sync_Start_Time_3)" ChannelOffset="206" Wheel="510" />
+      <Attribute ID="Reserved_(Sync_Start_Time_4)" ChannelOffset="207" Wheel="538" />
+      <Attribute ID="Reserved_(Sync_Start_Time_5)" ChannelOffset="208" Wheel="539" />
+      <Attribute ID="Reserved_(Sync_Start_Time_6)" ChannelOffset="209" Wheel="540" />
+      <Attribute ID="Reserved_(Sync_Start_Time_7)" ChannelOffset="210" Wheel="568" />
+      <Attribute ID="Reserved_(Sync_Start_Time_8)" ChannelOffset="211" Wheel="569" />
+      <Attribute ID="Volume" ChannelOffset="212,213" Wheel="6" />
+      <Attribute ID="Frame_Blending" ChannelOffset="214" Wheel="34" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_1)" ChannelOffset="215" Wheel="570" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_2_" ChannelOffset="216" Wheel="598" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_3_" ChannelOffset="217" Wheel="599" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_4)" ChannelOffset="218" Wheel="600" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_5)" ChannelOffset="219" Wheel="628" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_6)" ChannelOffset="220" Wheel="629" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_7)" ChannelOffset="221" Wheel="630" />
+      <Attribute ID="Reserved_(Sync_Pause_Frame_8)" ChannelOffset="222" Wheel="658" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_1)" ChannelOffset="223" Wheel="659" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_2)" ChannelOffset="224" Wheel="660" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_3)" ChannelOffset="225" Wheel="688" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_4)" ChannelOffset="226" Wheel="689" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_5)" ChannelOffset="227" Wheel="690" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_6)" ChannelOffset="228" Wheel="718" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_7)" ChannelOffset="229" Wheel="719" />
+      <Attribute ID="Reserved_(Timeline_Set_Time_8)" ChannelOffset="230" Wheel="720" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_1)" ChannelOffset="231" Wheel="748" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_2)" ChannelOffset="232" Wheel="749" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_3)" ChannelOffset="233" Wheel="750" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_4)" ChannelOffset="234" Wheel="778" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_5)" ChannelOffset="235" Wheel="779" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_6)" ChannelOffset="236" Wheel="780" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_7)" ChannelOffset="237" Wheel="808" />
+      <Attribute ID="Reserved_(Timeline_Stop_Time_8)" ChannelOffset="238" Wheel="809" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_1)" ChannelOffset="239" Wheel="810" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_2)" ChannelOffset="240" Wheel="838" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_3)" ChannelOffset="241" Wheel="839" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_4)" ChannelOffset="242" Wheel="840" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_5)" ChannelOffset="243" Wheel="868" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_6)" ChannelOffset="244" Wheel="869" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_7)" ChannelOffset="245" Wheel="870" />
+      <Attribute ID="Reserved_(Timeline_Play_Time_8)" ChannelOffset="246" Wheel="898" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_1)" ChannelOffset="247" Wheel="899" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_2)" ChannelOffset="248" Wheel="900" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_3)" ChannelOffset="249" Wheel="928" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_4)" ChannelOffset="250" Wheel="929" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_5)" ChannelOffset="251" Wheel="930" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_6)" ChannelOffset="252" Wheel="958" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_7)" ChannelOffset="253" Wheel="959" />
+      <Attribute ID="Reserved_(Timeline_Pause_Time_8)" ChannelOffset="254" Wheel="960" />
+      <Attribute ID="Reserved_(Timeline_Play_Mode)" ChannelOffset="255" Wheel="988" />
+    </Include>
+  </Mode>
+</Fixture>

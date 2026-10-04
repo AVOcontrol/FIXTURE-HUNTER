@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="EL-400RG" ShortName="EL-400RG" Company="Laserworld">
+  <Copyright Notice="© Avolites Ltd. 2012" />
+  <History Date="11-04-12" Author="Peter Budd" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="LControl" Name="Laser Control" Description="" Group="S">
+      <Locate Locate="4" PowerOn="1" />
+      <Function ID="1" Name="Laser Off" Display="'Laser Off'" Dmx="0~63" />
+      <Function ID="2" Name="Sound Mode" Display="'Sound Mode'" Dmx="64~127" />
+      <Function ID="3" Name="Automatic" Display="'Automatic'" Dmx="128~191" />
+      <Function ID="4" Name="DMX Mode" Display="'DMX Mode'" Dmx="192~255" />
+    </Attribute>
+    <Attribute ID="Patterns" Name="Patterns" Description="" Group="G">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Pattern" Display="'Pattern %.f',0~255" Dmx="0~255" GoboSpin="0~0" GoboOrientation="0~0" />
+    </Attribute>
+    <Attribute ID="Animation" Name="Animation" Description="" Group="G">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Animation" Display="'Animation %.f',0~255" Dmx="0~255" GoboSpin="0~0" GoboOrientation="0~0" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Strobe %" Display="'Strobe %.f%%',0~100" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="PT_Speed" Name="P/T Speed" Description="" Group="S">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',100.0~0.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Pan" Name="Pan" Description="" Group="P">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Pan" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Tilt" Name="Tilt" Description="" Group="P">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Tilt" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Green and Red" Display="'Green and Red'" Dmx="1~101" Colour="0,255,0" />
+      <Function ID="2" Name="Red" Display="'Red'" Dmx="102~199" Colour="255,0,0" />
+      <Function ID="3" Name="Green" Display="'Green'" Dmx="200~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~199" />
+      <Function ID="2" Name="Reset" Display="'Reset'" Dmx="200~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="9 DMX, 8bit" Channels="9">
+    <Import PearlRef="LZ_EL350RG" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="4" Wheel="4" />
+      <Attribute ID="Pan" ChannelOffset="6" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="7" Wheel="3" />
+      <Attribute ID="Colour1" ChannelOffset="8" Wheel="8" />
+      <Attribute ID="Patterns" ChannelOffset="2" Wheel="14" />
+      <Attribute ID="Animation" ChannelOffset="3" Wheel="17" />
+      <Attribute ID="LControl" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="PT_Speed" ChannelOffset="5" Wheel="25" />
+      <Attribute ID="Control" ChannelOffset="9" Wheel="29" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Reset">
+      <Set Channel="Control:2" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

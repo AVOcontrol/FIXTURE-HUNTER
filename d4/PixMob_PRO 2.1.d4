@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="PRO 2.1" ShortName="PRO 2.1" Company="PixMob">
+  <Copyright Notice="© Avolites Ltd. 2017" />
+  <History Date="26-10-16" Author="Nic Morris" Comment="Created" />
+  <History Date="27-10-16" Author="Nic Morris" Comment="Fixed Pixel Param conditionals (out by one after adding 'safe function to Pixel Func')" />
+  <History Date="27-10-16" Author="Nic Morris" Comment="Moved Pixel Param into the same wheel group as Pixel Func (Gobo 1) in order that they are all visible together in Attribute Editor)" />
+  <History Date="27-10-16" Author="Nic Morris" Comment="Moved Pixel Prog Confirm into beam group and wheel slot to join related Pixel functions." />
+  <History Date="27-10-16" Author="Nic Morris" Comment="Added more discreet functions, added conditionals to help understand functions and revised some names for clarity." />
+  <History Date="13-10-17" Author="Nic Morris" Comment="Added vdim and changed c-mix start/end index function names from colours to 'Index x' in response to manufacturer request." />
+  <History Date="13-10-17" Author="Nic Morris" Comment="Shortened attribute names to comply with 14char limit." />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Transmit" Name="Transmit" Description="" Group="S">
+      <Locate Locate="3" PowerOn="3" />
+      <Function ID="1" Name="No IR (off)" Display="'No IR (off)'" Dmx="0~0" />
+      <Function ID="2" Name="IR Priority 1 (high)" Display="'IR Priority 1 (high)'" Dmx="192~223" />
+      <Function ID="3" Name="IR Priority 2 (low)" Display="'IR Priority 2 (low)'" Dmx="255~255" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_FX" Name="Beam FX" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Blackout" Display="'Blackout'" Dmx="0~0" Update="Beam_FX_Spd" />
+      <Function ID="2" Name="Normal" Display="'Normal'" Dmx="24~24" Update="Beam_FX_Spd" />
+      <Function ID="3" Name="Strobe" Display="'Strobe'" Dmx="32~47" Update="Beam_FX_Spd" />
+      <Function ID="4" Name="Fade" Display="'Fade'" Dmx="48~63" Update="Beam_FX_Spd" />
+      <Function ID="5" Name="Pulse" Display="'Pulse'" Dmx="64~79" Update="Beam_FX_Spd" />
+      <Function ID="6" Name="Close Pulse" Display="'Close Pulse'" Dmx="80~95" Update="Beam_FX_Spd" />
+      <Function ID="7" Name="Open Pulse" Display="'Open Pulse'" Dmx="96~111" Update="Beam_FX_Spd" />
+      <Function ID="8" Name="Background" Display="'Background'" Dmx="112~127" Update="Beam_FX_Spd" />
+      <Function ID="9" Name="Pro" Display="'Pro'" Dmx="128~143" Update="Beam_FX_Spd" />
+      <Function ID="10" Name="Video" Display="'Video'" Dmx="144~159" Update="Beam_FX_Spd" />
+      <Function ID="11" Name="Express" Display="'Express'" Dmx="160~175" Update="Beam_FX_Spd" />
+      <Function ID="12" Name="Program Transmitter" Display="'Program Transmitter'" Dmx="224~239" Update="Beam_FX_Spd" />
+      <Function ID="13" Name="Program Pixel" Display="'Program Pixel'" Dmx="240~255" Update="Beam_FX_Spd" />
+      <Function ID="14" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Beam_FX_Spd" />
+    </Attribute>
+    <Attribute ID="Beam_FX_Spd" Name="Beam FX Spd" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Speed" ID="2,3,4,5,6,7,8" If="'Beam_FX'&gt;3&amp;&amp;'Beam_FX'&lt;8" />
+      <Else ID="1" />
+      <Function ID="1" Name="No Func (RAW)" Display="'No Func (RAW) %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="Faster" Display="'Faster'" Dmx="0~0" />
+      <Function ID="3" Name="Fast" Display="'Fast'" Dmx="48~48" />
+      <Function ID="4" Name="Medium" Display="'Medium'" Dmx="80~80" />
+      <Function ID="5" Name="Slow" Display="'Slow'" Dmx="112~112" />
+      <Function ID="6" Name="Slowest" Display="'Slowest'" Dmx="144~144" />
+      <Function ID="7" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="159~0" />
+      <Function ID="8" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_FX_Trig" Name="Beam FX Trig" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Always" Display="'Always'" Dmx="0~0" />
+      <Function ID="2" Name="Impact" Display="'Impact'" Dmx="16~31" />
+      <Function ID="3" Name="Change" Display="'Change'" Dmx="32~47" />
+      <Function ID="4" Name="Change + Impact" Display="'Change + Impact'" Dmx="48~63" />
+      <Function ID="5" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="No Function" ID="2" If="'C-Mix_Func'&gt;1" />
+      <Else ID="1" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+      <Function ID="2" Name="No Func (RAW)" Display="'No Func (RAW) %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="No Function" ID="2" If="'C-Mix_Func'&gt;1" />
+      <Else ID="1" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+      <Function ID="2" Name="No Func (RAW)" Display="'No Func (RAW) %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Condition Name="No Function" ID="2" If="'C-Mix_Func'&gt;1" />
+      <Else ID="1" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+      <Function ID="2" Name="No Func (RAW)" Display="'No Func (RAW) %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Target_Prob" Name="Target Prob" Description="" Group="E">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Probability" Display="'%.1f%%',0.0~100.0" Dmx="255~0" />
+    </Attribute>
+    <Attribute ID="Target_Group" Name="Target Group" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Broadcast All" Display="'Broadcast All'" Dmx="0~0" />
+      <Function ID="2" Name="Group 1" Display="'Group 1'" Dmx="8~15" />
+      <Function ID="3" Name="Group 2" Display="'Group 2'" Dmx="16~23" />
+      <Function ID="4" Name="Group 3" Display="'Group 3'" Dmx="24~31" />
+      <Function ID="5" Name="Group 4" Display="'Group 4'" Dmx="32~39" />
+      <Function ID="6" Name="Group 5" Display="'Group 5'" Dmx="40~47" />
+      <Function ID="7" Name="Group 6" Display="'Group 6'" Dmx="48~55" />
+      <Function ID="8" Name="Group 7" Display="'Group 7'" Dmx="56~63" />
+      <Function ID="9" Name="Group 8" Display="'Group 8'" Dmx="64~71" />
+      <Function ID="10" Name="Group 9" Display="'Group 9'" Dmx="72~79" />
+      <Function ID="11" Name="Group 10" Display="'Group 10'" Dmx="80~87" />
+      <Function ID="12" Name="Group 11" Display="'Group 11'" Dmx="88~95" />
+      <Function ID="13" Name="Group 12" Display="'Group 12'" Dmx="96~103" />
+      <Function ID="14" Name="Group 13" Display="'Group 13'" Dmx="104~111" />
+      <Function ID="15" Name="Group 14" Display="'Group 14'" Dmx="112~119" />
+      <Function ID="16" Name="Group 15" Display="'Group 15'" Dmx="120~127" />
+      <Function ID="17" Name="Group 16" Display="'Group 16'" Dmx="128~135" />
+      <Function ID="18" Name="Group 17" Display="'Group 17'" Dmx="136~143" />
+      <Function ID="19" Name="Group 18" Display="'Group 18'" Dmx="144~151" />
+      <Function ID="20" Name="Group 19" Display="'Group 19'" Dmx="152~159" />
+      <Function ID="21" Name="Group 20" Display="'Group 20'" Dmx="160~167" />
+      <Function ID="22" Name="Group 21" Display="'Group 21'" Dmx="168~175" />
+      <Function ID="23" Name="Group 22" Display="'Group 22'" Dmx="176~183" />
+      <Function ID="24" Name="Group 23" Display="'Group 23'" Dmx="184~191" />
+      <Function ID="25" Name="Group 24" Display="'Group 24'" Dmx="192~199" />
+      <Function ID="26" Name="Group 25" Display="'Group 25'" Dmx="200~207" />
+      <Function ID="27" Name="Group 26" Display="'Group 26'" Dmx="208~215" />
+      <Function ID="28" Name="Group 27" Display="'Group 27'" Dmx="216~223" />
+      <Function ID="29" Name="Group 28" Display="'Group 28'" Dmx="224~231" />
+      <Function ID="30" Name="Group 29" Display="'Group 29'" Dmx="232~239" />
+      <Function ID="31" Name="Group 30" Display="'Group 30'" Dmx="240~247" />
+      <Function ID="32" Name="Group 31" Display="'Group 31'" Dmx="248~255" />
+      <Function ID="33" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="C-Mix_Func" Name="C-Mix Func" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Normal" Display="'Normal'" Dmx="0~0" Update="Red, Green, Blue" Colour="0,0,0" />
+      <Function ID="2" Name="Start Index Col" Display="'Start Index Col'" Dmx="32~63" Update="Red, Green, Blue" Colour="0,0,0" />
+      <Function ID="3" Name="End Index Col" Display="'End Index Col'" Dmx="64~95" Update="Red, Green, Blue" Colour="0,0,0" />
+      <Function ID="4" Name="Cycle Range" Display="'Cycle Range'" Dmx="96~127" Update="Red, Green, Blue" Colour="0,0,0" />
+      <Function ID="5" Name="Random Range" Display="'Random Range'" Dmx="128~159" Update="Red, Green, Blue" Colour="0,0,0" />
+      <Function ID="6" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Red, Green, Blue" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="C-Mix_Start" Name="C-Mix Start" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Index 1" Display="'Index 1'" Dmx="0~0" Colour="255,0,0" />
+      <Function ID="2" Name="Index 2" Display="'Index 2'" Dmx="16~31" Colour="255,150,150" />
+      <Function ID="3" Name="Index 3" Display="'Index 3'" Dmx="32~47" Colour="255,0,255" />
+      <Function ID="4" Name="Index 4" Display="'Index 4'" Dmx="48~63" Colour="180,0,255" />
+      <Function ID="5" Name="Index 5" Display="'Index 5'" Dmx="64~79" Colour="0,0,255" />
+      <Function ID="6" Name="Index 6" Display="'Index 6'" Dmx="80~95" Colour="0,0,180" />
+      <Function ID="7" Name="Index 7" Display="'Index 7'" Dmx="96~111" Colour="0,255,255" />
+      <Function ID="8" Name="Index 8" Display="'Index 8'" Dmx="112~127" Colour="128,255,0" />
+      <Function ID="9" Name="Index 9" Display="'Index 9'" Dmx="128~143" Colour="0,255,0" />
+      <Function ID="10" Name="Index 10" Display="'Index 10'" Dmx="144~159" Colour="0,180,0" />
+      <Function ID="11" Name="Index 11" Display="'Index 11'" Dmx="160~175" Colour="255,255,0" />
+      <Function ID="12" Name="Index 12" Display="'Index 12'" Dmx="176~191" Colour="255,128,0" />
+      <Function ID="13" Name="Index 13" Display="'Index 13'" Dmx="192~207" Colour="255,240,200" />
+      <Function ID="14" Name="Index 14" Display="'Index 14'" Dmx="208~223" Colour="255,240,200" />
+      <Function ID="15" Name="Index 15" Display="'Index 15'" Dmx="224~239" Colour="255,255,255" />
+      <Function ID="16" Name="Index 16" Display="'Index 16'" Dmx="240~255" Colour="255,255,255" />
+      <Function ID="17" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+      <Function ID="18" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="C-Mix_End" Name="C-Mix End" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Index 1" Display="'Index 1'" Dmx="0~0" Colour="255,0,0" />
+      <Function ID="2" Name="Index 2" Display="'Index 2'" Dmx="16~31" Colour="255,150,150" />
+      <Function ID="3" Name="Index 3" Display="'Index 3'" Dmx="32~47" Colour="255,0,255" />
+      <Function ID="4" Name="Index 4" Display="'Index 4'" Dmx="48~63" Colour="180,0,255" />
+      <Function ID="5" Name="Index 5" Display="'Index 5'" Dmx="64~79" Colour="0,0,255" />
+      <Function ID="6" Name="Index 6" Display="'Index 6'" Dmx="80~95" Colour="0,0,180" />
+      <Function ID="7" Name="Index 7" Display="'Index 7'" Dmx="96~111" Colour="0,255,255" />
+      <Function ID="8" Name="Index 8" Display="'Index 8'" Dmx="112~127" Colour="128,255,0" />
+      <Function ID="9" Name="Index 9" Display="'Index 9'" Dmx="128~143" Colour="0,255,0" />
+      <Function ID="10" Name="Index 10" Display="'Index 10'" Dmx="144~159" Colour="0,180,0" />
+      <Function ID="11" Name="Index 11" Display="'Index 11'" Dmx="160~175" Colour="255,255,0" />
+      <Function ID="12" Name="Index 12" Display="'Index 12'" Dmx="176~191" Colour="255,128,0" />
+      <Function ID="13" Name="Index 13" Display="'Index 13'" Dmx="192~207" Colour="255,240,200" />
+      <Function ID="14" Name="Index 14" Display="'Index 14'" Dmx="208~223" Colour="255,240,200" />
+      <Function ID="15" Name="Index 15" Display="'Index 15'" Dmx="224~239" Colour="255,255,255" />
+      <Function ID="16" Name="Index 16" Display="'Index 16'" Dmx="240~255" Colour="255,255,255" />
+      <Function ID="17" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+      <Function ID="18" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Beam_Iteration" Name="Beam Iteration" Description="" Group="B">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="1 Iteration" Display="'1 Iteration'" Dmx="0~0" />
+      <Function ID="2" Name="n Iterations" Display="'n Iterations'" Dmx="255~255" />
+      <Function ID="3" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_xFade_In" Name="Beam xFade In" Description="" Group="B">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="None" Display="'None'" Dmx="0~0" />
+      <Function ID="2" Name="0.033 sec" Display="'0.033 sec'" Dmx="48~48" />
+      <Function ID="3" Name="0.1 sec" Display="'0.1 sec'" Dmx="80~80" />
+      <Function ID="4" Name="0.2 sec" Display="'0.2 sec'" Dmx="112~112" />
+      <Function ID="5" Name="0.5 sec" Display="'0.5 sec'" Dmx="144~144" />
+      <Function ID="6" Name="1 sec" Display="'1 sec'" Dmx="176~176" />
+      <Function ID="7" Name="2.5 sec" Display="'2.5 sec'" Dmx="208~208" />
+      <Function ID="8" Name="4 sec" Display="'4 sec'" Dmx="240~240" />
+      <Function ID="9" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="10" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_Sustain" Name="Beam Sustain" Description="" Group="B">
+      <Locate Locate="8" PowerOn="8" />
+      <Condition Name="Time to Black" ID="11,12,13,14,15,16,17,18,19,20" If="'Beam_xFade_Out'==1" />
+      <Else ID="1,2,3,4,5,6,7,8,9,10" />
+      <Function ID="1" Name="0.016 sec" Display="'0.016 sec'" Dmx="16~16" />
+      <Function ID="2" Name="0.033 sec" Display="'0.033 sec'" Dmx="48~48" />
+      <Function ID="3" Name="0.1 sec" Display="'0.1 sec'" Dmx="80~80" />
+      <Function ID="4" Name="0.2 sec" Display="'0.2 sec'" Dmx="112~112" />
+      <Function ID="5" Name="0.5 sec" Display="'0.5 sec'" Dmx="144~144" />
+      <Function ID="6" Name="1 sec" Display="'1 sec'" Dmx="176~176" />
+      <Function ID="7" Name="2.5 sec" Display="'2.5 sec'" Dmx="208~208" />
+      <Function ID="8" Name="w/ Signal" Display="'w/ Signal'" Dmx="255~255" />
+      <Function ID="9" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="10" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="11" Name="0.25 sec" Display="'0.25 sec'" Dmx="16~16" />
+      <Function ID="12" Name="0.5 sec" Display="'0.5 sec'" Dmx="48~48" />
+      <Function ID="13" Name="1.5 sec" Display="'1.5 sec'" Dmx="80~80" />
+      <Function ID="14" Name="3 sec" Display="'3 sec'" Dmx="112~112" />
+      <Function ID="15" Name="7 sec" Display="'7 sec'" Dmx="144~144" />
+      <Function ID="16" Name="15 sec" Display="'15 sec'" Dmx="176~176" />
+      <Function ID="17" Name="37.5 sec" Display="'37.5 sec'" Dmx="208~208" />
+      <Function ID="18" Name="60 sec" Display="'60 sec'" Dmx="240~240" />
+      <Function ID="19" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="20" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_xFade_Out" Name="Beam xFade Out" Description="" Group="B">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Set Background" Display="'Set Background'" Dmx="0~0" Update="Beam_Sustain" />
+      <Function ID="2" Name="0.033 sec" Display="'0.033 sec'" Dmx="48~48" Update="Beam_Sustain" />
+      <Function ID="3" Name="0.1 sec" Display="'0.1 sec'" Dmx="80~80" Update="Beam_Sustain" />
+      <Function ID="4" Name="0.2 sec" Display="'0.2 sec'" Dmx="112~112" Update="Beam_Sustain" />
+      <Function ID="5" Name="0.5 sec" Display="'0.5 sec'" Dmx="144~144" Update="Beam_Sustain" />
+      <Function ID="6" Name="1 sec" Display="'1 sec'" Dmx="176~176" Update="Beam_Sustain" />
+      <Function ID="7" Name="2.5 sec" Display="'2.5 sec'" Dmx="208~208" Update="Beam_Sustain" />
+      <Function ID="8" Name="4 sec" Display="'4 sec'" Dmx="240~240" Update="Beam_Sustain" />
+      <Function ID="9" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="32~255" Update="Beam_Sustain" />
+      <Function ID="10" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Beam_Sustain" />
+    </Attribute>
+    <Attribute ID="Status_LED" Name="Status LED" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Status LED OFF" Display="'Status LED OFF'" Dmx="0~0" />
+      <Function ID="2" Name="Status LED ON" Display="'Status LED ON'" Dmx="16~31" />
+      <Function ID="3" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Pixel_Func" Name="Pixel Func" Description="" Group="G">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="251~251" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="2" Name="Set Col RGB" Display="'Set Col RGB'" Dmx="0~0" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="3" Name="Set Layer Active" Display="'Set Layer Active'" Dmx="4~7" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="4" Name="Set Layer Group" Display="'Set Layer Group'" Dmx="8~11" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="5" Name="Get Battery Level" Display="'Get Battery Level'" Dmx="20~23" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="6" Name="Set Rand Scale RGB" Display="'Set Rand Scale RGB'" Dmx="24~27" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="7" Name="Set Env Delay Out" Display="'Set Env Delay Out'" Dmx="28~31" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="8" Name="Set Env Iteration" Display="'Set Env Iteration'" Dmx="32~35" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="9" Name="Set Signal Timeouts" Display="'Set Signal Timeouts'" Dmx="36~39" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="10" Name="Set Rand Scale All" Display="'Set Rand Scale All'" Dmx="44~47" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="11" Name="Get Version Validation" Display="'Get Version Validation'" Dmx="48~51" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="12" Name="Reset" Display="'Reset'" Dmx="60~63" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="13" Name="Express" Display="'Express'" Dmx="252~255" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+      <Function ID="14" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Pixel_Param_1, Pixel_Param_2, Pixel_Param_3" />
+    </Attribute>
+    <Attribute ID="Pixel_Param_1" Name="Pixel Param 1" Description="" Group="G">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Col RGB" ID="2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19" If="'Pixel_Func'==2" />
+      <Condition Name="Group" ID="20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52" If="'Pixel_Func'==4" />
+      <Condition Name="Rand Scale RGB" ID="53,54" If="'Pixel_Func'==6" />
+      <Condition Name="Env Delay Out" ID="55,56,57,58,59,60,61,62,63,64" If="'Pixel_Func'==7" />
+      <Condition Name="Env Iteration" ID="65" If="'Pixel_Func'==8" />
+      <Condition Name="Signal Timeouts" ID="66,67,68,69,70,71,72,73,74,75" If="'Pixel_Func'==9" />
+      <Condition Name="Rand Scale All" ID="76,77" If="'Pixel_Func'==10" />
+      <Condition Name="Version Validation" ID="78,79" If="'Pixel_Func'==11" />
+      <Condition Name="Reset" ID="80,81,82" If="'Pixel_Func'==12" />
+      <Condition Name="Express" ID="83,84" If="'Pixel_Func'==13" />
+      <Else ID="1" />
+      <Function ID="1" Name="No Function (RAW)" Display="'No Function (RAW) %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="Index 1" Display="'Index 1'" Dmx="0~0" />
+      <Function ID="3" Name="Index 2" Display="'Index 2'" Dmx="8~15" />
+      <Function ID="4" Name="Index 3" Display="'Index 3'" Dmx="16~23" />
+      <Function ID="5" Name="Index 4" Display="'Index 4'" Dmx="24~31" />
+      <Function ID="6" Name="Index 5" Display="'Index 5'" Dmx="32~39" />
+      <Function ID="7" Name="Index 6" Display="'Index 6'" Dmx="40~47" />
+      <Function ID="8" Name="Index 7" Display="'Index 7'" Dmx="48~55" />
+      <Function ID="9" Name="Index 8" Display="'Index 8'" Dmx="56~63" />
+      <Function ID="10" Name="Index 9" Display="'Index 9'" Dmx="64~71" />
+      <Function ID="11" Name="Index 10" Display="'Index 10'" Dmx="72~79" />
+      <Function ID="12" Name="Index 11" Display="'Index 11'" Dmx="80~87" />
+      <Function ID="13" Name="Index 12" Display="'Index 12'" Dmx="88~95" />
+      <Function ID="14" Name="Index 13" Display="'Index 13'" Dmx="96~103" />
+      <Function ID="15" Name="Index 14" Display="'Index 14'" Dmx="104~111" />
+      <Function ID="16" Name="Index 15" Display="'Index 15'" Dmx="112~119" />
+      <Function ID="17" Name="Index 16" Display="'Index 16'" Dmx="120~127" />
+      <Function ID="18" Name="Background Colour" Display="'Background Colour'" Dmx="128~255" />
+      <Function ID="19" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="20" Name="Reserved" Display="'Reserved'" Dmx="0~0" />
+      <Function ID="21" Name="Group 1" Display="'Group 1'" Dmx="8~15" />
+      <Function ID="22" Name="Group 2" Display="'Group 2'" Dmx="16~23" />
+      <Function ID="23" Name="Group 3" Display="'Group 3'" Dmx="24~31" />
+      <Function ID="24" Name="Group 4" Display="'Group 4'" Dmx="32~39" />
+      <Function ID="25" Name="Group 5" Display="'Group 5'" Dmx="40~47" />
+      <Function ID="26" Name="Group 6" Display="'Group 6'" Dmx="48~55" />
+      <Function ID="27" Name="Group 7" Display="'Group 7'" Dmx="56~63" />
+      <Function ID="28" Name="Group 8" Display="'Group 8'" Dmx="64~71" />
+      <Function ID="29" Name="Group 9" Display="'Group 9'" Dmx="72~79" />
+      <Function ID="30" Name="Group 10" Display="'Group 10'" Dmx="80~87" />
+      <Function ID="31" Name="Group 11" Display="'Group 11'" Dmx="88~95" />
+      <Function ID="32" Name="Group 12" Display="'Group 12'" Dmx="96~103" />
+      <Function ID="33" Name="Group 13" Display="'Group 13'" Dmx="104~111" />
+      <Function ID="34" Name="Group 14" Display="'Group 14'" Dmx="112~119" />
+      <Function ID="35" Name="Group 15" Display="'Group 15'" Dmx="120~127" />
+      <Function ID="36" Name="Group 16" Display="'Group 16'" Dmx="128~135" />
+      <Function ID="37" Name="Group 17" Display="'Group 17'" Dmx="136~143" />
+      <Function ID="38" Name="Group 18" Display="'Group 18'" Dmx="144~151" />
+      <Function ID="39" Name="Group 19" Display="'Group 19'" Dmx="152~159" />
+      <Function ID="40" Name="Group 20" Display="'Group 20'" Dmx="160~167" />
+      <Function ID="41" Name="Group 21" Display="'Group 21'" Dmx="168~175" />
+      <Function ID="42" Name="Group 22" Display="'Group 22'" Dmx="176~183" />
+      <Function ID="43" Name="Group 23" Display="'Group 23'" Dmx="184~191" />
+      <Function ID="44" Name="Group 24" Display="'Group 24'" Dmx="192~199" />
+      <Function ID="45" Name="Group 25" Display="'Group 25'" Dmx="200~207" />
+      <Function ID="46" Name="Group 26" Display="'Group 26'" Dmx="208~215" />
+      <Function ID="47" Name="Group 27" Display="'Group 27'" Dmx="216~223" />
+      <Function ID="48" Name="Group 28" Display="'Group 28'" Dmx="224~231" />
+      <Function ID="49" Name="Group 29" Display="'Group 29'" Dmx="232~239" />
+      <Function ID="50" Name="Group 30" Display="'Group 30'" Dmx="240~247" />
+      <Function ID="51" Name="Group 31" Display="'Group 31'" Dmx="248~255" />
+      <Function ID="52" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="53" Name="Red" Display="'Red %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="54" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="55" Name="0 sec" Display="'0 sec'" Dmx="16~16" />
+      <Function ID="56" Name="0.033 sec" Display="'0.033 sec'" Dmx="48~48" />
+      <Function ID="57" Name="0.1 sec" Display="'0.1 sec'" Dmx="80~80" />
+      <Function ID="58" Name="0.2 sec" Display="'0.2 sec'" Dmx="112~112" />
+      <Function ID="59" Name="0.5 sec" Display="'0.5 sec'" Dmx="144~144" />
+      <Function ID="60" Name="1 sec" Display="'1 sec'" Dmx="176~176" />
+      <Function ID="61" Name="2.5 sec" Display="'2.5 sec'" Dmx="208~208" />
+      <Function ID="62" Name="4 sec" Display="'4 sec'" Dmx="240~240" />
+      <Function ID="63" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="64" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="65" Name="Iteration" Display="'%.f',0~255" Dmx="0~255" />
+      <Function ID="66" Name="Short 0.05 sec" Display="'Short 0.05 sec'" Dmx="16~16" />
+      <Function ID="67" Name="Short 0.1 sec" Display="'Short 0.1 sec'" Dmx="48~48" />
+      <Function ID="68" Name="Short 0.15 sec" Display="'Short 0.15 sec'" Dmx="80~80" />
+      <Function ID="69" Name="Short 0.2 sec (default)" Display="'Short 0.2 sec (default)'" Dmx="112~112" />
+      <Function ID="70" Name="Short 0.5 sec" Display="'Short 0.5 sec'" Dmx="144~144" />
+      <Function ID="71" Name="Short 1 sec" Display="'Short 1 sec'" Dmx="176~176" />
+      <Function ID="72" Name="Short 2.5 sec" Display="'Short 2.5 sec'" Dmx="208~208" />
+      <Function ID="73" Name="Short 4 sec" Display="'Short 4 sec'" Dmx="240~240" />
+      <Function ID="74" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="75" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="76" Name="Rnd Scale" Display="'Rnd Scale %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="77" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="78" Name="Major" Display="'Major %.f',0~63" Dmx="0~63" />
+      <Function ID="79" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="80" Name="Reboot" Display="'Reboot'" Dmx="0~0" />
+      <Function ID="81" Name="Reboot + Reset" Display="'Reboot + Reset'" Dmx="255~255" />
+      <Function ID="82" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="83" Name="Red 2" Display="'Red 2 %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="84" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Pixel_Param_2" Name="Pixel Param 2" Description="" Group="G">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Layer" ID="2,3,4,5,6,7,8,9,10" If="'Pixel_Func'==3||'Pixel_Func'==4" />
+      <Condition Name="Rand Scale RGB" ID="11,12" If="'Pixel_Func'==6" />
+      <Condition Name="Deviation" ID="13,14" If="'Pixel_Func'==7||'Pixel_Func'==8" />
+      <Condition Name="Signal Timeouts" ID="15,16,17,18,19,20,21,22,23,24" If="'Pixel_Func'==9" />
+      <Condition Name="Version Validation" ID="25,26" If="'Pixel_Func'==11" />
+      <Condition Name="Express" ID="27,28" If="'Pixel_Func'==13" />
+      <Else ID="1" />
+      <Function ID="1" Name="No Function (RAW)" Display="'No Function (RAW) %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="Layer 0 (default)" Display="'Layer 0 (default)'" Dmx="0~0" />
+      <Function ID="3" Name="Layer 1" Display="'Layer 1'" Dmx="32~63" />
+      <Function ID="4" Name="Layer 2" Display="'Layer 2'" Dmx="64~95" />
+      <Function ID="5" Name="Layer 3" Display="'Layer 3'" Dmx="96~127" />
+      <Function ID="6" Name="Layer 4" Display="'Layer 4'" Dmx="128~159" />
+      <Function ID="7" Name="Layer 5" Display="'Layer 5'" Dmx="160~191" />
+      <Function ID="8" Name="Layer 6" Display="'Layer 6'" Dmx="192~223" />
+      <Function ID="9" Name="Layer 7" Display="'Layer 7'" Dmx="224~255" />
+      <Function ID="10" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="11" Name="Green" Display="'Green %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="12" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="13" Name="Deviation" Display="'Deviation %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="14" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="15" Name="Long 0.05 sec" Display="'Long 0.05 sec'" Dmx="16~16" />
+      <Function ID="16" Name="Long 0.1 sec" Display="'Long 0.1 sec'" Dmx="48~48" />
+      <Function ID="17" Name="Long 0.15 sec" Display="'Long 0.15 sec'" Dmx="80~80" />
+      <Function ID="18" Name="Long 0.2 sec" Display="'Long 0.2 sec'" Dmx="112~112" />
+      <Function ID="19" Name="Long 0.5 sec (default)" Display="'Long 0.5 sec (default)'" Dmx="144~144" />
+      <Function ID="20" Name="Long 1 sec" Display="'Long 1 sec'" Dmx="176~176" />
+      <Function ID="21" Name="Long 2.5 sec" Display="'Long 2.5 sec'" Dmx="208~208" />
+      <Function ID="22" Name="Long 4 sec" Display="'Long 4 sec'" Dmx="240~240" />
+      <Function ID="23" Name="Variable" Display="'Variable %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="24" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="25" Name="Minor" Display="'Minor %.f',0~63" Dmx="0~63" />
+      <Function ID="26" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="27" Name="Green 2" Display="'Green 2 %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="28" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Pixel_Param_3" Name="Pixel Param 3" Description="" Group="G">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Feedback" ID="2,3,4" If="'Pixel_Func'==2||'Pixel_Func'==3||'Pixel_Func'==4" />
+      <Condition Name="Rand Scale RGB" ID="5,6" If="'Pixel_Func'==6" />
+      <Condition Name="Signal Timeouts" ID="7,8" If="'Pixel_Func'==9" />
+      <Condition Name="Express" ID="9,10" If="'Pixel_Func'==13" />
+      <Else ID="1" />
+      <Function ID="1" Name="No Function (RAW)" Display="'No Function (RAW) %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="No Feedback" Display="'No Feedback'" Dmx="0~0" />
+      <Function ID="3" Name="Blink on Confirm" Display="'Blink on Confirm'" Dmx="255~255" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="5" Name="Blue" Display="'Blue %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="6" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="7" Name="Priority Delay" Display="'%.1fs',1.0~64.0" Dmx="0~255" />
+      <Function ID="8" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="9" Name="Blue 2" Display="'Blue 2 %.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="10" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Pixel_Program" Name="Pixel Program" Description="" Group="G">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Confirm" Display="'Confirm'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="Advanced, 22 DMX" Channels="22">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Transmit" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Beam_FX" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Beam_FX_Spd" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Beam_FX_Trig" ChannelOffset="4" Wheel="24" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Target_Prob" ChannelOffset="8" Wheel="52" />
+      <Attribute ID="Target_Group" ChannelOffset="9" Wheel="53" />
+      <Attribute ID="C-Mix_Func" ChannelOffset="10" Wheel="7" />
+      <Attribute ID="C-Mix_Start" ChannelOffset="11" Wheel="8" />
+      <Attribute ID="C-Mix_End" ChannelOffset="12" Wheel="9" />
+      <Attribute ID="Beam_Iteration" ChannelOffset="13" Wheel="19" />
+      <Attribute ID="Beam_xFade_In" ChannelOffset="14" Wheel="20" />
+      <Attribute ID="Beam_Sustain" ChannelOffset="15" Wheel="21" />
+      <Attribute ID="Beam_xFade_Out" ChannelOffset="16" Wheel="49" />
+      <Attribute ID="Status_LED" ChannelOffset="17" Wheel="25" />
+      <Attribute ID="Pixel_Func" ChannelOffset="18" Wheel="13" />
+      <Attribute ID="Pixel_Param_1" ChannelOffset="19" Wheel="14" />
+      <Attribute ID="Pixel_Param_2" ChannelOffset="20" Wheel="15" />
+      <Attribute ID="Pixel_Param_3" ChannelOffset="21" Wheel="43" />
+      <Attribute ID="Pixel_Program" ChannelOffset="22" Wheel="44" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

@@ -1,0 +1,2531 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Tilt Moving Strobe 1200 IP" ShortName="Strb1200IP" Company="Pomelo" Version="17">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <History Date="20-11-21" Author="Nic Morris" Comment="Created (pixel layout not documented - guessed)" Version="0" />
+  <History Date="25-03-22" Author="Nic Morris" Comment="Updated in line with rev 4 charts (revises all existing control function ranges and adds new control functions/macros).  Note these are currently different to the latest manual available (rev 2)." Version="11" />
+  <History Date="25-03-22" Author="Nic Morris" Comment="Thoroughly checked all other elements and found everything is exact match and agree with current Capture simulation.  Pixel layout now documented and guess was correct." Version="11" />
+  <History Date="26-08-22" Author="Nic Morris" Comment="Added multi-part patch options for the 97 and 74 channel modes." Version="12" />
+  <History Date="20-09-22" Author="Nic Morris" Comment="Corrected 3rd part name of 74 channel mode multi-part option (previously the 2nd and 3rd part both said 'plate'.  the 3rd part now says 'beam')" Version="13" />
+  <History Date="27-10-22" Author="Nic Morris" Comment="Updated in line with latest documentation (Rev 6) (adds 47 channel mode)" Version="14" />
+  <History Date="02-11-22" Author="Nic Morris" Comment="Added 47 channel mode Atlabase ID." Version="15" />
+  <History Date="09-07-23" Author="Nic Morris" Comment="Created from Chauvet Color STRIKE M (identical.  Plate and Beam pattern ranges missing.  assumed the same)" Version="16" />
+  <History Date="12-07-23" Author="Nic Morris" Comment="Added Atlabase ID's." Version="17" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="dbacc7ce-8039-4f07-a5ab-e8670c699cb7" />
+  <Control>
+    <Attribute ID="Tilt" Name="Tilt" Description="" Group="P" Size="2">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Tilt" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Plate_Duration" Name="Plate Duration" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Off" Display="'Off'" Dmx="0~0" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="255~255" />
+      <Function ID="3" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="10~250" />
+    </Attribute>
+    <Attribute ID="Plate_Rate" Name="Plate Rate" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Rate" Display="'Rate %.1f%%',0.0~100.0" Dmx="10~250" />
+      <Function ID="2" Name="100%" Display="'100'" Dmx="0~0" />
+    </Attribute>
+    <Attribute ID="Beam_Duration" Name="Beam Duration" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Off" Display="'Off'" Dmx="0~0" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="255~255" />
+      <Function ID="3" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="10~250" />
+    </Attribute>
+    <Attribute ID="Beam_Rate" Name="Beam Rate" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Rate" Display="'Rate %.1f%%',0.0~100.0" Dmx="10~250" />
+      <Function ID="2" Name="100%" Display="'100'" Dmx="0~0" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I" Merge="HTP">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Plate_Master" Name="Plate Master" Description="" Group="I" Merge="HTP">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_Master" Name="Beam Master" Description="" Group="I" Merge="HTP">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Beam_FX" Name="Beam FX" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="2" Name="Ramp Up" Display="'Ramp Up'" Dmx="6~42" />
+      <Function ID="3" Name="Ramp Down" Display="'Ramp Down'" Dmx="43~85" />
+      <Function ID="4" Name="Ramp Up-Down" Display="'Ramp Up-Down'" Dmx="86~128" />
+      <Function ID="5" Name="Random" Display="'Random'" Dmx="129~171" />
+      <Function ID="6" Name="Lightning" Display="'Lightning'" Dmx="172~214" />
+      <Function ID="7" Name="Spikes" Display="'Spikes'" Dmx="215~255" />
+    </Attribute>
+    <Attribute ID="Plate_FG_Col" Name="Plate FG Col" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="White 2700K" Display="'White 2700K'" Dmx="1~2" Colour="255,255,255" />
+      <Function ID="3" Name="White 3200K" Display="'White 3200K'" Dmx="3~4" Colour="255,255,255" />
+      <Function ID="4" Name="White 4200K" Display="'White 4200K'" Dmx="5~6" Colour="255,255,255" />
+      <Function ID="5" Name="White 5600K" Display="'White 5600K'" Dmx="7~8" Colour="255,255,255" />
+      <Function ID="6" Name="White 8000K" Display="'White 8000K'" Dmx="9~10" Colour="255,255,255" />
+      <Function ID="7" Name="Blue" Display="'Blue'" Dmx="11~11" Colour="0,0,255" />
+      <Function ID="8" Name="Blu - Cy" Display="'Blu - Cy %.f%%',0~100" Dmx="12~48" Colour="0,0,255" />
+      <Function ID="9" Name="Cyan" Display="'Cyan'" Dmx="49~49" Colour="0,255,255" />
+      <Function ID="10" Name="Cy - Grn" Display="'Cy - Grn %.f%%',0~100" Dmx="50~86" Colour="0,255,255" />
+      <Function ID="11" Name="Green" Display="'Green'" Dmx="87~87" Colour="0,255,0" />
+      <Function ID="12" Name="Grn - Yel" Display="'Grn - Yel %.f%%',0~100" Dmx="88~124" Colour="0,255,0" />
+      <Function ID="13" Name="Yellow" Display="'Yellow'" Dmx="125~125" Colour="255,255,0" />
+      <Function ID="14" Name="Yel - Rd" Display="'Yel - Rd %.f%%',0~100" Dmx="126~162" Colour="255,255,0" />
+      <Function ID="15" Name="Red" Display="'Red'" Dmx="163~163" Colour="255,0,0" />
+      <Function ID="16" Name="Rd - Mag" Display="'Rd - Mag %.f%%',0~100" Dmx="164~200" Colour="255,0,0" />
+      <Function ID="17" Name="Magenta" Display="'Magenta'" Dmx="201~201" Colour="255,0,255" />
+      <Function ID="18" Name="Mag - Blu" Display="'Mag - Blu %.f%%',0~100" Dmx="202~238" Colour="255,0,255" />
+      <Function ID="19" Name="Blue" Display="'Blue'" Dmx="239~239" Colour="0,0,255" />
+      <Function ID="20" Name="Index" Display="'Index %.1f%%',0.0~100.0" Dmx="11~239" Colour="255,255,255" />
+      <Function ID="21" Name="Index Spd" Display="'Index Spd %.f%%',0~100" Dmx="247~240" Colour="255,255,255" />
+      <Function ID="22" Name="Snap Spd" Display="'Snap Spd %.f%%',0~100" Dmx="255~248" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Plate_FG_Dim" Name="Plate FG Dim" Description="" Group="C" Merge="HTP">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Plate_BG_Col" Name="Plate BG Col" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="White 2700K" Display="'White 2700K'" Dmx="1~2" Colour="255,255,255" />
+      <Function ID="3" Name="White 3200K" Display="'White 3200K'" Dmx="3~4" Colour="255,255,255" />
+      <Function ID="4" Name="White 4200K" Display="'White 4200K'" Dmx="5~6" Colour="255,255,255" />
+      <Function ID="5" Name="White 5600K" Display="'White 5600K'" Dmx="7~8" Colour="255,255,255" />
+      <Function ID="6" Name="White 8000K" Display="'White 8000K'" Dmx="9~10" Colour="255,255,255" />
+      <Function ID="7" Name="Blue" Display="'Blue'" Dmx="11~11" Colour="0,0,255" />
+      <Function ID="8" Name="Blu - Cy" Display="'Blu - Cy %.f%%',0~100" Dmx="12~48" Colour="0,0,255" />
+      <Function ID="9" Name="Cyan" Display="'Cyan'" Dmx="49~49" Colour="0,255,255" />
+      <Function ID="10" Name="Cy - Grn" Display="'Cy - Grn %.f%%',0~100" Dmx="50~86" Colour="0,255,255" />
+      <Function ID="11" Name="Green" Display="'Green'" Dmx="87~87" Colour="0,255,0" />
+      <Function ID="12" Name="Grn - Yel" Display="'Grn - Yel %.f%%',0~100" Dmx="88~124" Colour="0,255,0" />
+      <Function ID="13" Name="Yellow" Display="'Yellow'" Dmx="125~125" Colour="255,255,0" />
+      <Function ID="14" Name="Yel - Rd" Display="'Yel - Rd %.f%%',0~100" Dmx="126~162" Colour="255,255,0" />
+      <Function ID="15" Name="Red" Display="'Red'" Dmx="163~163" Colour="255,0,0" />
+      <Function ID="16" Name="Rd - Mag" Display="'Rd - Mag %.f%%',0~100" Dmx="164~200" Colour="255,0,0" />
+      <Function ID="17" Name="Magenta" Display="'Magenta'" Dmx="201~201" Colour="255,0,255" />
+      <Function ID="18" Name="Mag - Blu" Display="'Mag - Blu %.f%%',0~100" Dmx="202~238" Colour="255,0,255" />
+      <Function ID="19" Name="Blue" Display="'Blue'" Dmx="239~239" Colour="0,0,255" />
+      <Function ID="20" Name="Index" Display="'Index %.1f%%',0.0~100.0" Dmx="11~239" Colour="255,255,255" />
+      <Function ID="21" Name="Index Spd" Display="'Index Spd %.f%%',0~100" Dmx="247~240" Colour="255,255,255" />
+      <Function ID="22" Name="Snap Spd" Display="'Snap Spd %.f%%',0~100" Dmx="255~248" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Plate_BG_Dim" Name="Plate BG Dim" Description="" Group="C" Merge="HTP">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="T_Plate_Sel" Name="T Plate Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="All On" Display="'All On'" Dmx="0~0" />
+      <Function ID="2" Name="Pattern 1" Display="'Pattern 1'" Dmx="3~3" />
+      <Function ID="3" Name="Pattern 2" Display="'Pattern 2'" Dmx="4~4" />
+      <Function ID="4" Name="Pattern 3" Display="'Pattern 3'" Dmx="5~5" />
+      <Function ID="5" Name="Pattern 4" Display="'Pattern 4'" Dmx="6~6" />
+      <Function ID="6" Name="Pattern 5" Display="'Pattern 5'" Dmx="7~7" />
+      <Function ID="7" Name="Pattern 6" Display="'Pattern 6'" Dmx="8~8" />
+      <Function ID="8" Name="Pattern 7" Display="'Pattern 7'" Dmx="9~9" />
+      <Function ID="9" Name="Pattern 8" Display="'Pattern 8'" Dmx="10~10" />
+      <Function ID="10" Name="Pattern 9" Display="'Pattern 9'" Dmx="11~11" />
+      <Function ID="11" Name="Pattern 10" Display="'Pattern 10'" Dmx="12~12" />
+      <Function ID="12" Name="Pattern 11" Display="'Pattern 11'" Dmx="13~13" />
+      <Function ID="13" Name="Pattern 12" Display="'Pattern 12'" Dmx="14~14" />
+      <Function ID="14" Name="Pattern 13" Display="'Pattern 13'" Dmx="15~15" />
+      <Function ID="15" Name="Pattern 14" Display="'Pattern 14'" Dmx="16~16" />
+      <Function ID="16" Name="Pattern 15" Display="'Pattern 15'" Dmx="17~17" />
+      <Function ID="17" Name="Pattern 16" Display="'Pattern 16'" Dmx="18~18" />
+      <Function ID="18" Name="Pattern 17" Display="'Pattern 17'" Dmx="19~19" />
+      <Function ID="19" Name="Pattern 18" Display="'Pattern 18'" Dmx="20~20" />
+      <Function ID="20" Name="Pattern 19" Display="'Pattern 19'" Dmx="21~21" />
+      <Function ID="21" Name="Pattern 20" Display="'Pattern 20'" Dmx="22~22" />
+      <Function ID="22" Name="Pattern 21" Display="'Pattern 21'" Dmx="23~23" />
+      <Function ID="23" Name="Pattern 22" Display="'Pattern 22'" Dmx="24~24" />
+      <Function ID="24" Name="Pattern 23" Display="'Pattern 23'" Dmx="25~25" />
+      <Function ID="25" Name="Pattern 24" Display="'Pattern 24'" Dmx="26~26" />
+      <Function ID="26" Name="Pattern 25" Display="'Pattern 25'" Dmx="27~27" />
+      <Function ID="27" Name="Pattern 26" Display="'Pattern 26'" Dmx="28~28" />
+      <Function ID="28" Name="Pattern 27" Display="'Pattern 27'" Dmx="29~29" />
+      <Function ID="29" Name="Pattern 28" Display="'Pattern 28'" Dmx="30~30" />
+      <Function ID="30" Name="Pattern 29" Display="'Pattern 29'" Dmx="31~31" />
+      <Function ID="31" Name="Pattern 30" Display="'Pattern 30'" Dmx="32~32" />
+      <Function ID="32" Name="Pattern 31" Display="'Pattern 31'" Dmx="33~33" />
+      <Function ID="33" Name="Pattern 32" Display="'Pattern 32'" Dmx="34~34" />
+      <Function ID="34" Name="Pattern 33" Display="'Pattern 33'" Dmx="35~35" />
+      <Function ID="35" Name="Pattern 34" Display="'Pattern 34'" Dmx="36~36" />
+      <Function ID="36" Name="Pattern 35" Display="'Pattern 35'" Dmx="37~37" />
+      <Function ID="37" Name="Pattern 36" Display="'Pattern 36'" Dmx="38~38" />
+      <Function ID="38" Name="Pattern 37" Display="'Pattern 37'" Dmx="39~39" />
+      <Function ID="39" Name="Pattern 38" Display="'Pattern 38'" Dmx="40~40" />
+      <Function ID="40" Name="Pattern 39" Display="'Pattern 39'" Dmx="41~41" />
+      <Function ID="41" Name="Pattern 40" Display="'Pattern 40'" Dmx="42~42" />
+      <Function ID="42" Name="Pattern 41" Display="'Pattern 41'" Dmx="43~43" />
+      <Function ID="43" Name="Pattern 42" Display="'Pattern 42'" Dmx="44~44" />
+      <Function ID="44" Name="Pattern 43" Display="'Pattern 43'" Dmx="45~45" />
+      <Function ID="45" Name="Pattern 44" Display="'Pattern 44'" Dmx="46~46" />
+      <Function ID="46" Name="Pattern 45" Display="'Pattern 45'" Dmx="47~47" />
+      <Function ID="47" Name="Pattern 46" Display="'Pattern 46'" Dmx="48~48" />
+      <Function ID="48" Name="Pattern 47" Display="'Pattern 47'" Dmx="49~49" />
+      <Function ID="49" Name="Pattern 48" Display="'Pattern 48'" Dmx="50~50" />
+      <Function ID="50" Name="Pattern 49" Display="'Pattern 49'" Dmx="51~51" />
+      <Function ID="51" Name="Pattern 50" Display="'Pattern 50'" Dmx="52~52" />
+      <Function ID="52" Name="Pattern 51" Display="'Pattern 51'" Dmx="53~53" />
+      <Function ID="53" Name="Pattern 52" Display="'Pattern 52'" Dmx="54~54" />
+      <Function ID="54" Name="Pattern 53" Display="'Pattern 53'" Dmx="55~55" />
+      <Function ID="55" Name="Pattern 54" Display="'Pattern 54'" Dmx="56~56" />
+      <Function ID="56" Name="Pattern 55" Display="'Pattern 55'" Dmx="57~57" />
+      <Function ID="57" Name="Pattern 56" Display="'Pattern 56'" Dmx="58~58" />
+      <Function ID="58" Name="Pattern 57" Display="'Pattern 57'" Dmx="59~59" />
+      <Function ID="59" Name="Pattern 58" Display="'Pattern 58'" Dmx="60~60" />
+      <Function ID="60" Name="Pattern 59" Display="'Pattern 59'" Dmx="61~61" />
+      <Function ID="61" Name="Pattern 60" Display="'Pattern 60'" Dmx="62~62" />
+      <Function ID="62" Name="Pattern 61" Display="'Pattern 61'" Dmx="63~63" />
+      <Function ID="63" Name="Pattern 62" Display="'Pattern 62'" Dmx="64~64" />
+      <Function ID="64" Name="Pattern 63" Display="'Pattern 63'" Dmx="65~65" />
+      <Function ID="65" Name="Pattern 64" Display="'Pattern 64'" Dmx="66~66" />
+      <Function ID="66" Name="Pattern 65" Display="'Pattern 65'" Dmx="67~67" />
+      <Function ID="67" Name="Pattern 66" Display="'Pattern 66'" Dmx="68~68" />
+      <Function ID="68" Name="Pattern 67" Display="'Pattern 67'" Dmx="69~69" />
+      <Function ID="69" Name="Pattern 68" Display="'Pattern 68'" Dmx="70~70" />
+      <Function ID="70" Name="Pattern 69" Display="'Pattern 69'" Dmx="71~71" />
+      <Function ID="71" Name="Pattern 70" Display="'Pattern 70'" Dmx="72~72" />
+      <Function ID="72" Name="Pattern 71" Display="'Pattern 71'" Dmx="73~73" />
+      <Function ID="73" Name="Pattern 72" Display="'Pattern 72'" Dmx="74~74" />
+      <Function ID="74" Name="Pattern 73" Display="'Pattern 73'" Dmx="75~75" />
+      <Function ID="75" Name="Pattern 74" Display="'Pattern 74'" Dmx="76~76" />
+      <Function ID="76" Name="Pattern 75" Display="'Pattern 75'" Dmx="77~77" />
+      <Function ID="77" Name="Pattern 76" Display="'Pattern 76'" Dmx="78~78" />
+      <Function ID="78" Name="Pattern 77" Display="'Pattern 77'" Dmx="79~79" />
+      <Function ID="79" Name="All Off" Display="'All Off'" Dmx="80~255" />
+    </Attribute>
+    <Attribute ID="T_Plate_Spd" Name="T Plate Spd" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="T_Plate_Fade" Name="T Plate Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+    <Attribute ID="B_Plate_Sel" Name="B Plate Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="All On" Display="'All On'" Dmx="0~0" />
+      <Function ID="2" Name="Pattern 1" Display="'Pattern 1'" Dmx="3~3" />
+      <Function ID="3" Name="Pattern 2" Display="'Pattern 2'" Dmx="4~4" />
+      <Function ID="4" Name="Pattern 3" Display="'Pattern 3'" Dmx="5~5" />
+      <Function ID="5" Name="Pattern 4" Display="'Pattern 4'" Dmx="6~6" />
+      <Function ID="6" Name="Pattern 5" Display="'Pattern 5'" Dmx="7~7" />
+      <Function ID="7" Name="Pattern 6" Display="'Pattern 6'" Dmx="8~8" />
+      <Function ID="8" Name="Pattern 7" Display="'Pattern 7'" Dmx="9~9" />
+      <Function ID="9" Name="Pattern 8" Display="'Pattern 8'" Dmx="10~10" />
+      <Function ID="10" Name="Pattern 9" Display="'Pattern 9'" Dmx="11~11" />
+      <Function ID="11" Name="Pattern 10" Display="'Pattern 10'" Dmx="12~12" />
+      <Function ID="12" Name="Pattern 11" Display="'Pattern 11'" Dmx="13~13" />
+      <Function ID="13" Name="Pattern 12" Display="'Pattern 12'" Dmx="14~14" />
+      <Function ID="14" Name="Pattern 13" Display="'Pattern 13'" Dmx="15~15" />
+      <Function ID="15" Name="Pattern 14" Display="'Pattern 14'" Dmx="16~16" />
+      <Function ID="16" Name="Pattern 15" Display="'Pattern 15'" Dmx="17~17" />
+      <Function ID="17" Name="Pattern 16" Display="'Pattern 16'" Dmx="18~18" />
+      <Function ID="18" Name="Pattern 17" Display="'Pattern 17'" Dmx="19~19" />
+      <Function ID="19" Name="Pattern 18" Display="'Pattern 18'" Dmx="20~20" />
+      <Function ID="20" Name="Pattern 19" Display="'Pattern 19'" Dmx="21~21" />
+      <Function ID="21" Name="Pattern 20" Display="'Pattern 20'" Dmx="22~22" />
+      <Function ID="22" Name="Pattern 21" Display="'Pattern 21'" Dmx="23~23" />
+      <Function ID="23" Name="Pattern 22" Display="'Pattern 22'" Dmx="24~24" />
+      <Function ID="24" Name="Pattern 23" Display="'Pattern 23'" Dmx="25~25" />
+      <Function ID="25" Name="Pattern 24" Display="'Pattern 24'" Dmx="26~26" />
+      <Function ID="26" Name="Pattern 25" Display="'Pattern 25'" Dmx="27~27" />
+      <Function ID="27" Name="Pattern 26" Display="'Pattern 26'" Dmx="28~28" />
+      <Function ID="28" Name="Pattern 27" Display="'Pattern 27'" Dmx="29~29" />
+      <Function ID="29" Name="Pattern 28" Display="'Pattern 28'" Dmx="30~30" />
+      <Function ID="30" Name="Pattern 29" Display="'Pattern 29'" Dmx="31~31" />
+      <Function ID="31" Name="Pattern 30" Display="'Pattern 30'" Dmx="32~32" />
+      <Function ID="32" Name="Pattern 31" Display="'Pattern 31'" Dmx="33~33" />
+      <Function ID="33" Name="Pattern 32" Display="'Pattern 32'" Dmx="34~34" />
+      <Function ID="34" Name="Pattern 33" Display="'Pattern 33'" Dmx="35~35" />
+      <Function ID="35" Name="Pattern 34" Display="'Pattern 34'" Dmx="36~36" />
+      <Function ID="36" Name="Pattern 35" Display="'Pattern 35'" Dmx="37~37" />
+      <Function ID="37" Name="Pattern 36" Display="'Pattern 36'" Dmx="38~38" />
+      <Function ID="38" Name="Pattern 37" Display="'Pattern 37'" Dmx="39~39" />
+      <Function ID="39" Name="Pattern 38" Display="'Pattern 38'" Dmx="40~40" />
+      <Function ID="40" Name="Pattern 39" Display="'Pattern 39'" Dmx="41~41" />
+      <Function ID="41" Name="Pattern 40" Display="'Pattern 40'" Dmx="42~42" />
+      <Function ID="42" Name="Pattern 41" Display="'Pattern 41'" Dmx="43~43" />
+      <Function ID="43" Name="Pattern 42" Display="'Pattern 42'" Dmx="44~44" />
+      <Function ID="44" Name="Pattern 43" Display="'Pattern 43'" Dmx="45~45" />
+      <Function ID="45" Name="Pattern 44" Display="'Pattern 44'" Dmx="46~46" />
+      <Function ID="46" Name="Pattern 45" Display="'Pattern 45'" Dmx="47~47" />
+      <Function ID="47" Name="Pattern 46" Display="'Pattern 46'" Dmx="48~48" />
+      <Function ID="48" Name="Pattern 47" Display="'Pattern 47'" Dmx="49~49" />
+      <Function ID="49" Name="Pattern 48" Display="'Pattern 48'" Dmx="50~50" />
+      <Function ID="50" Name="Pattern 49" Display="'Pattern 49'" Dmx="51~51" />
+      <Function ID="51" Name="Pattern 50" Display="'Pattern 50'" Dmx="52~52" />
+      <Function ID="52" Name="Pattern 51" Display="'Pattern 51'" Dmx="53~53" />
+      <Function ID="53" Name="Pattern 52" Display="'Pattern 52'" Dmx="54~54" />
+      <Function ID="54" Name="Pattern 53" Display="'Pattern 53'" Dmx="55~55" />
+      <Function ID="55" Name="Pattern 54" Display="'Pattern 54'" Dmx="56~56" />
+      <Function ID="56" Name="Pattern 55" Display="'Pattern 55'" Dmx="57~57" />
+      <Function ID="57" Name="Pattern 56" Display="'Pattern 56'" Dmx="58~58" />
+      <Function ID="58" Name="Pattern 57" Display="'Pattern 57'" Dmx="59~59" />
+      <Function ID="59" Name="Pattern 58" Display="'Pattern 58'" Dmx="60~60" />
+      <Function ID="60" Name="Pattern 59" Display="'Pattern 59'" Dmx="61~61" />
+      <Function ID="61" Name="Pattern 60" Display="'Pattern 60'" Dmx="62~62" />
+      <Function ID="62" Name="Pattern 61" Display="'Pattern 61'" Dmx="63~63" />
+      <Function ID="63" Name="Pattern 62" Display="'Pattern 62'" Dmx="64~64" />
+      <Function ID="64" Name="Pattern 63" Display="'Pattern 63'" Dmx="65~65" />
+      <Function ID="65" Name="Pattern 64" Display="'Pattern 64'" Dmx="66~66" />
+      <Function ID="66" Name="Pattern 65" Display="'Pattern 65'" Dmx="67~67" />
+      <Function ID="67" Name="Pattern 66" Display="'Pattern 66'" Dmx="68~68" />
+      <Function ID="68" Name="Pattern 67" Display="'Pattern 67'" Dmx="69~69" />
+      <Function ID="69" Name="Pattern 68" Display="'Pattern 68'" Dmx="70~70" />
+      <Function ID="70" Name="Pattern 69" Display="'Pattern 69'" Dmx="71~71" />
+      <Function ID="71" Name="Pattern 70" Display="'Pattern 70'" Dmx="72~72" />
+      <Function ID="72" Name="Pattern 71" Display="'Pattern 71'" Dmx="73~73" />
+      <Function ID="73" Name="Pattern 72" Display="'Pattern 72'" Dmx="74~74" />
+      <Function ID="74" Name="Pattern 73" Display="'Pattern 73'" Dmx="75~75" />
+      <Function ID="75" Name="Pattern 74" Display="'Pattern 74'" Dmx="76~76" />
+      <Function ID="76" Name="Pattern 75" Display="'Pattern 75'" Dmx="77~77" />
+      <Function ID="77" Name="Pattern 76" Display="'Pattern 76'" Dmx="78~78" />
+      <Function ID="78" Name="Pattern 77" Display="'Pattern 77'" Dmx="79~79" />
+      <Function ID="79" Name="All Off" Display="'All Off'" Dmx="80~255" />
+    </Attribute>
+    <Attribute ID="B_Plate_Spd" Name="B Plate Spd" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="B_Plate_Fade" Name="B Plate Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+    <Attribute ID="T_Beam_Sel" Name="T Beam Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="All On" Display="'All On'" Dmx="0~0" />
+      <Function ID="2" Name="Pattern 1" Display="'Pattern 1'" Dmx="3~3" />
+      <Function ID="3" Name="Pattern 2" Display="'Pattern 2'" Dmx="4~4" />
+      <Function ID="4" Name="Pattern 3" Display="'Pattern 3'" Dmx="5~5" />
+      <Function ID="5" Name="Pattern 4" Display="'Pattern 4'" Dmx="6~6" />
+      <Function ID="6" Name="Pattern 5" Display="'Pattern 5'" Dmx="7~7" />
+      <Function ID="7" Name="Pattern 6" Display="'Pattern 6'" Dmx="8~8" />
+      <Function ID="8" Name="Pattern 7" Display="'Pattern 7'" Dmx="9~9" />
+      <Function ID="9" Name="Pattern 8" Display="'Pattern 8'" Dmx="10~10" />
+      <Function ID="10" Name="Pattern 9" Display="'Pattern 9'" Dmx="11~11" />
+      <Function ID="11" Name="Pattern 10" Display="'Pattern 10'" Dmx="12~12" />
+      <Function ID="12" Name="Pattern 11" Display="'Pattern 11'" Dmx="13~13" />
+      <Function ID="13" Name="Pattern 12" Display="'Pattern 12'" Dmx="14~14" />
+      <Function ID="14" Name="Pattern 13" Display="'Pattern 13'" Dmx="15~15" />
+      <Function ID="15" Name="Pattern 14" Display="'Pattern 14'" Dmx="16~16" />
+      <Function ID="16" Name="Pattern 15" Display="'Pattern 15'" Dmx="17~17" />
+      <Function ID="17" Name="Pattern 16" Display="'Pattern 16'" Dmx="18~18" />
+      <Function ID="18" Name="Pattern 17" Display="'Pattern 17'" Dmx="19~19" />
+      <Function ID="19" Name="Pattern 18" Display="'Pattern 18'" Dmx="20~20" />
+      <Function ID="20" Name="Pattern 19" Display="'Pattern 19'" Dmx="21~21" />
+      <Function ID="21" Name="Pattern 20" Display="'Pattern 20'" Dmx="22~22" />
+      <Function ID="22" Name="Pattern 21" Display="'Pattern 21'" Dmx="23~23" />
+      <Function ID="23" Name="Pattern 22" Display="'Pattern 22'" Dmx="24~24" />
+      <Function ID="24" Name="Pattern 23" Display="'Pattern 23'" Dmx="25~25" />
+      <Function ID="25" Name="Pattern 24" Display="'Pattern 24'" Dmx="26~26" />
+      <Function ID="26" Name="Pattern 25" Display="'Pattern 25'" Dmx="27~27" />
+      <Function ID="27" Name="Pattern 26" Display="'Pattern 26'" Dmx="28~28" />
+      <Function ID="28" Name="Pattern 27" Display="'Pattern 27'" Dmx="29~29" />
+      <Function ID="29" Name="Pattern 28" Display="'Pattern 28'" Dmx="30~30" />
+      <Function ID="30" Name="Pattern 29" Display="'Pattern 29'" Dmx="31~31" />
+      <Function ID="31" Name="Pattern 30" Display="'Pattern 30'" Dmx="32~32" />
+      <Function ID="32" Name="Pattern 31" Display="'Pattern 31'" Dmx="33~33" />
+      <Function ID="33" Name="Pattern 32" Display="'Pattern 32'" Dmx="34~34" />
+      <Function ID="34" Name="Pattern 33" Display="'Pattern 33'" Dmx="35~35" />
+      <Function ID="35" Name="Pattern 34" Display="'Pattern 34'" Dmx="36~36" />
+      <Function ID="36" Name="Pattern 35" Display="'Pattern 35'" Dmx="37~37" />
+      <Function ID="37" Name="Pattern 36" Display="'Pattern 36'" Dmx="38~38" />
+      <Function ID="38" Name="Pattern 37" Display="'Pattern 37'" Dmx="39~39" />
+      <Function ID="39" Name="Pattern 38" Display="'Pattern 38'" Dmx="40~40" />
+      <Function ID="40" Name="Pattern 39" Display="'Pattern 39'" Dmx="41~41" />
+      <Function ID="41" Name="Pattern 40" Display="'Pattern 40'" Dmx="42~42" />
+      <Function ID="42" Name="Pattern 41" Display="'Pattern 41'" Dmx="43~43" />
+      <Function ID="43" Name="Pattern 42" Display="'Pattern 42'" Dmx="44~44" />
+      <Function ID="44" Name="Pattern 43" Display="'Pattern 43'" Dmx="45~45" />
+      <Function ID="45" Name="Pattern 44" Display="'Pattern 44'" Dmx="46~46" />
+      <Function ID="46" Name="Pattern 45" Display="'Pattern 45'" Dmx="47~47" />
+      <Function ID="47" Name="Pattern 46" Display="'Pattern 46'" Dmx="48~48" />
+      <Function ID="48" Name="Pattern 47" Display="'Pattern 47'" Dmx="49~49" />
+      <Function ID="49" Name="Pattern 48" Display="'Pattern 48'" Dmx="50~50" />
+      <Function ID="50" Name="Pattern 49" Display="'Pattern 49'" Dmx="51~51" />
+      <Function ID="51" Name="Pattern 50" Display="'Pattern 50'" Dmx="52~52" />
+      <Function ID="52" Name="Pattern 51" Display="'Pattern 51'" Dmx="53~53" />
+      <Function ID="53" Name="Pattern 52" Display="'Pattern 52'" Dmx="54~54" />
+      <Function ID="54" Name="Pattern 53" Display="'Pattern 53'" Dmx="55~55" />
+      <Function ID="55" Name="Pattern 54" Display="'Pattern 54'" Dmx="56~56" />
+      <Function ID="56" Name="Pattern 55" Display="'Pattern 55'" Dmx="57~57" />
+      <Function ID="57" Name="Pattern 56" Display="'Pattern 56'" Dmx="58~58" />
+      <Function ID="58" Name="Pattern 57" Display="'Pattern 57'" Dmx="59~59" />
+      <Function ID="59" Name="Pattern 58" Display="'Pattern 58'" Dmx="60~60" />
+      <Function ID="60" Name="Pattern 59" Display="'Pattern 59'" Dmx="61~61" />
+      <Function ID="61" Name="Pattern 60" Display="'Pattern 60'" Dmx="62~62" />
+      <Function ID="62" Name="Pattern 61" Display="'Pattern 61'" Dmx="63~63" />
+      <Function ID="63" Name="Pattern 62" Display="'Pattern 62'" Dmx="64~64" />
+      <Function ID="64" Name="Pattern 63" Display="'Pattern 63'" Dmx="65~65" />
+      <Function ID="65" Name="Pattern 64" Display="'Pattern 64'" Dmx="66~66" />
+      <Function ID="66" Name="Pattern 65" Display="'Pattern 65'" Dmx="67~67" />
+      <Function ID="67" Name="Pattern 66" Display="'Pattern 66'" Dmx="68~68" />
+      <Function ID="68" Name="Pattern 67" Display="'Pattern 67'" Dmx="69~69" />
+      <Function ID="69" Name="Pattern 68" Display="'Pattern 68'" Dmx="70~70" />
+      <Function ID="70" Name="Pattern 69" Display="'Pattern 69'" Dmx="71~71" />
+      <Function ID="71" Name="Pattern 70" Display="'Pattern 70'" Dmx="72~72" />
+      <Function ID="72" Name="Pattern 71" Display="'Pattern 71'" Dmx="73~73" />
+      <Function ID="73" Name="Pattern 72" Display="'Pattern 72'" Dmx="74~74" />
+      <Function ID="74" Name="Pattern 73" Display="'Pattern 73'" Dmx="75~75" />
+      <Function ID="75" Name="Pattern 74" Display="'Pattern 74'" Dmx="76~76" />
+      <Function ID="76" Name="Pattern 75" Display="'Pattern 75'" Dmx="77~77" />
+      <Function ID="77" Name="Pattern 76" Display="'Pattern 76'" Dmx="78~78" />
+      <Function ID="78" Name="Pattern 77" Display="'Pattern 77'" Dmx="79~79" />
+      <Function ID="79" Name="Pattern 78" Display="'Pattern 78'" Dmx="80~80" />
+      <Function ID="80" Name="Pattern 79" Display="'Pattern 79'" Dmx="81~81" />
+      <Function ID="81" Name="Pattern 80" Display="'Pattern 80'" Dmx="82~82" />
+      <Function ID="82" Name="Pattern 81" Display="'Pattern 81'" Dmx="83~83" />
+      <Function ID="83" Name="Pattern 82" Display="'Pattern 82'" Dmx="84~84" />
+      <Function ID="84" Name="Pattern 83" Display="'Pattern 83'" Dmx="85~85" />
+      <Function ID="85" Name="Pattern 84" Display="'Pattern 84'" Dmx="86~86" />
+      <Function ID="86" Name="Pattern 85" Display="'Pattern 85'" Dmx="87~87" />
+      <Function ID="87" Name="Pattern 86" Display="'Pattern 86'" Dmx="88~88" />
+      <Function ID="88" Name="Pattern 87" Display="'Pattern 87'" Dmx="89~89" />
+      <Function ID="89" Name="Pattern 88" Display="'Pattern 88'" Dmx="90~90" />
+      <Function ID="90" Name="Pattern 89" Display="'Pattern 89'" Dmx="91~91" />
+      <Function ID="91" Name="Pattern 90" Display="'Pattern 90'" Dmx="92~92" />
+      <Function ID="92" Name="Pattern 91" Display="'Pattern 91'" Dmx="93~93" />
+      <Function ID="93" Name="Pattern 92" Display="'Pattern 92'" Dmx="94~94" />
+      <Function ID="94" Name="Pattern 93" Display="'Pattern 93'" Dmx="95~95" />
+      <Function ID="95" Name="Pattern 94" Display="'Pattern 94'" Dmx="96~96" />
+      <Function ID="96" Name="Pattern 95" Display="'Pattern 95'" Dmx="97~97" />
+      <Function ID="97" Name="Pattern 96" Display="'Pattern 96'" Dmx="98~98" />
+      <Function ID="98" Name="Pattern 97" Display="'Pattern 97'" Dmx="99~99" />
+      <Function ID="99" Name="Pattern 98" Display="'Pattern 98'" Dmx="100~100" />
+      <Function ID="100" Name="Pattern 99" Display="'Pattern 99'" Dmx="101~101" />
+      <Function ID="101" Name="Pattern 100" Display="'Pattern 100'" Dmx="102~102" />
+      <Function ID="102" Name="Pattern 101" Display="'Pattern 101'" Dmx="103~103" />
+      <Function ID="103" Name="Pattern 102" Display="'Pattern 102'" Dmx="104~104" />
+      <Function ID="104" Name="Pattern 103" Display="'Pattern 103'" Dmx="105~105" />
+      <Function ID="105" Name="Pattern 104" Display="'Pattern 104'" Dmx="106~106" />
+      <Function ID="106" Name="Pattern 105" Display="'Pattern 105'" Dmx="107~107" />
+      <Function ID="107" Name="Pattern 106" Display="'Pattern 106'" Dmx="108~108" />
+      <Function ID="108" Name="Pattern 107" Display="'Pattern 107'" Dmx="109~109" />
+      <Function ID="109" Name="Pattern 108" Display="'Pattern 108'" Dmx="110~110" />
+      <Function ID="110" Name="Pattern 109" Display="'Pattern 109'" Dmx="111~111" />
+      <Function ID="111" Name="Pattern 110" Display="'Pattern 110'" Dmx="112~112" />
+      <Function ID="112" Name="Pattern 111" Display="'Pattern 111'" Dmx="113~113" />
+      <Function ID="113" Name="Pattern 112" Display="'Pattern 112'" Dmx="114~114" />
+      <Function ID="114" Name="Pattern 113" Display="'Pattern 113'" Dmx="115~115" />
+      <Function ID="115" Name="Pattern 114" Display="'Pattern 114'" Dmx="116~116" />
+      <Function ID="116" Name="Pattern 115" Display="'Pattern 115'" Dmx="117~117" />
+      <Function ID="117" Name="Pattern 116" Display="'Pattern 116'" Dmx="118~118" />
+      <Function ID="118" Name="Pattern 117" Display="'Pattern 117'" Dmx="119~119" />
+      <Function ID="119" Name="Pattern 118" Display="'Pattern 118'" Dmx="120~120" />
+      <Function ID="120" Name="Pattern 119" Display="'Pattern 119'" Dmx="121~121" />
+      <Function ID="121" Name="Pattern 120" Display="'Pattern 120'" Dmx="122~122" />
+      <Function ID="122" Name="Pattern 121" Display="'Pattern 121'" Dmx="123~123" />
+      <Function ID="123" Name="Pattern 122" Display="'Pattern 122'" Dmx="124~124" />
+      <Function ID="124" Name="Pattern 123" Display="'Pattern 123'" Dmx="125~125" />
+      <Function ID="125" Name="Pattern 124" Display="'Pattern 124'" Dmx="126~126" />
+      <Function ID="126" Name="Pattern 125" Display="'Pattern 125'" Dmx="127~127" />
+      <Function ID="127" Name="Pattern 126" Display="'Pattern 126'" Dmx="128~128" />
+      <Function ID="128" Name="Pattern 127" Display="'Pattern 127'" Dmx="129~129" />
+      <Function ID="129" Name="Pattern 128" Display="'Pattern 128'" Dmx="130~130" />
+      <Function ID="130" Name="Pattern 129" Display="'Pattern 129'" Dmx="131~131" />
+      <Function ID="131" Name="Pattern 130" Display="'Pattern 130'" Dmx="132~132" />
+      <Function ID="132" Name="Pattern 131" Display="'Pattern 131'" Dmx="133~133" />
+      <Function ID="133" Name="Pattern 132" Display="'Pattern 132'" Dmx="134~134" />
+      <Function ID="134" Name="Pattern 133" Display="'Pattern 133'" Dmx="135~135" />
+      <Function ID="135" Name="Pattern 134" Display="'Pattern 134'" Dmx="136~136" />
+      <Function ID="136" Name="Pattern 135" Display="'Pattern 135'" Dmx="137~137" />
+      <Function ID="137" Name="Pattern 136" Display="'Pattern 136'" Dmx="138~138" />
+      <Function ID="138" Name="Pattern 137" Display="'Pattern 137'" Dmx="139~139" />
+      <Function ID="139" Name="Pattern 138" Display="'Pattern 138'" Dmx="140~140" />
+      <Function ID="140" Name="Pattern 139" Display="'Pattern 139'" Dmx="141~141" />
+      <Function ID="141" Name="Pattern 140" Display="'Pattern 140'" Dmx="142~142" />
+      <Function ID="142" Name="Pattern 141" Display="'Pattern 141'" Dmx="143~143" />
+      <Function ID="143" Name="Pattern 142" Display="'Pattern 142'" Dmx="144~144" />
+      <Function ID="144" Name="All Off" Display="'All Off'" Dmx="145~255" />
+    </Attribute>
+    <Attribute ID="T_Beam_Spd" Name="T Beam Spd" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="T_Beam_Fade" Name="T Beam Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+    <Attribute ID="B_Beam_Sel" Name="B Beam Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="All On" Display="'All On'" Dmx="0~0" />
+      <Function ID="2" Name="Pattern 1" Display="'Pattern 1'" Dmx="3~3" />
+      <Function ID="3" Name="Pattern 2" Display="'Pattern 2'" Dmx="4~4" />
+      <Function ID="4" Name="Pattern 3" Display="'Pattern 3'" Dmx="5~5" />
+      <Function ID="5" Name="Pattern 4" Display="'Pattern 4'" Dmx="6~6" />
+      <Function ID="6" Name="Pattern 5" Display="'Pattern 5'" Dmx="7~7" />
+      <Function ID="7" Name="Pattern 6" Display="'Pattern 6'" Dmx="8~8" />
+      <Function ID="8" Name="Pattern 7" Display="'Pattern 7'" Dmx="9~9" />
+      <Function ID="9" Name="Pattern 8" Display="'Pattern 8'" Dmx="10~10" />
+      <Function ID="10" Name="Pattern 9" Display="'Pattern 9'" Dmx="11~11" />
+      <Function ID="11" Name="Pattern 10" Display="'Pattern 10'" Dmx="12~12" />
+      <Function ID="12" Name="Pattern 11" Display="'Pattern 11'" Dmx="13~13" />
+      <Function ID="13" Name="Pattern 12" Display="'Pattern 12'" Dmx="14~14" />
+      <Function ID="14" Name="Pattern 13" Display="'Pattern 13'" Dmx="15~15" />
+      <Function ID="15" Name="Pattern 14" Display="'Pattern 14'" Dmx="16~16" />
+      <Function ID="16" Name="Pattern 15" Display="'Pattern 15'" Dmx="17~17" />
+      <Function ID="17" Name="Pattern 16" Display="'Pattern 16'" Dmx="18~18" />
+      <Function ID="18" Name="Pattern 17" Display="'Pattern 17'" Dmx="19~19" />
+      <Function ID="19" Name="Pattern 18" Display="'Pattern 18'" Dmx="20~20" />
+      <Function ID="20" Name="Pattern 19" Display="'Pattern 19'" Dmx="21~21" />
+      <Function ID="21" Name="Pattern 20" Display="'Pattern 20'" Dmx="22~22" />
+      <Function ID="22" Name="Pattern 21" Display="'Pattern 21'" Dmx="23~23" />
+      <Function ID="23" Name="Pattern 22" Display="'Pattern 22'" Dmx="24~24" />
+      <Function ID="24" Name="Pattern 23" Display="'Pattern 23'" Dmx="25~25" />
+      <Function ID="25" Name="Pattern 24" Display="'Pattern 24'" Dmx="26~26" />
+      <Function ID="26" Name="Pattern 25" Display="'Pattern 25'" Dmx="27~27" />
+      <Function ID="27" Name="Pattern 26" Display="'Pattern 26'" Dmx="28~28" />
+      <Function ID="28" Name="Pattern 27" Display="'Pattern 27'" Dmx="29~29" />
+      <Function ID="29" Name="Pattern 28" Display="'Pattern 28'" Dmx="30~30" />
+      <Function ID="30" Name="Pattern 29" Display="'Pattern 29'" Dmx="31~31" />
+      <Function ID="31" Name="Pattern 30" Display="'Pattern 30'" Dmx="32~32" />
+      <Function ID="32" Name="Pattern 31" Display="'Pattern 31'" Dmx="33~33" />
+      <Function ID="33" Name="Pattern 32" Display="'Pattern 32'" Dmx="34~34" />
+      <Function ID="34" Name="Pattern 33" Display="'Pattern 33'" Dmx="35~35" />
+      <Function ID="35" Name="Pattern 34" Display="'Pattern 34'" Dmx="36~36" />
+      <Function ID="36" Name="Pattern 35" Display="'Pattern 35'" Dmx="37~37" />
+      <Function ID="37" Name="Pattern 36" Display="'Pattern 36'" Dmx="38~38" />
+      <Function ID="38" Name="Pattern 37" Display="'Pattern 37'" Dmx="39~39" />
+      <Function ID="39" Name="Pattern 38" Display="'Pattern 38'" Dmx="40~40" />
+      <Function ID="40" Name="Pattern 39" Display="'Pattern 39'" Dmx="41~41" />
+      <Function ID="41" Name="Pattern 40" Display="'Pattern 40'" Dmx="42~42" />
+      <Function ID="42" Name="Pattern 41" Display="'Pattern 41'" Dmx="43~43" />
+      <Function ID="43" Name="Pattern 42" Display="'Pattern 42'" Dmx="44~44" />
+      <Function ID="44" Name="Pattern 43" Display="'Pattern 43'" Dmx="45~45" />
+      <Function ID="45" Name="Pattern 44" Display="'Pattern 44'" Dmx="46~46" />
+      <Function ID="46" Name="Pattern 45" Display="'Pattern 45'" Dmx="47~47" />
+      <Function ID="47" Name="Pattern 46" Display="'Pattern 46'" Dmx="48~48" />
+      <Function ID="48" Name="Pattern 47" Display="'Pattern 47'" Dmx="49~49" />
+      <Function ID="49" Name="Pattern 48" Display="'Pattern 48'" Dmx="50~50" />
+      <Function ID="50" Name="Pattern 49" Display="'Pattern 49'" Dmx="51~51" />
+      <Function ID="51" Name="Pattern 50" Display="'Pattern 50'" Dmx="52~52" />
+      <Function ID="52" Name="Pattern 51" Display="'Pattern 51'" Dmx="53~53" />
+      <Function ID="53" Name="Pattern 52" Display="'Pattern 52'" Dmx="54~54" />
+      <Function ID="54" Name="Pattern 53" Display="'Pattern 53'" Dmx="55~55" />
+      <Function ID="55" Name="Pattern 54" Display="'Pattern 54'" Dmx="56~56" />
+      <Function ID="56" Name="Pattern 55" Display="'Pattern 55'" Dmx="57~57" />
+      <Function ID="57" Name="Pattern 56" Display="'Pattern 56'" Dmx="58~58" />
+      <Function ID="58" Name="Pattern 57" Display="'Pattern 57'" Dmx="59~59" />
+      <Function ID="59" Name="Pattern 58" Display="'Pattern 58'" Dmx="60~60" />
+      <Function ID="60" Name="Pattern 59" Display="'Pattern 59'" Dmx="61~61" />
+      <Function ID="61" Name="Pattern 60" Display="'Pattern 60'" Dmx="62~62" />
+      <Function ID="62" Name="Pattern 61" Display="'Pattern 61'" Dmx="63~63" />
+      <Function ID="63" Name="Pattern 62" Display="'Pattern 62'" Dmx="64~64" />
+      <Function ID="64" Name="Pattern 63" Display="'Pattern 63'" Dmx="65~65" />
+      <Function ID="65" Name="Pattern 64" Display="'Pattern 64'" Dmx="66~66" />
+      <Function ID="66" Name="Pattern 65" Display="'Pattern 65'" Dmx="67~67" />
+      <Function ID="67" Name="Pattern 66" Display="'Pattern 66'" Dmx="68~68" />
+      <Function ID="68" Name="Pattern 67" Display="'Pattern 67'" Dmx="69~69" />
+      <Function ID="69" Name="Pattern 68" Display="'Pattern 68'" Dmx="70~70" />
+      <Function ID="70" Name="Pattern 69" Display="'Pattern 69'" Dmx="71~71" />
+      <Function ID="71" Name="Pattern 70" Display="'Pattern 70'" Dmx="72~72" />
+      <Function ID="72" Name="Pattern 71" Display="'Pattern 71'" Dmx="73~73" />
+      <Function ID="73" Name="Pattern 72" Display="'Pattern 72'" Dmx="74~74" />
+      <Function ID="74" Name="Pattern 73" Display="'Pattern 73'" Dmx="75~75" />
+      <Function ID="75" Name="Pattern 74" Display="'Pattern 74'" Dmx="76~76" />
+      <Function ID="76" Name="Pattern 75" Display="'Pattern 75'" Dmx="77~77" />
+      <Function ID="77" Name="Pattern 76" Display="'Pattern 76'" Dmx="78~78" />
+      <Function ID="78" Name="Pattern 77" Display="'Pattern 77'" Dmx="79~79" />
+      <Function ID="79" Name="Pattern 78" Display="'Pattern 78'" Dmx="80~80" />
+      <Function ID="80" Name="Pattern 79" Display="'Pattern 79'" Dmx="81~81" />
+      <Function ID="81" Name="Pattern 80" Display="'Pattern 80'" Dmx="82~82" />
+      <Function ID="82" Name="Pattern 81" Display="'Pattern 81'" Dmx="83~83" />
+      <Function ID="83" Name="Pattern 82" Display="'Pattern 82'" Dmx="84~84" />
+      <Function ID="84" Name="Pattern 83" Display="'Pattern 83'" Dmx="85~85" />
+      <Function ID="85" Name="Pattern 84" Display="'Pattern 84'" Dmx="86~86" />
+      <Function ID="86" Name="Pattern 85" Display="'Pattern 85'" Dmx="87~87" />
+      <Function ID="87" Name="Pattern 86" Display="'Pattern 86'" Dmx="88~88" />
+      <Function ID="88" Name="Pattern 87" Display="'Pattern 87'" Dmx="89~89" />
+      <Function ID="89" Name="Pattern 88" Display="'Pattern 88'" Dmx="90~90" />
+      <Function ID="90" Name="Pattern 89" Display="'Pattern 89'" Dmx="91~91" />
+      <Function ID="91" Name="Pattern 90" Display="'Pattern 90'" Dmx="92~92" />
+      <Function ID="92" Name="Pattern 91" Display="'Pattern 91'" Dmx="93~93" />
+      <Function ID="93" Name="Pattern 92" Display="'Pattern 92'" Dmx="94~94" />
+      <Function ID="94" Name="Pattern 93" Display="'Pattern 93'" Dmx="95~95" />
+      <Function ID="95" Name="Pattern 94" Display="'Pattern 94'" Dmx="96~96" />
+      <Function ID="96" Name="Pattern 95" Display="'Pattern 95'" Dmx="97~97" />
+      <Function ID="97" Name="Pattern 96" Display="'Pattern 96'" Dmx="98~98" />
+      <Function ID="98" Name="Pattern 97" Display="'Pattern 97'" Dmx="99~99" />
+      <Function ID="99" Name="Pattern 98" Display="'Pattern 98'" Dmx="100~100" />
+      <Function ID="100" Name="Pattern 99" Display="'Pattern 99'" Dmx="101~101" />
+      <Function ID="101" Name="Pattern 100" Display="'Pattern 100'" Dmx="102~102" />
+      <Function ID="102" Name="Pattern 101" Display="'Pattern 101'" Dmx="103~103" />
+      <Function ID="103" Name="Pattern 102" Display="'Pattern 102'" Dmx="104~104" />
+      <Function ID="104" Name="Pattern 103" Display="'Pattern 103'" Dmx="105~105" />
+      <Function ID="105" Name="Pattern 104" Display="'Pattern 104'" Dmx="106~106" />
+      <Function ID="106" Name="Pattern 105" Display="'Pattern 105'" Dmx="107~107" />
+      <Function ID="107" Name="Pattern 106" Display="'Pattern 106'" Dmx="108~108" />
+      <Function ID="108" Name="Pattern 107" Display="'Pattern 107'" Dmx="109~109" />
+      <Function ID="109" Name="Pattern 108" Display="'Pattern 108'" Dmx="110~110" />
+      <Function ID="110" Name="Pattern 109" Display="'Pattern 109'" Dmx="111~111" />
+      <Function ID="111" Name="Pattern 110" Display="'Pattern 110'" Dmx="112~112" />
+      <Function ID="112" Name="Pattern 111" Display="'Pattern 111'" Dmx="113~113" />
+      <Function ID="113" Name="Pattern 112" Display="'Pattern 112'" Dmx="114~114" />
+      <Function ID="114" Name="Pattern 113" Display="'Pattern 113'" Dmx="115~115" />
+      <Function ID="115" Name="Pattern 114" Display="'Pattern 114'" Dmx="116~116" />
+      <Function ID="116" Name="Pattern 115" Display="'Pattern 115'" Dmx="117~117" />
+      <Function ID="117" Name="Pattern 116" Display="'Pattern 116'" Dmx="118~118" />
+      <Function ID="118" Name="Pattern 117" Display="'Pattern 117'" Dmx="119~119" />
+      <Function ID="119" Name="Pattern 118" Display="'Pattern 118'" Dmx="120~120" />
+      <Function ID="120" Name="Pattern 119" Display="'Pattern 119'" Dmx="121~121" />
+      <Function ID="121" Name="Pattern 120" Display="'Pattern 120'" Dmx="122~122" />
+      <Function ID="122" Name="Pattern 121" Display="'Pattern 121'" Dmx="123~123" />
+      <Function ID="123" Name="Pattern 122" Display="'Pattern 122'" Dmx="124~124" />
+      <Function ID="124" Name="Pattern 123" Display="'Pattern 123'" Dmx="125~125" />
+      <Function ID="125" Name="Pattern 124" Display="'Pattern 124'" Dmx="126~126" />
+      <Function ID="126" Name="Pattern 125" Display="'Pattern 125'" Dmx="127~127" />
+      <Function ID="127" Name="Pattern 126" Display="'Pattern 126'" Dmx="128~128" />
+      <Function ID="128" Name="Pattern 127" Display="'Pattern 127'" Dmx="129~129" />
+      <Function ID="129" Name="Pattern 128" Display="'Pattern 128'" Dmx="130~130" />
+      <Function ID="130" Name="Pattern 129" Display="'Pattern 129'" Dmx="131~131" />
+      <Function ID="131" Name="Pattern 130" Display="'Pattern 130'" Dmx="132~132" />
+      <Function ID="132" Name="Pattern 131" Display="'Pattern 131'" Dmx="133~133" />
+      <Function ID="133" Name="Pattern 132" Display="'Pattern 132'" Dmx="134~134" />
+      <Function ID="134" Name="Pattern 133" Display="'Pattern 133'" Dmx="135~135" />
+      <Function ID="135" Name="Pattern 134" Display="'Pattern 134'" Dmx="136~136" />
+      <Function ID="136" Name="Pattern 135" Display="'Pattern 135'" Dmx="137~137" />
+      <Function ID="137" Name="Pattern 136" Display="'Pattern 136'" Dmx="138~138" />
+      <Function ID="138" Name="Pattern 137" Display="'Pattern 137'" Dmx="139~139" />
+      <Function ID="139" Name="Pattern 138" Display="'Pattern 138'" Dmx="140~140" />
+      <Function ID="140" Name="Pattern 139" Display="'Pattern 139'" Dmx="141~141" />
+      <Function ID="141" Name="Pattern 140" Display="'Pattern 140'" Dmx="142~142" />
+      <Function ID="142" Name="Pattern 141" Display="'Pattern 141'" Dmx="143~143" />
+      <Function ID="143" Name="Pattern 142" Display="'Pattern 142'" Dmx="144~144" />
+      <Function ID="144" Name="All Off" Display="'All Off'" Dmx="145~255" />
+    </Attribute>
+    <Attribute ID="B_Beam_Spd" Name="B Beam Spd" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="B_Beam_Fade" Name="B Beam Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Dim Mode Off" Display="'Dim Mode Off'" Dmx="6~10" />
+      <Function ID="3" Name="Dimmer 1" Display="'Dimmer 1'" Dmx="11~15" />
+      <Function ID="4" Name="Dimmer 2" Display="'Dimmer 2'" Dmx="16~20" />
+      <Function ID="5" Name="Dimmer 3" Display="'Dimmer 3'" Dmx="21~25" />
+      <Function ID="6" Name="600Hz" Display="'600Hz'" Dmx="26~30" />
+      <Function ID="7" Name="1200Hz" Display="'1200Hz'" Dmx="31~35" />
+      <Function ID="8" Name="2000Hz" Display="'2000Hz'" Dmx="36~40" />
+      <Function ID="9" Name="4000Hz" Display="'4000Hz'" Dmx="41~45" />
+      <Function ID="10" Name="6000Hz" Display="'6000Hz'" Dmx="46~50" />
+      <Function ID="11" Name="25KHz" Display="'25KHz'" Dmx="51~55" />
+      <Function ID="12" Name="Fan Auto" Display="'Fan Auto'" Dmx="56~60" />
+      <Function ID="13" Name="Fan On" Display="'Fan On'" Dmx="61~65" />
+      <Function ID="14" Name="Reset Tilt" Display="'Reset Tilt'" Dmx="66~70" />
+      <Function ID="15" Name="Plate 1 Normal" Display="'Plate 1 Normal'" Dmx="71~75" />
+      <Function ID="16" Name="Plate 1 Invert" Display="'Plate 1 Invert'" Dmx="76~80" />
+      <Function ID="17" Name="Plate 2 Normal" Display="'Plate 2 Normal'" Dmx="81~85" />
+      <Function ID="18" Name="Plate 2 Invert" Display="'Plate 2 Invert'" Dmx="86~90" />
+      <Function ID="19" Name="Beam 1 Normal" Display="'Beam 1 Normal'" Dmx="91~95" />
+      <Function ID="20" Name="Beam 1 Invert" Display="'Beam 1 Invert'" Dmx="96~100" />
+      <Function ID="21" Name="Beam 2 Normal" Display="'Beam 2 Normal'" Dmx="101~105" />
+      <Function ID="22" Name="Beam 2 Invert" Display="'Beam 2 Invert'" Dmx="106~110" />
+      <Function ID="23" Name="Plate Swap On" Display="'Plate Swap On'" Dmx="111~115" />
+      <Function ID="24" Name="Plate Swap Off" Display="'Plate Swap Off'" Dmx="116~120" />
+      <Function ID="25" Name="Beam Swap On" Display="'Beam Swap On'" Dmx="121~125" />
+      <Function ID="26" Name="Beam Swop Off" Display="'Beam Swop Off'" Dmx="126~130" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.f%%',0~100" Dmx="10~79" />
+      <Function ID="3" Name="Rnd Strobe" Display="'Rnd Strobe %.f%%',0~100" Dmx="150~219" />
+      <Function ID="4" Name="Pulse" Display="'Pulse %.f%%',0~100" Dmx="80~149" />
+    </Attribute>
+    <Attribute ID="Duration" Name="Duration" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Off" Display="'Off'" Dmx="0~0" />
+      <Function ID="2" Name="100%" Display="'100%'" Dmx="255~255" />
+      <Function ID="3" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="10~250" />
+    </Attribute>
+    <Attribute ID="Rate" Name="Rate" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Rate" Display="'Rate %.1f%%',0.0~100.0" Dmx="10~250" />
+      <Function ID="2" Name="100%" Display="'100'" Dmx="0~0" />
+    </Attribute>
+    <Attribute ID="Plate_Sel" Name="Plate Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="All On" Display="'All On'" Dmx="0~0" />
+      <Function ID="2" Name="Pattern 1" Display="'Pattern 1'" Dmx="3~3" />
+      <Function ID="3" Name="Pattern 2" Display="'Pattern 2'" Dmx="4~4" />
+      <Function ID="4" Name="Pattern 3" Display="'Pattern 3'" Dmx="5~5" />
+      <Function ID="5" Name="Pattern 4" Display="'Pattern 4'" Dmx="6~6" />
+      <Function ID="6" Name="Pattern 5" Display="'Pattern 5'" Dmx="7~7" />
+      <Function ID="7" Name="Pattern 6" Display="'Pattern 6'" Dmx="8~8" />
+      <Function ID="8" Name="Pattern 7" Display="'Pattern 7'" Dmx="9~9" />
+      <Function ID="9" Name="Pattern 8" Display="'Pattern 8'" Dmx="10~10" />
+      <Function ID="10" Name="Pattern 9" Display="'Pattern 9'" Dmx="11~11" />
+      <Function ID="11" Name="Pattern 10" Display="'Pattern 10'" Dmx="12~12" />
+      <Function ID="12" Name="Pattern 11" Display="'Pattern 11'" Dmx="13~13" />
+      <Function ID="13" Name="Pattern 12" Display="'Pattern 12'" Dmx="14~14" />
+      <Function ID="14" Name="Pattern 13" Display="'Pattern 13'" Dmx="15~15" />
+      <Function ID="15" Name="Pattern 14" Display="'Pattern 14'" Dmx="16~16" />
+      <Function ID="16" Name="Pattern 15" Display="'Pattern 15'" Dmx="17~17" />
+      <Function ID="17" Name="Pattern 16" Display="'Pattern 16'" Dmx="18~18" />
+      <Function ID="18" Name="Pattern 17" Display="'Pattern 17'" Dmx="19~19" />
+      <Function ID="19" Name="Pattern 18" Display="'Pattern 18'" Dmx="20~20" />
+      <Function ID="20" Name="Pattern 19" Display="'Pattern 19'" Dmx="21~21" />
+      <Function ID="21" Name="Pattern 20" Display="'Pattern 20'" Dmx="22~22" />
+      <Function ID="22" Name="Pattern 21" Display="'Pattern 21'" Dmx="23~23" />
+      <Function ID="23" Name="Pattern 22" Display="'Pattern 22'" Dmx="24~24" />
+      <Function ID="24" Name="Pattern 23" Display="'Pattern 23'" Dmx="25~25" />
+      <Function ID="25" Name="Pattern 24" Display="'Pattern 24'" Dmx="26~26" />
+      <Function ID="26" Name="Pattern 25" Display="'Pattern 25'" Dmx="27~27" />
+      <Function ID="27" Name="Pattern 26" Display="'Pattern 26'" Dmx="28~28" />
+      <Function ID="28" Name="Pattern 27" Display="'Pattern 27'" Dmx="29~29" />
+      <Function ID="29" Name="Pattern 28" Display="'Pattern 28'" Dmx="30~30" />
+      <Function ID="30" Name="Pattern 29" Display="'Pattern 29'" Dmx="31~31" />
+      <Function ID="31" Name="Pattern 30" Display="'Pattern 30'" Dmx="32~32" />
+      <Function ID="32" Name="Pattern 31" Display="'Pattern 31'" Dmx="33~33" />
+      <Function ID="33" Name="Pattern 32" Display="'Pattern 32'" Dmx="34~34" />
+      <Function ID="34" Name="Pattern 33" Display="'Pattern 33'" Dmx="35~35" />
+      <Function ID="35" Name="Pattern 34" Display="'Pattern 34'" Dmx="36~36" />
+      <Function ID="36" Name="Pattern 35" Display="'Pattern 35'" Dmx="37~37" />
+      <Function ID="37" Name="Pattern 36" Display="'Pattern 36'" Dmx="38~38" />
+      <Function ID="38" Name="Pattern 37" Display="'Pattern 37'" Dmx="39~39" />
+      <Function ID="39" Name="Pattern 38" Display="'Pattern 38'" Dmx="40~40" />
+      <Function ID="40" Name="Pattern 39" Display="'Pattern 39'" Dmx="41~41" />
+      <Function ID="41" Name="Pattern 40" Display="'Pattern 40'" Dmx="42~42" />
+      <Function ID="42" Name="Pattern 41" Display="'Pattern 41'" Dmx="43~43" />
+      <Function ID="43" Name="Pattern 42" Display="'Pattern 42'" Dmx="44~44" />
+      <Function ID="44" Name="Pattern 43" Display="'Pattern 43'" Dmx="45~45" />
+      <Function ID="45" Name="Pattern 44" Display="'Pattern 44'" Dmx="46~46" />
+      <Function ID="46" Name="Pattern 45" Display="'Pattern 45'" Dmx="47~47" />
+      <Function ID="47" Name="Pattern 46" Display="'Pattern 46'" Dmx="48~48" />
+      <Function ID="48" Name="Pattern 47" Display="'Pattern 47'" Dmx="49~49" />
+      <Function ID="49" Name="Pattern 48" Display="'Pattern 48'" Dmx="50~50" />
+      <Function ID="50" Name="Pattern 49" Display="'Pattern 49'" Dmx="51~51" />
+      <Function ID="51" Name="Pattern 50" Display="'Pattern 50'" Dmx="52~52" />
+      <Function ID="52" Name="Pattern 51" Display="'Pattern 51'" Dmx="53~53" />
+      <Function ID="53" Name="Pattern 52" Display="'Pattern 52'" Dmx="54~54" />
+      <Function ID="54" Name="Pattern 53" Display="'Pattern 53'" Dmx="55~55" />
+      <Function ID="55" Name="Pattern 54" Display="'Pattern 54'" Dmx="56~56" />
+      <Function ID="56" Name="Pattern 55" Display="'Pattern 55'" Dmx="57~57" />
+      <Function ID="57" Name="Pattern 56" Display="'Pattern 56'" Dmx="58~58" />
+      <Function ID="58" Name="Pattern 57" Display="'Pattern 57'" Dmx="59~59" />
+      <Function ID="59" Name="Pattern 58" Display="'Pattern 58'" Dmx="60~60" />
+      <Function ID="60" Name="Pattern 59" Display="'Pattern 59'" Dmx="61~61" />
+      <Function ID="61" Name="Pattern 60" Display="'Pattern 60'" Dmx="62~62" />
+      <Function ID="62" Name="Pattern 61" Display="'Pattern 61'" Dmx="63~63" />
+      <Function ID="63" Name="Pattern 62" Display="'Pattern 62'" Dmx="64~64" />
+      <Function ID="64" Name="Pattern 63" Display="'Pattern 63'" Dmx="65~65" />
+      <Function ID="65" Name="Pattern 64" Display="'Pattern 64'" Dmx="66~66" />
+      <Function ID="66" Name="Pattern 65" Display="'Pattern 65'" Dmx="67~67" />
+      <Function ID="67" Name="Pattern 66" Display="'Pattern 66'" Dmx="68~68" />
+      <Function ID="68" Name="Pattern 67" Display="'Pattern 67'" Dmx="69~69" />
+      <Function ID="69" Name="Pattern 68" Display="'Pattern 68'" Dmx="70~70" />
+      <Function ID="70" Name="Pattern 69" Display="'Pattern 69'" Dmx="71~71" />
+      <Function ID="71" Name="Pattern 70" Display="'Pattern 70'" Dmx="72~72" />
+      <Function ID="72" Name="Pattern 71" Display="'Pattern 71'" Dmx="73~73" />
+      <Function ID="73" Name="Pattern 72" Display="'Pattern 72'" Dmx="74~74" />
+      <Function ID="74" Name="Pattern 73" Display="'Pattern 73'" Dmx="75~75" />
+      <Function ID="75" Name="Pattern 74" Display="'Pattern 74'" Dmx="76~76" />
+      <Function ID="76" Name="Pattern 75" Display="'Pattern 75'" Dmx="77~77" />
+      <Function ID="77" Name="Pattern 76" Display="'Pattern 76'" Dmx="78~78" />
+      <Function ID="78" Name="Pattern 77" Display="'Pattern 77'" Dmx="79~79" />
+      <Function ID="79" Name="All Off" Display="'All Off'" Dmx="80~255" />
+    </Attribute>
+    <Attribute ID="Plate_Spd" Name="Plate Spd" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="Plate_Fade" Name="Plate Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+    <Attribute ID="Beam_Sel" Name="Beam Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="All On" Display="'All On'" Dmx="0~0" />
+      <Function ID="2" Name="Pattern 1" Display="'Pattern 1'" Dmx="3~3" />
+      <Function ID="3" Name="Pattern 2" Display="'Pattern 2'" Dmx="4~4" />
+      <Function ID="4" Name="Pattern 3" Display="'Pattern 3'" Dmx="5~5" />
+      <Function ID="5" Name="Pattern 4" Display="'Pattern 4'" Dmx="6~6" />
+      <Function ID="6" Name="Pattern 5" Display="'Pattern 5'" Dmx="7~7" />
+      <Function ID="7" Name="Pattern 6" Display="'Pattern 6'" Dmx="8~8" />
+      <Function ID="8" Name="Pattern 7" Display="'Pattern 7'" Dmx="9~9" />
+      <Function ID="9" Name="Pattern 8" Display="'Pattern 8'" Dmx="10~10" />
+      <Function ID="10" Name="Pattern 9" Display="'Pattern 9'" Dmx="11~11" />
+      <Function ID="11" Name="Pattern 10" Display="'Pattern 10'" Dmx="12~12" />
+      <Function ID="12" Name="Pattern 11" Display="'Pattern 11'" Dmx="13~13" />
+      <Function ID="13" Name="Pattern 12" Display="'Pattern 12'" Dmx="14~14" />
+      <Function ID="14" Name="Pattern 13" Display="'Pattern 13'" Dmx="15~15" />
+      <Function ID="15" Name="Pattern 14" Display="'Pattern 14'" Dmx="16~16" />
+      <Function ID="16" Name="Pattern 15" Display="'Pattern 15'" Dmx="17~17" />
+      <Function ID="17" Name="Pattern 16" Display="'Pattern 16'" Dmx="18~18" />
+      <Function ID="18" Name="Pattern 17" Display="'Pattern 17'" Dmx="19~19" />
+      <Function ID="19" Name="Pattern 18" Display="'Pattern 18'" Dmx="20~20" />
+      <Function ID="20" Name="Pattern 19" Display="'Pattern 19'" Dmx="21~21" />
+      <Function ID="21" Name="Pattern 20" Display="'Pattern 20'" Dmx="22~22" />
+      <Function ID="22" Name="Pattern 21" Display="'Pattern 21'" Dmx="23~23" />
+      <Function ID="23" Name="Pattern 22" Display="'Pattern 22'" Dmx="24~24" />
+      <Function ID="24" Name="Pattern 23" Display="'Pattern 23'" Dmx="25~25" />
+      <Function ID="25" Name="Pattern 24" Display="'Pattern 24'" Dmx="26~26" />
+      <Function ID="26" Name="Pattern 25" Display="'Pattern 25'" Dmx="27~27" />
+      <Function ID="27" Name="Pattern 26" Display="'Pattern 26'" Dmx="28~28" />
+      <Function ID="28" Name="Pattern 27" Display="'Pattern 27'" Dmx="29~29" />
+      <Function ID="29" Name="Pattern 28" Display="'Pattern 28'" Dmx="30~30" />
+      <Function ID="30" Name="Pattern 29" Display="'Pattern 29'" Dmx="31~31" />
+      <Function ID="31" Name="Pattern 30" Display="'Pattern 30'" Dmx="32~32" />
+      <Function ID="32" Name="Pattern 31" Display="'Pattern 31'" Dmx="33~33" />
+      <Function ID="33" Name="Pattern 32" Display="'Pattern 32'" Dmx="34~34" />
+      <Function ID="34" Name="Pattern 33" Display="'Pattern 33'" Dmx="35~35" />
+      <Function ID="35" Name="Pattern 34" Display="'Pattern 34'" Dmx="36~36" />
+      <Function ID="36" Name="Pattern 35" Display="'Pattern 35'" Dmx="37~37" />
+      <Function ID="37" Name="Pattern 36" Display="'Pattern 36'" Dmx="38~38" />
+      <Function ID="38" Name="Pattern 37" Display="'Pattern 37'" Dmx="39~39" />
+      <Function ID="39" Name="Pattern 38" Display="'Pattern 38'" Dmx="40~40" />
+      <Function ID="40" Name="Pattern 39" Display="'Pattern 39'" Dmx="41~41" />
+      <Function ID="41" Name="Pattern 40" Display="'Pattern 40'" Dmx="42~42" />
+      <Function ID="42" Name="Pattern 41" Display="'Pattern 41'" Dmx="43~43" />
+      <Function ID="43" Name="Pattern 42" Display="'Pattern 42'" Dmx="44~44" />
+      <Function ID="44" Name="Pattern 43" Display="'Pattern 43'" Dmx="45~45" />
+      <Function ID="45" Name="Pattern 44" Display="'Pattern 44'" Dmx="46~46" />
+      <Function ID="46" Name="Pattern 45" Display="'Pattern 45'" Dmx="47~47" />
+      <Function ID="47" Name="Pattern 46" Display="'Pattern 46'" Dmx="48~48" />
+      <Function ID="48" Name="Pattern 47" Display="'Pattern 47'" Dmx="49~49" />
+      <Function ID="49" Name="Pattern 48" Display="'Pattern 48'" Dmx="50~50" />
+      <Function ID="50" Name="Pattern 49" Display="'Pattern 49'" Dmx="51~51" />
+      <Function ID="51" Name="Pattern 50" Display="'Pattern 50'" Dmx="52~52" />
+      <Function ID="52" Name="Pattern 51" Display="'Pattern 51'" Dmx="53~53" />
+      <Function ID="53" Name="Pattern 52" Display="'Pattern 52'" Dmx="54~54" />
+      <Function ID="54" Name="Pattern 53" Display="'Pattern 53'" Dmx="55~55" />
+      <Function ID="55" Name="Pattern 54" Display="'Pattern 54'" Dmx="56~56" />
+      <Function ID="56" Name="Pattern 55" Display="'Pattern 55'" Dmx="57~57" />
+      <Function ID="57" Name="Pattern 56" Display="'Pattern 56'" Dmx="58~58" />
+      <Function ID="58" Name="Pattern 57" Display="'Pattern 57'" Dmx="59~59" />
+      <Function ID="59" Name="Pattern 58" Display="'Pattern 58'" Dmx="60~60" />
+      <Function ID="60" Name="Pattern 59" Display="'Pattern 59'" Dmx="61~61" />
+      <Function ID="61" Name="Pattern 60" Display="'Pattern 60'" Dmx="62~62" />
+      <Function ID="62" Name="Pattern 61" Display="'Pattern 61'" Dmx="63~63" />
+      <Function ID="63" Name="Pattern 62" Display="'Pattern 62'" Dmx="64~64" />
+      <Function ID="64" Name="Pattern 63" Display="'Pattern 63'" Dmx="65~65" />
+      <Function ID="65" Name="Pattern 64" Display="'Pattern 64'" Dmx="66~66" />
+      <Function ID="66" Name="Pattern 65" Display="'Pattern 65'" Dmx="67~67" />
+      <Function ID="67" Name="Pattern 66" Display="'Pattern 66'" Dmx="68~68" />
+      <Function ID="68" Name="Pattern 67" Display="'Pattern 67'" Dmx="69~69" />
+      <Function ID="69" Name="Pattern 68" Display="'Pattern 68'" Dmx="70~70" />
+      <Function ID="70" Name="Pattern 69" Display="'Pattern 69'" Dmx="71~71" />
+      <Function ID="71" Name="Pattern 70" Display="'Pattern 70'" Dmx="72~72" />
+      <Function ID="72" Name="Pattern 71" Display="'Pattern 71'" Dmx="73~73" />
+      <Function ID="73" Name="Pattern 72" Display="'Pattern 72'" Dmx="74~74" />
+      <Function ID="74" Name="Pattern 73" Display="'Pattern 73'" Dmx="75~75" />
+      <Function ID="75" Name="Pattern 74" Display="'Pattern 74'" Dmx="76~76" />
+      <Function ID="76" Name="Pattern 75" Display="'Pattern 75'" Dmx="77~77" />
+      <Function ID="77" Name="Pattern 76" Display="'Pattern 76'" Dmx="78~78" />
+      <Function ID="78" Name="Pattern 77" Display="'Pattern 77'" Dmx="79~79" />
+      <Function ID="79" Name="Pattern 78" Display="'Pattern 78'" Dmx="80~80" />
+      <Function ID="80" Name="Pattern 79" Display="'Pattern 79'" Dmx="81~81" />
+      <Function ID="81" Name="Pattern 80" Display="'Pattern 80'" Dmx="82~82" />
+      <Function ID="82" Name="Pattern 81" Display="'Pattern 81'" Dmx="83~83" />
+      <Function ID="83" Name="Pattern 82" Display="'Pattern 82'" Dmx="84~84" />
+      <Function ID="84" Name="Pattern 83" Display="'Pattern 83'" Dmx="85~85" />
+      <Function ID="85" Name="Pattern 84" Display="'Pattern 84'" Dmx="86~86" />
+      <Function ID="86" Name="Pattern 85" Display="'Pattern 85'" Dmx="87~87" />
+      <Function ID="87" Name="Pattern 86" Display="'Pattern 86'" Dmx="88~88" />
+      <Function ID="88" Name="Pattern 87" Display="'Pattern 87'" Dmx="89~89" />
+      <Function ID="89" Name="Pattern 88" Display="'Pattern 88'" Dmx="90~90" />
+      <Function ID="90" Name="Pattern 89" Display="'Pattern 89'" Dmx="91~91" />
+      <Function ID="91" Name="Pattern 90" Display="'Pattern 90'" Dmx="92~92" />
+      <Function ID="92" Name="Pattern 91" Display="'Pattern 91'" Dmx="93~93" />
+      <Function ID="93" Name="Pattern 92" Display="'Pattern 92'" Dmx="94~94" />
+      <Function ID="94" Name="Pattern 93" Display="'Pattern 93'" Dmx="95~95" />
+      <Function ID="95" Name="Pattern 94" Display="'Pattern 94'" Dmx="96~96" />
+      <Function ID="96" Name="Pattern 95" Display="'Pattern 95'" Dmx="97~97" />
+      <Function ID="97" Name="Pattern 96" Display="'Pattern 96'" Dmx="98~98" />
+      <Function ID="98" Name="Pattern 97" Display="'Pattern 97'" Dmx="99~99" />
+      <Function ID="99" Name="Pattern 98" Display="'Pattern 98'" Dmx="100~100" />
+      <Function ID="100" Name="Pattern 99" Display="'Pattern 99'" Dmx="101~101" />
+      <Function ID="101" Name="Pattern 100" Display="'Pattern 100'" Dmx="102~102" />
+      <Function ID="102" Name="Pattern 101" Display="'Pattern 101'" Dmx="103~103" />
+      <Function ID="103" Name="Pattern 102" Display="'Pattern 102'" Dmx="104~104" />
+      <Function ID="104" Name="Pattern 103" Display="'Pattern 103'" Dmx="105~105" />
+      <Function ID="105" Name="Pattern 104" Display="'Pattern 104'" Dmx="106~106" />
+      <Function ID="106" Name="Pattern 105" Display="'Pattern 105'" Dmx="107~107" />
+      <Function ID="107" Name="Pattern 106" Display="'Pattern 106'" Dmx="108~108" />
+      <Function ID="108" Name="Pattern 107" Display="'Pattern 107'" Dmx="109~109" />
+      <Function ID="109" Name="Pattern 108" Display="'Pattern 108'" Dmx="110~110" />
+      <Function ID="110" Name="Pattern 109" Display="'Pattern 109'" Dmx="111~111" />
+      <Function ID="111" Name="Pattern 110" Display="'Pattern 110'" Dmx="112~112" />
+      <Function ID="112" Name="Pattern 111" Display="'Pattern 111'" Dmx="113~113" />
+      <Function ID="113" Name="Pattern 112" Display="'Pattern 112'" Dmx="114~114" />
+      <Function ID="114" Name="Pattern 113" Display="'Pattern 113'" Dmx="115~115" />
+      <Function ID="115" Name="Pattern 114" Display="'Pattern 114'" Dmx="116~116" />
+      <Function ID="116" Name="Pattern 115" Display="'Pattern 115'" Dmx="117~117" />
+      <Function ID="117" Name="Pattern 116" Display="'Pattern 116'" Dmx="118~118" />
+      <Function ID="118" Name="Pattern 117" Display="'Pattern 117'" Dmx="119~119" />
+      <Function ID="119" Name="Pattern 118" Display="'Pattern 118'" Dmx="120~120" />
+      <Function ID="120" Name="Pattern 119" Display="'Pattern 119'" Dmx="121~121" />
+      <Function ID="121" Name="Pattern 120" Display="'Pattern 120'" Dmx="122~122" />
+      <Function ID="122" Name="Pattern 121" Display="'Pattern 121'" Dmx="123~123" />
+      <Function ID="123" Name="Pattern 122" Display="'Pattern 122'" Dmx="124~124" />
+      <Function ID="124" Name="Pattern 123" Display="'Pattern 123'" Dmx="125~125" />
+      <Function ID="125" Name="Pattern 124" Display="'Pattern 124'" Dmx="126~126" />
+      <Function ID="126" Name="Pattern 125" Display="'Pattern 125'" Dmx="127~127" />
+      <Function ID="127" Name="Pattern 126" Display="'Pattern 126'" Dmx="128~128" />
+      <Function ID="128" Name="Pattern 127" Display="'Pattern 127'" Dmx="129~129" />
+      <Function ID="129" Name="Pattern 128" Display="'Pattern 128'" Dmx="130~130" />
+      <Function ID="130" Name="Pattern 129" Display="'Pattern 129'" Dmx="131~131" />
+      <Function ID="131" Name="Pattern 130" Display="'Pattern 130'" Dmx="132~132" />
+      <Function ID="132" Name="Pattern 131" Display="'Pattern 131'" Dmx="133~133" />
+      <Function ID="133" Name="Pattern 132" Display="'Pattern 132'" Dmx="134~134" />
+      <Function ID="134" Name="Pattern 133" Display="'Pattern 133'" Dmx="135~135" />
+      <Function ID="135" Name="Pattern 134" Display="'Pattern 134'" Dmx="136~136" />
+      <Function ID="136" Name="Pattern 135" Display="'Pattern 135'" Dmx="137~137" />
+      <Function ID="137" Name="Pattern 136" Display="'Pattern 136'" Dmx="138~138" />
+      <Function ID="138" Name="Pattern 137" Display="'Pattern 137'" Dmx="139~139" />
+      <Function ID="139" Name="Pattern 138" Display="'Pattern 138'" Dmx="140~140" />
+      <Function ID="140" Name="Pattern 139" Display="'Pattern 139'" Dmx="141~141" />
+      <Function ID="141" Name="Pattern 140" Display="'Pattern 140'" Dmx="142~142" />
+      <Function ID="142" Name="Pattern 141" Display="'Pattern 141'" Dmx="143~143" />
+      <Function ID="143" Name="Pattern 142" Display="'Pattern 142'" Dmx="144~144" />
+      <Function ID="144" Name="All Off" Display="'All Off'" Dmx="145~255" />
+    </Attribute>
+    <Attribute ID="Beam_Spd" Name="Beam Spd" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="Beam_Fade" Name="Beam Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+    <Attribute ID="Plate_Col" Name="Plate Col" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="White 2700K" Display="'White 2700K'" Dmx="1~2" Colour="255,255,255" />
+      <Function ID="3" Name="White 3200K" Display="'White 3200K'" Dmx="3~4" Colour="255,255,255" />
+      <Function ID="4" Name="White 4200K" Display="'White 4200K'" Dmx="5~6" Colour="255,255,255" />
+      <Function ID="5" Name="White 5600K" Display="'White 5600K'" Dmx="7~8" Colour="255,255,255" />
+      <Function ID="6" Name="White 8000K" Display="'White 8000K'" Dmx="9~10" Colour="255,255,255" />
+      <Function ID="7" Name="Blue" Display="'Blue'" Dmx="11~11" Colour="0,0,255" />
+      <Function ID="8" Name="Blu - Cy" Display="'Blu - Cy %.f%%',0~100" Dmx="12~48" Colour="0,0,255" />
+      <Function ID="9" Name="Cyan" Display="'Cyan'" Dmx="49~49" Colour="0,255,255" />
+      <Function ID="10" Name="Cy - Grn" Display="'Cy - Grn %.f%%',0~100" Dmx="50~86" Colour="0,255,255" />
+      <Function ID="11" Name="Green" Display="'Green'" Dmx="87~87" Colour="0,255,0" />
+      <Function ID="12" Name="Grn - Yel" Display="'Grn - Yel %.f%%',0~100" Dmx="88~124" Colour="0,255,0" />
+      <Function ID="13" Name="Yellow" Display="'Yellow'" Dmx="125~125" Colour="255,255,0" />
+      <Function ID="14" Name="Yel - Rd" Display="'Yel - Rd %.f%%',0~100" Dmx="126~162" Colour="255,255,0" />
+      <Function ID="15" Name="Red" Display="'Red'" Dmx="163~163" Colour="255,0,0" />
+      <Function ID="16" Name="Rd - Mag" Display="'Rd - Mag %.f%%',0~100" Dmx="164~200" Colour="255,0,0" />
+      <Function ID="17" Name="Magenta" Display="'Magenta'" Dmx="201~201" Colour="255,0,255" />
+      <Function ID="18" Name="Mag - Blu" Display="'Mag - Blu %.f%%',0~100" Dmx="202~238" Colour="255,0,255" />
+      <Function ID="19" Name="Blue" Display="'Blue'" Dmx="239~239" Colour="0,0,255" />
+      <Function ID="20" Name="Index" Display="'Index %.1f%%',0.0~100.0" Dmx="11~239" Colour="255,255,255" />
+      <Function ID="21" Name="Index Spd" Display="'Index Spd %.f%%',0~100" Dmx="247~240" Colour="255,255,255" />
+      <Function ID="22" Name="Snap Spd" Display="'Snap Spd %.f%%',0~100" Dmx="255~248" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Speed" Name="Speed" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Function" Display="'No Function'" Dmx="0~0" />
+      <Function ID="2" Name="L-&gt;R" Display="'L-&gt;R %.f%%',100~0" Dmx="6~124" />
+      <Function ID="3" Name="No Function" Display="'No Function'" Dmx="125~130" />
+      <Function ID="4" Name="R-&gt;L" Display="'R-&gt;L %.f%%',0~100" Dmx="131~249" />
+      <Function ID="5" Name="No Function" Display="'No Function'" Dmx="250~255" />
+    </Attribute>
+    <Attribute ID="Fade" Name="Fade" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Snap" Display="'Snap'" Dmx="0~0" />
+      <Function ID="2" Name="Duration" Display="'Duration %.1f%%',0.0~100.0" Dmx="3~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="97 DMX" Channels="97" Id="040d5107-0b3e-4d18-bfea-e5722ea37847">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="e56e17e7-86d6-47b8-9144-715c61baebd9" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Plate_Master" ChannelOffset="4" Wheel="5" />
+        <Attribute ID="Beam_Master" ChannelOffset="5" Wheel="6" />
+        <Attribute ID="Plate_Duration" ChannelOffset="6" Wheel="35" />
+        <Attribute ID="Plate_Rate" ChannelOffset="7" Wheel="34" />
+        <Attribute ID="Beam_Duration" ChannelOffset="8" Wheel="64" />
+        <Attribute ID="Beam_Rate" ChannelOffset="9" Wheel="36" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Beam_FX" ChannelOffset="80" Wheel="22" />
+        <Attribute ID="Plate_FG_Col" ChannelOffset="81" Wheel="7" />
+        <Attribute ID="Plate_FG_Dim" ChannelOffset="82" Wheel="8" />
+        <Attribute ID="Plate_BG_Col" ChannelOffset="83" Wheel="9" />
+        <Attribute ID="Plate_BG_Dim" ChannelOffset="84" Wheel="37" />
+        <Attribute ID="T_Plate_Sel" ChannelOffset="85" Wheel="23" />
+        <Attribute ID="T_Plate_Spd" ChannelOffset="86" Wheel="24" />
+        <Attribute ID="T_Plate_Fade" ChannelOffset="87" Wheel="52" />
+        <Attribute ID="B_Plate_Sel" ChannelOffset="88" Wheel="53" />
+        <Attribute ID="B_Plate_Spd" ChannelOffset="89" Wheel="54" />
+        <Attribute ID="B_Plate_Fade" ChannelOffset="90" Wheel="82" />
+        <Attribute ID="T_Beam_Sel" ChannelOffset="91" Wheel="83" />
+        <Attribute ID="T_Beam_Spd" ChannelOffset="92" Wheel="84" />
+        <Attribute ID="T_Beam_Fade" ChannelOffset="93" Wheel="112" />
+        <Attribute ID="B_Beam_Sel" ChannelOffset="94" Wheel="113" />
+        <Attribute ID="B_Beam_Spd" ChannelOffset="95" Wheel="114" />
+        <Attribute ID="B_Beam_Fade" ChannelOffset="96" Wheel="142" />
+        <Attribute ID="Control" ChannelOffset="97" Wheel="28" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate 1" ChannelOffset="10" ModeLink="RGB cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Plate 2" ChannelOffset="13" ModeLink="RGB cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Plate 3" ChannelOffset="16" ModeLink="RGB cell" X="4" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Plate 4" ChannelOffset="19" ModeLink="RGB cell" X="6" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Plate 5" ChannelOffset="22" ModeLink="RGB cell" X="8" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Plate 6" ChannelOffset="25" ModeLink="RGB cell" X="10" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Plate 7" ChannelOffset="28" ModeLink="RGB cell" X="12" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Plate 8" ChannelOffset="31" ModeLink="RGB cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Plate 9" ChannelOffset="34" ModeLink="RGB cell" X="2" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Plate 10" ChannelOffset="37" ModeLink="RGB cell" X="4" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Plate 11" ChannelOffset="40" ModeLink="RGB cell" X="6" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Plate 12" ChannelOffset="43" ModeLink="RGB cell" X="8" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Plate 13" ChannelOffset="46" ModeLink="RGB cell" X="10" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Plate 14" ChannelOffset="49" ModeLink="RGB cell" X="12" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Beam 1" ChannelOffset="52" ModeLink="Dim cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Beam 2" ChannelOffset="53" ModeLink="Dim cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Beam 3" ChannelOffset="54" ModeLink="Dim cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Beam 4" ChannelOffset="55" ModeLink="Dim cell" X="3" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Beam 5" ChannelOffset="56" ModeLink="Dim cell" X="4" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Beam 6" ChannelOffset="57" ModeLink="Dim cell" X="5" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Beam 7" ChannelOffset="58" ModeLink="Dim cell" X="6" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Beam 8" ChannelOffset="59" ModeLink="Dim cell" X="7" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Beam 9" ChannelOffset="60" ModeLink="Dim cell" X="8" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Beam 10" ChannelOffset="61" ModeLink="Dim cell" X="9" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Beam 11" ChannelOffset="62" ModeLink="Dim cell" X="10" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Beam 12" ChannelOffset="63" ModeLink="Dim cell" X="11" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Beam 13" ChannelOffset="64" ModeLink="Dim cell" X="12" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Beam 14" ChannelOffset="65" ModeLink="Dim cell" X="13" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell29" Name="Beam 15" ChannelOffset="66" ModeLink="Dim cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell30" Name="Beam 16" ChannelOffset="67" ModeLink="Dim cell" X="1" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell31" Name="Beam 17" ChannelOffset="68" ModeLink="Dim cell" X="2" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell32" Name="Beam 18" ChannelOffset="69" ModeLink="Dim cell" X="3" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell33" Name="Beam 19" ChannelOffset="70" ModeLink="Dim cell" X="4" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell34" Name="Beam 20" ChannelOffset="71" ModeLink="Dim cell" X="5" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell35" Name="Beam 21" ChannelOffset="72" ModeLink="Dim cell" X="6" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell36" Name="Beam 22" ChannelOffset="73" ModeLink="Dim cell" X="7" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell37" Name="Beam 23" ChannelOffset="74" ModeLink="Dim cell" X="8" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell38" Name="Beam 24" ChannelOffset="75" ModeLink="Dim cell" X="9" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell39" Name="Beam 25" ChannelOffset="76" ModeLink="Dim cell" X="10" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell40" Name="Beam 26" ChannelOffset="77" ModeLink="Dim cell" X="11" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell41" Name="Beam 27" ChannelOffset="78" ModeLink="Dim cell" X="12" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell42" Name="Beam 28" ChannelOffset="79" ModeLink="Dim cell" X="13" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="74 DMX" Channels="74" Id="10613495-ae1b-4117-a0d2-cd4703e8181c">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="6eab3aeb-0b91-469a-8dcd-83d3124c04ff" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Shutter" ChannelOffset="4" Wheel="65" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate 1" ChannelOffset="5" ModeLink="RGB cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Plate 2" ChannelOffset="8" ModeLink="RGB cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Plate 3" ChannelOffset="11" ModeLink="RGB cell" X="4" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Plate 4" ChannelOffset="14" ModeLink="RGB cell" X="6" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Plate 5" ChannelOffset="17" ModeLink="RGB cell" X="8" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Plate 6" ChannelOffset="20" ModeLink="RGB cell" X="10" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Plate 7" ChannelOffset="23" ModeLink="RGB cell" X="12" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Plate 8" ChannelOffset="26" ModeLink="RGB cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Plate 9" ChannelOffset="29" ModeLink="RGB cell" X="2" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Plate 10" ChannelOffset="32" ModeLink="RGB cell" X="4" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Plate 11" ChannelOffset="35" ModeLink="RGB cell" X="6" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Plate 12" ChannelOffset="38" ModeLink="RGB cell" X="8" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Plate 13" ChannelOffset="41" ModeLink="RGB cell" X="10" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Plate 14" ChannelOffset="44" ModeLink="RGB cell" X="12" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Beam 1" ChannelOffset="47" ModeLink="Dim cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Beam 2" ChannelOffset="48" ModeLink="Dim cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Beam 3" ChannelOffset="49" ModeLink="Dim cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Beam 4" ChannelOffset="50" ModeLink="Dim cell" X="3" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Beam 5" ChannelOffset="51" ModeLink="Dim cell" X="4" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Beam 6" ChannelOffset="52" ModeLink="Dim cell" X="5" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Beam 7" ChannelOffset="53" ModeLink="Dim cell" X="6" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Beam 8" ChannelOffset="54" ModeLink="Dim cell" X="7" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Beam 9" ChannelOffset="55" ModeLink="Dim cell" X="8" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Beam 10" ChannelOffset="56" ModeLink="Dim cell" X="9" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Beam 11" ChannelOffset="57" ModeLink="Dim cell" X="10" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Beam 12" ChannelOffset="58" ModeLink="Dim cell" X="11" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Beam 13" ChannelOffset="59" ModeLink="Dim cell" X="12" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Beam 14" ChannelOffset="60" ModeLink="Dim cell" X="13" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell29" Name="Beam 15" ChannelOffset="61" ModeLink="Dim cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell30" Name="Beam 16" ChannelOffset="62" ModeLink="Dim cell" X="1" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell31" Name="Beam 17" ChannelOffset="63" ModeLink="Dim cell" X="2" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell32" Name="Beam 18" ChannelOffset="64" ModeLink="Dim cell" X="3" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell33" Name="Beam 19" ChannelOffset="65" ModeLink="Dim cell" X="4" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell34" Name="Beam 20" ChannelOffset="66" ModeLink="Dim cell" X="5" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell35" Name="Beam 21" ChannelOffset="67" ModeLink="Dim cell" X="6" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell36" Name="Beam 22" ChannelOffset="68" ModeLink="Dim cell" X="7" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell37" Name="Beam 23" ChannelOffset="69" ModeLink="Dim cell" X="8" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell38" Name="Beam 24" ChannelOffset="70" ModeLink="Dim cell" X="9" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell39" Name="Beam 25" ChannelOffset="71" ModeLink="Dim cell" X="10" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell40" Name="Beam 26" ChannelOffset="72" ModeLink="Dim cell" X="11" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell41" Name="Beam 27" ChannelOffset="73" ModeLink="Dim cell" X="12" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell42" Name="Beam 28" ChannelOffset="74" ModeLink="Dim cell" X="13" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="30 DMX" Channels="30" Id="70878a31-46a9-4e50-a2a0-58089dba2f34">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="322e4c4b-42c0-4bd5-89d6-4f5563e8cf30" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Duration" Wheel="94" />
+        <Attribute ID="Rate" Wheel="66" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Plate_FG_Col" Wheel="7" />
+        <Attribute ID="Plate_FG_Dim" Wheel="8" />
+        <Attribute ID="Plate_BG_Col" Wheel="9" />
+        <Attribute ID="Plate_BG_Dim" Wheel="37" />
+        <Attribute ID="T_Plate_Sel" Wheel="23" />
+        <Attribute ID="T_Plate_Spd" Wheel="24" />
+        <Attribute ID="T_Plate_Fade" Wheel="52" />
+        <Attribute ID="B_Plate_Sel" Wheel="53" />
+        <Attribute ID="B_Plate_Spd" Wheel="54" />
+        <Attribute ID="B_Plate_Fade" Wheel="82" />
+        <Attribute ID="Beam_FX" Wheel="22" />
+        <Attribute ID="T_Beam_Sel" Wheel="83" />
+        <Attribute ID="T_Beam_Spd" Wheel="84" />
+        <Attribute ID="T_Beam_Fade" Wheel="112" />
+        <Attribute ID="B_Beam_Sel" Wheel="113" />
+        <Attribute ID="B_Beam_Spd" Wheel="114" />
+        <Attribute ID="B_Beam_Fade" Wheel="142" />
+        <Attribute ID="Control" ChannelOffset="30" Wheel="28" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate" ChannelOffset="4" ModeLink="Plate cell 1" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Plate_FG_Col" TargetId="Plate_FG_Col" />
+        <AttributeLink SourceId="Plate_FG_Dim" TargetId="Plate_FG_Dim" />
+        <AttributeLink SourceId="Plate_BG_Col" TargetId="Plate_BG_Col" />
+        <AttributeLink SourceId="Plate_BG_Dim" TargetId="Plate_BG_Dim" />
+        <AttributeLink SourceId="T_Plate_Sel" TargetId="T_Plate_Sel" />
+        <AttributeLink SourceId="T_Plate_Spd" TargetId="T_Plate_Spd" />
+        <AttributeLink SourceId="T_Plate_Fade" TargetId="T_Plate_Fade" />
+        <AttributeLink SourceId="B_Plate_Sel" TargetId="B_Plate_Sel" />
+        <AttributeLink SourceId="B_Plate_Spd" TargetId="B_Plate_Spd" />
+        <AttributeLink SourceId="B_Plate_Fade" TargetId="B_Plate_Fade" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam" ChannelOffset="5" ModeLink="Beam cell 1" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Beam_FX" TargetId="Beam_FX" />
+        <AttributeLink SourceId="T_Beam_Sel" TargetId="T_Beam_Sel" />
+        <AttributeLink SourceId="T_Beam_Spd" TargetId="T_Beam_Spd" />
+        <AttributeLink SourceId="T_Beam_Fade" TargetId="T_Beam_Fade" />
+        <AttributeLink SourceId="B_Beam_Sel" TargetId="B_Beam_Sel" />
+        <AttributeLink SourceId="B_Beam_Spd" TargetId="B_Beam_Spd" />
+        <AttributeLink SourceId="B_Beam_Fade" TargetId="B_Beam_Fade" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="24 DMX" Channels="24" Id="63c087a8-876e-4669-9ae3-7c5af9ebb541">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="f813d15a-5dc6-40ff-bc71-3d081e989fdf" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Duration" Wheel="94" />
+        <Attribute ID="Rate" Wheel="66" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Plate_FG_Col" Wheel="7" />
+        <Attribute ID="Plate_FG_Dim" Wheel="8" />
+        <Attribute ID="Plate_BG_Col" Wheel="9" />
+        <Attribute ID="Plate_BG_Dim" Wheel="37" />
+        <Attribute ID="Plate_Sel" Wheel="143" />
+        <Attribute ID="Plate_Spd" Wheel="144" />
+        <Attribute ID="Plate_Fade" Wheel="172" />
+        <Attribute ID="Beam_FX" Wheel="22" />
+        <Attribute ID="Beam_Sel" Wheel="173" />
+        <Attribute ID="Beam_Spd" Wheel="174" />
+        <Attribute ID="Beam_Fade" Wheel="202" />
+        <Attribute ID="Control" ChannelOffset="24" Wheel="28" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate" ChannelOffset="4" ModeLink="Plate cell 2" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Plate_FG_Col" TargetId="Plate_FG_Col" />
+        <AttributeLink SourceId="Plate_FG_Dim" TargetId="Plate_FG_Dim" />
+        <AttributeLink SourceId="Plate_BG_Col" TargetId="Plate_BG_Col" />
+        <AttributeLink SourceId="Plate_BG_Dim" TargetId="Plate_BG_Dim" />
+        <AttributeLink SourceId="Plate_Sel" TargetId="Plate_Sel" />
+        <AttributeLink SourceId="Plate_Spd" TargetId="Plate_Spd" />
+        <AttributeLink SourceId="Plate_Fade" TargetId="Plate_Fade" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam" ChannelOffset="5" ModeLink="Beam cell 2" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Beam_FX" TargetId="Beam_FX" />
+        <AttributeLink SourceId="Beam_Sel" TargetId="Beam_Sel" />
+        <AttributeLink SourceId="Beam_Spd" TargetId="Beam_Spd" />
+        <AttributeLink SourceId="Beam_Fade" TargetId="Beam_Fade" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="13 DMX" Channels="13" Id="61ae80d0-b8b5-41ae-ada2-8a115300bfba">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="77585bce-86d5-457b-b705-6aaca457f264" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Duration" Wheel="94" />
+        <Attribute ID="Rate" Wheel="66" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Beam_FX" Wheel="22" />
+        <Attribute ID="Control" ChannelOffset="13" Wheel="28" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate" ChannelOffset="3" ModeLink="Plate cell 3" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam" ChannelOffset="4" ModeLink="Beam cell 3" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Beam_FX" TargetId="Beam_FX" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="11 DMX" Channels="11" Id="060835c1-223a-428d-9632-f7d0e1fefc2b">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="e4473274-dc44-4c08-82ed-36c091ce955b" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Duration" Wheel="94" />
+        <Attribute ID="Rate" Wheel="66" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate" ChannelOffset="4" ModeLink="Plate cell 4" X="0" Y="0">
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam" ChannelOffset="6" ModeLink="Beam cell 4" X="0" Y="1">
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="8 DMX" Channels="8" Id="6ba8e584-fadc-4e5a-8322-af034a5cadbd">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="6b60a3a5-e2b9-4484-824a-b8372a25ff7a" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Shutter" ChannelOffset="4" Wheel="65" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate" ChannelOffset="5" ModeLink="RGB cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam" ChannelOffset="8" ModeLink="Dim cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="RGB cell" Channels="3" Hidden="True" Id="a4e211f9-e06d-403d-80a2-809e63e88971">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Dim cell" Channels="1" Hidden="True" Id="1e4c716d-8ed0-4de9-ac77-b08b75c0ba7e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate cell 1" Channels="16" Hidden="True" Id="375ec048-57f5-4852-ba57-832a6d5f50dd">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="3" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="4" Wheel="66" />
+      <Attribute ID="Red" ChannelOffset="7" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9" Wheel="12" />
+      <Attribute ID="Plate_FG_Col" ChannelOffset="11" Wheel="7" />
+      <Attribute ID="Plate_FG_Dim" ChannelOffset="12" Wheel="8" />
+      <Attribute ID="Plate_BG_Col" ChannelOffset="13" Wheel="9" />
+      <Attribute ID="Plate_BG_Dim" ChannelOffset="14" Wheel="37" />
+      <Attribute ID="T_Plate_Sel" ChannelOffset="15" Wheel="23" />
+      <Attribute ID="T_Plate_Spd" ChannelOffset="16" Wheel="24" />
+      <Attribute ID="T_Plate_Fade" ChannelOffset="17" Wheel="52" />
+      <Attribute ID="B_Plate_Sel" ChannelOffset="18" Wheel="53" />
+      <Attribute ID="B_Plate_Spd" ChannelOffset="19" Wheel="54" />
+      <Attribute ID="B_Plate_Fade" ChannelOffset="20" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Beam cell 1" Channels="10" Hidden="True" Id="173d415e-d7b3-49bb-993a-d51c87a508e4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="4" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="5" Wheel="66" />
+      <Attribute ID="Beam_FX" ChannelOffset="9" Wheel="22" />
+      <Attribute ID="T_Beam_Sel" ChannelOffset="20" Wheel="83" />
+      <Attribute ID="T_Beam_Spd" ChannelOffset="21" Wheel="84" />
+      <Attribute ID="T_Beam_Fade" ChannelOffset="22" Wheel="112" />
+      <Attribute ID="B_Beam_Sel" ChannelOffset="23" Wheel="113" />
+      <Attribute ID="B_Beam_Spd" ChannelOffset="24" Wheel="114" />
+      <Attribute ID="B_Beam_Fade" ChannelOffset="25" Wheel="142" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate cell 2" Channels="13" Hidden="True" Id="737c2a62-ca55-4efa-9434-d75880db9b3e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="3" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="4" Wheel="66" />
+      <Attribute ID="Red" ChannelOffset="7" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9" Wheel="12" />
+      <Attribute ID="Plate_FG_Col" ChannelOffset="11" Wheel="7" />
+      <Attribute ID="Plate_FG_Dim" ChannelOffset="12" Wheel="8" />
+      <Attribute ID="Plate_BG_Col" ChannelOffset="13" Wheel="9" />
+      <Attribute ID="Plate_BG_Dim" ChannelOffset="14" Wheel="37" />
+      <Attribute ID="Plate_Sel" ChannelOffset="15" Wheel="143" />
+      <Attribute ID="Plate_Spd" ChannelOffset="16" Wheel="144" />
+      <Attribute ID="Plate_Fade" ChannelOffset="17" Wheel="172" />
+    </Include>
+  </Mode>
+  <Mode Name="Beam cell 2" Channels="7" Hidden="True" Id="b2720c5f-a291-49d7-9296-a1bc272c432e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="4" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="5" Wheel="66" />
+      <Attribute ID="Beam_FX" ChannelOffset="9" Wheel="22" />
+      <Attribute ID="Beam_Sel" ChannelOffset="17" Wheel="173" />
+      <Attribute ID="Beam_Spd" ChannelOffset="18" Wheel="174" />
+      <Attribute ID="Beam_Fade" ChannelOffset="19" Wheel="202" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate cell 3" Channels="6" Hidden="True" Id="6c36627a-9d99-43ef-9d26-acd1872a1ac1">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="3" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="4" Wheel="66" />
+      <Attribute ID="Red" ChannelOffset="7" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9" Wheel="12" />
+    </Include>
+  </Mode>
+  <Mode Name="Beam cell 3" Channels="4" Hidden="True" Id="c3253f30-ebb6-41f8-9825-88d4ee7663e0">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="4" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="5" Wheel="66" />
+      <Attribute ID="Beam_FX" ChannelOffset="9" Wheel="22" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate cell 4" Channels="5" Hidden="True" Id="9a02aa7c-8bd0-494a-9adb-559434a1980f">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Duration" ChannelOffset="1" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="2" Wheel="66" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Beam cell 4" Channels="3" Hidden="True" Id="1cfc74e4-78a0-4554-8a6e-4e5abeed42ad">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Duration" ChannelOffset="1" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="2" Wheel="66" />
+      <Attribute ID="Dimmer" ChannelOffset="6" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate cell 5" Channels="3" Hidden="True" Id="761c4875-82ee-406b-98ed-a6a4ee9dc5e0">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="3" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="4" Wheel="66" />
+    </Include>
+  </Mode>
+  <Mode Name="Beam cell 5" Channels="3" Hidden="True" Id="9e366c22-3015-4439-9727-534bd88b6d39">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Duration" ChannelOffset="4" Wheel="94" />
+      <Attribute ID="Rate" ChannelOffset="5" Wheel="66" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate cell 6" Channels="2" Hidden="True" Id="5499c43c-137e-410c-a890-63ea59355436">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Plate_Col" ChannelOffset="1" Wheel="38" />
+      <Attribute ID="Dimmer" ChannelOffset="2" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Plate FX cell" Channels="3" Hidden="True" Id="d73ae7e7-9235-4e1a-8538-e38160f41a3c">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Plate_Sel" ChannelOffset="1" Wheel="143" />
+      <Attribute ID="Speed" ChannelOffset="2" Wheel="203" />
+      <Attribute ID="Fade" ChannelOffset="3" Wheel="204" />
+    </Include>
+  </Mode>
+  <Mode Name="Beam FX cell" Channels="3" Hidden="True" Id="5a803020-f25a-4454-99d8-576c028e14d8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Beam_Sel" ChannelOffset="1" Wheel="173" />
+      <Attribute ID="Speed" ChannelOffset="2" Wheel="203" />
+      <Attribute ID="Fade" ChannelOffset="3" Wheel="204" />
+    </Include>
+  </Mode>
+  <Mode Name="97 DMX (master part, patch 1/4)" Channels="9" Id="2b726269-6043-440c-a598-561acfdc636e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="3" Wheel="4" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Duration" Wheel="94" />
+        <Attribute ID="Rate" Wheel="66" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate" ChannelOffset="4" ModeLink="Plate cell 5" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam" ChannelOffset="5" ModeLink="Beam cell 5" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Duration" TargetId="Duration" />
+        <AttributeLink SourceId="Rate" TargetId="Rate" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="97 DMX (plate part, patch 2/4)" Channels="42" Id="2816a771-85c1-4b4f-8624-1057c586f7c2">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate 1" ChannelOffset="1" ModeLink="RGB cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Plate 2" ChannelOffset="4" ModeLink="RGB cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Plate 3" ChannelOffset="7" ModeLink="RGB cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Plate 4" ChannelOffset="10" ModeLink="RGB cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Plate 5" ChannelOffset="13" ModeLink="RGB cell" X="4" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Plate 6" ChannelOffset="16" ModeLink="RGB cell" X="5" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Plate 7" ChannelOffset="19" ModeLink="RGB cell" X="6" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Plate 8" ChannelOffset="22" ModeLink="RGB cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Plate 9" ChannelOffset="25" ModeLink="RGB cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Plate 10" ChannelOffset="28" ModeLink="RGB cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Plate 11" ChannelOffset="31" ModeLink="RGB cell" X="3" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Plate 12" ChannelOffset="34" ModeLink="RGB cell" X="4" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Plate 13" ChannelOffset="37" ModeLink="RGB cell" X="5" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Plate 14" ChannelOffset="40" ModeLink="RGB cell" X="6" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="97 DMX (beam part, patch 3/4)" Channels="28" Id="c87176a5-ea9f-4c06-a06b-3f9684ab2650">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Beam 1" ChannelOffset="1" ModeLink="Dim cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam 2" ChannelOffset="2" ModeLink="Dim cell" X="1" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Beam 3" ChannelOffset="3" ModeLink="Dim cell" X="2" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Beam 4" ChannelOffset="4" ModeLink="Dim cell" X="3" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Beam 5" ChannelOffset="5" ModeLink="Dim cell" X="4" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Beam 6" ChannelOffset="6" ModeLink="Dim cell" X="5" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Beam 7" ChannelOffset="7" ModeLink="Dim cell" X="6" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Beam 8" ChannelOffset="8" ModeLink="Dim cell" X="7" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Beam 9" ChannelOffset="9" ModeLink="Dim cell" X="8" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Beam 10" ChannelOffset="10" ModeLink="Dim cell" X="9" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Beam 11" ChannelOffset="11" ModeLink="Dim cell" X="10" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Beam 12" ChannelOffset="12" ModeLink="Dim cell" X="11" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Beam 13" ChannelOffset="13" ModeLink="Dim cell" X="12" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Beam 14" ChannelOffset="14" ModeLink="Dim cell" X="13" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Beam 15" ChannelOffset="15" ModeLink="Dim cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Beam 16" ChannelOffset="16" ModeLink="Dim cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Beam 17" ChannelOffset="17" ModeLink="Dim cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Beam 18" ChannelOffset="18" ModeLink="Dim cell" X="3" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Beam 19" ChannelOffset="19" ModeLink="Dim cell" X="4" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Beam 20" ChannelOffset="20" ModeLink="Dim cell" X="5" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Beam 21" ChannelOffset="21" ModeLink="Dim cell" X="6" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Beam 22" ChannelOffset="22" ModeLink="Dim cell" X="7" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Beam 23" ChannelOffset="23" ModeLink="Dim cell" X="8" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Beam 24" ChannelOffset="24" ModeLink="Dim cell" X="9" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Beam 25" ChannelOffset="25" ModeLink="Dim cell" X="10" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Beam 26" ChannelOffset="26" ModeLink="Dim cell" X="11" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Beam 27" ChannelOffset="27" ModeLink="Dim cell" X="12" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Beam 28" ChannelOffset="28" ModeLink="Dim cell" X="13" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="97 DMX (FX part, patch 4/4)" Channels="18" Id="2567b18a-1aec-4618-81ea-d99e87578d2d">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Beam_FX" ChannelOffset="1" Wheel="22" />
+        <Attribute ID="Plate_Col" Wheel="38" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Plate_Sel" Wheel="143" />
+        <Attribute ID="Speed" Wheel="203" />
+        <Attribute ID="Fade" Wheel="204" />
+        <Attribute ID="Beam_Sel" Wheel="173" />
+        <Attribute ID="Control" ChannelOffset="18" Wheel="28" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate FG" ChannelOffset="2" ModeLink="Plate cell 6" X="0" Y="0">
+        <AttributeLink SourceId="Plate_Col" TargetId="Plate_Col" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Plate BG" ChannelOffset="4" ModeLink="Plate cell 6" X="0" Y="1">
+        <AttributeLink SourceId="Plate_Col" TargetId="Plate_Col" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Plate FX Top" ChannelOffset="6" ModeLink="Plate FX cell" X="0" Y="2">
+        <AttributeLink SourceId="Plate_Sel" TargetId="Plate_Sel" />
+        <AttributeLink SourceId="Speed" TargetId="Speed" />
+        <AttributeLink SourceId="Fade" TargetId="Fade" />
+      </Cell>
+      <Cell ID="Cell4" Name="Plate FX Bottom" ChannelOffset="9" ModeLink="Plate FX cell" X="0" Y="3">
+        <AttributeLink SourceId="Plate_Sel" TargetId="Plate_Sel" />
+        <AttributeLink SourceId="Speed" TargetId="Speed" />
+        <AttributeLink SourceId="Fade" TargetId="Fade" />
+      </Cell>
+      <Cell ID="Cell5" Name="Beam FX Top" ChannelOffset="12" ModeLink="Beam FX cell" X="0" Y="4">
+        <AttributeLink SourceId="Beam_Sel" TargetId="Beam_Sel" />
+        <AttributeLink SourceId="Speed" TargetId="Speed" />
+        <AttributeLink SourceId="Fade" TargetId="Fade" />
+      </Cell>
+      <Cell ID="Cell6" Name="Beam FX Bottom" ChannelOffset="15" ModeLink="Beam FX cell" X="0" Y="5">
+        <AttributeLink SourceId="Beam_Sel" TargetId="Beam_Sel" />
+        <AttributeLink SourceId="Speed" TargetId="Speed" />
+        <AttributeLink SourceId="Fade" TargetId="Fade" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="74 DMX (master part, patch 1/3)" Channels="4" Id="fd66c887-5bf6-4902-aabe-3d0a3373162e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Tilt" ChannelOffset="1,2" Wheel="3" />
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="Shutter" ChannelOffset="4" Wheel="65" />
+    </Include>
+  </Mode>
+  <Mode Name="74 DMX (plate part, patch 2/3)" Channels="42" Id="1e5c2a4e-803d-4132-bf93-c4b1fd05638e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Plate 1" ChannelOffset="1" ModeLink="RGB cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Plate 2" ChannelOffset="4" ModeLink="RGB cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Plate 3" ChannelOffset="7" ModeLink="RGB cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Plate 4" ChannelOffset="10" ModeLink="RGB cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Plate 5" ChannelOffset="13" ModeLink="RGB cell" X="4" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Plate 6" ChannelOffset="16" ModeLink="RGB cell" X="5" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Plate 7" ChannelOffset="19" ModeLink="RGB cell" X="6" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Plate 8" ChannelOffset="22" ModeLink="RGB cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Plate 9" ChannelOffset="25" ModeLink="RGB cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Plate 10" ChannelOffset="28" ModeLink="RGB cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Plate 11" ChannelOffset="31" ModeLink="RGB cell" X="3" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Plate 12" ChannelOffset="34" ModeLink="RGB cell" X="4" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Plate 13" ChannelOffset="37" ModeLink="RGB cell" X="5" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Plate 14" ChannelOffset="40" ModeLink="RGB cell" X="6" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="74 DMX (beam part, patch 3/3)" Channels="28" Id="d4b394bd-92aa-47c8-911b-060912a29b3a">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="0" TiltMax="180" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Beam 1" ChannelOffset="1" ModeLink="Dim cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam 2" ChannelOffset="2" ModeLink="Dim cell" X="1" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Beam 3" ChannelOffset="3" ModeLink="Dim cell" X="2" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Beam 4" ChannelOffset="4" ModeLink="Dim cell" X="3" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Beam 5" ChannelOffset="5" ModeLink="Dim cell" X="4" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Beam 6" ChannelOffset="6" ModeLink="Dim cell" X="5" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Beam 7" ChannelOffset="7" ModeLink="Dim cell" X="6" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Beam 8" ChannelOffset="8" ModeLink="Dim cell" X="7" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Beam 9" ChannelOffset="9" ModeLink="Dim cell" X="8" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Beam 10" ChannelOffset="10" ModeLink="Dim cell" X="9" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Beam 11" ChannelOffset="11" ModeLink="Dim cell" X="10" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Beam 12" ChannelOffset="12" ModeLink="Dim cell" X="11" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Beam 13" ChannelOffset="13" ModeLink="Dim cell" X="12" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Beam 14" ChannelOffset="14" ModeLink="Dim cell" X="13" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Beam 15" ChannelOffset="15" ModeLink="Dim cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Beam 16" ChannelOffset="16" ModeLink="Dim cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Beam 17" ChannelOffset="17" ModeLink="Dim cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Beam 18" ChannelOffset="18" ModeLink="Dim cell" X="3" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Beam 19" ChannelOffset="19" ModeLink="Dim cell" X="4" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Beam 20" ChannelOffset="20" ModeLink="Dim cell" X="5" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Beam 21" ChannelOffset="21" ModeLink="Dim cell" X="6" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Beam 22" ChannelOffset="22" ModeLink="Dim cell" X="7" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Beam 23" ChannelOffset="23" ModeLink="Dim cell" X="8" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Beam 24" ChannelOffset="24" ModeLink="Dim cell" X="9" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Beam 25" ChannelOffset="25" ModeLink="Dim cell" X="10" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Beam 26" ChannelOffset="26" ModeLink="Dim cell" X="11" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Beam 27" ChannelOffset="27" ModeLink="Dim cell" X="12" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Beam 28" ChannelOffset="28" ModeLink="Dim cell" X="13" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Macro>
+    <Macro Name="Reset Tilt">
+      <Set Channel="Control:14" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Mode Off">
+      <Set Channel="Control:2" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dimmer 1">
+      <Set Channel="Control:3" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dimmer 2">
+      <Set Channel="Control:4" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dimmer 3">
+      <Set Channel="Control:5" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="600Hz">
+      <Set Channel="Control:6" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="1200Hz">
+      <Set Channel="Control:7" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="2000Hz">
+      <Set Channel="Control:8" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="4000Hz">
+      <Set Channel="Control:9" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="6000Hz">
+      <Set Channel="Control:10" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="25KHz">
+      <Set Channel="Control:11" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Auto">
+      <Set Channel="Control:12" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan On">
+      <Set Channel="Control:13" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Plate 1 Normal">
+      <Set Channel="Control:15" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Plate 1 Invert">
+      <Set Channel="Control:16" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Plate 2 Normal">
+      <Set Channel="Control:17" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Plate 2 Invert">
+      <Set Channel="Control:18" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Beam 1 Normal">
+      <Set Channel="Control:19" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Beam 1 Invert">
+      <Set Channel="Control:20" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Beam 2 Normal">
+      <Set Channel="Control:21" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Beam 2 Invert">
+      <Set Channel="Control:22" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Plate Swap On">
+      <Set Channel="Control:23" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Plate Swap Off">
+      <Set Channel="Control:24" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Beam Swap On">
+      <Set Channel="Control:25" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Beam Swop Off">
+      <Set Channel="Control:26" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+    <Group Name="Shutter">
+      <Palette ID="1" Name="Open" Number="31" Page="1" SetControl="Shutter:1" />
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:2:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:2:100" />
+      <Palette ID="4" Name="Slow Random Strobe" Legend="Slow R Stb" Number="34" Page="1" SetControl="Shutter:3:50" />
+      <Palette ID="5" Name="Fast Random Strobe" Legend="Fast R Stb" Number="35" Page="1" SetControl="Shutter:3:100" />
+      <Palette ID="6" Name="Slow Pulse" Legend="Slow Pls" Number="36" Page="1" SetControl="Shutter:4:50" />
+      <Palette ID="7" Name="Fast Pulse" Legend="Fast Pls" Number="37" Page="1" SetControl="Shutter:4:100" />
+    </Group>
+  </Palettes>
+  <swatchLibrary />
+</Fixture>

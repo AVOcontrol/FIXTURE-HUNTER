@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Super LED F6 Vari-White" ShortName="SLED F6 VW" Company="Desisti">
+  <Copyright Notice="© Avolites Ltd. 2017" />
+  <History Date="03-10-17" Author="Nic Morris" Comment="Created (note charts in percentage which don't convert properly)" />
+  <History Date="05-10-17" Author="Nic Morris" Comment="Added 3 DMX (8bit dimmer) mode option (manufacturer's product data sheet and manual are contradictory)." />
+  <History Date="06-10-17" Author="Nic Morris" Comment="Added Atlabase ID's." />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="8995da37-39ae-42ed-ba3a-b78b83c02175" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="CTO" Name="CTO" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Step" ID="2,3,4,5,6,7,8,9,10,11,12" If="'CTO_Mode'==2" />
+      <Else ID="1" />
+      <Function ID="1" Name="CTO C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+      <Function ID="2" Name="2700K" Display="'2700K'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="3" Name="2880K" Display="'2880K'" Dmx="28~51" Colour="255,255,255" />
+      <Function ID="4" Name="3000K" Display="'3000K'" Dmx="54~76" Colour="255,255,255" />
+      <Function ID="5" Name="3200K" Display="'3200K'" Dmx="79~102" Colour="255,255,255" />
+      <Function ID="6" Name="3500K" Display="'3500K'" Dmx="105~128" Colour="255,255,255" />
+      <Function ID="7" Name="4000K" Display="'4000K'" Dmx="130~153" Colour="255,255,255" />
+      <Function ID="8" Name="4500K" Display="'4500K'" Dmx="156~178" Colour="255,255,255" />
+      <Function ID="9" Name="5000K" Display="'5000K'" Dmx="181~204" Colour="255,255,255" />
+      <Function ID="10" Name="5600K" Display="'5600K'" Dmx="207~230" Colour="255,255,255" />
+      <Function ID="11" Name="6000K" Display="'6000K'" Dmx="232~252" Colour="255,255,255" />
+      <Function ID="12" Name="6900K" Display="'6900K'" Dmx="255~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="CTO_Mode" Name="CTO Mode" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Linear" Display="'Linear'" Dmx="0~0" Update="CTO" Colour="255,255,255" />
+      <Function ID="2" Name="Step" Display="'Step'" Dmx="255~255" Update="CTO" Colour="255,255,255" />
+    </Attribute>
+  </Control>
+  <Mode Name="4 DMX, 16bit" Channels="4">
+    <Import PearlRef="DSSLF6VW" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="92e63b62-5f8f-44c5-b930-6756d6f17f5c" />
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1,2" Wheel="1" />
+      <Attribute ID="CTO" ChannelOffset="3" Wheel="8" />
+      <Attribute ID="CTO_Mode" ChannelOffset="4" Wheel="7" />
+    </Include>
+  </Mode>
+  <Mode Name="3 DMX, 8bit" Channels="3">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="de9d1a7f-5f1c-4281-88f9-35ec64e2a198" />
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="CTO" ChannelOffset="2" Wheel="8" />
+      <Attribute ID="CTO_Mode" ChannelOffset="3" Wheel="7" />
+    </Include>
+  </Mode>
+</Fixture>

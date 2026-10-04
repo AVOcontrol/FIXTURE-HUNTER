@@ -1,0 +1,2062 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Mac Aura XIP" ShortName="Aura XIP" Company="Martin" Version="28">
+  <Copyright Notice="© Avolites Ltd. 2025" />
+  <Thumbnail>9345d880-9e71-4ffb-ac1f-ee725d8ea44d</Thumbnail>
+  <History Date="02-07-20" Author="Nic Morris" Comment="Created (based on chart revision 1.5)" Version="0" />
+  <History Date="16-08-20" Author="Nic Morris" Comment="Added product thumbnail.  Updated to release spec (revises FX)" Version="11" />
+  <History Date="03-09-20" Author="Nic Morris" Comment="Minor change to colour macro function ranges in line with latest documentation." Version="12" />
+  <History Date="26-03-21" Author="Nic Morris" Comment="Added Atlabase ID's." Version="13" />
+  <History Date="03-12-21" Author="Nic Morris" Comment="Updated in line with Rev B (firmware version 1.2.0) (adds low-noise LED control function and macro and 12 new virtual colours)" Version="14" />
+  <History Date="26-09-22" Author="Nic Morris" Comment="Created from Martin Mac Aura PXL" Version="15" />
+  <History Date="28-09-22" Author="Nic Morris" Comment="Added Atlabase ID's." Version="25" />
+  <History Date="06-07-23" Author="Nic Morris" Comment="Moved Aura part to cell in Extended mode and added multi-part patch option." Version="26" />
+  <History Date="11-06-25" Author="Nic Morris" Comment="Updated in line with Rev D in response to manufacturer request (adds Compact Direct mode)" Version="28" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="19710d2c-e5e7-47b6-ba20-a79a12556a01" />
+  <Control>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="0~0" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="30~30" />
+      <Function ID="3" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="50~200" />
+      <Function ID="4" Name="Rnd Strobe" Display="'Rnd Strobe %.f%%',0~100" Dmx="211~255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="CTO" Name="CTC" Description="" Group="C">
+      <Locate Locate="1:6500" PowerOn="1:6500" />
+      <Function ID="1" Name="CTO C-Mix" Display="'%.fK',1000~12850" Dmx="18~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Tint" Name="Tint" Description="" Group="C">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="+ Mag" Display="'+ Mag %.1f%%',100.0~0.0" Dmx="0~126" Colour="255,255,255" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="128~128" Colour="255,255,255" />
+      <Function ID="3" Name="+ Grn" Display="'+ Grn %.1f%%',0.0~100.0" Dmx="129~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Colour1Func" Name="Colour Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="2" Name="Scroll" Display="'Scroll'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="3" Name="Random" Display="'Random'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49" If="'Colour1Func'==1" />
+      <Condition Name="Scroll" ID="50,51,52,53" If="'Colour1Func'==2" />
+      <Condition Name="Random" ID="54,55,56,57" If="'Colour1Func'==3" />
+      <Else ID="58" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Moroccan Pink" Display="'Moroccan Pink'" Dmx="11~11" Colour="255,150,150" />
+      <Function ID="3" Name="Pink" Display="'Pink'" Dmx="13~13" Colour="255,150,150" />
+      <Function ID="4" Name="Special Rose Pink" Display="'Special Rose Pink'" Dmx="15~15" Colour="255,150,150" />
+      <Function ID="5" Name="Follies Pink" Display="'Follies Pink'" Dmx="17~17" Colour="255,150,150" />
+      <Function ID="6" Name="Fuchsia Pink" Display="'Fuchsia Pink'" Dmx="19~19" Colour="255,150,150" />
+      <Function ID="7" Name="Surprise Pink" Display="'Surprise Pink'" Dmx="21~21" Colour="255,150,150" />
+      <Function ID="8" Name="Congo Blue" Display="'Congo Blue'" Dmx="23~23" Colour="0,0,255" />
+      <Function ID="9" Name="Tokyo Blue" Display="'Tokyo Blue'" Dmx="25~25" Colour="0,0,255" />
+      <Function ID="10" Name="Deep Blue" Display="'Deep Blue'" Dmx="27~27" Colour="0,0,255" />
+      <Function ID="11" Name="Just Blue" Display="'Just Blue'" Dmx="29~29" Colour="0,0,255" />
+      <Function ID="12" Name="Medium Blue" Display="'Medium Blue'" Dmx="31~31" Colour="0,0,255" />
+      <Function ID="13" Name="Double CT Blue" Display="'Double CT Blue'" Dmx="33~33" Colour="230,230,255" />
+      <Function ID="14" Name="Slate Blue" Display="'Slate Blue'" Dmx="35~35" Colour="230,230,255" />
+      <Function ID="15" Name="Full CT Blue" Display="'Full CT Blue'" Dmx="37~37" Colour="230,230,255" />
+      <Function ID="16" Name="Half CT Blue" Display="'Half CT Blue'" Dmx="39~39" Colour="230,230,255" />
+      <Function ID="17" Name="Steel Blue" Display="'Steel Blue'" Dmx="41~41" Colour="230,230,255" />
+      <Function ID="18" Name="Lighter Blue" Display="'Lighter Blue'" Dmx="43~43" Colour="0,128,255" />
+      <Function ID="19" Name="Light Blue" Display="'Light Blue'" Dmx="45~45" Colour="0,128,255" />
+      <Function ID="20" Name="Medium Blue Green" Display="'Medium Blue Green'" Dmx="47~47" Colour="0,255,200" />
+      <Function ID="21" Name="Dark Green" Display="'Dark Green'" Dmx="49~49" Colour="0,180,0" />
+      <Function ID="22" Name="Primary Green" Display="'Primary Green'" Dmx="51~51" Colour="0,255,0" />
+      <Function ID="23" Name="Moss Green" Display="'Moss Green'" Dmx="53~53" Colour="0,255,0" />
+      <Function ID="24" Name="Fern Green" Display="'Fern Green'" Dmx="55~55" Colour="0,255,0" />
+      <Function ID="25" Name="Jas Green" Display="'Jas Green'" Dmx="57~57" Colour="0,255,0" />
+      <Function ID="26" Name="Lime Green" Display="'Lime Green'" Dmx="59~59" Colour="0,255,0" />
+      <Function ID="27" Name="Spring Yellow" Display="'Spring Yellow'" Dmx="61~61" Colour="255,255,0" />
+      <Function ID="28" Name="Deep Amber" Display="'Deep Amber'" Dmx="63~63" Colour="255,128,0" />
+      <Function ID="29" Name="Chrome Orange" Display="'Chrome Orange'" Dmx="65~65" Colour="255,128,0" />
+      <Function ID="30" Name="Orange" Display="'Orange'" Dmx="67~67" Colour="255,128,0" />
+      <Function ID="31" Name="Gold Amber" Display="'Gold Amber'" Dmx="69~69" Colour="255,128,0" />
+      <Function ID="32" Name="Millennium Gold" Display="'Millennium Gold'" Dmx="71~71" Colour="255,128,0" />
+      <Function ID="33" Name="Deep Golden Amber" Display="'Deep Golden Amber'" Dmx="73~73" Colour="255,128,0" />
+      <Function ID="34" Name="Flame Red" Display="'Flame Red'" Dmx="75~75" Colour="255,0,0" />
+      <Function ID="35" Name="Red Magenta" Display="'Red Magenta'" Dmx="77~77" Colour="255,0,0" />
+      <Function ID="36" Name="Medium Lavender" Display="'Medium Lavender'" Dmx="79~79" Colour="255,128,255" />
+      <Function ID="37" Name="Pure White" Display="'Pure White'" Dmx="81~81" Colour="255,255,255" />
+      <Function ID="38" Name="Pure Red" Display="'Pure Red'" Dmx="83~83" Colour="255,0,0" />
+      <Function ID="39" Name="Pure Yellow" Display="'Pure Yellow'" Dmx="85~85" Colour="255,255,0" />
+      <Function ID="40" Name="Pure Green" Display="'Pure Green'" Dmx="87~87" Colour="0,255,0" />
+      <Function ID="41" Name="Pure Cyan" Display="'Pure Cyan'" Dmx="89~89" Colour="0,255,255" />
+      <Function ID="42" Name="Pure Blue" Display="'Pure Blue'" Dmx="91~91" Colour="0,0,255" />
+      <Function ID="43" Name="Pure Magenta" Display="'Pure Magenta'" Dmx="93~93" Colour="255,0,255" />
+      <Function ID="44" Name="Peacock Blue" Display="'Peacock Blue'" Dmx="95~95" Colour="0,255,150" />
+      <Function ID="45" Name="Dark Lavender" Display="'Dark Lavender'" Dmx="97~97" Colour="255,100,200" />
+      <Function ID="46" Name="Double CT Orange" Display="'Double CT Orange'" Dmx="99~99" Colour="255,200,100" />
+      <Function ID="47" Name="Full CT Orange" Display="'Full CT Orange'" Dmx="101~101" Colour="255,220,110" />
+      <Function ID="48" Name="Half CT Orange" Display="'Half CT Orange'" Dmx="103~103" Colour="255,230,150" />
+      <Function ID="49" Name="Deep Straw" Display="'Deep Straw'" Dmx="105~105" Colour="250,250,125" />
+      <Function ID="50" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="51" Name="Scroll CW" Display="'Scroll CW %.f%%',100~0" Dmx="191~214" Colour="0,0,0" />
+      <Function ID="52" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="53" Name="Scroll CCW" Display="'Scroll CCW %.f%%',0~100" Dmx="220~243" Colour="0,0,0" />
+      <Function ID="54" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="55" Name="Rand Slow" Display="'Rand Slow'" Dmx="252~255" Colour="255,255,255" />
+      <Function ID="56" Name="Rand Med" Display="'Rand Med'" Dmx="248~251" Colour="255,255,255" />
+      <Function ID="57" Name="Rand Fast" Display="'Rand Fast'" Dmx="244~247" Colour="255,255,255" />
+      <Function ID="58" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Reset All" Display="'Reset All'" Dmx="10~14" />
+      <Function ID="3" Name="Reset Beam" Display="'Reset Beam'" Dmx="17~17" />
+      <Function ID="4" Name="Reset P/T" Display="'Reset P/T'" Dmx="18~18" />
+      <Function ID="5" Name="Dim Linear" Display="'Dim Linear'" Dmx="23~23" />
+      <Function ID="6" Name="Dim Square" Display="'Dim Square'" Dmx="24~24" />
+      <Function ID="7" Name="Dim Inv Square" Display="'Dim Inv Square'" Dmx="25~25" />
+      <Function ID="8" Name="Dim S-Curve" Display="'Dim S-Curve'" Dmx="26~26" />
+      <Function ID="9" Name="P/T Fast" Display="'P/T Fast'" Dmx="28~28" />
+      <Function ID="10" Name="P/T Smooth" Display="'P/T Smooth'" Dmx="29~29" />
+      <Function ID="11" Name="Video Tracking On" Display="'Video Tracking On'" Dmx="36~36" />
+      <Function ID="12" Name="Video Tracking Off" Display="'Video Tracking Off'" Dmx="37~37" />
+      <Function ID="13" Name="Col Extended" Display="'Col Extended'" Dmx="38~38" />
+      <Function ID="14" Name="Col Calibrated" Display="'Col Calibrated'" Dmx="39~39" />
+      <Function ID="15" Name="Display On" Display="'Display On'" Dmx="52~52" />
+      <Function ID="16" Name="Display Off" Display="'Display Off'" Dmx="53~53" />
+      <Function ID="17" Name="Fan Auto" Display="'Fan Auto'" Dmx="54~54" />
+      <Function ID="18" Name="Fan Full" Display="'Fan Full'" Dmx="55~55" />
+      <Function ID="19" Name="Fan Med" Display="'Fan Med'" Dmx="56~56" />
+      <Function ID="20" Name="Fan Low" Display="'Fan Low'" Dmx="57~57" />
+      <Function ID="21" Name="Fan Ultra-Low" Display="'Fan Ultra-Low'" Dmx="58~58" />
+      <Function ID="22" Name="Hibernate On" Display="'Hibernate On'" Dmx="61~61" />
+      <Function ID="23" Name="Hibernate Off" Display="'Hibernate Off'" Dmx="62~62" />
+      <Function ID="24" Name="P/T Limit On" Display="'P/T Limit On'" Dmx="65~65" />
+      <Function ID="25" Name="P/T Limit Off" Display="'P/T Limit Off'" Dmx="66~66" />
+      <Function ID="26" Name="Store Lower Pan Limit" Display="'Store Lower Pan Limit'" Dmx="67~67" />
+      <Function ID="27" Name="Store Upper Pan Limit" Display="'Store Upper Pan Limit'" Dmx="68~68" />
+      <Function ID="28" Name="Store Lower Tilt Limit" Display="'Store Lower Tilt Limit'" Dmx="69~69" />
+      <Function ID="29" Name="Store Upper Tilt Limit" Display="'Store Upper Tilt Limit'" Dmx="70~70" />
+      <Function ID="30" Name="Reset P/T Limit" Display="'Reset P/T Limit'" Dmx="71~71" />
+      <Function ID="31" Name="Tungsten On" Display="'Tungsten On'" Dmx="72~72" />
+      <Function ID="32" Name="Tungsten Off" Display="'Tungsten Off'" Dmx="73~73" />
+      <Function ID="33" Name="Scane Capture Record" Display="'Scane Capture Record'" Dmx="74~74" />
+      <Function ID="34" Name="Scene Capture Playback On" Display="'Scene Capture Playback On'" Dmx="75~75" />
+      <Function ID="35" Name="Scene Capture Playback Off" Display="'Scene Capture Playback Off'" Dmx="76~76" />
+      <Function ID="36" Name="Output Mode High Output" Display="'Output Mode High Output'" Dmx="90~90" />
+      <Function ID="37" Name="Output Mode High Quality" Display="'Output Mode High Quality'" Dmx="91~91" />
+      <Function ID="38" Name="Compact Mode Aura On" Display="'Compact Mode Aura On'" Dmx="92~92" />
+      <Function ID="39" Name="Compact Mode Aura Off" Display="'Compact Mode Aura Off'" Dmx="93~93" />
+      <Function ID="40" Name="Enable Cal" Display="'Enable Cal'" Dmx="100~100" />
+      <Function ID="41" Name="Store P/T Cal" Display="'Store P/T Cal'" Dmx="101~101" />
+      <Function ID="42" Name="Store Dim Cal" Display="'Store Dim Cal'" Dmx="102~102" />
+      <Function ID="43" Name="Store Zoom Cal" Display="'Store Zoom Cal'" Dmx="114~114" />
+      <Function ID="44" Name="Reset All Cal" Display="'Reset All Cal'" Dmx="199~199" />
+      <Function ID="45" Name="Auto Empty Water On" Display="'Auto Empty Water On'" Dmx="208~208" />
+      <Function ID="46" Name="Auto Empty Water Off" Display="'Auto Empty Water Off'" Dmx="209~209" />
+      <Function ID="47" Name="Outdoor - Stop Actions and Return to Normal" Display="'Outdoor - Stop Actions and Return to Normal'" Dmx="210~210" />
+      <Function ID="48" Name="Outdoor - Empty Head" Display="'Outdoor - Empty Head'" Dmx="211~211" />
+      <Function ID="49" Name="Outdoor - Dry Off" Display="'Outdoor - Dry Off'" Dmx="212~212" />
+      <Function ID="50" Name="Outdoor - Go to Safe Parking Position" Display="'Outdoor - Go to Safe Parking Position'" Dmx="213~213" />
+    </Attribute>
+    <Attribute ID="Zoom" Name="Zoom" Description="" Group="B" Size="2">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Zoom" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Pan" Name="Pan" Description="" Group="P" Size="2">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Pan" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Tilt" Name="Tilt" Description="" Group="P" Size="2">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Tilt" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="LED_Frequency" Name="LED Frequency" Description="" Group="S">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Frequency" Display="'Frequency %.f Hz',2400~3000" Dmx="0~127" />
+      <Function ID="2" Name="Default PWM Frequency (3000Hz)" Display="'Default PWM Frequency (3000Hz)'" Dmx="128~128" />
+      <Function ID="3" Name="High-Speed PWM Frequency Mode (24000Hz)" Display="'High-Speed PWM Frequency Mode (24000Hz)'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="P3_Mode" Name="P3 Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="DMX" Display="'DMX'" Dmx="0~0" />
+      <Function ID="2" Name="DMX-&gt;P3" Display="'DMX-&gt;P3 %.1f%%',0.0~100.0" Dmx="27~228" />
+      <Function ID="3" Name="P3" Display="'P3'" Dmx="229~255" />
+    </Attribute>
+    <Attribute ID="FX_1_Func" Name="FX 1 Func" Description="" Group="E" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" Update="FX_1" />
+      <Function ID="2" Name="Beam Intensity" Display="'Beam Intensity'" Dmx="0~0" Update="FX_1" />
+      <Function ID="3" Name="Beam Pixel" Display="'Beam Pixel'" Dmx="0~0" Update="FX_1" />
+      <Function ID="4" Name="Beam Colour" Display="'Beam Colour'" Dmx="0~0" Update="FX_1" />
+      <Function ID="5" Name="Beam Colour Modifier" Display="'Beam Colour Modifier'" Dmx="0~0" Update="FX_1" />
+      <Function ID="6" Name="Beam Time" Display="'Beam Time'" Dmx="0~0" Update="FX_1" />
+      <Function ID="7" Name="Aura Intensity" Display="'Aura Intensity'" Dmx="0~0" Update="FX_1" />
+      <Function ID="8" Name="Aura Pixel" Display="'Aura Pixel'" Dmx="0~0" Update="FX_1" />
+      <Function ID="9" Name="Aura Colour" Display="'Aura Colour'" Dmx="0~0" Update="FX_1" />
+      <Function ID="10" Name="Aura Colour Modifier" Display="'Aura Colour Modifier'" Dmx="0~0" Update="FX_1" />
+      <Function ID="11" Name="Aura Time" Display="'Aura Time'" Dmx="0~0" Update="FX_1" />
+      <Function ID="12" Name="Beam + Aura Combined" Display="'Beam + Aura Combined'" Dmx="0~0" Update="FX_1" />
+      <Function ID="13" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="FX_1" />
+    </Attribute>
+    <Attribute ID="FX_1" Name="FX 1" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Else ID="1" />
+      <Condition Name="No Effect" ID="2" If="'FX_1_Func'==1" />
+      <Condition Name="Beam Intensity" ID="3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19" If="'FX_1_Func'==2" />
+      <Condition Name="Beam Pixel" ID="20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75" If="'FX_1_Func'==3" />
+      <Condition Name="Beam Colour" ID="76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106" If="'FX_1_Func'==4" />
+      <Condition Name="Beam Colour Modifier" ID="107,108,109,110,111,112,113,114,115,116,117,118,119" If="'FX_1_Func'==5" />
+      <Condition Name="Beam Time" ID="120,121,122,123,124" If="'FX_1_Func'==6" />
+      <Condition Name="Aura Intensity" ID="125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141" If="'FX_1_Func'==7" />
+      <Condition Name="Aura Pixel" ID="142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204" If="'FX_1_Func'==8" />
+      <Condition Name="Aura Colour" ID="205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235" If="'FX_1_Func'==9" />
+      <Condition Name="Aura Colour Modifier" ID="236,237,238,239,240,241,242,243,244,245,246,247,248,249,250" If="'FX_1_Func'==10" />
+      <Condition Name="Aura Time" ID="251,252,253,254,255" If="'FX_1_Func'==11" />
+      <Condition Name="Beam + Aura Combined" ID="256,257,258,259,260,261,262,263,264,265,266,267,268" If="'FX_1_Func'==12" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="No Effect" Display="''" Dmx="0~0" />
+      <Function ID="3" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="4" Name="Beam Strobe Width" Display="'Beam Strobe Width'" Dmx="1~1" />
+      <Function ID="5" Name="Beam Blackout Strobe" Display="'Beam Blackout Strobe'" Dmx="2~2" />
+      <Function ID="6" Name="Beam 2x Strobe" Display="'Beam 2x Strobe'" Dmx="3~3" />
+      <Function ID="7" Name="Beam 3x Strobe" Display="'Beam 3x Strobe'" Dmx="4~4" />
+      <Function ID="8" Name="Beam 4x Strobe" Display="'Beam 4x Strobe'" Dmx="5~5" />
+      <Function ID="9" Name="Beam Up, Down, Flash" Display="'Beam Up, Down, Flash'" Dmx="6~6" />
+      <Function ID="10" Name="Beam Up, Down, Flash Second Color" Display="'Beam Up, Down, Flash Second Color'" Dmx="7~7" />
+      <Function ID="11" Name="Beam Up, Flash, Down, Flash" Display="'Beam Up, Flash, Down, Flash'" Dmx="8~8" />
+      <Function ID="12" Name="Beam Up, Flash, Down, Flash Second Color" Display="'Beam Up, Flash, Down, Flash Second Color'" Dmx="9~9" />
+      <Function ID="13" Name="Beam Random Levels" Display="'Beam Random Levels'" Dmx="10~10" />
+      <Function ID="14" Name="Beam Movie Flicker" Display="'Beam Movie Flicker'" Dmx="11~11" />
+      <Function ID="15" Name="Beam Atomic Lighting" Display="'Beam Atomic Lighting'" Dmx="12~12" />
+      <Function ID="16" Name="Beam Thunderstorm" Display="'Beam Thunderstorm'" Dmx="13~13" />
+      <Function ID="17" Name="Reserved 14" Display="'Reserved 14'" Dmx="14~14" />
+      <Function ID="18" Name="Reserved 15" Display="'Reserved 15'" Dmx="15~15" />
+      <Function ID="19" Name="Reserved 16" Display="'Reserved 16'" Dmx="16~16" />
+      <Function ID="20" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="21" Name="Beam PixelMasks Static" Display="'Beam PixelMasks Static'" Dmx="17~17" />
+      <Function ID="22" Name="Beam PixelKiller Static" Display="'Beam PixelKiller Static'" Dmx="18~18" />
+      <Function ID="23" Name="Beam SparkleStars" Display="'Beam SparkleStars'" Dmx="19~19" />
+      <Function ID="24" Name="Beam Starfield" Display="'Beam Starfield'" Dmx="20~20" />
+      <Function ID="25" Name="Beam Fiberoptic" Display="'Beam Fiberoptic'" Dmx="21~21" />
+      <Function ID="26" Name="Beam Noise" Display="'Beam Noise'" Dmx="22~22" />
+      <Function ID="27" Name="Beam Build Up/Down Step" Display="'Beam Build Up/Down Step'" Dmx="23~23" />
+      <Function ID="28" Name="Beam Build Up/Down Fade" Display="'Beam Build Up/Down Fade'" Dmx="24~24" />
+      <Function ID="29" Name="Beam Build Up/Down Random Step" Display="'Beam Build Up/Down Random Step'" Dmx="25~25" />
+      <Function ID="30" Name="Beam Build Up/Down Random Fade" Display="'Beam Build Up/Down Random Fade'" Dmx="26~26" />
+      <Function ID="31" Name="Beam Random 1 Pixel Step" Display="'Beam Random 1 Pixel Step'" Dmx="27~27" />
+      <Function ID="32" Name="Beam Random 1 Pixel Fade" Display="'Beam Random 1 Pixel Fade'" Dmx="28~28" />
+      <Function ID="33" Name="Beam Random 2 Pixel Step" Display="'Beam Random 2 Pixel Step'" Dmx="29~29" />
+      <Function ID="34" Name="Beam Random 2 Pixel Fade" Display="'Beam Random 2 Pixel Fade'" Dmx="30~30" />
+      <Function ID="35" Name="Beam Random 3 Pixel Step" Display="'Beam Random 3 Pixel Step'" Dmx="31~31" />
+      <Function ID="36" Name="Beam Random 3 Pixel Fade" Display="'Beam Random 3 Pixel Fade'" Dmx="32~32" />
+      <Function ID="37" Name="Beam Random 4 Pixel Step" Display="'Beam Random 4 Pixel Step'" Dmx="33~33" />
+      <Function ID="38" Name="Beam Random 4 Pixel Fade" Display="'Beam Random 4 Pixel Fade'" Dmx="34~34" />
+      <Function ID="39" Name="Beam Split Static" Display="'Beam Split Static'" Dmx="35~35" />
+      <Function ID="40" Name="Beam Split Rotating Step" Display="'Beam Split Rotating Step'" Dmx="36~36" />
+      <Function ID="41" Name="Beam Split Rotating Fade" Display="'Beam Split Rotating Fade'" Dmx="37~37" />
+      <Function ID="42" Name="Beam In-Out Step" Display="'Beam In-Out Step'" Dmx="38~38" />
+      <Function ID="43" Name="Beam In-Out Fade" Display="'Beam In-Out Fade'" Dmx="39~39" />
+      <Function ID="44" Name="Beam Waterdrop" Display="'Beam Waterdrop'" Dmx="40~40" />
+      <Function ID="45" Name="Beam Radar Spin Step" Display="'Beam Radar Spin Step'" Dmx="41~41" />
+      <Function ID="46" Name="Beam Radar Spin Fade" Display="'Beam Radar Spin Fade'" Dmx="42~42" />
+      <Function ID="47" Name="Beam Line Spin Step" Display="'Beam Line Spin Step'" Dmx="43~43" />
+      <Function ID="48" Name="Beam Line Spin Fade" Display="'Beam Line Spin Fade'" Dmx="44~44" />
+      <Function ID="49" Name="Beam Cross Spin Step" Display="'Beam Cross Spin Step'" Dmx="45~45" />
+      <Function ID="50" Name="Beam Cross Spin Fade" Display="'Beam Cross Spin Fade'" Dmx="46~46" />
+      <Function ID="51" Name="Beam Cross - Circle Step" Display="'Beam Cross - Circle Step'" Dmx="47~47" />
+      <Function ID="52" Name="Beam Cross - Circle Fade" Display="'Beam Cross - Circle Fade'" Dmx="48~48" />
+      <Function ID="53" Name="Beam Slice Pie Spin Step" Display="'Beam Slice Pie Spin Step'" Dmx="49~49" />
+      <Function ID="54" Name="Beam Slice Pie Spin Fade" Display="'Beam Slice Pie Spin Fade'" Dmx="50~50" />
+      <Function ID="55" Name="Beam Snake 1 Pixel Step" Display="'Beam Snake 1 Pixel Step'" Dmx="51~51" />
+      <Function ID="56" Name="Beam Snake 1 Pixel Fade" Display="'Beam Snake 1 Pixel Fade'" Dmx="52~52" />
+      <Function ID="57" Name="Beam Snake 2 Pixel Step" Display="'Beam Snake 2 Pixel Step'" Dmx="53~53" />
+      <Function ID="58" Name="Beam Snake 2 Pixel Fade" Display="'Beam Snake 2 Pixel Fade'" Dmx="54~54" />
+      <Function ID="59" Name="Beam Snake 3 Pixel Step" Display="'Beam Snake 3 Pixel Step'" Dmx="55~55" />
+      <Function ID="60" Name="Beam Snake 3 Pixel Fade" Display="'Beam Snake 3 Pixel Fade'" Dmx="56~56" />
+      <Function ID="61" Name="Beam Snake 4 Pixel Step" Display="'Beam Snake 4 Pixel Step'" Dmx="57~57" />
+      <Function ID="62" Name="Beam Snake 4 Pixel Fade" Display="'Beam Snake 4 Pixel Fade'" Dmx="58~58" />
+      <Function ID="63" Name="Beam Vertical Line Step" Display="'Beam Vertical Line Step'" Dmx="59~59" />
+      <Function ID="64" Name="Beam Vertical Line Fade" Display="'Beam Vertical Line Fade'" Dmx="60~60" />
+      <Function ID="65" Name="Beam Vertical Line Bounce Step" Display="'Beam Vertical Line Bounce Step'" Dmx="61~61" />
+      <Function ID="66" Name="Beam Vertical Line Bounce Fade" Display="'Beam Vertical Line Bounce Fade'" Dmx="62~62" />
+      <Function ID="67" Name="Beam Horizontal Line Step" Display="'Beam Horizontal Line Step'" Dmx="63~63" />
+      <Function ID="68" Name="Beam Horizontal Line Fade" Display="'Beam Horizontal Line Fade'" Dmx="64~64" />
+      <Function ID="69" Name="Beam Horizontal Line Bounce Step" Display="'Beam Horizontal Line Bounce Step'" Dmx="65~65" />
+      <Function ID="70" Name="Beam Horizontal Line Bounce Fade" Display="'Beam Horizontal Line Bounce Fade'" Dmx="66~66" />
+      <Function ID="71" Name="Beam Vertical+Horizontal Line Bounce Step" Display="'Beam Vertical+Horizontal Line Bounce Step'" Dmx="67~67" />
+      <Function ID="72" Name="Beam Vertical+Horizontal Line Bounce Fade" Display="'Beam Vertical+Horizontal Line Bounce Fade'" Dmx="68~68" />
+      <Function ID="73" Name="Reserved 69" Display="'Reserved 69'" Dmx="69~69" />
+      <Function ID="74" Name="Reserved 70" Display="'Reserved 70'" Dmx="70~70" />
+      <Function ID="75" Name="Reserved 80" Display="'Reserved 80'" Dmx="71~71" />
+      <Function ID="76" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="77" Name="Beam Color Looks Static" Display="'Beam Color Looks Static'" Dmx="72~72" />
+      <Function ID="78" Name="Beam Rainbow Pixels Step" Display="'Beam Rainbow Pixels Step'" Dmx="73~73" />
+      <Function ID="79" Name="Beam Rainbow Pixels Fade" Display="'Beam Rainbow Pixels Fade'" Dmx="74~74" />
+      <Function ID="80" Name="Beam Red-Yellow Pixels Step" Display="'Beam Red-Yellow Pixels Step'" Dmx="75~75" />
+      <Function ID="81" Name="Beam Red-Yellow Pixels Fade" Display="'Beam Red-Yellow Pixels Fade'" Dmx="76~76" />
+      <Function ID="82" Name="Beam Yellow-Green Pixels Step" Display="'Beam Yellow-Green Pixels Step'" Dmx="77~77" />
+      <Function ID="83" Name="Beam Yellow-Green Pixels Fade" Display="'Beam Yellow-Green Pixels Fade'" Dmx="78~78" />
+      <Function ID="84" Name="Beam Green-Cyan Pixels Step" Display="'Beam Green-Cyan Pixels Step'" Dmx="79~79" />
+      <Function ID="85" Name="Beam Green-Cyan Pixels Fade" Display="'Beam Green-Cyan Pixels Fade'" Dmx="80~80" />
+      <Function ID="86" Name="Beam Cyan-Blue Pixels Step" Display="'Beam Cyan-Blue Pixels Step'" Dmx="81~81" />
+      <Function ID="87" Name="Beam Cyan-Blue Pixels Fade" Display="'Beam Cyan-Blue Pixels Fade'" Dmx="82~82" />
+      <Function ID="88" Name="Beam Blue-Magenta Pixels Step" Display="'Beam Blue-Magenta Pixels Step'" Dmx="83~83" />
+      <Function ID="89" Name="Beam Blue-Magenta Pixels Fade" Display="'Beam Blue-Magenta Pixels Fade'" Dmx="84~84" />
+      <Function ID="90" Name="Beam Magenta-Red Pixels Step" Display="'Beam Magenta-Red Pixels Step'" Dmx="85~85" />
+      <Function ID="91" Name="Beam Magenta-Red Pixels Fade" Display="'Beam Magenta-Red Pixels Fade'" Dmx="86~86" />
+      <Function ID="92" Name="Beam Red White Blue Step" Display="'Beam Red White Blue Step'" Dmx="87~87" />
+      <Function ID="93" Name="Beam Red White Blue Fade" Display="'Beam Red White Blue Fade'" Dmx="88~88" />
+      <Function ID="94" Name="Beam Fire" Display="'Beam Fire'" Dmx="89~89" />
+      <Function ID="95" Name="Beam Water" Display="'Beam Water'" Dmx="90~90" />
+      <Function ID="96" Name="Beam Swimming pool" Display="'Beam Swimming pool'" Dmx="91~91" />
+      <Function ID="97" Name="Beam Ice" Display="'Beam Ice'" Dmx="92~92" />
+      <Function ID="98" Name="Beam Hot and Cold" Display="'Beam Hot and Cold'" Dmx="93~93" />
+      <Function ID="99" Name="Beam Warm and Fuzzy" Display="'Beam Warm and Fuzzy'" Dmx="94~94" />
+      <Function ID="100" Name="Beam Silver and Gold" Display="'Beam Silver and Gold'" Dmx="95~95" />
+      <Function ID="101" Name="Beam Gold and Silver" Display="'Beam Gold and Silver'" Dmx="96~96" />
+      <Function ID="102" Name="Beam Electric Arc" Display="'Beam Electric Arc'" Dmx="97~97" />
+      <Function ID="103" Name="Beam Plasma" Display="'Beam Plasma'" Dmx="98~98" />
+      <Function ID="104" Name="Reserved 99" Display="'Reserved 99'" Dmx="99~99" />
+      <Function ID="105" Name="Reserved 100" Display="'Reserved 100'" Dmx="100~100" />
+      <Function ID="106" Name="Reserved 101" Display="'Reserved 101'" Dmx="101~101" />
+      <Function ID="107" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="108" Name="Beam Spectrum Shift Static" Display="'Beam Spectrum Shift Static'" Dmx="102~102" />
+      <Function ID="109" Name="Beam Spectrum Shift Step" Display="'Beam Spectrum Shift Step'" Dmx="103~103" />
+      <Function ID="110" Name="Beam Spectrum Shift Fade" Display="'Beam Spectrum Shift Fade'" Dmx="104~104" />
+      <Function ID="111" Name="Beam Pixel Spectrum Shift Static" Display="'Beam Pixel Spectrum Shift Static'" Dmx="105~105" />
+      <Function ID="112" Name="Beam Pixel Spectrum Shift Step" Display="'Beam Pixel Spectrum Shift Step'" Dmx="106~106" />
+      <Function ID="113" Name="Beam Pixel Spectrum Shift Fade" Display="'Beam Pixel Spectrum Shift Fade'" Dmx="107~107" />
+      <Function ID="114" Name="Beam Pixel Spectrum Shift Random Static" Display="'Beam Pixel Spectrum Shift Random Static'" Dmx="108~108" />
+      <Function ID="115" Name="Beam Pixel Spectrum Shift Random Step" Display="'Beam Pixel Spectrum Shift Random Step'" Dmx="109~109" />
+      <Function ID="116" Name="Beam Pixel Spectrum Shift Random Fade" Display="'Beam Pixel Spectrum Shift Random Fade'" Dmx="110~110" />
+      <Function ID="117" Name="Reserved 111" Display="'Reserved 111'" Dmx="111~111" />
+      <Function ID="118" Name="Reserved 112" Display="'Reserved 112'" Dmx="112~112" />
+      <Function ID="119" Name="Reserved 113" Display="'Reserved 113'" Dmx="113~113" />
+      <Function ID="120" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="121" Name="Beam Video SloMo" Display="'Beam Video SloMo'" Dmx="114~114" />
+      <Function ID="122" Name="Reserved 114" Display="'Reserved 114'" Dmx="115~115" />
+      <Function ID="123" Name="Reserved 115" Display="'Reserved 115'" Dmx="116~116" />
+      <Function ID="124" Name="Reserved 116" Display="'Reserved 116'" Dmx="117~117" />
+      <Function ID="125" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="126" Name="Aura Strobe Width" Display="'Aura Strobe Width'" Dmx="118~118" />
+      <Function ID="127" Name="Aura Blackout Strobe" Display="'Aura Blackout Strobe'" Dmx="119~119" />
+      <Function ID="128" Name="Aura 2x Strobe" Display="'Aura 2x Strobe'" Dmx="120~120" />
+      <Function ID="129" Name="Aura 3x Strobe" Display="'Aura 3x Strobe'" Dmx="121~121" />
+      <Function ID="130" Name="Aura 4x Strobe" Display="'Aura 4x Strobe'" Dmx="122~122" />
+      <Function ID="131" Name="Aura Up, Down, Flash" Display="'Aura Up, Down, Flash'" Dmx="123~123" />
+      <Function ID="132" Name="Aura Up, Down, Flash Second Color" Display="'Aura Up, Down, Flash Second Color'" Dmx="124~124" />
+      <Function ID="133" Name="Aura Up, Flash, Down, Flash" Display="'Aura Up, Flash, Down, Flash'" Dmx="125~125" />
+      <Function ID="134" Name="Aura Up, Flash, Down, Flash Second Color" Display="'Aura Up, Flash, Down, Flash Second Color'" Dmx="126~126" />
+      <Function ID="135" Name="Aura Random Levels" Display="'Aura Random Levels'" Dmx="127~127" />
+      <Function ID="136" Name="Aura Movie Flicker" Display="'Aura Movie Flicker'" Dmx="128~128" />
+      <Function ID="137" Name="Aura Atomic Lighting" Display="'Aura Atomic Lighting'" Dmx="129~129" />
+      <Function ID="138" Name="Aura Thunderstorm" Display="'Aura Thunderstorm'" Dmx="130~130" />
+      <Function ID="139" Name="Reserved 131" Display="'Reserved 131'" Dmx="131~131" />
+      <Function ID="140" Name="Reserved 132" Display="'Reserved 132'" Dmx="132~132" />
+      <Function ID="141" Name="Reserved 133" Display="'Reserved 133'" Dmx="133~133" />
+      <Function ID="142" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="143" Name="Aura PixelMasks Static" Display="'Aura PixelMasks Static'" Dmx="134~134" />
+      <Function ID="144" Name="Aura PixelKiller Static" Display="'Aura PixelKiller Static'" Dmx="135~135" />
+      <Function ID="145" Name="Aura SparkleStars" Display="'Aura SparkleStars'" Dmx="136~136" />
+      <Function ID="146" Name="Aura Lightning Flashes Random" Display="'Aura Lightning Flashes Random'" Dmx="137~137" />
+      <Function ID="147" Name="Aura Lightning Flashes Random Heavy" Display="'Aura Lightning Flashes Random Heavy'" Dmx="138~138" />
+      <Function ID="148" Name="Aura Lightning Flashes Left-Right" Display="'Aura Lightning Flashes Left-Right'" Dmx="139~139" />
+      <Function ID="149" Name="Aura Lightning Flashes Top-Bottom" Display="'Aura Lightning Flashes Top-Bottom'" Dmx="140~140" />
+      <Function ID="150" Name="Aura Starfield" Display="'Aura Starfield'" Dmx="141~141" />
+      <Function ID="151" Name="Aura Fiberoptic" Display="'Aura Fiberoptic'" Dmx="142~142" />
+      <Function ID="152" Name="Aura Noise" Display="'Aura Noise'" Dmx="143~143" />
+      <Function ID="153" Name="Aura Build Up/Down Step" Display="'Aura Build Up/Down Step'" Dmx="144~144" />
+      <Function ID="154" Name="Aura Build Up/Down Fade" Display="'Aura Build Up/Down Fade'" Dmx="145~145" />
+      <Function ID="155" Name="Aura Build Up/Down Random Step" Display="'Aura Build Up/Down Random Step'" Dmx="146~146" />
+      <Function ID="156" Name="Aura Build Up/Down Random Fade" Display="'Aura Build Up/Down Random Fade'" Dmx="147~147" />
+      <Function ID="157" Name="Aura Random 1 Filament Step" Display="'Aura Random 1 Filament Step'" Dmx="148~148" />
+      <Function ID="158" Name="Aura Random 1 Filament Fade" Display="'Aura Random 1 Filament Fade'" Dmx="149~149" />
+      <Function ID="159" Name="Aura Random 2 Filament Step" Display="'Aura Random 2 Filament Step'" Dmx="150~150" />
+      <Function ID="160" Name="Aura Random 2 Filament Fade" Display="'Aura Random 2 Filament Fade'" Dmx="151~151" />
+      <Function ID="161" Name="Aura Random 4 Filament Step" Display="'Aura Random 4 Filament Step'" Dmx="152~152" />
+      <Function ID="162" Name="Aura Random 4 Filament Fade" Display="'Aura Random 4 Filament Fade'" Dmx="153~153" />
+      <Function ID="163" Name="Aura Random 8 Filament Step" Display="'Aura Random 8 Filament Step'" Dmx="154~154" />
+      <Function ID="164" Name="Aura Random 8 Filament Fade" Display="'Aura Random 8 Filament Fade'" Dmx="155~155" />
+      <Function ID="165" Name="Aura Split Static" Display="'Aura Split Static'" Dmx="156~156" />
+      <Function ID="166" Name="Aura Split Rotating Step" Display="'Aura Split Rotating Step'" Dmx="157~157" />
+      <Function ID="167" Name="Aura Split Rotating Fade" Display="'Aura Split Rotating Fade'" Dmx="158~158" />
+      <Function ID="168" Name="Aura Odd-Even Step" Display="'Aura Odd-Even Step'" Dmx="159~159" />
+      <Function ID="169" Name="Aura Odd-Even Fade" Display="'Aura Odd-Even Fade'" Dmx="160~160" />
+      <Function ID="170" Name="Aura Radar Spin Step" Display="'Aura Radar Spin Step'" Dmx="161~161" />
+      <Function ID="171" Name="Aura Radar Spin Fade" Display="'Aura Radar Spin Fade'" Dmx="162~162" />
+      <Function ID="172" Name="Aura Line Spin Step" Display="'Aura Line Spin Step'" Dmx="163~163" />
+      <Function ID="173" Name="Aura Line Spin Fade" Display="'Aura Line Spin Fade'" Dmx="164~164" />
+      <Function ID="174" Name="Aura Cross Spin Step" Display="'Aura Cross Spin Step'" Dmx="165~165" />
+      <Function ID="175" Name="Aura Cross Spin Fade" Display="'Aura Cross Spin Fade'" Dmx="166~166" />
+      <Function ID="176" Name="Aura Slice Pie 1 Spin Step" Display="'Aura Slice Pie 1 Spin Step'" Dmx="167~167" />
+      <Function ID="177" Name="Aura Slice Pie 1 Spin Fade" Display="'Aura Slice Pie 1 Spin Fade'" Dmx="168~168" />
+      <Function ID="178" Name="Aura Slice Pie 2 Spin Step" Display="'Aura Slice Pie 2 Spin Step'" Dmx="169~169" />
+      <Function ID="179" Name="Aura Slice Pie 2 Spin Fade" Display="'Aura Slice Pie 2 Spin Fade'" Dmx="170~170" />
+      <Function ID="180" Name="Aura Slice Pie 3 Spin Step" Display="'Aura Slice Pie 3 Spin Step'" Dmx="171~171" />
+      <Function ID="181" Name="Aura Slice Pie 3 Spin Fade" Display="'Aura Slice Pie 3 Spin Fade'" Dmx="172~172" />
+      <Function ID="182" Name="Aura Random Slice Pie Step" Display="'Aura Random Slice Pie Step'" Dmx="173~173" />
+      <Function ID="183" Name="Aura Random Slice Pie Fade" Display="'Aura Random Slice Pie Fade'" Dmx="174~174" />
+      <Function ID="184" Name="Aura Snake 1 Filament Step" Display="'Aura Snake 1 Filament Step'" Dmx="175~175" />
+      <Function ID="185" Name="Aura Snake 1 Filament Fade" Display="'Aura Snake 1 Filament Fade'" Dmx="176~176" />
+      <Function ID="186" Name="Aura Snake 2 Filament Step" Display="'Aura Snake 2 Filament Step'" Dmx="177~177" />
+      <Function ID="187" Name="Aura Snake 2 Filament Fade" Display="'Aura Snake 2 Filament Fade'" Dmx="178~178" />
+      <Function ID="188" Name="Aura Snake 4 Filament Step" Display="'Aura Snake 4 Filament Step'" Dmx="179~179" />
+      <Function ID="189" Name="Aura Snake 4 Filament Fade" Display="'Aura Snake 4 Filament Fade'" Dmx="180~180" />
+      <Function ID="190" Name="Aura Snake 8 Filament Step" Display="'Aura Snake 8 Filament Step'" Dmx="181~181" />
+      <Function ID="191" Name="Aura Snake 8 Filament Fade" Display="'Aura Snake 8 Filament Fade'" Dmx="182~182" />
+      <Function ID="192" Name="Aura Vertical Line Step" Display="'Aura Vertical Line Step'" Dmx="183~183" />
+      <Function ID="193" Name="Aura Vertical Line Fade" Display="'Aura Vertical Line Fade'" Dmx="184~184" />
+      <Function ID="194" Name="Aura Vertical Line Bounce Step" Display="'Aura Vertical Line Bounce Step'" Dmx="185~185" />
+      <Function ID="195" Name="Aura Vertical Line Bounce Fade" Display="'Aura Vertical Line Bounce Fade'" Dmx="186~186" />
+      <Function ID="196" Name="Aura Horizontal Line Step" Display="'Aura Horizontal Line Step'" Dmx="187~187" />
+      <Function ID="197" Name="Aura Horizontal Line Fade" Display="'Aura Horizontal Line Fade'" Dmx="188~188" />
+      <Function ID="198" Name="Aura Horizontal Line Bounce Step" Display="'Aura Horizontal Line Bounce Step'" Dmx="189~189" />
+      <Function ID="199" Name="Aura Horizontal Line Bounce Fade" Display="'Aura Horizontal Line Bounce Fade'" Dmx="190~190" />
+      <Function ID="200" Name="Aura Vertical+Horizontal Line Bounce Step" Display="'Aura Vertical+Horizontal Line Bounce Step'" Dmx="191~191" />
+      <Function ID="201" Name="Aura Vertical+Horizontal Line Bounce Fade" Display="'Aura Vertical+Horizontal Line Bounce Fade'" Dmx="192~192" />
+      <Function ID="202" Name="Reserved 193" Display="'Reserved 193'" Dmx="193~193" />
+      <Function ID="203" Name="Reserved 194" Display="'Reserved 194'" Dmx="194~194" />
+      <Function ID="204" Name="Reserved 195" Display="'Reserved 195'" Dmx="195~195" />
+      <Function ID="205" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="206" Name="Aura Color Looks Static" Display="'Aura Color Looks Static'" Dmx="196~196" />
+      <Function ID="207" Name="Aura Rainbow Filaments Step" Display="'Aura Rainbow Filaments Step'" Dmx="197~197" />
+      <Function ID="208" Name="Aura Rainbow Filaments Fade" Display="'Aura Rainbow Filaments Fade'" Dmx="198~198" />
+      <Function ID="209" Name="Aura Red-Yellow Filaments Step" Display="'Aura Red-Yellow Filaments Step'" Dmx="199~199" />
+      <Function ID="210" Name="Aura Red-Yellow Filaments Fade" Display="'Aura Red-Yellow Filaments Fade'" Dmx="200~200" />
+      <Function ID="211" Name="Aura Yellow-Green Filaments Step" Display="'Aura Yellow-Green Filaments Step'" Dmx="201~201" />
+      <Function ID="212" Name="Aura Yellow-Green Filaments Fade" Display="'Aura Yellow-Green Filaments Fade'" Dmx="202~202" />
+      <Function ID="213" Name="Aura Green-Cyan Filaments Step" Display="'Aura Green-Cyan Filaments Step'" Dmx="203~203" />
+      <Function ID="214" Name="Aura Green-Cyan Filaments Fade" Display="'Aura Green-Cyan Filaments Fade'" Dmx="204~204" />
+      <Function ID="215" Name="Aura Cyan-Blue Filaments Step" Display="'Aura Cyan-Blue Filaments Step'" Dmx="205~205" />
+      <Function ID="216" Name="Aura Cyan-Blue Filaments Fade" Display="'Aura Cyan-Blue Filaments Fade'" Dmx="206~206" />
+      <Function ID="217" Name="Aura Blue-Magenta Filaments Step" Display="'Aura Blue-Magenta Filaments Step'" Dmx="207~207" />
+      <Function ID="218" Name="Aura Blue-Magenta Filaments Fade" Display="'Aura Blue-Magenta Filaments Fade'" Dmx="208~208" />
+      <Function ID="219" Name="Aura Magenta-Red Filaments Step" Display="'Aura Magenta-Red Filaments Step'" Dmx="209~209" />
+      <Function ID="220" Name="Aura Magenta-Red Filaments Fade" Display="'Aura Magenta-Red Filaments Fade'" Dmx="210~210" />
+      <Function ID="221" Name="Aura Red White Blue Step" Display="'Aura Red White Blue Step'" Dmx="211~211" />
+      <Function ID="222" Name="Aura Red White Blue Fade" Display="'Aura Red White Blue Fade'" Dmx="212~212" />
+      <Function ID="223" Name="Aura Fire" Display="'Aura Fire'" Dmx="213~213" />
+      <Function ID="224" Name="Aura Water" Display="'Aura Water'" Dmx="214~214" />
+      <Function ID="225" Name="Aura Swimming pool" Display="'Aura Swimming pool'" Dmx="215~215" />
+      <Function ID="226" Name="Aura Ice" Display="'Aura Ice'" Dmx="216~216" />
+      <Function ID="227" Name="Aura Hot and cold" Display="'Aura Hot and cold'" Dmx="217~217" />
+      <Function ID="228" Name="Aura Warm and fuzzy" Display="'Aura Warm and fuzzy'" Dmx="218~218" />
+      <Function ID="229" Name="Aura Silver and gold" Display="'Aura Silver and gold'" Dmx="219~219" />
+      <Function ID="230" Name="Aura Gold and silver" Display="'Aura Gold and silver'" Dmx="220~220" />
+      <Function ID="231" Name="Aura Electric arc" Display="'Aura Electric arc'" Dmx="221~221" />
+      <Function ID="232" Name="Aura Plasma" Display="'Aura Plasma'" Dmx="222~222" />
+      <Function ID="233" Name="Reserved 223" Display="'Reserved 223'" Dmx="223~223" />
+      <Function ID="234" Name="Reserved 224" Display="'Reserved 224'" Dmx="224~224" />
+      <Function ID="235" Name="Reserved 225" Display="'Reserved 225'" Dmx="225~225" />
+      <Function ID="236" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="237" Name="Aura Spectrum Shifter" Display="'Aura Spectrum Shifter'" Dmx="226~226" />
+      <Function ID="238" Name="Aura Spectrum Shifter Step" Display="'Aura Spectrum Shifter Step'" Dmx="227~227" />
+      <Function ID="239" Name="Aura Spectrum Shifter Fade" Display="'Aura Spectrum Shifter Fade'" Dmx="228~228" />
+      <Function ID="240" Name="Aura Pixel Spectrum Shifter Static" Display="'Aura Pixel Spectrum Shifter Static'" Dmx="229~229" />
+      <Function ID="241" Name="Aura Pixel Spectrum Shifter Step" Display="'Aura Pixel Spectrum Shifter Step'" Dmx="230~230" />
+      <Function ID="242" Name="Aura Pixel Spectrum Shifter Fade" Display="'Aura Pixel Spectrum Shifter Fade'" Dmx="231~231" />
+      <Function ID="243" Name="Aura Pixel Spectrum Shifter Random Static" Display="'Aura Pixel Spectrum Shifter Random Static'" Dmx="232~232" />
+      <Function ID="244" Name="Aura Pixel Spectrum Shifter Random Step" Display="'Aura Pixel Spectrum Shifter Random Step'" Dmx="233~233" />
+      <Function ID="245" Name="Aura Pixel Spectrum Shifter Random Fade" Display="'Aura Pixel Spectrum Shifter Random Fade'" Dmx="234~234" />
+      <Function ID="246" Name="Aura Tungsten" Display="'Aura Tungsten'" Dmx="235~235" />
+      <Function ID="247" Name="Aura Tungsten Delay" Display="'Aura Tungsten Delay'" Dmx="236~236" />
+      <Function ID="248" Name="Reserved 237" Display="'Reserved 237'" Dmx="237~237" />
+      <Function ID="249" Name="Reserved 238" Display="'Reserved 238'" Dmx="238~238" />
+      <Function ID="250" Name="Reserved 239" Display="'Reserved 239'" Dmx="239~239" />
+      <Function ID="251" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="252" Name="Aura Video SloMo" Display="'Aura Video SloMo'" Dmx="240~240" />
+      <Function ID="253" Name="Reserved 241" Display="'Reserved 241'" Dmx="241~241" />
+      <Function ID="254" Name="Reserved 242" Display="'Reserved 242'" Dmx="242~242" />
+      <Function ID="255" Name="Reserved 243" Display="'Reserved 243'" Dmx="243~243" />
+      <Function ID="256" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="257" Name="Complete Color Looks Static" Display="'Complete Color Looks Static'" Dmx="244~244" />
+      <Function ID="258" Name="Beam-Aura Step" Display="'Beam-Aura Step'" Dmx="245~245" />
+      <Function ID="259" Name="Beam-Aura Fade" Display="'Beam-Aura Fade'" Dmx="246~246" />
+      <Function ID="260" Name="Aura Ramp Beam Flash" Display="'Aura Ramp Beam Flash'" Dmx="247~247" />
+      <Function ID="261" Name="Beam Ramp Aura Flash" Display="'Beam Ramp Aura Flash'" Dmx="248~248" />
+      <Function ID="262" Name="Full Thunderstorm" Display="'Full Thunderstorm'" Dmx="249~249" />
+      <Function ID="263" Name="Full Welding" Display="'Full Welding'" Dmx="250~250" />
+      <Function ID="264" Name="Full 3 Step Strobe" Display="'Full 3 Step Strobe'" Dmx="251~251" />
+      <Function ID="265" Name="Reserved 252" Display="'Reserved 252'" Dmx="252~252" />
+      <Function ID="266" Name="Reserved 253" Display="'Reserved 253'" Dmx="253~253" />
+      <Function ID="267" Name="Reserved 254" Display="'Reserved 254'" Dmx="254~254" />
+      <Function ID="268" Name="Reserved 255" Display="'Reserved 255'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="FX_1_Adjust" Name="FX 1 Adjust" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="FWD" Display="'FWD %.1f%%',100.0~0.0" Dmx="255~130" />
+      <Function ID="2" Name="Stop" Display="'Stop'" Dmx="127~129" />
+      <Function ID="3" Name="REV" Display="'REV %.1f%%',0.0~100.0" Dmx="126~0" />
+    </Attribute>
+    <Attribute ID="FX_2_Func" Name="FX 2 Func" Description="" Group="E" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" Update="FX_2" />
+      <Function ID="2" Name="Beam Intensity" Display="'Beam Intensity'" Dmx="0~0" Update="FX_2" />
+      <Function ID="3" Name="Beam Pixel" Display="'Beam Pixel'" Dmx="0~0" Update="FX_2" />
+      <Function ID="4" Name="Beam Colour" Display="'Beam Colour'" Dmx="0~0" Update="FX_2" />
+      <Function ID="5" Name="Beam Colour Modifier" Display="'Beam Colour Modifier'" Dmx="0~0" Update="FX_2" />
+      <Function ID="6" Name="Beam Time" Display="'Beam Time'" Dmx="0~0" Update="FX_2" />
+      <Function ID="7" Name="Aura Intensity" Display="'Aura Intensity'" Dmx="0~0" Update="FX_2" />
+      <Function ID="8" Name="Aura Pixel" Display="'Aura Pixel'" Dmx="0~0" Update="FX_2" />
+      <Function ID="9" Name="Aura Colour" Display="'Aura Colour'" Dmx="0~0" Update="FX_2" />
+      <Function ID="10" Name="Aura Colour Modifier" Display="'Aura Colour Modifier'" Dmx="0~0" Update="FX_2" />
+      <Function ID="11" Name="Aura Time" Display="'Aura Time'" Dmx="0~0" Update="FX_2" />
+      <Function ID="12" Name="Beam + Aura Combined" Display="'Beam + Aura Combined'" Dmx="0~0" Update="FX_2" />
+      <Function ID="13" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="FX_2" />
+    </Attribute>
+    <Attribute ID="FX_2" Name="FX 2" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Else ID="1" />
+      <Condition Name="No Effect" ID="2" If="'FX_2_Func'==1" />
+      <Condition Name="Beam Intensity" ID="3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19" If="'FX_2_Func'==2" />
+      <Condition Name="Beam Pixel" ID="20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75" If="'FX_2_Func'==3" />
+      <Condition Name="Beam Colour" ID="76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106" If="'FX_2_Func'==4" />
+      <Condition Name="Beam Colour Modifier" ID="107,108,109,110,111,112,113,114,115,116,117,118,119" If="'FX_2_Func'==5" />
+      <Condition Name="Beam Time" ID="120,121,122,123,124" If="'FX_2_Func'==6" />
+      <Condition Name="Aura Intensity" ID="125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141" If="'FX_2_Func'==7" />
+      <Condition Name="Aura Pixel" ID="142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204" If="'FX_2_Func'==8" />
+      <Condition Name="Aura Colour" ID="205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235" If="'FX_2_Func'==9" />
+      <Condition Name="Aura Colour Modifier" ID="236,237,238,239,240,241,242,243,244,245,246,247,248,249,250" If="'FX_2_Func'==10" />
+      <Condition Name="Aura Time" ID="251,252,253,254,255" If="'FX_2_Func'==11" />
+      <Condition Name="Beam + Aura Combined" ID="256,257,258,259,260,261,262,263,264,265,266,267,268" If="'FX_2_Func'==12" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="No Effect" Display="''" Dmx="0~0" />
+      <Function ID="3" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="4" Name="Beam Strobe Width" Display="'Beam Strobe Width'" Dmx="1~1" />
+      <Function ID="5" Name="Beam Blackout Strobe" Display="'Beam Blackout Strobe'" Dmx="2~2" />
+      <Function ID="6" Name="Beam 2x Strobe" Display="'Beam 2x Strobe'" Dmx="3~3" />
+      <Function ID="7" Name="Beam 3x Strobe" Display="'Beam 3x Strobe'" Dmx="4~4" />
+      <Function ID="8" Name="Beam 4x Strobe" Display="'Beam 4x Strobe'" Dmx="5~5" />
+      <Function ID="9" Name="Beam Up, Down, Flash" Display="'Beam Up, Down, Flash'" Dmx="6~6" />
+      <Function ID="10" Name="Beam Up, Down, Flash Second Color" Display="'Beam Up, Down, Flash Second Color'" Dmx="7~7" />
+      <Function ID="11" Name="Beam Up, Flash, Down, Flash" Display="'Beam Up, Flash, Down, Flash'" Dmx="8~8" />
+      <Function ID="12" Name="Beam Up, Flash, Down, Flash Second Color" Display="'Beam Up, Flash, Down, Flash Second Color'" Dmx="9~9" />
+      <Function ID="13" Name="Beam Random Levels" Display="'Beam Random Levels'" Dmx="10~10" />
+      <Function ID="14" Name="Beam Movie Flicker" Display="'Beam Movie Flicker'" Dmx="11~11" />
+      <Function ID="15" Name="Beam Atomic Lighting" Display="'Beam Atomic Lighting'" Dmx="12~12" />
+      <Function ID="16" Name="Beam Thunderstorm" Display="'Beam Thunderstorm'" Dmx="13~13" />
+      <Function ID="17" Name="Reserved 14" Display="'Reserved 14'" Dmx="14~14" />
+      <Function ID="18" Name="Reserved 15" Display="'Reserved 15'" Dmx="15~15" />
+      <Function ID="19" Name="Reserved 16" Display="'Reserved 16'" Dmx="16~16" />
+      <Function ID="20" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="21" Name="Beam PixelMasks Static" Display="'Beam PixelMasks Static'" Dmx="17~17" />
+      <Function ID="22" Name="Beam PixelKiller Static" Display="'Beam PixelKiller Static'" Dmx="18~18" />
+      <Function ID="23" Name="Beam SparkleStars" Display="'Beam SparkleStars'" Dmx="19~19" />
+      <Function ID="24" Name="Beam Starfield" Display="'Beam Starfield'" Dmx="20~20" />
+      <Function ID="25" Name="Beam Fiberoptic" Display="'Beam Fiberoptic'" Dmx="21~21" />
+      <Function ID="26" Name="Beam Noise" Display="'Beam Noise'" Dmx="22~22" />
+      <Function ID="27" Name="Beam Build Up/Down Step" Display="'Beam Build Up/Down Step'" Dmx="23~23" />
+      <Function ID="28" Name="Beam Build Up/Down Fade" Display="'Beam Build Up/Down Fade'" Dmx="24~24" />
+      <Function ID="29" Name="Beam Build Up/Down Random Step" Display="'Beam Build Up/Down Random Step'" Dmx="25~25" />
+      <Function ID="30" Name="Beam Build Up/Down Random Fade" Display="'Beam Build Up/Down Random Fade'" Dmx="26~26" />
+      <Function ID="31" Name="Beam Random 1 Pixel Step" Display="'Beam Random 1 Pixel Step'" Dmx="27~27" />
+      <Function ID="32" Name="Beam Random 1 Pixel Fade" Display="'Beam Random 1 Pixel Fade'" Dmx="28~28" />
+      <Function ID="33" Name="Beam Random 2 Pixel Step" Display="'Beam Random 2 Pixel Step'" Dmx="29~29" />
+      <Function ID="34" Name="Beam Random 2 Pixel Fade" Display="'Beam Random 2 Pixel Fade'" Dmx="30~30" />
+      <Function ID="35" Name="Beam Random 3 Pixel Step" Display="'Beam Random 3 Pixel Step'" Dmx="31~31" />
+      <Function ID="36" Name="Beam Random 3 Pixel Fade" Display="'Beam Random 3 Pixel Fade'" Dmx="32~32" />
+      <Function ID="37" Name="Beam Random 4 Pixel Step" Display="'Beam Random 4 Pixel Step'" Dmx="33~33" />
+      <Function ID="38" Name="Beam Random 4 Pixel Fade" Display="'Beam Random 4 Pixel Fade'" Dmx="34~34" />
+      <Function ID="39" Name="Beam Split Static" Display="'Beam Split Static'" Dmx="35~35" />
+      <Function ID="40" Name="Beam Split Rotating Step" Display="'Beam Split Rotating Step'" Dmx="36~36" />
+      <Function ID="41" Name="Beam Split Rotating Fade" Display="'Beam Split Rotating Fade'" Dmx="37~37" />
+      <Function ID="42" Name="Beam In-Out Step" Display="'Beam In-Out Step'" Dmx="38~38" />
+      <Function ID="43" Name="Beam In-Out Fade" Display="'Beam In-Out Fade'" Dmx="39~39" />
+      <Function ID="44" Name="Beam Waterdrop" Display="'Beam Waterdrop'" Dmx="40~40" />
+      <Function ID="45" Name="Beam Radar Spin Step" Display="'Beam Radar Spin Step'" Dmx="41~41" />
+      <Function ID="46" Name="Beam Radar Spin Fade" Display="'Beam Radar Spin Fade'" Dmx="42~42" />
+      <Function ID="47" Name="Beam Line Spin Step" Display="'Beam Line Spin Step'" Dmx="43~43" />
+      <Function ID="48" Name="Beam Line Spin Fade" Display="'Beam Line Spin Fade'" Dmx="44~44" />
+      <Function ID="49" Name="Beam Cross Spin Step" Display="'Beam Cross Spin Step'" Dmx="45~45" />
+      <Function ID="50" Name="Beam Cross Spin Fade" Display="'Beam Cross Spin Fade'" Dmx="46~46" />
+      <Function ID="51" Name="Beam Cross - Circle Step" Display="'Beam Cross - Circle Step'" Dmx="47~47" />
+      <Function ID="52" Name="Beam Cross - Circle Fade" Display="'Beam Cross - Circle Fade'" Dmx="48~48" />
+      <Function ID="53" Name="Beam Slice Pie Spin Step" Display="'Beam Slice Pie Spin Step'" Dmx="49~49" />
+      <Function ID="54" Name="Beam Slice Pie Spin Fade" Display="'Beam Slice Pie Spin Fade'" Dmx="50~50" />
+      <Function ID="55" Name="Beam Snake 1 Pixel Step" Display="'Beam Snake 1 Pixel Step'" Dmx="51~51" />
+      <Function ID="56" Name="Beam Snake 1 Pixel Fade" Display="'Beam Snake 1 Pixel Fade'" Dmx="52~52" />
+      <Function ID="57" Name="Beam Snake 2 Pixel Step" Display="'Beam Snake 2 Pixel Step'" Dmx="53~53" />
+      <Function ID="58" Name="Beam Snake 2 Pixel Fade" Display="'Beam Snake 2 Pixel Fade'" Dmx="54~54" />
+      <Function ID="59" Name="Beam Snake 3 Pixel Step" Display="'Beam Snake 3 Pixel Step'" Dmx="55~55" />
+      <Function ID="60" Name="Beam Snake 3 Pixel Fade" Display="'Beam Snake 3 Pixel Fade'" Dmx="56~56" />
+      <Function ID="61" Name="Beam Snake 4 Pixel Step" Display="'Beam Snake 4 Pixel Step'" Dmx="57~57" />
+      <Function ID="62" Name="Beam Snake 4 Pixel Fade" Display="'Beam Snake 4 Pixel Fade'" Dmx="58~58" />
+      <Function ID="63" Name="Beam Vertical Line Step" Display="'Beam Vertical Line Step'" Dmx="59~59" />
+      <Function ID="64" Name="Beam Vertical Line Fade" Display="'Beam Vertical Line Fade'" Dmx="60~60" />
+      <Function ID="65" Name="Beam Vertical Line Bounce Step" Display="'Beam Vertical Line Bounce Step'" Dmx="61~61" />
+      <Function ID="66" Name="Beam Vertical Line Bounce Fade" Display="'Beam Vertical Line Bounce Fade'" Dmx="62~62" />
+      <Function ID="67" Name="Beam Horizontal Line Step" Display="'Beam Horizontal Line Step'" Dmx="63~63" />
+      <Function ID="68" Name="Beam Horizontal Line Fade" Display="'Beam Horizontal Line Fade'" Dmx="64~64" />
+      <Function ID="69" Name="Beam Horizontal Line Bounce Step" Display="'Beam Horizontal Line Bounce Step'" Dmx="65~65" />
+      <Function ID="70" Name="Beam Horizontal Line Bounce Fade" Display="'Beam Horizontal Line Bounce Fade'" Dmx="66~66" />
+      <Function ID="71" Name="Beam Vertical+Horizontal Line Bounce Step" Display="'Beam Vertical+Horizontal Line Bounce Step'" Dmx="67~67" />
+      <Function ID="72" Name="Beam Vertical+Horizontal Line Bounce Fade" Display="'Beam Vertical+Horizontal Line Bounce Fade'" Dmx="68~68" />
+      <Function ID="73" Name="Reserved 69" Display="'Reserved 69'" Dmx="69~69" />
+      <Function ID="74" Name="Reserved 70" Display="'Reserved 70'" Dmx="70~70" />
+      <Function ID="75" Name="Reserved 80" Display="'Reserved 80'" Dmx="71~71" />
+      <Function ID="76" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="77" Name="Beam Color Looks Static" Display="'Beam Color Looks Static'" Dmx="72~72" />
+      <Function ID="78" Name="Beam Rainbow Pixels Step" Display="'Beam Rainbow Pixels Step'" Dmx="73~73" />
+      <Function ID="79" Name="Beam Rainbow Pixels Fade" Display="'Beam Rainbow Pixels Fade'" Dmx="74~74" />
+      <Function ID="80" Name="Beam Red-Yellow Pixels Step" Display="'Beam Red-Yellow Pixels Step'" Dmx="75~75" />
+      <Function ID="81" Name="Beam Red-Yellow Pixels Fade" Display="'Beam Red-Yellow Pixels Fade'" Dmx="76~76" />
+      <Function ID="82" Name="Beam Yellow-Green Pixels Step" Display="'Beam Yellow-Green Pixels Step'" Dmx="77~77" />
+      <Function ID="83" Name="Beam Yellow-Green Pixels Fade" Display="'Beam Yellow-Green Pixels Fade'" Dmx="78~78" />
+      <Function ID="84" Name="Beam Green-Cyan Pixels Step" Display="'Beam Green-Cyan Pixels Step'" Dmx="79~79" />
+      <Function ID="85" Name="Beam Green-Cyan Pixels Fade" Display="'Beam Green-Cyan Pixels Fade'" Dmx="80~80" />
+      <Function ID="86" Name="Beam Cyan-Blue Pixels Step" Display="'Beam Cyan-Blue Pixels Step'" Dmx="81~81" />
+      <Function ID="87" Name="Beam Cyan-Blue Pixels Fade" Display="'Beam Cyan-Blue Pixels Fade'" Dmx="82~82" />
+      <Function ID="88" Name="Beam Blue-Magenta Pixels Step" Display="'Beam Blue-Magenta Pixels Step'" Dmx="83~83" />
+      <Function ID="89" Name="Beam Blue-Magenta Pixels Fade" Display="'Beam Blue-Magenta Pixels Fade'" Dmx="84~84" />
+      <Function ID="90" Name="Beam Magenta-Red Pixels Step" Display="'Beam Magenta-Red Pixels Step'" Dmx="85~85" />
+      <Function ID="91" Name="Beam Magenta-Red Pixels Fade" Display="'Beam Magenta-Red Pixels Fade'" Dmx="86~86" />
+      <Function ID="92" Name="Beam Red White Blue Step" Display="'Beam Red White Blue Step'" Dmx="87~87" />
+      <Function ID="93" Name="Beam Red White Blue Fade" Display="'Beam Red White Blue Fade'" Dmx="88~88" />
+      <Function ID="94" Name="Beam Fire" Display="'Beam Fire'" Dmx="89~89" />
+      <Function ID="95" Name="Beam Water" Display="'Beam Water'" Dmx="90~90" />
+      <Function ID="96" Name="Beam Swimming pool" Display="'Beam Swimming pool'" Dmx="91~91" />
+      <Function ID="97" Name="Beam Ice" Display="'Beam Ice'" Dmx="92~92" />
+      <Function ID="98" Name="Beam Hot and Cold" Display="'Beam Hot and Cold'" Dmx="93~93" />
+      <Function ID="99" Name="Beam Warm and Fuzzy" Display="'Beam Warm and Fuzzy'" Dmx="94~94" />
+      <Function ID="100" Name="Beam Silver and Gold" Display="'Beam Silver and Gold'" Dmx="95~95" />
+      <Function ID="101" Name="Beam Gold and Silver" Display="'Beam Gold and Silver'" Dmx="96~96" />
+      <Function ID="102" Name="Beam Electric Arc" Display="'Beam Electric Arc'" Dmx="97~97" />
+      <Function ID="103" Name="Beam Plasma" Display="'Beam Plasma'" Dmx="98~98" />
+      <Function ID="104" Name="Reserved 99" Display="'Reserved 99'" Dmx="99~99" />
+      <Function ID="105" Name="Reserved 100" Display="'Reserved 100'" Dmx="100~100" />
+      <Function ID="106" Name="Reserved 101" Display="'Reserved 101'" Dmx="101~101" />
+      <Function ID="107" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="108" Name="Beam Spectrum Shift Static" Display="'Beam Spectrum Shift Static'" Dmx="102~102" />
+      <Function ID="109" Name="Beam Spectrum Shift Step" Display="'Beam Spectrum Shift Step'" Dmx="103~103" />
+      <Function ID="110" Name="Beam Spectrum Shift Fade" Display="'Beam Spectrum Shift Fade'" Dmx="104~104" />
+      <Function ID="111" Name="Beam Pixel Spectrum Shift Static" Display="'Beam Pixel Spectrum Shift Static'" Dmx="105~105" />
+      <Function ID="112" Name="Beam Pixel Spectrum Shift Step" Display="'Beam Pixel Spectrum Shift Step'" Dmx="106~106" />
+      <Function ID="113" Name="Beam Pixel Spectrum Shift Fade" Display="'Beam Pixel Spectrum Shift Fade'" Dmx="107~107" />
+      <Function ID="114" Name="Beam Pixel Spectrum Shift Random Static" Display="'Beam Pixel Spectrum Shift Random Static'" Dmx="108~108" />
+      <Function ID="115" Name="Beam Pixel Spectrum Shift Random Step" Display="'Beam Pixel Spectrum Shift Random Step'" Dmx="109~109" />
+      <Function ID="116" Name="Beam Pixel Spectrum Shift Random Fade" Display="'Beam Pixel Spectrum Shift Random Fade'" Dmx="110~110" />
+      <Function ID="117" Name="Reserved 111" Display="'Reserved 111'" Dmx="111~111" />
+      <Function ID="118" Name="Reserved 112" Display="'Reserved 112'" Dmx="112~112" />
+      <Function ID="119" Name="Reserved 113" Display="'Reserved 113'" Dmx="113~113" />
+      <Function ID="120" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="121" Name="Beam Video SloMo" Display="'Beam Video SloMo'" Dmx="114~114" />
+      <Function ID="122" Name="Reserved 114" Display="'Reserved 114'" Dmx="115~115" />
+      <Function ID="123" Name="Reserved 115" Display="'Reserved 115'" Dmx="116~116" />
+      <Function ID="124" Name="Reserved 116" Display="'Reserved 116'" Dmx="117~117" />
+      <Function ID="125" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="126" Name="Aura Strobe Width" Display="'Aura Strobe Width'" Dmx="118~118" />
+      <Function ID="127" Name="Aura Blackout Strobe" Display="'Aura Blackout Strobe'" Dmx="119~119" />
+      <Function ID="128" Name="Aura 2x Strobe" Display="'Aura 2x Strobe'" Dmx="120~120" />
+      <Function ID="129" Name="Aura 3x Strobe" Display="'Aura 3x Strobe'" Dmx="121~121" />
+      <Function ID="130" Name="Aura 4x Strobe" Display="'Aura 4x Strobe'" Dmx="122~122" />
+      <Function ID="131" Name="Aura Up, Down, Flash" Display="'Aura Up, Down, Flash'" Dmx="123~123" />
+      <Function ID="132" Name="Aura Up, Down, Flash Second Color" Display="'Aura Up, Down, Flash Second Color'" Dmx="124~124" />
+      <Function ID="133" Name="Aura Up, Flash, Down, Flash" Display="'Aura Up, Flash, Down, Flash'" Dmx="125~125" />
+      <Function ID="134" Name="Aura Up, Flash, Down, Flash Second Color" Display="'Aura Up, Flash, Down, Flash Second Color'" Dmx="126~126" />
+      <Function ID="135" Name="Aura Random Levels" Display="'Aura Random Levels'" Dmx="127~127" />
+      <Function ID="136" Name="Aura Movie Flicker" Display="'Aura Movie Flicker'" Dmx="128~128" />
+      <Function ID="137" Name="Aura Atomic Lighting" Display="'Aura Atomic Lighting'" Dmx="129~129" />
+      <Function ID="138" Name="Aura Thunderstorm" Display="'Aura Thunderstorm'" Dmx="130~130" />
+      <Function ID="139" Name="Reserved 131" Display="'Reserved 131'" Dmx="131~131" />
+      <Function ID="140" Name="Reserved 132" Display="'Reserved 132'" Dmx="132~132" />
+      <Function ID="141" Name="Reserved 133" Display="'Reserved 133'" Dmx="133~133" />
+      <Function ID="142" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="143" Name="Aura PixelMasks Static" Display="'Aura PixelMasks Static'" Dmx="134~134" />
+      <Function ID="144" Name="Aura PixelKiller Static" Display="'Aura PixelKiller Static'" Dmx="135~135" />
+      <Function ID="145" Name="Aura SparkleStars" Display="'Aura SparkleStars'" Dmx="136~136" />
+      <Function ID="146" Name="Aura Lightning Flashes Random" Display="'Aura Lightning Flashes Random'" Dmx="137~137" />
+      <Function ID="147" Name="Aura Lightning Flashes Random Heavy" Display="'Aura Lightning Flashes Random Heavy'" Dmx="138~138" />
+      <Function ID="148" Name="Aura Lightning Flashes Left-Right" Display="'Aura Lightning Flashes Left-Right'" Dmx="139~139" />
+      <Function ID="149" Name="Aura Lightning Flashes Top-Bottom" Display="'Aura Lightning Flashes Top-Bottom'" Dmx="140~140" />
+      <Function ID="150" Name="Aura Starfield" Display="'Aura Starfield'" Dmx="141~141" />
+      <Function ID="151" Name="Aura Fiberoptic" Display="'Aura Fiberoptic'" Dmx="142~142" />
+      <Function ID="152" Name="Aura Noise" Display="'Aura Noise'" Dmx="143~143" />
+      <Function ID="153" Name="Aura Build Up/Down Step" Display="'Aura Build Up/Down Step'" Dmx="144~144" />
+      <Function ID="154" Name="Aura Build Up/Down Fade" Display="'Aura Build Up/Down Fade'" Dmx="145~145" />
+      <Function ID="155" Name="Aura Build Up/Down Random Step" Display="'Aura Build Up/Down Random Step'" Dmx="146~146" />
+      <Function ID="156" Name="Aura Build Up/Down Random Fade" Display="'Aura Build Up/Down Random Fade'" Dmx="147~147" />
+      <Function ID="157" Name="Aura Random 1 Filament Step" Display="'Aura Random 1 Filament Step'" Dmx="148~148" />
+      <Function ID="158" Name="Aura Random 1 Filament Fade" Display="'Aura Random 1 Filament Fade'" Dmx="149~149" />
+      <Function ID="159" Name="Aura Random 2 Filament Step" Display="'Aura Random 2 Filament Step'" Dmx="150~150" />
+      <Function ID="160" Name="Aura Random 2 Filament Fade" Display="'Aura Random 2 Filament Fade'" Dmx="151~151" />
+      <Function ID="161" Name="Aura Random 4 Filament Step" Display="'Aura Random 4 Filament Step'" Dmx="152~152" />
+      <Function ID="162" Name="Aura Random 4 Filament Fade" Display="'Aura Random 4 Filament Fade'" Dmx="153~153" />
+      <Function ID="163" Name="Aura Random 8 Filament Step" Display="'Aura Random 8 Filament Step'" Dmx="154~154" />
+      <Function ID="164" Name="Aura Random 8 Filament Fade" Display="'Aura Random 8 Filament Fade'" Dmx="155~155" />
+      <Function ID="165" Name="Aura Split Static" Display="'Aura Split Static'" Dmx="156~156" />
+      <Function ID="166" Name="Aura Split Rotating Step" Display="'Aura Split Rotating Step'" Dmx="157~157" />
+      <Function ID="167" Name="Aura Split Rotating Fade" Display="'Aura Split Rotating Fade'" Dmx="158~158" />
+      <Function ID="168" Name="Aura Odd-Even Step" Display="'Aura Odd-Even Step'" Dmx="159~159" />
+      <Function ID="169" Name="Aura Odd-Even Fade" Display="'Aura Odd-Even Fade'" Dmx="160~160" />
+      <Function ID="170" Name="Aura Radar Spin Step" Display="'Aura Radar Spin Step'" Dmx="161~161" />
+      <Function ID="171" Name="Aura Radar Spin Fade" Display="'Aura Radar Spin Fade'" Dmx="162~162" />
+      <Function ID="172" Name="Aura Line Spin Step" Display="'Aura Line Spin Step'" Dmx="163~163" />
+      <Function ID="173" Name="Aura Line Spin Fade" Display="'Aura Line Spin Fade'" Dmx="164~164" />
+      <Function ID="174" Name="Aura Cross Spin Step" Display="'Aura Cross Spin Step'" Dmx="165~165" />
+      <Function ID="175" Name="Aura Cross Spin Fade" Display="'Aura Cross Spin Fade'" Dmx="166~166" />
+      <Function ID="176" Name="Aura Slice Pie 1 Spin Step" Display="'Aura Slice Pie 1 Spin Step'" Dmx="167~167" />
+      <Function ID="177" Name="Aura Slice Pie 1 Spin Fade" Display="'Aura Slice Pie 1 Spin Fade'" Dmx="168~168" />
+      <Function ID="178" Name="Aura Slice Pie 2 Spin Step" Display="'Aura Slice Pie 2 Spin Step'" Dmx="169~169" />
+      <Function ID="179" Name="Aura Slice Pie 2 Spin Fade" Display="'Aura Slice Pie 2 Spin Fade'" Dmx="170~170" />
+      <Function ID="180" Name="Aura Slice Pie 3 Spin Step" Display="'Aura Slice Pie 3 Spin Step'" Dmx="171~171" />
+      <Function ID="181" Name="Aura Slice Pie 3 Spin Fade" Display="'Aura Slice Pie 3 Spin Fade'" Dmx="172~172" />
+      <Function ID="182" Name="Aura Random Slice Pie Step" Display="'Aura Random Slice Pie Step'" Dmx="173~173" />
+      <Function ID="183" Name="Aura Random Slice Pie Fade" Display="'Aura Random Slice Pie Fade'" Dmx="174~174" />
+      <Function ID="184" Name="Aura Snake 1 Filament Step" Display="'Aura Snake 1 Filament Step'" Dmx="175~175" />
+      <Function ID="185" Name="Aura Snake 1 Filament Fade" Display="'Aura Snake 1 Filament Fade'" Dmx="176~176" />
+      <Function ID="186" Name="Aura Snake 2 Filament Step" Display="'Aura Snake 2 Filament Step'" Dmx="177~177" />
+      <Function ID="187" Name="Aura Snake 2 Filament Fade" Display="'Aura Snake 2 Filament Fade'" Dmx="178~178" />
+      <Function ID="188" Name="Aura Snake 4 Filament Step" Display="'Aura Snake 4 Filament Step'" Dmx="179~179" />
+      <Function ID="189" Name="Aura Snake 4 Filament Fade" Display="'Aura Snake 4 Filament Fade'" Dmx="180~180" />
+      <Function ID="190" Name="Aura Snake 8 Filament Step" Display="'Aura Snake 8 Filament Step'" Dmx="181~181" />
+      <Function ID="191" Name="Aura Snake 8 Filament Fade" Display="'Aura Snake 8 Filament Fade'" Dmx="182~182" />
+      <Function ID="192" Name="Aura Vertical Line Step" Display="'Aura Vertical Line Step'" Dmx="183~183" />
+      <Function ID="193" Name="Aura Vertical Line Fade" Display="'Aura Vertical Line Fade'" Dmx="184~184" />
+      <Function ID="194" Name="Aura Vertical Line Bounce Step" Display="'Aura Vertical Line Bounce Step'" Dmx="185~185" />
+      <Function ID="195" Name="Aura Vertical Line Bounce Fade" Display="'Aura Vertical Line Bounce Fade'" Dmx="186~186" />
+      <Function ID="196" Name="Aura Horizontal Line Step" Display="'Aura Horizontal Line Step'" Dmx="187~187" />
+      <Function ID="197" Name="Aura Horizontal Line Fade" Display="'Aura Horizontal Line Fade'" Dmx="188~188" />
+      <Function ID="198" Name="Aura Horizontal Line Bounce Step" Display="'Aura Horizontal Line Bounce Step'" Dmx="189~189" />
+      <Function ID="199" Name="Aura Horizontal Line Bounce Fade" Display="'Aura Horizontal Line Bounce Fade'" Dmx="190~190" />
+      <Function ID="200" Name="Aura Vertical+Horizontal Line Bounce Step" Display="'Aura Vertical+Horizontal Line Bounce Step'" Dmx="191~191" />
+      <Function ID="201" Name="Aura Vertical+Horizontal Line Bounce Fade" Display="'Aura Vertical+Horizontal Line Bounce Fade'" Dmx="192~192" />
+      <Function ID="202" Name="Reserved 193" Display="'Reserved 193'" Dmx="193~193" />
+      <Function ID="203" Name="Reserved 194" Display="'Reserved 194'" Dmx="194~194" />
+      <Function ID="204" Name="Reserved 195" Display="'Reserved 195'" Dmx="195~195" />
+      <Function ID="205" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="206" Name="Aura Color Looks Static" Display="'Aura Color Looks Static'" Dmx="196~196" />
+      <Function ID="207" Name="Aura Rainbow Filaments Step" Display="'Aura Rainbow Filaments Step'" Dmx="197~197" />
+      <Function ID="208" Name="Aura Rainbow Filaments Fade" Display="'Aura Rainbow Filaments Fade'" Dmx="198~198" />
+      <Function ID="209" Name="Aura Red-Yellow Filaments Step" Display="'Aura Red-Yellow Filaments Step'" Dmx="199~199" />
+      <Function ID="210" Name="Aura Red-Yellow Filaments Fade" Display="'Aura Red-Yellow Filaments Fade'" Dmx="200~200" />
+      <Function ID="211" Name="Aura Yellow-Green Filaments Step" Display="'Aura Yellow-Green Filaments Step'" Dmx="201~201" />
+      <Function ID="212" Name="Aura Yellow-Green Filaments Fade" Display="'Aura Yellow-Green Filaments Fade'" Dmx="202~202" />
+      <Function ID="213" Name="Aura Green-Cyan Filaments Step" Display="'Aura Green-Cyan Filaments Step'" Dmx="203~203" />
+      <Function ID="214" Name="Aura Green-Cyan Filaments Fade" Display="'Aura Green-Cyan Filaments Fade'" Dmx="204~204" />
+      <Function ID="215" Name="Aura Cyan-Blue Filaments Step" Display="'Aura Cyan-Blue Filaments Step'" Dmx="205~205" />
+      <Function ID="216" Name="Aura Cyan-Blue Filaments Fade" Display="'Aura Cyan-Blue Filaments Fade'" Dmx="206~206" />
+      <Function ID="217" Name="Aura Blue-Magenta Filaments Step" Display="'Aura Blue-Magenta Filaments Step'" Dmx="207~207" />
+      <Function ID="218" Name="Aura Blue-Magenta Filaments Fade" Display="'Aura Blue-Magenta Filaments Fade'" Dmx="208~208" />
+      <Function ID="219" Name="Aura Magenta-Red Filaments Step" Display="'Aura Magenta-Red Filaments Step'" Dmx="209~209" />
+      <Function ID="220" Name="Aura Magenta-Red Filaments Fade" Display="'Aura Magenta-Red Filaments Fade'" Dmx="210~210" />
+      <Function ID="221" Name="Aura Red White Blue Step" Display="'Aura Red White Blue Step'" Dmx="211~211" />
+      <Function ID="222" Name="Aura Red White Blue Fade" Display="'Aura Red White Blue Fade'" Dmx="212~212" />
+      <Function ID="223" Name="Aura Fire" Display="'Aura Fire'" Dmx="213~213" />
+      <Function ID="224" Name="Aura Water" Display="'Aura Water'" Dmx="214~214" />
+      <Function ID="225" Name="Aura Swimming pool" Display="'Aura Swimming pool'" Dmx="215~215" />
+      <Function ID="226" Name="Aura Ice" Display="'Aura Ice'" Dmx="216~216" />
+      <Function ID="227" Name="Aura Hot and cold" Display="'Aura Hot and cold'" Dmx="217~217" />
+      <Function ID="228" Name="Aura Warm and fuzzy" Display="'Aura Warm and fuzzy'" Dmx="218~218" />
+      <Function ID="229" Name="Aura Silver and gold" Display="'Aura Silver and gold'" Dmx="219~219" />
+      <Function ID="230" Name="Aura Gold and silver" Display="'Aura Gold and silver'" Dmx="220~220" />
+      <Function ID="231" Name="Aura Electric arc" Display="'Aura Electric arc'" Dmx="221~221" />
+      <Function ID="232" Name="Aura Plasma" Display="'Aura Plasma'" Dmx="222~222" />
+      <Function ID="233" Name="Reserved 223" Display="'Reserved 223'" Dmx="223~223" />
+      <Function ID="234" Name="Reserved 224" Display="'Reserved 224'" Dmx="224~224" />
+      <Function ID="235" Name="Reserved 225" Display="'Reserved 225'" Dmx="225~225" />
+      <Function ID="236" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="237" Name="Aura Spectrum Shifter" Display="'Aura Spectrum Shifter'" Dmx="226~226" />
+      <Function ID="238" Name="Aura Spectrum Shifter Step" Display="'Aura Spectrum Shifter Step'" Dmx="227~227" />
+      <Function ID="239" Name="Aura Spectrum Shifter Fade" Display="'Aura Spectrum Shifter Fade'" Dmx="228~228" />
+      <Function ID="240" Name="Aura Pixel Spectrum Shifter Static" Display="'Aura Pixel Spectrum Shifter Static'" Dmx="229~229" />
+      <Function ID="241" Name="Aura Pixel Spectrum Shifter Step" Display="'Aura Pixel Spectrum Shifter Step'" Dmx="230~230" />
+      <Function ID="242" Name="Aura Pixel Spectrum Shifter Fade" Display="'Aura Pixel Spectrum Shifter Fade'" Dmx="231~231" />
+      <Function ID="243" Name="Aura Pixel Spectrum Shifter Random Static" Display="'Aura Pixel Spectrum Shifter Random Static'" Dmx="232~232" />
+      <Function ID="244" Name="Aura Pixel Spectrum Shifter Random Step" Display="'Aura Pixel Spectrum Shifter Random Step'" Dmx="233~233" />
+      <Function ID="245" Name="Aura Pixel Spectrum Shifter Random Fade" Display="'Aura Pixel Spectrum Shifter Random Fade'" Dmx="234~234" />
+      <Function ID="246" Name="Aura Tungsten" Display="'Aura Tungsten'" Dmx="235~235" />
+      <Function ID="247" Name="Aura Tungsten Delay" Display="'Aura Tungsten Delay'" Dmx="236~236" />
+      <Function ID="248" Name="Reserved 237" Display="'Reserved 237'" Dmx="237~237" />
+      <Function ID="249" Name="Reserved 238" Display="'Reserved 238'" Dmx="238~238" />
+      <Function ID="250" Name="Reserved 239" Display="'Reserved 239'" Dmx="239~239" />
+      <Function ID="251" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="252" Name="Aura Video SloMo" Display="'Aura Video SloMo'" Dmx="240~240" />
+      <Function ID="253" Name="Reserved 241" Display="'Reserved 241'" Dmx="241~241" />
+      <Function ID="254" Name="Reserved 242" Display="'Reserved 242'" Dmx="242~242" />
+      <Function ID="255" Name="Reserved 243" Display="'Reserved 243'" Dmx="243~243" />
+      <Function ID="256" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="257" Name="Complete Color Looks Static" Display="'Complete Color Looks Static'" Dmx="244~244" />
+      <Function ID="258" Name="Beam-Aura Step" Display="'Beam-Aura Step'" Dmx="245~245" />
+      <Function ID="259" Name="Beam-Aura Fade" Display="'Beam-Aura Fade'" Dmx="246~246" />
+      <Function ID="260" Name="Aura Ramp Beam Flash" Display="'Aura Ramp Beam Flash'" Dmx="247~247" />
+      <Function ID="261" Name="Beam Ramp Aura Flash" Display="'Beam Ramp Aura Flash'" Dmx="248~248" />
+      <Function ID="262" Name="Full Thunderstorm" Display="'Full Thunderstorm'" Dmx="249~249" />
+      <Function ID="263" Name="Full Welding" Display="'Full Welding'" Dmx="250~250" />
+      <Function ID="264" Name="Full 3 Step Strobe" Display="'Full 3 Step Strobe'" Dmx="251~251" />
+      <Function ID="265" Name="Reserved 252" Display="'Reserved 252'" Dmx="252~252" />
+      <Function ID="266" Name="Reserved 253" Display="'Reserved 253'" Dmx="253~253" />
+      <Function ID="267" Name="Reserved 254" Display="'Reserved 254'" Dmx="254~254" />
+      <Function ID="268" Name="Reserved 255" Display="'Reserved 255'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="FX_2_Adjust" Name="FX 2 Adjust" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="FWD" Display="'FWD %.1f%%',100.0~0.0" Dmx="255~130" />
+      <Function ID="2" Name="Stop" Display="'Stop'" Dmx="127~129" />
+      <Function ID="3" Name="REV" Display="'REV %.1f%%',0.0~100.0" Dmx="126~0" />
+    </Attribute>
+    <Attribute ID="FX_Sync" Name="FX Sync" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Sync" Display="'No Sync'" Dmx="0~0" />
+      <Function ID="2" Name="Offset" Display="'Offset %.f°',10~350" Dmx="1~35" />
+      <Function ID="3" Name="Synchronized" Display="'Synchronized'" Dmx="36~36" />
+      <Function ID="4" Name="Random Start" Display="'Random Start'" Dmx="101~120" />
+      <Function ID="5" Name="Random Duration" Display="'Random Duration'" Dmx="121~140" />
+    </Attribute>
+    <Attribute ID="Beam_Shutter" Name="Beam Shutter" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="0~0" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="30~30" />
+      <Function ID="3" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="50~200" />
+      <Function ID="4" Name="Rnd Strobe" Display="'Rnd Strobe %.f%%',0~100" Dmx="211~255" />
+    </Attribute>
+    <Attribute ID="Beam_Master" Name="Beam Master" Description="" Group="I" Merge="HTP" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="All_Beam_Red" Name="All Beam Red" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="All_Beam_Green" Name="All Beam Green" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="All_Beam_Blue" Name="All Beam Blue" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Beam_CTC" Name="Beam CTC" Description="" Group="C">
+      <Locate Locate="1:6500" PowerOn="1:6500" />
+      <Function ID="1" Name="CTO C-Mix" Display="'%.fK',1000~12850" Dmx="18~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Beam_Tint" Name="Beam Tint" Description="" Group="C">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="+ Mag" Display="'+ Mag %.1f%%',100.0~0.0" Dmx="0~126" Colour="255,255,255" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="128~128" Colour="255,255,255" />
+      <Function ID="3" Name="+ Grn" Display="'+ Grn %.1f%%',0.0~100.0" Dmx="129~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Beam_Col_Func" Name="Beam Col Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Beam_Colour" Colour="0,0,0" />
+      <Function ID="2" Name="Scroll" Display="'Scroll'" Dmx="0~0" Update="Beam_Colour" Colour="0,0,0" />
+      <Function ID="3" Name="Random" Display="'Random'" Dmx="0~0" Update="Beam_Colour" Colour="0,0,0" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Beam_Colour" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Beam_Colour" Name="Beam Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49" If="'Beam_Col_Func'==1" />
+      <Condition Name="Scroll" ID="50,51,52,53" If="'Beam_Col_Func'==2" />
+      <Condition Name="Random" ID="54,55,56,57" If="'Beam_Col_Func'==3" />
+      <Else ID="58" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Moroccan Pink" Display="'Moroccan Pink'" Dmx="11~11" Colour="255,150,150" />
+      <Function ID="3" Name="Pink" Display="'Pink'" Dmx="13~13" Colour="255,150,150" />
+      <Function ID="4" Name="Special Rose Pink" Display="'Special Rose Pink'" Dmx="15~15" Colour="255,150,150" />
+      <Function ID="5" Name="Follies Pink" Display="'Follies Pink'" Dmx="17~17" Colour="255,150,150" />
+      <Function ID="6" Name="Fuchsia Pink" Display="'Fuchsia Pink'" Dmx="19~19" Colour="255,150,150" />
+      <Function ID="7" Name="Surprise Pink" Display="'Surprise Pink'" Dmx="21~21" Colour="255,150,150" />
+      <Function ID="8" Name="Congo Blue" Display="'Congo Blue'" Dmx="23~23" Colour="0,0,255" />
+      <Function ID="9" Name="Tokyo Blue" Display="'Tokyo Blue'" Dmx="25~25" Colour="0,0,255" />
+      <Function ID="10" Name="Deep Blue" Display="'Deep Blue'" Dmx="27~27" Colour="0,0,255" />
+      <Function ID="11" Name="Just Blue" Display="'Just Blue'" Dmx="29~29" Colour="0,0,255" />
+      <Function ID="12" Name="Medium Blue" Display="'Medium Blue'" Dmx="31~31" Colour="0,0,255" />
+      <Function ID="13" Name="Double CT Blue" Display="'Double CT Blue'" Dmx="33~33" Colour="230,230,255" />
+      <Function ID="14" Name="Slate Blue" Display="'Slate Blue'" Dmx="35~35" Colour="230,230,255" />
+      <Function ID="15" Name="Full CT Blue" Display="'Full CT Blue'" Dmx="37~37" Colour="230,230,255" />
+      <Function ID="16" Name="Half CT Blue" Display="'Half CT Blue'" Dmx="39~39" Colour="230,230,255" />
+      <Function ID="17" Name="Steel Blue" Display="'Steel Blue'" Dmx="41~41" Colour="230,230,255" />
+      <Function ID="18" Name="Lighter Blue" Display="'Lighter Blue'" Dmx="43~43" Colour="0,128,255" />
+      <Function ID="19" Name="Light Blue" Display="'Light Blue'" Dmx="45~45" Colour="0,128,255" />
+      <Function ID="20" Name="Medium Blue Green" Display="'Medium Blue Green'" Dmx="47~47" Colour="0,255,200" />
+      <Function ID="21" Name="Dark Green" Display="'Dark Green'" Dmx="49~49" Colour="0,180,0" />
+      <Function ID="22" Name="Primary Green" Display="'Primary Green'" Dmx="51~51" Colour="0,255,0" />
+      <Function ID="23" Name="Moss Green" Display="'Moss Green'" Dmx="53~53" Colour="0,255,0" />
+      <Function ID="24" Name="Fern Green" Display="'Fern Green'" Dmx="55~55" Colour="0,255,0" />
+      <Function ID="25" Name="Jas Green" Display="'Jas Green'" Dmx="57~57" Colour="0,255,0" />
+      <Function ID="26" Name="Lime Green" Display="'Lime Green'" Dmx="59~59" Colour="0,255,0" />
+      <Function ID="27" Name="Spring Yellow" Display="'Spring Yellow'" Dmx="61~61" Colour="255,255,0" />
+      <Function ID="28" Name="Deep Amber" Display="'Deep Amber'" Dmx="63~63" Colour="255,128,0" />
+      <Function ID="29" Name="Chrome Orange" Display="'Chrome Orange'" Dmx="65~65" Colour="255,128,0" />
+      <Function ID="30" Name="Orange" Display="'Orange'" Dmx="67~67" Colour="255,128,0" />
+      <Function ID="31" Name="Gold Amber" Display="'Gold Amber'" Dmx="69~69" Colour="255,128,0" />
+      <Function ID="32" Name="Millennium Gold" Display="'Millennium Gold'" Dmx="71~71" Colour="255,128,0" />
+      <Function ID="33" Name="Deep Golden Amber" Display="'Deep Golden Amber'" Dmx="73~73" Colour="255,128,0" />
+      <Function ID="34" Name="Flame Red" Display="'Flame Red'" Dmx="75~75" Colour="255,0,0" />
+      <Function ID="35" Name="Red Magenta" Display="'Red Magenta'" Dmx="77~77" Colour="255,0,0" />
+      <Function ID="36" Name="Medium Lavender" Display="'Medium Lavender'" Dmx="79~79" Colour="255,128,255" />
+      <Function ID="37" Name="Pure White" Display="'Pure White'" Dmx="81~81" Colour="255,255,255" />
+      <Function ID="38" Name="Pure Red" Display="'Pure Red'" Dmx="83~83" Colour="255,0,0" />
+      <Function ID="39" Name="Pure Yellow" Display="'Pure Yellow'" Dmx="85~85" Colour="255,255,0" />
+      <Function ID="40" Name="Pure Green" Display="'Pure Green'" Dmx="87~87" Colour="0,255,0" />
+      <Function ID="41" Name="Pure Cyan" Display="'Pure Cyan'" Dmx="89~89" Colour="0,255,255" />
+      <Function ID="42" Name="Pure Blue" Display="'Pure Blue'" Dmx="91~91" Colour="0,0,255" />
+      <Function ID="43" Name="Pure Magenta" Display="'Pure Magenta'" Dmx="93~93" Colour="255,0,255" />
+      <Function ID="44" Name="Peacock Blue" Display="'Peacock Blue'" Dmx="95~95" Colour="0,255,150" />
+      <Function ID="45" Name="Dark Lavender" Display="'Dark Lavender'" Dmx="97~97" Colour="255,100,200" />
+      <Function ID="46" Name="Double CT Orange" Display="'Double CT Orange'" Dmx="99~99" Colour="255,200,100" />
+      <Function ID="47" Name="Full CT Orange" Display="'Full CT Orange'" Dmx="101~101" Colour="255,220,110" />
+      <Function ID="48" Name="Half CT Orange" Display="'Half CT Orange'" Dmx="103~103" Colour="255,230,150" />
+      <Function ID="49" Name="Deep Straw" Display="'Deep Straw'" Dmx="105~105" Colour="250,250,125" />
+      <Function ID="50" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="51" Name="Scroll CW" Display="'Scroll CW %.f%%',100~0" Dmx="191~214" Colour="0,0,0" />
+      <Function ID="52" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="53" Name="Scroll CCW" Display="'Scroll CCW %.f%%',0~100" Dmx="220~243" Colour="0,0,0" />
+      <Function ID="54" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="55" Name="Rand Slow" Display="'Rand Slow'" Dmx="252~255" Colour="255,255,255" />
+      <Function ID="56" Name="Rand Med" Display="'Rand Med'" Dmx="248~251" Colour="255,255,255" />
+      <Function ID="57" Name="Rand Fast" Display="'Rand Fast'" Dmx="244~247" Colour="255,255,255" />
+      <Function ID="58" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Beam_P3_Mode" Name="Beam P3 Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="DMX" Display="'DMX'" Dmx="0~0" />
+      <Function ID="2" Name="DMX-&gt;P3" Display="'DMX-&gt;P3 %.1f%%',0.0~100.0" Dmx="27~228" />
+      <Function ID="3" Name="P3" Display="'P3'" Dmx="229~255" />
+    </Attribute>
+    <Attribute ID="Aura_Shutter" Name="Aura Shutter" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="0~0" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="30~30" />
+      <Function ID="3" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="50~200" />
+      <Function ID="4" Name="Rnd Strobe" Display="'Rnd Strobe %.f%%',0~100" Dmx="211~255" />
+    </Attribute>
+    <Attribute ID="Aura_Master" Name="Aura Master" Description="" Group="I" Merge="HTP" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="All_Aura_Red" Name="All Aura Red" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="All_Aura_Green" Name="All Aura Green" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="All_Aura_Blue" Name="All Aura Blue" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Aura_CTC" Name="Aura CTC" Description="" Group="C">
+      <Locate Locate="1:6500" PowerOn="1:6500" />
+      <Function ID="1" Name="CTO C-Mix" Display="'%.fK',1000~12850" Dmx="18~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Aura_Tint" Name="Aura Tint" Description="" Group="C">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="+ Mag" Display="'+ Mag %.1f%%',100.0~0.0" Dmx="0~126" Colour="255,255,255" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="128~128" Colour="255,255,255" />
+      <Function ID="3" Name="+ Grn" Display="'+ Grn %.1f%%',0.0~100.0" Dmx="129~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Aura_Col_Func" Name="Aura Col Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+      <Function ID="2" Name="Scroll" Display="'Scroll'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+      <Function ID="3" Name="Random" Display="'Random'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Aura_Colour" Name="Aura Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49" If="'Aura_Col_Func'==1" />
+      <Condition Name="Scroll" ID="50,51,52,53" If="'Aura_Col_Func'==2" />
+      <Condition Name="Random" ID="54,55,56,57" If="'Aura_Col_Func'==3" />
+      <Else ID="58" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Moroccan Pink" Display="'Moroccan Pink'" Dmx="11~11" Colour="255,150,150" />
+      <Function ID="3" Name="Pink" Display="'Pink'" Dmx="13~13" Colour="255,150,150" />
+      <Function ID="4" Name="Special Rose Pink" Display="'Special Rose Pink'" Dmx="15~15" Colour="255,150,150" />
+      <Function ID="5" Name="Follies Pink" Display="'Follies Pink'" Dmx="17~17" Colour="255,150,150" />
+      <Function ID="6" Name="Fuchsia Pink" Display="'Fuchsia Pink'" Dmx="19~19" Colour="255,150,150" />
+      <Function ID="7" Name="Surprise Pink" Display="'Surprise Pink'" Dmx="21~21" Colour="255,150,150" />
+      <Function ID="8" Name="Congo Blue" Display="'Congo Blue'" Dmx="23~23" Colour="0,0,255" />
+      <Function ID="9" Name="Tokyo Blue" Display="'Tokyo Blue'" Dmx="25~25" Colour="0,0,255" />
+      <Function ID="10" Name="Deep Blue" Display="'Deep Blue'" Dmx="27~27" Colour="0,0,255" />
+      <Function ID="11" Name="Just Blue" Display="'Just Blue'" Dmx="29~29" Colour="0,0,255" />
+      <Function ID="12" Name="Medium Blue" Display="'Medium Blue'" Dmx="31~31" Colour="0,0,255" />
+      <Function ID="13" Name="Double CT Blue" Display="'Double CT Blue'" Dmx="33~33" Colour="230,230,255" />
+      <Function ID="14" Name="Slate Blue" Display="'Slate Blue'" Dmx="35~35" Colour="230,230,255" />
+      <Function ID="15" Name="Full CT Blue" Display="'Full CT Blue'" Dmx="37~37" Colour="230,230,255" />
+      <Function ID="16" Name="Half CT Blue" Display="'Half CT Blue'" Dmx="39~39" Colour="230,230,255" />
+      <Function ID="17" Name="Steel Blue" Display="'Steel Blue'" Dmx="41~41" Colour="230,230,255" />
+      <Function ID="18" Name="Lighter Blue" Display="'Lighter Blue'" Dmx="43~43" Colour="0,128,255" />
+      <Function ID="19" Name="Light Blue" Display="'Light Blue'" Dmx="45~45" Colour="0,128,255" />
+      <Function ID="20" Name="Medium Blue Green" Display="'Medium Blue Green'" Dmx="47~47" Colour="0,255,200" />
+      <Function ID="21" Name="Dark Green" Display="'Dark Green'" Dmx="49~49" Colour="0,180,0" />
+      <Function ID="22" Name="Primary Green" Display="'Primary Green'" Dmx="51~51" Colour="0,255,0" />
+      <Function ID="23" Name="Moss Green" Display="'Moss Green'" Dmx="53~53" Colour="0,255,0" />
+      <Function ID="24" Name="Fern Green" Display="'Fern Green'" Dmx="55~55" Colour="0,255,0" />
+      <Function ID="25" Name="Jas Green" Display="'Jas Green'" Dmx="57~57" Colour="0,255,0" />
+      <Function ID="26" Name="Lime Green" Display="'Lime Green'" Dmx="59~59" Colour="0,255,0" />
+      <Function ID="27" Name="Spring Yellow" Display="'Spring Yellow'" Dmx="61~61" Colour="255,255,0" />
+      <Function ID="28" Name="Deep Amber" Display="'Deep Amber'" Dmx="63~63" Colour="255,128,0" />
+      <Function ID="29" Name="Chrome Orange" Display="'Chrome Orange'" Dmx="65~65" Colour="255,128,0" />
+      <Function ID="30" Name="Orange" Display="'Orange'" Dmx="67~67" Colour="255,128,0" />
+      <Function ID="31" Name="Gold Amber" Display="'Gold Amber'" Dmx="69~69" Colour="255,128,0" />
+      <Function ID="32" Name="Millennium Gold" Display="'Millennium Gold'" Dmx="71~71" Colour="255,128,0" />
+      <Function ID="33" Name="Deep Golden Amber" Display="'Deep Golden Amber'" Dmx="73~73" Colour="255,128,0" />
+      <Function ID="34" Name="Flame Red" Display="'Flame Red'" Dmx="75~75" Colour="255,0,0" />
+      <Function ID="35" Name="Red Magenta" Display="'Red Magenta'" Dmx="77~77" Colour="255,0,0" />
+      <Function ID="36" Name="Medium Lavender" Display="'Medium Lavender'" Dmx="79~79" Colour="255,128,255" />
+      <Function ID="37" Name="Pure White" Display="'Pure White'" Dmx="81~81" Colour="255,255,255" />
+      <Function ID="38" Name="Pure Red" Display="'Pure Red'" Dmx="83~83" Colour="255,0,0" />
+      <Function ID="39" Name="Pure Yellow" Display="'Pure Yellow'" Dmx="85~85" Colour="255,255,0" />
+      <Function ID="40" Name="Pure Green" Display="'Pure Green'" Dmx="87~87" Colour="0,255,0" />
+      <Function ID="41" Name="Pure Cyan" Display="'Pure Cyan'" Dmx="89~89" Colour="0,255,255" />
+      <Function ID="42" Name="Pure Blue" Display="'Pure Blue'" Dmx="91~91" Colour="0,0,255" />
+      <Function ID="43" Name="Pure Magenta" Display="'Pure Magenta'" Dmx="93~93" Colour="255,0,255" />
+      <Function ID="44" Name="Peacock Blue" Display="'Peacock Blue'" Dmx="95~95" Colour="0,255,150" />
+      <Function ID="45" Name="Dark Lavender" Display="'Dark Lavender'" Dmx="97~97" Colour="255,100,200" />
+      <Function ID="46" Name="Double CT Orange" Display="'Double CT Orange'" Dmx="99~99" Colour="255,200,100" />
+      <Function ID="47" Name="Full CT Orange" Display="'Full CT Orange'" Dmx="101~101" Colour="255,220,110" />
+      <Function ID="48" Name="Half CT Orange" Display="'Half CT Orange'" Dmx="103~103" Colour="255,230,150" />
+      <Function ID="49" Name="Deep Straw" Display="'Deep Straw'" Dmx="105~105" Colour="250,250,125" />
+      <Function ID="50" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="51" Name="Scroll CW" Display="'Scroll CW %.f%%',100~0" Dmx="191~214" Colour="0,0,0" />
+      <Function ID="52" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="53" Name="Scroll CCW" Display="'Scroll CCW %.f%%',0~100" Dmx="220~243" Colour="0,0,0" />
+      <Function ID="54" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="55" Name="Rand Slow" Display="'Rand Slow'" Dmx="252~255" Colour="255,255,255" />
+      <Function ID="56" Name="Rand Med" Display="'Rand Med'" Dmx="248~251" Colour="255,255,255" />
+      <Function ID="57" Name="Rand Fast" Display="'Rand Fast'" Dmx="244~247" Colour="255,255,255" />
+      <Function ID="58" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Aura_P3_Mode" Name="Aura P3 Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="DMX" Display="'DMX'" Dmx="0~0" />
+      <Function ID="2" Name="DMX-&gt;P3" Display="'DMX-&gt;P3 %.1f%%',0.0~100.0" Dmx="27~228" />
+      <Function ID="3" Name="P3" Display="'P3'" Dmx="229~255" />
+    </Attribute>
+    <Attribute ID="White" Name="White" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="White C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Reserved" Name="Reserved" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="Compact, 20 DMX" Channels="20" Id="547776b8-628d-4415-aac7-437671dbffea">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="2a45df17-c409-448e-a622-add319e7b930" />
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="10" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="11" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="12" Wheel="37" />
+      <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+      <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+      <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+      <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+    </Include>
+  </Mode>
+  <Mode Name="Basic, 36 DMX" Channels="36" Id="8e47bd3d-6967-4317-8c0b-322bdc8ac979">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="308da038-e47d-4a1a-ab7b-60aac19d7d93" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Shutter" Wheel="34" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="CTO" Wheel="7" />
+        <Attribute ID="Tint" Wheel="8" />
+        <Attribute ID="Colour1Func" Wheel="9" />
+        <Attribute ID="Colour1" Wheel="37" />
+        <Attribute ID="P3_Mode" Wheel="25" />
+        <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+        <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+        <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+        <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+        <Attribute ID="FX_1_Func" Wheel="22" />
+        <Attribute ID="FX_1" ChannelOffset="22" Wheel="23" />
+        <Attribute ID="FX_1_Adjust" ChannelOffset="23" Wheel="24" />
+        <Attribute ID="FX_2_Func" Wheel="52" />
+        <Attribute ID="FX_2" ChannelOffset="24" Wheel="53" />
+        <Attribute ID="FX_2_Adjust" ChannelOffset="25" Wheel="54" />
+        <Attribute ID="FX_Sync" ChannelOffset="26" Wheel="82" />
+        <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+      </Master>
+      <Cell ID="Cell1" Name="Beam" ChannelOffset="1" ModeLink="Beam cell" X="0" Y="0">
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Colour1Func" TargetId="Colour1Func" />
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+        <AttributeLink SourceId="P3_Mode" TargetId="P3_Mode" />
+        <AttributeLink SourceId="Tint" TargetId="Tint" />
+      </Cell>
+      <Cell ID="Cell2" Name="Aura" ChannelOffset="27" ModeLink="Aura cell" X="0" Y="1">
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Colour1Func" TargetId="Colour1Func" />
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+        <AttributeLink SourceId="P3_Mode" TargetId="P3_Mode" />
+        <AttributeLink SourceId="Tint" TargetId="Tint" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Extended, 57 DMX" Channels="57" Id="394d2ecd-2022-4053-895d-326b2d501717">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="ec13b8fb-c8cc-4436-8fed-6cc2d997535e" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Beam_Shutter" ChannelOffset="1" Wheel="35" />
+        <Attribute ID="Beam_Master" ChannelOffset="2,3" Wheel="4" />
+        <Attribute ID="All_Beam_Red" ChannelOffset="4,5" Wheel="41" />
+        <Attribute ID="All_Beam_Green" ChannelOffset="6,7" Wheel="42" />
+        <Attribute ID="All_Beam_Blue" ChannelOffset="8,9" Wheel="70" />
+        <Attribute ID="Beam_CTC" ChannelOffset="10" Wheel="38" />
+        <Attribute ID="Beam_Tint" ChannelOffset="11" Wheel="39" />
+        <Attribute ID="Beam_Col_Func" Wheel="67" />
+        <Attribute ID="Beam_Colour" ChannelOffset="12" Wheel="68" />
+        <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+        <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+        <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+        <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+        <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+        <Attribute ID="Beam_P3_Mode" ChannelOffset="21" Wheel="26" />
+        <Attribute ID="FX_1_Func" Wheel="22" />
+        <Attribute ID="FX_1" ChannelOffset="22" Wheel="23" />
+        <Attribute ID="FX_1_Adjust" ChannelOffset="23" Wheel="24" />
+        <Attribute ID="FX_2_Func" Wheel="52" />
+        <Attribute ID="FX_2" ChannelOffset="24" Wheel="53" />
+        <Attribute ID="FX_2_Adjust" ChannelOffset="25" Wheel="54" />
+        <Attribute ID="FX_Sync" ChannelOffset="26" Wheel="82" />
+        <Attribute ID="Aura_Col_Func" Wheel="98" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Shutter" Wheel="34" />
+        <Attribute ID="CTO" Wheel="7" />
+        <Attribute ID="Tint" Wheel="8" />
+        <Attribute ID="Colour1Func" Wheel="9" />
+        <Attribute ID="Colour1" Wheel="37" />
+        <Attribute ID="P3_Mode" Wheel="25" />
+      </Master>
+      <Cell ID="Cell1" Name="Beam 1" ChannelOffset="37" ModeLink="RGB cell" X="3" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam 2" ChannelOffset="40" ModeLink="RGB cell" X="4" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Beam 3" ChannelOffset="43" ModeLink="RGB cell" X="5" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Beam 4" ChannelOffset="46" ModeLink="RGB cell" X="4" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Beam 5" ChannelOffset="49" ModeLink="RGB cell" X="2" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Beam 6" ChannelOffset="52" ModeLink="RGB cell" X="1" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Beam 7" ChannelOffset="55" ModeLink="RGB cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Aura" ChannelOffset="27" ModeLink="Aura cell" X="0" Y="0">
+        <AttributeLink SourceId="Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="CTO" TargetId="CTO" />
+        <AttributeLink SourceId="Tint" TargetId="Tint" />
+        <AttributeLink SourceId="Colour1Func" TargetId="Colour1Func" />
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+        <AttributeLink SourceId="P3_Mode" TargetId="P3_Mode" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Ludicrous, 93 DMX" Channels="93" Id="01c7db9c-f544-4aec-bbf5-67b33a21a7f8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="3596aecc-2de7-424c-a71c-9cc9e39367a2" />
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Beam_Shutter" ChannelOffset="1" Wheel="35" />
+        <Attribute ID="Beam_Master" ChannelOffset="2,3" Wheel="4" />
+        <Attribute ID="All_Beam_Red" ChannelOffset="4,5" Wheel="41" />
+        <Attribute ID="All_Beam_Green" ChannelOffset="6,7" Wheel="42" />
+        <Attribute ID="All_Beam_Blue" ChannelOffset="8,9" Wheel="70" />
+        <Attribute ID="Beam_CTC" ChannelOffset="10" Wheel="38" />
+        <Attribute ID="Beam_Tint" ChannelOffset="11" Wheel="39" />
+        <Attribute ID="Beam_Col_Func" Wheel="67" />
+        <Attribute ID="Beam_Colour" ChannelOffset="12" Wheel="68" />
+        <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+        <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+        <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+        <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+        <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+        <Attribute ID="Beam_P3_Mode" ChannelOffset="21" Wheel="26" />
+        <Attribute ID="FX_1_Func" Wheel="22" />
+        <Attribute ID="FX_1" ChannelOffset="22" Wheel="23" />
+        <Attribute ID="FX_1_Adjust" ChannelOffset="23" Wheel="24" />
+        <Attribute ID="FX_2_Func" Wheel="52" />
+        <Attribute ID="FX_2" ChannelOffset="24" Wheel="53" />
+        <Attribute ID="FX_2_Adjust" ChannelOffset="25" Wheel="54" />
+        <Attribute ID="FX_Sync" ChannelOffset="26" Wheel="82" />
+        <Attribute ID="Aura_Shutter" ChannelOffset="27" Wheel="36" />
+        <Attribute ID="Aura_Master" ChannelOffset="28,29" Wheel="5" />
+        <Attribute ID="All_Aura_Red" ChannelOffset="30" Wheel="71" />
+        <Attribute ID="All_Aura_Green" ChannelOffset="31" Wheel="72" />
+        <Attribute ID="All_Aura_Blue" ChannelOffset="32" Wheel="100" />
+        <Attribute ID="Aura_CTC" ChannelOffset="33" Wheel="69" />
+        <Attribute ID="Aura_Tint" ChannelOffset="34" Wheel="97" />
+        <Attribute ID="Aura_Col_Func" Wheel="98" />
+        <Attribute ID="Aura_Colour" ChannelOffset="35" Wheel="99" />
+        <Attribute ID="Aura_P3_Mode" ChannelOffset="36" Wheel="27" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Beam 1" ChannelOffset="37" ModeLink="RGB cell" X="4" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam 2" ChannelOffset="40" ModeLink="RGB cell" X="5" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Beam 3" ChannelOffset="43" ModeLink="RGB cell" X="6" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Beam 4" ChannelOffset="46" ModeLink="RGB cell" X="5" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Beam 5" ChannelOffset="49" ModeLink="RGB cell" X="3" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Beam 6" ChannelOffset="52" ModeLink="RGB cell" X="2" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Beam 7" ChannelOffset="55" ModeLink="RGB cell" X="3" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Filament 1" ChannelOffset="58" ModeLink="RGB cell" X="5" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Filament 2" ChannelOffset="61" ModeLink="RGB cell" X="7" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Filament 3" ChannelOffset="64" ModeLink="RGB cell" X="8" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Filament 4" ChannelOffset="67" ModeLink="RGB cell" X="8" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Filament 5" ChannelOffset="70" ModeLink="RGB cell" X="7" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Filament 6" ChannelOffset="73" ModeLink="RGB cell" X="5" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Filament 7" ChannelOffset="76" ModeLink="RGB cell" X="3" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Filament 8" ChannelOffset="79" ModeLink="RGB cell" X="1" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Filament 9" ChannelOffset="82" ModeLink="RGB cell" X="0" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Filament 10" ChannelOffset="85" ModeLink="RGB cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Filament 11" ChannelOffset="88" ModeLink="RGB cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Filament 12" ChannelOffset="91" ModeLink="RGB cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Compact Direct, 20 DMX" Channels="20" Id="8ca8b086-0123-4616-9618-7062cc1759e6">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="2aaab6c9-6825-46d1-b3f6-6ab627d37987" />
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="White" ChannelOffset="10,11" Wheel="40" />
+      <Attribute ID="Reserved" ChannelOffset="12" Wheel="30" />
+      <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+      <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+      <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+      <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+    </Include>
+  </Mode>
+  <Mode Name="Extended (Master part, patch 1/3)" Channels="26" Id="2aef2471-85b7-4f52-a934-3174363d67d4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="10" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="11" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="12" Wheel="37" />
+      <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+      <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+      <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+      <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+      <Attribute ID="P3_Mode" ChannelOffset="21" Wheel="25" />
+      <Attribute ID="FX_1_Func" Wheel="22" />
+      <Attribute ID="FX_1" ChannelOffset="22" Wheel="23" />
+      <Attribute ID="FX_1_Adjust" ChannelOffset="23" Wheel="24" />
+      <Attribute ID="FX_2_Func" Wheel="52" />
+      <Attribute ID="FX_2" ChannelOffset="24" Wheel="53" />
+      <Attribute ID="FX_2_Adjust" ChannelOffset="25" Wheel="54" />
+      <Attribute ID="FX_Sync" ChannelOffset="26" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Extended (Aura part, patch 2/3)" Channels="10" Id="ce110d77-8a83-428d-9935-4bb3dd7766fa">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="6" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="7" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="8" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="9" Wheel="37" />
+      <Attribute ID="P3_Mode" ChannelOffset="10" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Extended (Beam pixels part, patch 3/3)" Channels="21" Id="23d02d94-f72a-400d-99f3-a28a0b96444a">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="1" ModeLink="RGB cell" X="2" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="4" ModeLink="RGB cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="7" ModeLink="RGB cell" X="4" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="10" ModeLink="RGB cell" X="3" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Cell 5" ChannelOffset="13" ModeLink="RGB cell" X="1" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Cell 6" ChannelOffset="16" ModeLink="RGB cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Cell 7" ChannelOffset="19" ModeLink="RGB cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Ludicrous (Beam master part, patch 1/4)" Channels="26" Id="8860be69-6618-4f32-a2b5-8c41cf92e3af">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="10" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="11" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="12" Wheel="37" />
+      <Attribute ID="Zoom" ChannelOffset="13,14" Wheel="19" />
+      <Attribute ID="Pan" ChannelOffset="15,16" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="17,18" Wheel="3" />
+      <Attribute ID="Control" ChannelOffset="19" Wheel="29" />
+      <Attribute ID="LED_Frequency" ChannelOffset="20" Wheel="28" />
+      <Attribute ID="P3_Mode" ChannelOffset="21" Wheel="25" />
+      <Attribute ID="FX_1_Func" Wheel="22" />
+      <Attribute ID="FX_1" ChannelOffset="22" Wheel="23" />
+      <Attribute ID="FX_1_Adjust" ChannelOffset="23" Wheel="24" />
+      <Attribute ID="FX_2_Func" Wheel="52" />
+      <Attribute ID="FX_2" ChannelOffset="24" Wheel="53" />
+      <Attribute ID="FX_2_Adjust" ChannelOffset="25" Wheel="54" />
+      <Attribute ID="FX_Sync" ChannelOffset="26" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Ludicrous (Aura master part, patch 2/4)" Channels="10" Id="25476651-10b1-4c45-956c-d3cd74c520d4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="6" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="7" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="8" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="9" Wheel="37" />
+      <Attribute ID="P3_Mode" ChannelOffset="10" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Ludicrous (Beam pixels part, patch 3/4)" Channels="21" Id="48520678-9425-41fb-8bc6-1b4b934af6c0">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Beam 1" ChannelOffset="1" ModeLink="RGB cell" X="2" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Beam 2" ChannelOffset="4" ModeLink="RGB cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Beam 3" ChannelOffset="7" ModeLink="RGB cell" X="4" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Beam 4" ChannelOffset="10" ModeLink="RGB cell" X="3" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Beam 5" ChannelOffset="13" ModeLink="RGB cell" X="1" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Beam 6" ChannelOffset="16" ModeLink="RGB cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Beam 7" ChannelOffset="19" ModeLink="RGB cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Ludicrous (Aura pixels part, patch 4/4)" Channels="36" Id="0f5a11b3-457d-4cc0-b4ef-322746b78cc4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Filament 1" ChannelOffset="1" ModeLink="RGB cell" X="5" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Filament 2" ChannelOffset="4" ModeLink="RGB cell" X="7" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Filament 3" ChannelOffset="7" ModeLink="RGB cell" X="8" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Filament 4" ChannelOffset="10" ModeLink="RGB cell" X="8" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Filament 5" ChannelOffset="13" ModeLink="RGB cell" X="7" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Filament 6" ChannelOffset="16" ModeLink="RGB cell" X="5" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Filament 7" ChannelOffset="19" ModeLink="RGB cell" X="3" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Filament 8" ChannelOffset="22" ModeLink="RGB cell" X="1" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Filament 9" ChannelOffset="25" ModeLink="RGB cell" X="0" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Filament 10" ChannelOffset="28" ModeLink="RGB cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Filament 11" ChannelOffset="31" ModeLink="RGB cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Filament 12" ChannelOffset="34" ModeLink="RGB cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Beam cell" Channels="13" Hidden="True" Id="ffc1261e-f13b-4e18-ab72-31708b032902">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="10" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="11" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="12" Wheel="37" />
+      <Attribute ID="P3_Mode" ChannelOffset="21" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="Aura cell" Channels="10" Hidden="True" Id="8d7bd616-65c0-403e-ab24-bee82189c10f">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="34" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="6" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="7" Wheel="7" />
+      <Attribute ID="Tint" ChannelOffset="8" Wheel="8" />
+      <Attribute ID="Colour1Func" Wheel="9" />
+      <Attribute ID="Colour1" ChannelOffset="9" Wheel="37" />
+      <Attribute ID="P3_Mode" ChannelOffset="10" Wheel="25" />
+    </Include>
+  </Mode>
+  <Mode Name="RGB cell" Channels="3" Hidden="True" Id="0dce2ffc-c729-4311-bc76-036e98ffab53">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="220" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Reset All">
+      <Set Channel="Control:4" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset Beam">
+      <Set Channel="Control:4" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset P/T">
+      <Set Channel="Control:3" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Linear">
+      <Set Channel="Control:5" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Square">
+      <Set Channel="Control:6" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Inv Square">
+      <Set Channel="Control:7" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim S-Curve">
+      <Set Channel="Control:8" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="P/T Fast">
+      <Set Channel="Control:9" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="P/T Smooth">
+      <Set Channel="Control:10" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Video Tracking On">
+      <Set Channel="Control:11" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Video Tracking Off">
+      <Set Channel="Control:12" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Col Extended">
+      <Set Channel="Control:13" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Col Calibrated">
+      <Set Channel="Control:14" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Display On">
+      <Set Channel="Control:15" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Display Off">
+      <Set Channel="Control:16" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Auto">
+      <Set Channel="Control:17" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Full">
+      <Set Channel="Control:18" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Med">
+      <Set Channel="Control:19" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Low">
+      <Set Channel="Control:20" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Ultra-Low">
+      <Set Channel="Control:21" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Hibernate On">
+      <Set Channel="Control:22" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Hibernate Off">
+      <Set Channel="Control:23" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="P/T Limit On">
+      <Set Channel="Control:24" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="P/T Limit Off">
+      <Set Channel="Control:25" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Lower Pan Limit">
+      <Set Channel="Control:26" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Upper Pan Limit">
+      <Set Channel="Control:27" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Lower Tilt Limit">
+      <Set Channel="Control:28" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Upper Tilt Limit">
+      <Set Channel="Control:29" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset P/T Limit">
+      <Set Channel="Control:30" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Tungsten On">
+      <Set Channel="Control:31" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Tungsten Off">
+      <Set Channel="Control:32" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Scane Capture Record">
+      <Set Channel="Control:33" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Scene Capture Playback On">
+      <Set Channel="Control:34" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Scene Capture Playback Off">
+      <Set Channel="Control:35" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Output Mode High Output">
+      <Set Channel="Control:36" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Output Mode High Quality">
+      <Set Channel="Control:37" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Compact Mode Aura On">
+      <Set Channel="Control:38" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Compact Mode Aura Off">
+      <Set Channel="Control:39" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Enable Cal">
+      <Set Channel="Control:40" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store P/T Cal">
+      <Set Channel="Control:42" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Dim Cal">
+      <Set Channel="Control:42" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Zoom Cal">
+      <Set Channel="Control:43" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset All Cal">
+      <Set Channel="Control:44" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Auto Empty Water On">
+      <Set Channel="Control:45" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Auto Empty Water Off">
+      <Set Channel="Control:46" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Outdoor - Stop Actions and Return to Normal">
+      <Set Channel="Control:47" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Outdoor - Empty Head">
+      <Set Channel="Control:48" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Outdoor - Dry Off">
+      <Set Channel="Control:49" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Outdoor - Go to Safe Parking Position">
+      <Set Channel="Control:50" Delay="2000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+    <Group Name="Position">
+      <Palette ID="1" Name="Middle" Number="21" Page="1" SetControl="Pan:1:50,Tilt:1:50" />
+      <Palette ID="2" Name="Left" Number="22" Page="1" SetControl="Pan:1:31,Tilt:1:50" />
+      <Palette ID="3" Name="Right" Number="23" Page="1" SetControl="Pan:1:69,Tilt:1:50" />
+      <Palette ID="4" Name="Top" Number="24" Page="1" SetControl="Pan:1:50,Tilt:1:31" />
+      <Palette ID="5" Name="Bottom" Number="25" Page="1" SetControl="Pan:1:50,Tilt:1:69" />
+      <Palette ID="6" Name="TLeft" Number="26" Page="1" SetControl="Pan:1:31,Tilt:1:31" />
+      <Palette ID="7" Name="TRight" Number="27" Page="1" SetControl="Pan:1:69,Tilt:1:69" />
+      <Palette ID="8" Name="BLeft" Number="28" Page="1" SetControl="Pan:1:31,Tilt:1:69" />
+      <Palette ID="9" Name="BRight" Number="29" Page="1" SetControl="Pan:1:69,Tilt:1:31" />
+    </Group>
+    <Group Name="Shutter">
+      <Palette ID="1" Name="Open" Number="31" Page="1" SetControl="Shutter:2" />
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:3:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:3:100" />
+      <Palette ID="4" Name="Slow Random Strobe" Legend="Slow R Stb" Number="34" Page="1" SetControl="Shutter:4:50" />
+      <Palette ID="5" Name="Fast Random Strobe" Legend="Fast R Stb" Number="35" Page="1" SetControl="Shutter:4:100" />
+      <Palette ID="8" Name="Closed" Number="38" Page="1" SetControl="Shutter:1" />
+    </Group>
+    <Group Name="Beam">
+      <Palette ID="1" Name="Zoom Small" Number="41" Page="1" SetControl="Zoom:1:0" />
+      <Palette ID="2" Name="Zoom Medium" Legend="Zoom Med" Number="42" Page="1" SetControl="Zoom:1:50" />
+      <Palette ID="3" Name="Zoom Large" Number="43" Page="1" SetControl="Zoom:1:100" />
+    </Group>
+  </Palettes>
+  <swatchLibrary>
+    <Swatch id="9345d880-9e71-4ffb-ac1f-ee725d8ea44d">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</Swatch>
+  </swatchLibrary>
+</Fixture>

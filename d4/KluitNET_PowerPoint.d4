@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="PowerPoint" ShortName="PowerPoint" Company="KluitNET">
+  <Copyright Notice="© Avolites Ltd. 2016" />
+  <History Date="19-10-16" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Allow Transition" Display="'Allow Transition'" Dmx="1~24" />
+      <Function ID="3" Name="Start Show" Display="'Start Show'" Dmx="25~49" />
+      <Function ID="4" Name="Stop Show + Exit" Display="'Stop Show + Exit'" Dmx="50~74" />
+      <Function ID="5" Name="Show Blackscreen" Display="'Show Blackscreen'" Dmx="75~99" />
+      <Function ID="6" Name="Next" Display="'Next'" Dmx="100~124" />
+      <Function ID="7" Name="Previous" Display="'Previous'" Dmx="125~149" />
+    </Attribute>
+    <Attribute ID="Slide" Name="Slide" Description="" Group="G">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Slide" Display="'Slide %.f',1~255" Dmx="1~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="3 DMX" Channels="3">
+    <Import PearlRef="UKKNPPNT" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Control" ChannelOffset="2" Wheel="28" />
+      <Attribute ID="Slide" ChannelOffset="3" Wheel="14" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Next">
+      <Set Channel="Control:6" Delay="500" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Previous">
+      <Set Channel="Control:7" Delay="500" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Allow Transition">
+      <Set Channel="Control:2" Delay="500" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Start Show">
+      <Set Channel="Control:3" Delay="500" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Stop Show + Exit">
+      <Set Channel="Control:4" Delay="500" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Show Blackscreen">
+      <Set Channel="Control:5" Delay="500" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

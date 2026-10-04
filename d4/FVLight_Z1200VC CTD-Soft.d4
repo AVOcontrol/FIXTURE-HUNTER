@@ -1,0 +1,835 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Z1200VC CTD-Soft" ShortName="Z1200VCCTD" Company="FVLight" Version="3">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <Thumbnail>eac06a9d-698a-4cd9-a5fb-2121aff5658f</Thumbnail>
+  <History Date="02-07-23" Author="Nic Morris" Comment="Created (confusing charts.  assume there is a selectable 8 or 16bit mode on the fixture.  gels are not defined.  light strobe effect green-magenta control contains range conflicts)" Version="0" />
+  <History Date="02-07-23" Author="Nic Morris" Comment="(mode control invoves dynamic resolution switching which is not currently supported.  implemented as separate modes for now)" Version="0" />
+  <History Date="04-07-23" Author="Nic Morris" Comment="Added Atlabase ID's." Version="3" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="7b72af21-bd17-4deb-9801-c13fedd79c09" />
+  <Control>
+    <Attribute ID="Dim_Curve" Name="Dim Curve" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Linear" Display="'Linear'" Dmx="0~0" />
+      <Function ID="2" Name="Exponential" Display="'Exponential'" Dmx="64~127" />
+      <Function ID="3" Name="Logarithmic" Display="'Logarithmic'" Dmx="128~195" />
+      <Function ID="4" Name="S-Curve" Display="'S-Curve'" Dmx="196~255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="CCT" Name="CCT" Description="" Group="C" Size="2">
+      <Locate Locate="1:2800" PowerOn="1:2800" />
+      <Function ID="1" Name="CCT C-Mix" Display="'%.fK',2800~6500" Dmx="0~65535" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Green-Magenta" Name="Green-Magenta" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="- Green" Display="'- Green %.2f',1.00~0.00" Dmx="0~127" Colour="255,255,255" />
+      <Function ID="2" Name="+ Green" Display="'+ Green %.2f',0.00~1.00" Dmx="128~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="CCT(Gel)" Name="CCT" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="3200K" Display="'3200K'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="5600K" Display="'5600K'" Dmx="255~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Manufacturer" Name="Manufacturer" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="R" Display="'R'" Dmx="0~0" Update="Series_Name" Colour="255,255,255" />
+      <Function ID="2" Name="L" Display="'L'" Dmx="255~255" Update="Series_Name" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Series_Name" Name="Series Name" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Else ID="1,2,3,4" />
+      <Condition Name="L" ID="5,6,7,8,9" If="'Manufacturer'==2" />
+      <Function ID="1" Name="Colour Correction" Display="'Colour Correction'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Colour Filters" Display="'Colour Filters'" Dmx="32~63" Colour="255,255,255" />
+      <Function ID="3" Name="Sto Selection" Display="'Sto Selection'" Dmx="64~95" Colour="255,255,255" />
+      <Function ID="4" Name="Cine Filters" Display="'Cine Filters'" Dmx="96~127" Colour="255,255,255" />
+      <Function ID="5" Name="Colour Correction" Display="'Colour Correction'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="6" Name="Colour Filters" Display="'Colour Filters'" Dmx="32~63" Colour="255,255,255" />
+      <Function ID="7" Name="600 Series" Display="'600 Series'" Dmx="64~95" Colour="255,255,255" />
+      <Function ID="8" Name="Cosmetic" Display="'Cosmetic'" Dmx="96~127" Colour="255,255,255" />
+      <Function ID="9" Name="700 Series" Display="'700 Series'" Dmx="128~159" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Gel_Name" Name="Gel Name" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="CCT(Ext.Kelvin)" Name="CCT" Description="" Group="C" Size="2">
+      <Locate Locate="1:2400" PowerOn="1:2400" />
+      <Function ID="1" Name="CCT C-Mix" Display="'%.fK',2400~9900" Dmx="0~65535" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="x_Coordinate" Name="x Coordinate" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="x" Display="'%.2f',0.00~80.00" Dmx="0~65535" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="y_Coordinate" Name="y Coordinate" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="y" Display="'%.2f',0.00~80.00" Dmx="0~65535" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="ColourIntensity" Name="Intensity" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Intensity" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Hue" Name="Hue" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Hue" Display="'%.2f°',0.00~360.00" Dmx="0~65535" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Saturation" Name="Saturation" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Saturation" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="ColdWhite" Name="Daylight" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Daylight C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="200,200,255" />
+    </Attribute>
+    <Attribute ID="WarmWhite" Name="Tungsten" Description="" Group="C" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Tungsten C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Status" Name="Status" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Start" Display="'Start'" Dmx="0~0" />
+      <Function ID="2" Name="Stop" Display="'Stop'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Speed" Name="Speed" Description="" Group="E">
+      <Locate Locate="1:600" PowerOn="1:600" />
+      <Function ID="1" Name="Speed" Display="'%.fms',600~12000" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="CCT_(low)" Name="CCT (low)" Description="" Group="E" Size="2">
+      <Locate Locate="1:2400" PowerOn="1:2400" />
+      <Function ID="1" Name="CCT (low)" Display="'%.fK',2400~2700" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="CCT_(high)" Name="CCT (high)" Description="" Group="E" Size="2">
+      <Locate Locate="1:2400" PowerOn="1:2400" />
+      <Function ID="1" Name="CCT (high)" Display="'%.fK',2400~2700" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Colour_Variety" Name="Colour Variety" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Blue" Display="'Blue'" Dmx="0~0" />
+      <Function ID="2" Name="RGB" Display="'RGB'" Dmx="86~170" />
+      <Function ID="3" Name="Random" Display="'Random'" Dmx="171~255" />
+    </Attribute>
+    <Attribute ID="Combination" Name="Combination" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Blue" Display="'Blue'" Dmx="0~0" />
+      <Function ID="2" Name="Red" Display="'Red'" Dmx="86~170" />
+      <Function ID="3" Name="Red+Blue" Display="'Red+Blue'" Dmx="171~255" />
+    </Attribute>
+    <Attribute ID="CCT_(low)(Fire)" Name="CCT (low)" Description="" Group="E" Size="2">
+      <Locate Locate="1:2400" PowerOn="1:2400" />
+      <Function ID="1" Name="CCT (low)" Display="'%.fK',2400~9900" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="CCT_(high)(Fire)" Name="CCT (high)" Description="" Group="E" Size="2">
+      <Locate Locate="1:2400" PowerOn="1:2400" />
+      <Function ID="1" Name="CCT (high)" Display="'%.fK',2400~9900" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Speed1" Name="Speed" Description="" Group="E">
+      <Locate Locate="1:1" PowerOn="1:1" />
+      <Function ID="1" Name="Speed" Display="'%.f Hz',1~25" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Duration" Name="Duration" Description="" Group="E">
+      <Locate Locate="1:10" PowerOn="1:10" />
+      <Function ID="1" Name="Duration" Display="'%.1fms',10.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Mode(White_Light)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="White Light" Display="''" Dmx="0~0" />
+    </Attribute>
+    <Attribute ID="Mode(Gel)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Gel" Display="''" Dmx="10~19" />
+    </Attribute>
+    <Attribute ID="Mode(Ext.Kelvin)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Ext. Kelvin" Display="''" Dmx="20~29" />
+    </Attribute>
+    <Attribute ID="Mode(CIE_1931)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="CIE 1931" Display="''" Dmx="30~39" />
+    </Attribute>
+    <Attribute ID="Mode(HSI)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="HSI" Display="''" Dmx="40~49" />
+    </Attribute>
+    <Attribute ID="Mode(RGBDT)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="RGBDT" Display="''" Dmx="50~59" />
+    </Attribute>
+    <Attribute ID="Mode(Party_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Party Effect" Display="''" Dmx="60~69" />
+    </Attribute>
+    <Attribute ID="Mode(Candle)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Candle" Display="''" Dmx="70~79" />
+    </Attribute>
+    <Attribute ID="Mode(Club_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Club Effect" Display="''" Dmx="80~89" />
+    </Attribute>
+    <Attribute ID="Mode(Cop_Car_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Cop Car Effect" Display="''" Dmx="90~99" />
+    </Attribute>
+    <Attribute ID="Mode(Fire_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fire Effect" Display="''" Dmx="100~109" />
+    </Attribute>
+    <Attribute ID="Mode(Fireworks_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fireworks Effect" Display="''" Dmx="110~119" />
+    </Attribute>
+    <Attribute ID="Mode(Light_Strobe_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Light Strobe Effect" Display="''" Dmx="120~129" />
+    </Attribute>
+    <Attribute ID="Mode(Lightning_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Lightning Effect" Display="''" Dmx="130~139" />
+    </Attribute>
+    <Attribute ID="Mode(Paparazzi_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Paparazzi Effect" Display="''" Dmx="140~149" />
+    </Attribute>
+    <Attribute ID="Mode(Television_Effect)" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Television Effect" Display="''" Dmx="150~159" />
+    </Attribute>
+  </Control>
+  <Mode Name="White Light (8bit), 5 DMX" Channels="5" Id="de3ad8d4-0666-4c9b-b6a8-fcc5ad21f888">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="b62ef0e6-0a67-433d-8876-0787be95f244" />
+    <Include>
+      <Attribute ID="Mode(White_Light)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="4" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="5" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="White Light(16bit), 7 DMX" Channels="7" Id="4db74a1e-7c16-4863-aa0f-87248efa7b9c">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="81550aea-8539-4f47-b7a3-e11b93b1e1e6" />
+    <Include>
+      <Attribute ID="Mode(White_Light)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3,4" Wheel="1" />
+      <Attribute ID="CCT" ChannelOffset="5,6" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="7" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="Gel (8bit), 7 DMX" Channels="7" Id="b9c2ffb5-b4f4-4a07-8562-56b0fbb54048">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="261b986c-501e-446b-ad92-79830acdbbd9" />
+    <Include>
+      <Attribute ID="Mode(Gel)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="CCT(Gel)" ChannelOffset="4" Wheel="39" />
+      <Attribute ID="Manufacturer" ChannelOffset="5" Wheel="67" />
+      <Attribute ID="Series_Name" ChannelOffset="6" Wheel="68" />
+      <Attribute ID="Gel_Name" ChannelOffset="7" Wheel="69" />
+    </Include>
+  </Mode>
+  <Mode Name="Gel (16bit), 8 DMX" Channels="8" Id="279bb4ef-c77e-458e-a244-50a4498d43c8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="32f9281d-5606-4aff-91f5-6ad0b753bd0d" />
+    <Include>
+      <Attribute ID="Mode(Gel)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3,4" Wheel="1" />
+      <Attribute ID="CCT(Gel)" ChannelOffset="5" Wheel="39" />
+      <Attribute ID="Manufacturer" ChannelOffset="6" Wheel="67" />
+      <Attribute ID="Series_Name" ChannelOffset="7" Wheel="68" />
+      <Attribute ID="Gel_Name" ChannelOffset="8" Wheel="69" />
+    </Include>
+  </Mode>
+  <Mode Name="Ext. Kelvin (8bit), 5 DMX" Channels="5" Id="0e1d3512-263d-4222-99df-88e0944d70cc">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="33e11272-3c9b-4e02-b036-804ad541d586" />
+    <Include>
+      <Attribute ID="Mode(Ext.Kelvin)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="4" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="5" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="Ext. Kelvin (16bit), 7 DMX" Channels="7" Id="b398668d-41b5-43ed-9ea1-bc0b136376f9">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="fd0aa568-00ec-457c-837d-8e7ad15978dc" />
+    <Include>
+      <Attribute ID="Mode(Ext.Kelvin)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3,4" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="5,6" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="7" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="CIE 1931 (8bit), 5 DMX" Channels="5" Id="2ffe63f8-6467-4198-bf94-6196d0e5b97d">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="3b699697-1389-48e4-988f-5978cd7ded4d" />
+    <Include>
+      <Attribute ID="Mode(CIE_1931)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="x_Coordinate" ChannelOffset="4" Wheel="70" />
+      <Attribute ID="y_Coordinate" ChannelOffset="5" Wheel="71" />
+    </Include>
+  </Mode>
+  <Mode Name="CIE 1931 (16bit), 8 DMX" Channels="8" Id="1468fa03-71c2-4f80-8b42-db0031d41b6a">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="1f219d0f-5249-4816-9269-cb03a5bf0877" />
+    <Include>
+      <Attribute ID="Mode(CIE_1931)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3,4" Wheel="1" />
+      <Attribute ID="x_Coordinate" ChannelOffset="5,6" Wheel="70" />
+      <Attribute ID="y_Coordinate" ChannelOffset="7,8" Wheel="71" />
+    </Include>
+  </Mode>
+  <Mode Name="HSI (8bit), 5 DMX" Channels="5" Id="81fc6c8f-4e7c-4e06-9759-b0180a4d6e22">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="11b06629-9239-46c3-96d0-491238546b6e" />
+    <Include>
+      <Attribute ID="Mode(HSI)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="ColourIntensity" ChannelOffset="3" Wheel="9" VirtualControl="Dimmer" />
+      <Attribute ID="Hue" ChannelOffset="4" Wheel="7" />
+      <Attribute ID="Saturation" ChannelOffset="5" Wheel="8" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="HSI (16bit), 7 DMX" Channels="7" Id="d4559afd-88b0-4c69-93aa-1e211dab0834">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="da64135d-ce51-4f69-9194-7a9461a8fb2f" />
+    <Include>
+      <Attribute ID="Mode(HSI)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="ColourIntensity" ChannelOffset="3,4" Wheel="9" VirtualControl="Dimmer" />
+      <Attribute ID="Hue" ChannelOffset="5,6" Wheel="7" />
+      <Attribute ID="Saturation" ChannelOffset="7" Wheel="8" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="RGBDT (8bit), 8 DMX" Channels="8" Id="e67152f9-d3ca-4c54-ac57-07c033f495e3">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="ba2269f9-83ec-4992-91ff-a21cbe86280e" />
+    <Include>
+      <Attribute ID="Mode(RGBDT)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="4" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="5" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="6" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="7" Wheel="40" />
+      <Attribute ID="WarmWhite" ChannelOffset="8" Wheel="41" />
+    </Include>
+  </Mode>
+  <Mode Name="RGBDT (16bit), 14 DMX" Channels="14" Id="cc51f556-3580-4c66-9106-496a2ecb5319">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="ae612956-b6d4-4205-ac29-b79b71b8f5b7" />
+    <Include>
+      <Attribute ID="Mode(RGBDT)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Dim_Curve" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Dimmer" ChannelOffset="3,4" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="5,6" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="7,8" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="9,10" Wheel="12" />
+      <Attribute ID="ColdWhite" ChannelOffset="11,12" Wheel="40" />
+      <Attribute ID="WarmWhite" ChannelOffset="13,14" Wheel="41" />
+    </Include>
+  </Mode>
+  <Mode Name="Party Effect (8bit), 5 DMX" Channels="5" Id="7a42f710-da07-41d6-b11d-5e57d788399b">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="3ee71f6c-8d3e-4849-b7a5-fae0237025f4" />
+    <Include>
+      <Attribute ID="Mode(Party_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Saturation" ChannelOffset="5" Wheel="8" />
+    </Include>
+  </Mode>
+  <Mode Name="Party Effect (16bit), 6 DMX" Channels="6" Id="7dd6fef0-237c-40b8-bb41-0a1247694804">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="22fd9a87-ef45-44e8-90d0-2dcb4e053d60" />
+    <Include>
+      <Attribute ID="Mode(Party_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="Saturation" ChannelOffset="6" Wheel="8" />
+    </Include>
+  </Mode>
+  <Mode Name="Candle (8bit), 6 DMX" Channels="6" Id="65231f2b-28d8-4363-9e0c-c0a4bec1448e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="687eb90e-a386-4bd8-8e9c-0cb7627f8909" />
+    <Include>
+      <Attribute ID="Mode(Candle)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="CCT_(low)" ChannelOffset="5" Wheel="54" />
+      <Attribute ID="CCT_(high)" ChannelOffset="6" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Candle (16bit), 9 DMX" Channels="9" Id="752dc710-faa1-4e2d-acef-aa091bbeaf01">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="49ba0de5-8480-46d0-aa85-7ca73a47cfec" />
+    <Include>
+      <Attribute ID="Mode(Candle)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="CCT_(low)" ChannelOffset="6,7" Wheel="54" />
+      <Attribute ID="CCT_(high)" ChannelOffset="8,9" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Club Effect (8bit), 5 DMX" Channels="5" Id="d3dd90a4-8cd3-488a-8678-04eb96bdeb63">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="02db2353-978f-4174-82ec-3afc48944353" />
+    <Include>
+      <Attribute ID="Mode(Club_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Colour_Variety" ChannelOffset="5" Wheel="24" />
+    </Include>
+  </Mode>
+  <Mode Name="Club Effect (16bit), 6 DMX" Channels="6" Id="c18a067b-a1ab-4654-b847-741e4870caca">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="80173040-41a2-4d0b-a3ee-3193ec401e82" />
+    <Include>
+      <Attribute ID="Mode(Club_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="Colour_Variety" ChannelOffset="6" Wheel="24" />
+    </Include>
+  </Mode>
+  <Mode Name="Cop Car Effect (8bit), 5 DMX" Channels="5" Id="b558861d-32a8-4002-ac56-f2b5ff7dfabf">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="3ca8725f-5688-45da-ae15-70ffc70d9164" />
+    <Include>
+      <Attribute ID="Mode(Cop_Car_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Combination" ChannelOffset="5" Wheel="52" />
+    </Include>
+  </Mode>
+  <Mode Name="Cop Car Effect (16bit), 6 DMX" Channels="6" Id="32d3c4d4-9039-4dd6-bb72-f23621a21b94">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="aa18bc0d-93ce-493b-bb29-77f11fc7ce3a" />
+    <Include>
+      <Attribute ID="Mode(Cop_Car_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="Combination" ChannelOffset="6" Wheel="52" />
+    </Include>
+  </Mode>
+  <Mode Name="Fire Effect (8bit), 6 DMX" Channels="6" Id="8659ca45-e8cf-40d2-b0bf-f6f90a4b8633">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="363d88ce-4a9d-43c4-9280-960572d23912" />
+    <Include>
+      <Attribute ID="Mode(Fire_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="CCT_(low)(Fire)" ChannelOffset="5" Wheel="54" />
+      <Attribute ID="CCT_(high)(Fire)" ChannelOffset="6" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Fire Effect (16bit), 9 DMX" Channels="9" Id="f2a3abdf-ce62-4b0b-bd7d-952e287b4e9a">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="e0c1a0d6-6a06-44f1-8446-1db8c22e0124" />
+    <Include>
+      <Attribute ID="Mode(Fire_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="CCT_(low)(Fire)" ChannelOffset="6,7" Wheel="54" />
+      <Attribute ID="CCT_(high)(Fire)" ChannelOffset="8,9" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Fireworks Effect (8bit), 5 DMX" Channels="5" Id="9a491fa5-7046-4a45-9887-926a8a60d788">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="92fbdcd6-f52b-48ed-8655-85e1974914bb" />
+    <Include>
+      <Attribute ID="Mode(Fireworks_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Hue" ChannelOffset="5" Wheel="7" />
+    </Include>
+  </Mode>
+  <Mode Name="Fireworks Effect (16bit), 7 DMX" Channels="7" Id="33e7b629-41f4-45c7-b3eb-fef7590472c7">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="a322e2e3-b6fb-4ed5-a627-028504194fa3" />
+    <Include>
+      <Attribute ID="Mode(Fireworks_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="Hue" ChannelOffset="6,7" Wheel="7" />
+    </Include>
+  </Mode>
+  <Mode Name="Light Strobe Effect (8bit), 6 DMX" Channels="6" Id="e8046ea9-4b20-434e-a0f2-d5442d7724fe">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="62673357-14cc-4e1b-90a9-e2cc8496eca9" />
+    <Include>
+      <Attribute ID="Mode(Light_Strobe_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed1" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="5" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="6" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="Light Strobe Effect (16bit), 8 DMX" Channels="8" Id="1fe89148-205c-404e-ae88-9f0dbb89639e">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="98bd0d3e-10ce-4de6-b4e9-0ff15534b2c6" />
+    <Include>
+      <Attribute ID="Mode(Light_Strobe_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed1" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="6,7" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="8" Wheel="38" />
+    </Include>
+  </Mode>
+  <Mode Name="Lightning Effect (8bit), 7 DMX" Channels="7" Id="9142fd8a-f3d2-47ef-ad79-a1500af0608d">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="0a40081e-e8e6-4b8c-bb37-cdf5f6e2879d" />
+    <Include>
+      <Attribute ID="Mode(Lightning_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed1" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="5" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="6" Wheel="38" />
+      <Attribute ID="Duration" ChannelOffset="7" Wheel="53" />
+    </Include>
+  </Mode>
+  <Mode Name="Lightning Effect (16bit), 9 DMX" Channels="9" Id="93693981-5a32-4fba-afbd-73fecde6f771">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="041c455d-284f-4c01-987d-ebd356ecf987" />
+    <Include>
+      <Attribute ID="Mode(Lightning_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed1" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="6,7" Wheel="37" />
+      <Attribute ID="Green-Magenta" ChannelOffset="8" Wheel="38" />
+      <Attribute ID="Duration" ChannelOffset="9" Wheel="53" />
+    </Include>
+  </Mode>
+  <Mode Name="Paparazzi Effect (8bit), 5 DMX" Channels="5" Id="431bd4c5-09ef-48b2-9405-49853d0135fd">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="bf40394d-de33-4657-9f3d-f7b990228fce" />
+    <Include>
+      <Attribute ID="Mode(Paparazzi_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="5" Wheel="37" />
+    </Include>
+  </Mode>
+  <Mode Name="Paparazzi Effect (16bit), 7 DMX" Channels="7" Id="36255850-e8b6-4539-9a7d-023d5d8336e8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="5be62f06-90e7-4d1d-883e-34742c7ea782" />
+    <Include>
+      <Attribute ID="Mode(Paparazzi_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="CCT(Ext.Kelvin)" ChannelOffset="6,7" Wheel="37" />
+    </Include>
+  </Mode>
+  <Mode Name="Television Effect (8bit), 6 DMX" Channels="6" Id="390cb4aa-11c2-40b9-b3da-6c51bac73aaf">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="4b470f47-5ed9-4eab-a971-b4094aa103be" />
+    <Include>
+      <Attribute ID="Mode(Television_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed1" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="CCT_(low)(Fire)" ChannelOffset="5" Wheel="54" />
+      <Attribute ID="CCT_(high)(Fire)" ChannelOffset="6" Wheel="82" />
+    </Include>
+  </Mode>
+  <Mode Name="Television Effect (16bit), 9 DMX" Channels="9" Id="d57dc8ba-3344-4f01-8ff4-7b974faa8ada">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="3d1ec5d3-1d6a-4479-b7c2-52301291fee5" />
+    <Include>
+      <Attribute ID="Mode(Television_Effect)" ChannelOffset="1" Wheel="28" />
+      <Attribute ID="Status" ChannelOffset="2" Wheel="22" />
+      <Attribute ID="Speed1" ChannelOffset="3" Wheel="23" />
+      <Attribute ID="Dimmer" ChannelOffset="4,5" Wheel="1" />
+      <Attribute ID="CCT_(low)(Fire)" ChannelOffset="6,7" Wheel="54" />
+      <Attribute ID="CCT_(high)(Fire)" ChannelOffset="8,9" Wheel="82" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+  <swatchLibrary>
+    <Swatch id="eac06a9d-698a-4cd9-a5fb-2121aff5658f">iVBORw0KGgoAAAANSUhEUgAAAWgAAACYCAYAAADJAHN4AAAACXBIWXMAABdgAAAXYAE8fGXsAAAgAElEQVR4nO19a5QdV3nlue97u1vd6tZbQtYbySAwxNixnYyNwkomAWaxJovwnMePBJiA5UzQGNvYIMBt2eBlFn5hL8fzAzFkRmStDDHYMBAnIZYdG8niYax3S5bU7/e7+z5rvn3qfvd+t/relmRL7q7qb8vlqlt16tSpqq59du3znVNRx3FM0BEmfP3rX//00qVLP7l48eIr6+rqmqanp6MDAwNmfHzcZLNZUygUkNQJhUKGJicej4caGxtDNDeRSMSh9Ln+/v5zPT0936K8Hp7rc1IoFMFHdK4LcLnwpS99ae2aNWt25/P5Fd/97nevoeUVXd0d5mTbMTM4MGTGiJjHxyZMLBYHgRtKR1MuBIIOh0MhrDcmZKLRKKWJYX2Mljc2N7c89Pjjj3/qs5/97LuJ1PNzfZ4KhSK4CCxB33DDDf986tSpTSdOnDCDg4MGSjifnzaJZMz09Q2aSDhqOju7zcqVq0k9O2ZiYsKk01PGcQqkoA1ImYg6SsthIukIVLSd8MZBeb/j+9//fnbv3r39lPexdDr9/OTk5I/vvvvu/UraCoXiUiGQBP3kk09+f3p6etPzzz9vFXAulzPr1q0zv3vd7xAhLzcPP/xt09Pda1KpJJF1v8lkMgZ2x/T0JKXNmkWLGiwZh0KRqvn39fXRvilS2bFlNF9G89+PRGK3/fmff9rcfPMtDinyfEvL4kIum80nEwknkUw6iViskEgkC5FwpJBMJfLhRCSTy+ZHM+ls59jI2IHR4dEf7L5794tv8qVSKBTzGIEk6E2bNr3/scces2p3amrKJBIJ09zcbOeDg0NWLU/S+hD9m5rKWoJGunw+Z8kcfjRUdTzuErT06WGHjIyMWJIu+tYWUVLchpIlk6lQNBLFfyZC6ruuLmUWNdTRevodCVEZombFiuUmVY91davrU03bWppa/mDtqg23/d3/eqowMTk+PpGeGMgXprvzhdxArpDtI1E+GAnFxqhsQ6FQaJIOh+UBKndPNptt37Nnz9CbfY0VCsXlR+AIGg2CBw4cqIdF0dXVZa2K+vp6S9DHjh41Z8+dMceOHTNLliwzoyNjpITrTTqdhiImwmwisk5bi4MUuAEvw5Mu5muXQeAgbMwbGxvNJz7xCdPd3W3aO9rNqVNtNs8VK1bDvTZh2vXMmXNE5p0mGs6aUCRHRF4wE5OOWb7ErTBCeSL2AuyUhEnE68LRRKIxHI02huOhDcn6hMFUV580DfEGUvaLzOLFi6nsS+yxMbW0tJjnnnsOlcYUVRpHh4eHf0IV0P/7t3/7txeffvrp9BzfDoVC8QYQOIK+8847V4FIEZ1RV1dnyXR0dNQS2/r1a8yRo0fM5OSkaVyUsaSMhkDYGSBLKGgQMWxkd99yvqyiI5GwJX2o8Hg8ZpYuXWLOnj1D+xmzY8dNpr9vxGzZvM0sXbLCHD1y1Cy68SZTcNKU94gZHukyiTrHTE+Nmt++fMZMjmeME8mbgpkmwh8yk9N544RIaUcTphCJm0wuRNsiJkrli4XypUoCwDImlAVlj8fjKSrzuxsaGt5N53XHFVdcYXbu3IlC52lbnsjdziltnrbno9FogfbP0XlN0XyS3gYmqdJpHxwc/J90DZ958++cQqHwInAETeSzAYQLEk4mkzaEDgr6yJEjZsXKFttgCNUZjyeKJOuSOKI44FFgmUkQDYZQygC8bKTBnBsSQdZYxtRBCvrKK7eaeKzOvPbaaSpHgyE1S8dOmP7+XrP2ihYzPhGh5U6qAKbN+nWbTXoqZ9LZYZNJj1p1vXzlMnO2vcd09wyR0o6bSKyeyh/G0ekYI8UympK1gnLiPDFHuUHYrncesstU1hDNo0TMUVQ4aCgFmeN6YM4TFDnWEYlf+5a3vOVP77nnnm56qzhFx2unvIYpjwnKt4D9Kc8IzSO4DjgOlSVD0wRd5x566zhJFeNL995778hc3HuFImgIHEETcTSDwEBmsC5AJCAtNBiGw3mTyaZNc/Nia0HkcgitK1hyw4RojXzeKVkZRUKyy8gDYNUKCwTWxrP/9CyY3B7v1VdfNYMDo0SaGXPjjTvMlrduMhPjo1Zhb3nrakrfa8bGB83o2IB515VvM0fOHTXXXrfNTEx1mualSbN+0yrT1bXa/NM/v2TaTvUbpxAy8cRSU5dqJLU9bI8N4PjlSsQpRpyEbTlRITFhY5krH1yTYox3aWJFjm04T/wuEv1KIu6VqOBA7Jh4GUROKt2+feA32y5NTU12Qrof//jHUz09PUfGxsaexwTS3rNnz2tz9TehUPgVgSNoIpc6NPiBOJigQFwgjnRmnBQj4p5jZnzcjdgoFMIl+4KJGgD/bdq8waxevdow4YOUuUER6hj5Hj78W5se2w8c6DSRcJwIM2HuuusLVIZGyg8Nj2nT8Z02yjRLKUmRhxzz8q9eMRNjo+bw8eMmnpw2bef6TTQRMi8d/JUZGByi8jaQVE6iJGZyYswqXdd+Kat6DvtDmZiAsY7LK20QSejeOba5ceD54rmH7LWDTSTTch6s0ovX25YNx2C7heYput6/U5x24l588YtfRLnytC1H69K0X4byyVIlmKG8xiirQapQX0G44te+9rUfF2QLrEKxQBE4gqaHPcIExcqXFa+rJI1VymGrMsv7uSQUEr+NWbp0qdm2bVuJ4NzojoLNEwQGIDwP6hNWw+TktMkSWU5Ppy2BF6yKn7aNhVDSjoPj58x0esqkibQduvqvtXfS+glre6TTvzWDg7QtHTfYWChk6VgZexyQMCtoLgPmTLBMmlIdc1rmOulhy8gU17apJOHKyipUWo+8cO6cP1cQnJbXy4qB7wHuDUAEncBvVJogb7eB1i7fSAT/udbWVvOVr3xliu7XKJUtTWkzROTTtAxSR28iS+40n0YaKlM/lensxMTEy0899dS/HjhwIHsp/pYUirlG4AiaiCILsgAhQ82BOPEqjuVozDFLlrSYjo4uUtOZCpIq7ivWOTZKYuXKle6+RGIgEsz5VR8kAxvFVZ6kOjM5u1+IOArEHAmHLGGPDI8SsxkzNDRsLRREevSMdpjhkSFbWQz0DNgKY7B/wCRXkBovUPlpv8FBUul5qlictImFIyWy5bcCJmJJpPybPWk5SbJmsFrm82d7hK0TL5ispWXCSl6qclwTzPmYsvKQeeE8QPCs3vla05TCxORe7NFpiRz3BXYKyB3+OSyWZcuWmc2bN5trrrnG7N27d2hwcPAQ5XuY7s+rlPdxOseOkydPntu3b9/UJfgzUyjeFASSoNmHvfrqq01bW5slaRDAuvVrzaZNG20sdDoNFYipemcUEC4IAA8+yAAEx41smDPpgcCRfzyRMvksqfZ8xirfaCxscpk0kVeUKouMScXqTSYNooqZXLZgpuP9RLxZ42TjxsmQuszHzfhY2hJ+Oj1pnHDGpLOjRNZpMzE5ZtKTIduoCXsFE+wHV7VP2t/Yj88ThOfmk7bky3Opcr0NirweZCq9aamoOa1Mw/YIq3peJ4/FBM75SPWPZVR48hhcAcky8z7SypHH4H1B4GiHoPv0Psr3fUzq8M0Ravn5z38exyvEbMchG9GSo3mW8sjSuiwUOmWZ7urq+tsTJ0488OSTT45djr9TheJCEDiCJrLIgDCgqpYvX25joUFm9qEOE7GGiBAdergLxnZGyeehHh3rObMKRPduEHQsFi01kqHXoRsZESuSTtiSL/ZzfdeocUAiDgg/SSqaiCaeojkReyJvYpGYDbFD3uAVqhrcCJACER32ccKmeUnObrNlChEZOeCKApF+1uRpEYSVy7qKE8sZmrJZV31mM1kicnRXZ3KeNlOTU2aa5hMTkza+Oz2dtm8OaXq7wBzqPk3rM1RZgRCxL8d5u+o3L1Q3K/CccTnbJceyzeJGveC6uaTu7l/+7e6D88N1d9e7azk/t1Kwa4qVRsiUI2vcLvfYH8dx8zDFCqJQtKsKVElNFctvSmRfHF/FhkK6b0LJMN3HMBFyNB6PJZLJlL2H7n1O2c5F9fUNu7ds2bx79+4vT9E5jtK50OSM0D2fhm9O++VpOUf5gdgLdIwslX3ccfLDdH9OU2V6gHbWnqGKN4TAETT8STyUULkgD5AV5m7s8hQRdg/GrLPKuezTuiF2TMyYkAceWnT7RsMiR3RweJm0DhKJiN03FMW+4pLGTDE6pKgChWMQc+rtXFoDyRSr+UTJHuA0PGd/3esPszfMDYiy4Y8nS+rFRk7MWWlPTabtfrCFbC9LUuKYIyQR27Ge59jGtg43WHKZWPHydZHE7JazrLo5bWVkibHjn7jnVj5/kKt7PrmSnYT7UL53IVthuseUjZph41YkTPh5mx7nJu0XLiuvY4WO80SDJy2nKM0K/A2AwGGxlCtu1z9valpsli5dQcKgxdpfeOv6wQ+eyh0/fvyf0umpA5RvO+UxZUfdooqBzmOE8j/5zDPP/FY9c0UtBI6g6Q9/Gg9/R0eH7TEI9YyHbWxszBIOPTD2N0c+4CEE8FAy+VpiKSnjmH0g2Y9lb1aStCQfL2oN5yrX835MqtUgvWMvcUurQUZvMAExmXJlICc3DeWZL5TSsy/MhM8kzL/ZPgHRS8LGPrjeTPRYz1YM1jHRIx2uNR+r3L2+UHzDKEfSuL/DJRXsvrWEiudTsOs4Fj2Xc5W020CJP+18MZQyV6yQQxXXiwfAkh45V9oA7j+fN4By47zQzb9cQRSK+yGveClcsThFadsf0d/LH8nQREyNjQ2WyD/+8Y+bBx98ECcMeyVLaTKUByJdCnR9Ozo7O/+G/pb3Pfroo9qdfwEicASNThPcAQNkXFRBFX5qcYxnO8cDhweQyY0VFV6nr7zyStuhhdUV9pEkLmOJ3bxnEnQ10gaqEjT9K4QKVffhOGx35+K5OoUZ+cjylPYpJsmTenQKDkyDUhlsWhO2NoG3EvASOy/La8VzJjJu8JPeN69ncsZvJnBJ8tg2Nj7mkn2alP70lLVh3PtTsHZM1uaPa1RuzC1fT3fKo5wZt6IqWEVPZxihKVQm32r3Q/rnsvLDdWSfu1o8ubu/KVU21Xx7jN8i80P52Z9HhyL6W4wTKcfp77Yef7tFZb6CpseWLFny2J133pmlvEfo2vRTvgOUD8Zl6aOpl/6+xykvTIhoQaeiSUo3dOjQoQPa3d/fCBxBk2I72dvbe/rP/uzPNvzwhz8searwpPEqykTLJDM0NFSyDORDB6952bLlRVsjVlLJUHCVafmhr07QtVARzSD2i3gaLZmGwiJ9aR0I3SkrbuwbKVo38L7dhExg1nFxLQDjWgOuHRExuWyezsupIBZcEyb4arHT0m4plcsTqscfQpCkLitBDtFjErc2S3qyFHMO9c0kDoJjFc5WC9Yz0UvVzg2MlkwLTrHTTs4OMYv7JSuishqv7InJ51ONtGWjpPS5ZZ6oFFCRsBfvXm/3frgN05XRNJURREa8UbiETucUIw5figmCA+ICcxA5GrMxoREUSh3LeOvbvn27eeSRR4ZGR0d/Rdfj15TfAGXdTfMeusbddP3Oknrv05jz+YvAEfR9992HVveNP/nJT84tW7bsLewbc+QFHmT+e8SDzF24OQqBiQeNb9gGUi8+ICVrQyonV4EyOV84QdfCjCFOSw+tJIDyXEahzIhlNuXYbinKsWjjwEEWobAdtc+rDmV+gOzEUsvK4esIyNC7agTPYHIsK/WcfTNgcuPyo1NRiXSLHjYaNdH4iXvDFgvHv4OsYWsxwY+OjtkGxPR0puSz428B+WA7ltmb58qCo4EAJm+vJVK+Fii/vNZhwyRcDoVkgnfvgqwkubHTtWaQR7TYIOpY+yYWS5UsObZa5L2WMfqeMMhm+jveQUS+A+nwHHDsOayWm2++2XzhC19wENFSX19vGz2LoYxhmmepYnyNRMwPaP7IPffcMzDjxisuKwJH0AI59jmZXKo1vHGnC1ZC/DC5XqKrSGELJBLJEhlDndrHIsTa99IRtBdlLjx/3t60tewVd5skfmdGpSPB12U2yGsn8/AqQ+8+M8k7V7JgRGlLnjNHaDBx8dCwvCyVPVQzR6LY5bxjPWn20EF0IGKQdcZ2MCqTNBN7rfVs35Q7RbkTr5OdibyVm/s3KK2jfEl1e2PR3etSvi9S4UtIYgbk3zRXWADOle0WTkf72oZLgH4n8bfPY7YQob+LiBzTV4jM03QNBinPHtq1l/Yboe3jmGCxoFMROhOhlygde4rS9dF1Ovr1r3/9VVXprw9BJuiqSpDB67yxvnLfcChS/KpKxL4euwhbz9amqSDNy0PQF5fn601bSaozUlYh7FppvGlnqyRkPiWCnuUcvBaLXC/XeRtES2kKpkTustMP7+ONeJGRL96J14PwoNQRyshx6q7dMmnfwqamXEvGHVbAfTPAMsIgc/mc7W3qFM/avVbiTQYk61QKCyZdXpbXXVaikqC58pR5yDmfs3wLkvYNXz/KI0HrVtF8FXccApFDcUORs73CnYkw4ffevXvNww8/PEj4JeV9go5xttgrFFOe8kR32UnMaXsaYY2UZoCu27mFPvBWoAnaG7HgVSazqTsehpQbiPiV/XxKciHgQon8QuAl2lCNhjyZt71v7kLZAfKo7nKa8jpJyJXHrPSPvQ2hEhx5IkcW5MZBb8ghq2lW4RziaAk776pxkDp750jf29tb8tilYi/kwxUVi7fxVqprVs18PkzWcru8DlKVc7d/+czIkEnM+fw5NBMVFA9KJsNAZU9U2tZC+aDjkO08xI30IHAOV+TwRBA9eohiwljndB2ydI2G+vv7X6XpmdHR0e+1trZ2cd60fNP27dv/pqWlZS0dFx+Dzg4NDQ1SWY5T2X5ObwxP3X333b/2o4oPNEF7UZuMq8P1BsNFn7fcKFjO53Io5oWOWhVgpQdf7MJiXJ+33OkFcByvheOiGBk3w+bygomJQ+mqbfeSvWzU49+SxGXXd0vkTt7aMuydM6FL1c7L01PTpS//gLg5lJHDIdly4UpA9iTlPLixvNzxqLLCYkJmQcKTPGfexzsuOe8rrRwAx+R8mNDlmDIAKiTeR4avMuEX7RbaFFtOhL6cyHwHkfr9t912W47KkqHfcSL1KEJqOYyTSDza3d29Zu3atWuWLVu2o7m5+SuPPPKIeeCBByZPnjx5w2OPPfbrqjd2HiKwBH0hleX5CNuNbQ6bcgcWY8wMW0MxG2pd49q2Sa1rWiuEsZq1UuuY5W7jEt6oDi6PzFOmkdu8b2LeqA/2hb3+OOp82aVedvphsqtIH4rPIG9WyrIjEU/cECpVOxM5/+b98Ft2cpLKXJ6HPPdq58kx4LNdV0CSurRTZEXG6Ziwy15/6RrBL4/CTuEJKhwkjwoMQzxgOGDYLEAx9LaO9n2c9vv9gk8+7hxYggbOZ3FwmlrwRizMbokoZvOma2Gmd31xlV6ZOGofk7e5hOHMuK+1bKtqafhvSKpPVp3l45XVJKtASXK2HCE3qmM2u61MhgiZLEfFSOvFK0SY4LxlZDUt7RdpwfBYLnKMF16WnY1YmcvYddlDlQlVjsvCipjBKlw2pgKyguDoK3m+YlTEiuvDbw3c+In06EyEOSwUjshBSG1nZ+d1n//85/83JftI1Zs+zxBogvai2gMwO+EW7Idei5HDxddo2ZFE7nu5GgnfDFwaX/11WNCXDLMduxyWWGtgrPPnVxGmGJIqvBxlIbejo5OpEeYoB3oyoQur8N2ww/L+9sg1/36Z8MtWTn19ypSMIVEhIAIGY744xdBGjpbBstuD0rG9TO2YLRl37BeEN2KOYXVd9Z0pEjRU+qTdjrkb+QKLJl2yZJgsy3aOG2njVh6spkHiSFeOvuK5WyG5aZigywNp5YvWCGgNoYkRmw+G+UW6dLr0ZuGbhqQFRdAKxaXHbLXShdRYF1arVVP5tcWFS87oIi/JraYtE45XrOdl6anLHqOA13Jgi4ZDF1nVIvQQg3FxmCL3HMUEkpbKnD12VvUyrl329nU/OVf2yGXZpNfOtg2rddgg6MxD5+SbxkIl6Fngff2u1UlDobhYXOzf0cWlB8lWkjPnUS2KA6MnemPPvWTOFgUrVm/e0jcvlcKuK9j4c2nvMPF6hwqQpCrj0HloAKznoXbZY8eHMaT1wg2lq1atKn3lp3xsxxK0n6I5AkvQoUvEpLXiexWK+Q4m49mEhiRfr5i3ZOuYCvKuyBPbQk7JyeFhChwjKgDHtf4kJ6IxT37xR0aISHUvG0p5O9skcjRF/i29cQwz3N7ebn3ngwcPWn86lXI/suH4qCEpsAR9KaDkrJjvqB0lw/MLaaSttE+cYgA5OmKBgMtDGRSVOPvq4ep5l+yRsDsQl+zhyMf0DglQLQ/ZA5iHZJDx3QDUMoOVN9Lhc3WIqe7p6TGHDx+2I1kCxQgSJWiFQnH5UZ2AL5Z/ZvakdWPJQyUydlWtu80bpjizTG6esuu/DK3z5iGP6w3Tk/aM/DYoK2h0dpHhiPCZZegewuxga5w5c0Z600rQ8wHecKNqYXaczvs66PXtFIrgYuab4mxRLBcCHsSLu69786/Mu/r6ah1lZMw178vPOD/n8KyhnnkfkHbpq0eOVdrqQc83aAyzQlELl1OAXP5nTnac4UZMgMeFh/Lm2GxUHKlUyjdEEHiClqq42rbZoOpZoZgfON9z6B0vBBN/+IAHdAJRX3PNtRj7o+3NKPOlQKAJWr4WVZtkGoVC4W/I8UFkD0YePhXrfvOb3/zHH/3oRz+Y46JeMAJN0MClUNDV4kkVCsX8gnyeuVGR7Q2XsCPGT+QMBJagVRkrFAsPLMjcDwe7nwbjyA/u+u4nBJagKz/mOpOwvePc1sjFTuWYUlXPCj9gPo0LcznLUv6MmD2SeOPFs80f8OUv3fsRgSXo83nMqrAVimAjCI38gSXoatAGQoViYUGG3/kRgSbo2chYSVqhCC7Ywjy/jTm/EWiC9kIVtEIRfHjjoZWg5ym8nylSQlYoFg78Ts5AYAkao1whxIaX0aMIkN8/49/e+EnvsvezV36/6QrFQoQfn9vAEjTAI15xsLoXqqoVCsV8RmAJGqQMguYeRYCSsUKh8BMCS9CEEI8Li4B192OSkYqGQlXQCoViPsP3BN3a2vruRCLxBzRdmUwmN9bV1a2m5aUDAwMt+NwNe8znG2RcoVAo5ht8TdAPPvjglz70oQ99DZ+zGR0dLX0RGMS8f//+UhdPDOCt4XUKhcJv8C1BP/bYY3uvuuqq//zss89ajxkKGXPYGb29vaajo6M0YDe2gbj5szvVojJqfW1FoVD4C/KZ9jt8SdB79+59ZuvWrX/y6quvlhoC8bHIurq60idv4DnzjQJpK+kqFAq/wXcEvWfPnt//yEc+8ifPPfecJWKQLxQylqGcsTw2NlaKc2b/ufRpeYVCofAJfMday5cv/xyUMzqhXH/99ebQoUOmvb29ZHNMT0+XPh5Z+vx7AF51FArFwoPvCHrx4sW/e/r0afOOd7zDEvL4+LhpaGiAvTHY1NT0MinlxJo1a24EiQPwnScmJkpetEKhUPgFviLo733vez9917vetWFkZMTU19fbqI2NGzdiXvjFL37xOw8//PCZ++677/3r16+/UfrQPKLVxTYAVov6UDWuUMxveD/S4edBk3xF0ETG1yOcrrGx0ZIviHrbtm3m7//+778AckaaQqEwyp9e5xuEtBiPQ31ohWLhwa/kDPiKsZLJZAx2xQsvvGCOHz9uOjs7zY4dO8yLL774CKchNd22atUqs3XrVnPs2LFShAdsEADKWqFQKPwAXxE0KeAoyBbWBgi6ra3NbN++Pff000+nOU1ra2vXM888c/Z973vfFYjqQHpAR6FTKBR+g68IOpFIhGFVIGKjr6/PDAwMoAdhxpvu/e9//7of/vCHJ5ubmzedOXPGqmcQtTYSKhQKP8FXBJ1KpUL8KRsmXFLGVT0LSldAiB3SwBZpaWmxKhpx0wqFQuEH+Iagd+3albp111+beDRsohjauUBEW8iDdKsyrvyaCg/QL1t3ZQuvQqEIDmRXb29Eh9/gG4Kuq6tbGqZrHcH1JmIOOUS4xnZEmWFxMLijCqI30CXca3H49aYpFIqFAd8QdCKRaPGuKyrjCw7LqDainZK0QrEw4Mdn3TcETep3BkETRV8UQTP8eKMUCsXCg28IOh6PNM5Y6dpL+debpxK1QqGYz/ANQZOGrveuKXbfvqiwDLU4FAqFX+Abgg6HTX2hUDmgvlOwjYCzErRMjwZDjubgBsTZRrvj9ZxezhUKxfyEfD7lM+vH59ZHBB2doaCBfD5fy4NWaaxQKHwN3xB0JBKpw5wVsTsgUhidVs7rQct9FAqFwi/wGUFXWhxhtydhTYLW7wsqFAo/wzcEHQ6bpJdqoYeJgAvV0kuoglYoFH6EbwiaFHQcrrLsoo2lfD5flaAdlc4KhcLn8A1Bk4aOFUKOSSNoIxoxTiRkMvksBu2vScRSOXPUhozeOJ+qrhaSpypcofAPOHqDv6rkN/iGoOnixso/jCkQWWJ8jVoKWqFQKPwOPxF01BRrQlbB+Vz+gjxohUKh8CN8Q9BEzFZBV3zAlcg6EolUtTjUg1YoFH6HjwjaRNlTLsdBRzD5z1hSKBSKC4BvCBomB1sb7i+XoElZK0ErFIpAwkcEXe5Xj28SAg6RdX19fXiOi6VQKOYR5Ngb8o07HPbfN0l9RNCup1zRO9C9CW9IQWvonEKhmK/wDUG7vFzZdRu0SuR6UQpa2w4VCoVf4BuCLlK0R0Hb/1+0xSEbG1VBKxSK+QofEbQ7fmjldwXt7IIJutbgSUrSCoViPsI3BO04oZkdUlxijVVJrlAoFL6Hbwi6UMhNQ0PzF1DsF72JoMPhcLzGLiXPWo674f3aAv+WgzApFIpgwX3W57oUFw/fEHQ+n5/k0exKNoVL0DUVdKUdojaGQqHwF3xE0H6eNt4AABmkSURBVM6UY6p6yOe1ODRyQ6FQ+BG+IehcLjfheBW0O3hS1XNwPBEfStIKhcJv8A1BO05+Qn7yyloWtD7G3QpnpFdGVigU/oZvCJoU9AhTLoYctSAFTfycON++6j8rFAo/wjcEPT2d6QwTyTY0NJQiM4odV2pFcdgB/aPRKMh9RucU/aCsQrGwcJGdjucFfETQ0+0Yva6urs40NTWZzZs3m+GhERB2VYLmz9wAPAKeQqFQ+Am+Iejh4YNHw5E/t8S7detWS77t5zpMS0tLVQ+aVLODtFDPAKxqKGqFQqHwC3xD0A8++HT6yNHfFjC86KZNmyxBb9u2DQQd/uhHP5rat2/fFKd94oknvktK+20DAwN2zGg5jrRCoVD4Bb4haKCvt28sVZdsSiaT1uZ4/wc+YNasXgtF/e9o80+R5otf/GLzxz72sf/0jW98w0xNTZlEIuF+v5DUc6lxUaFQKHwAXxF0d3fvqY2bNrw7ZMKmoWGRecf2pQZBHKtWrdppigRNynnj8PCwaWtrM/F43JIyf3L94iM5nOJ0IdAoEYViPuL1PfvzA74i6HPn2p+8/vobHj19+rRZsiRnxsdcV2PDhg0f/NznPnfdo48++iIp5RhuRn19PRoWS9EaiOaoFbXh/fpCOd3FELTN6Q2dn0KheOOoNr6OX0naVwS9a9eub+/fv//edDrdOD4+blauXGmOHDlirYzt27f//IknnmhPJBJHz507Zy0N+M88uBIaC5mEJTRGWqFQzFf4iqCBl19++b5rr712T29vr2lsbDQdHR2WjJcsWRInot7Y1NS08fDhw4ZI3FocACwOJmxAu38rFAo/wHcE/Vd/9Vf3vvDCC3eOjIzUP/XUUyaVSpn+/n6DhkMAiplVs4zeYIvDS876VRWFQjFf4TuCBg4dOvTAH//xH38ZNgcaA0G+UMgg6Ww2a9PA0kDsM1Qz1skoDlXOCoXCD/AlQd988827n3jiifXXXXfdfxkcHDSdnZ1mYmLCqmkoZkRxgLSlKgZB82/ZIKhQKIIPbSR8k/HpT3/6vz7yyCPHPvGJT9zT1dVlSXlkZMSgcwpIG8oayplVM8dDyxvl59ZdhUIxO2RUFofa+g2+JWiAlPSe1tbW5+rr698Wj8eXEwmvW79+/b//4Ac/+JbVq1ebJ5980jYWcoMhVLVCoVD4Bb5nrLvuuus5mj0n1z300EO7r7766juIuBN9fX2Gh4xWS0OhUPgJvifoarjlllu+um/fvo83NTVtRYQHK2cdj0OhUPgJgSRoIJFIRDl8bnJyEnHSVkHz6HYKhWJhwY9v0IEl6Hg8HuWB+mU37/MN3C8bEtwBvsvdwN25qfH5dv81QCgUQYTs1yCfbSXoeYRIJBLlGwKC5giOi0NITPzbMUrGCoU/IAVYoZD3nccZWIIOh8ORuS6DQqGYO8iexBBn+bwS9LxBhAfeUCgUCxLSwnT7O1zU0JTzAkrQCoUikPAqaMeHJnSQCVo/n6JQLGDwwGmsoBOJZPyaa65pOnDgwMhcl+1CEViCjsVikQsZqU52964W1aFQKOY/vKNU8qBpIGh080aobTyewHdMD916660fvv/++385Z4W9CASWoMP6AUKFYkHAa2UA+I0wWwyShvno6KhJperM+PjExrq6ui9Rkj+dwyJfMAJL0NFoVAlaoQgwQMz5fM4OKSwHQwIpY3gHDEecyWSsmgZBJ5MpgxBZImzfvCIHlqDVg1Yogg0QsvxKEvd1YO8Zn8LDxF9TQsczJnO/ILAETTWof+6CQqF4XXBVdL5EziBgWBpQzljm7RjRslBwidpPo1r6p6QXCboJ2t1PoQgw3GEXQqWhHNAQiA93gIwxPjwmjA2PadGiRZaciwpaLY65BjxofpW5FKPY+XGwb8WbCac4XSgu7wtetQ8je78oJJdl4xqv5wiIWnnLPOWyjJ4qdxIpfyNU5ukdK6PY46/kHWMOwsUypunpaUvC8JcxTUxg7pIyljOZrF1++eWDdCzHflgaxN3cvKRoc4TU4pgPUAWtWKgojz1RqFjHDWneMFJJ1vybrQGArQImWCa6atETMg/58WYJrGfSxRykizmsCXjG+I2vI6FhDySMOX6DaDExWWPCb9e+cI/F3yV98cWXTEtLi9myZYtVz1iHNMjHT33YAkvQPEi/QrEQ4X1rlG+TXtXK3+8EIctPROEZ4nA1JmVMIFDsgzQgPmxn/5c/0MxkCwKF1YBP0ck58oA6ZjXMxMxlktYFyoCycLm4wpCkzBUDPm1XV1dnmpqa7DdKkRb54otKIPpf//rX5qqrrvLNmBxBJmhV0IoFDa/9IJWyJGxWygCTK5Mu5lCoIFCQKQiXoyN4nVzGBEJkwkV+nCeTPQ8DzOVg4geJyo5iUvFjmaMzeJvcV7418PHkMbAMIt+8ebMlb78gyAQ910VQKOYEkuS8bScgL6hcGd3AhAbyhQUARYu56+tOWOWJbUy82MZEzATMhMkKndWtJFGGl1yrlZPzYZKVURq8Xa5zu3InSvnISA1wAdbX19cjzdHBwcFPXfqrfnmgBK1QBAywDkCqrG6xDLIdGxszQ0NDpre31845woG3YwKxcbQDFC3IV9oNTMYyhI3VOH5jvRwDgxsF5VAK0rrwQn6ejo8tFTKeazT8LV682DQ0NFjSZWsFFUd7e7vp6Oiwv+E/b9261aZHOnxI+pe//OWn7r//fh2LYy6xa9euVGtrq13mG1yrRXo28B+a/AP0UwvwQka18VS8EQUyeqFaBIL3b0bux6/NrOKwu+NUjD1cSsOkxfu7HSeiNsoAYAKDimXywsQRDCBZqFomUalsQbQgXvzGHBNHP2A/boTDb6/FwcoTAPGx0vRGXLAyBqSClb/5OklC955ztbzhE2OC+kWFANKFFcEkTOeTpmNgytB+k7TfKE0jlH8Gn7Wj9IspfQuVvYHONUrXyaF9cnS+acpvmI7XR8Xqot9ne3p6ThA57790f2WXH4EkaLphdZciHx04yZ+odc/kK7VMUybZ6hEO1fZh37a8X6GC2GW+IEcmMEnsuVy+RKQgUZAriJg7WqAxjSMY0LiG7fjNxIt0MqKBrQsuFythkCWTL2+T5ycrHWk98DnKhkXezut4H4Zc5goAx4aCReMd5iBgJmb4wfTbobR5SpsD8dJ5TFPeU3R+Azt37rymsIC/9hxIgqY/kktK0OcbEU8xd6hGxrXuFROjJDGvr8lKj8mNPVte5yUk7lKMeSIRK3m6UINQtdgX5ApihbWA5b6+PiJfN4QMCpjVMXu6HOvLShR5YWLVizkrVOTPpAkVKlUxwDHFbvkSpYgNgPNjdc2qnf/eOXKCFTcTPZ8/kz/PQb7Lly+3H2heuXKlaW5utpedKprR/v7+V2j+j1SOM7Sul86xi9Z1UuXTt3v37poE/MlPfvKi/h6ChkASNP2xpC5FPkrQ8wcX8yZTrZFM7i8H1pGkzOQL0mOC5MgDGRIGZcvLlV7vsF0nw8xAtljGPtyg5pIqKoWyjcIkh98gYw4R8/q4XGYmZq5cuPysevlcMCE/rmxkxAZXUEyyULYgYK4QYDOgHNLzpXPN0nmNQN3SvgO03xhlNU7TBB0LFsQwbe89fvz46cnJyd8Q+Z56vfdcEVCCpj+a+kuRj1oc8x/nU9CykpUdMJgooVxBviBRkCn3UIOdwJ0j2OPlEDOO2+WuxWw1xONRqyDxKo/jIA22oXEK+3CHDHSccP3nUAXxYh9WrV6rQvrdgLQivAPTe68F0kI9M/mifEzCWEZ5MAcJYxlEjN90XQp0jmk6twmadx09evSzRLi+8nD9jkASNP1BVihoJdn5hvN9GZ3v1/nfWqRtIYkNxCgbzzg8DMuIXJBRDD09PSVlzPGzABMjd9qQnSY42oAVKavfP/zDPzTvfOc7zbPPPluqAJD+5ZcP0TxqCdDtEALiDFWU31uxoCy8LDuKANwzTkZd4DiwFZhkoXwxxzrYDvB7KZ1DedDu2UmaRum6DNA16iUCbqf5a319fSfoGh2ma3L08ccfz17ETVVcBgSSoOkPMCUD8PGHDgXBr4TcY8rbCCJbmN0urXgYkA8aXyq9xzeOi8vLccqNUudHyE7eRit7VE+PMhmhUi3CwUsa3rJ4O0DIdHJbtXUylpUbz2RZ2G7gSAZWrCBTV82iS/Co6e/vLxEvlrnDBNLw3wH7xGw/iIFzSn8X+BvBxPA2HnqjEAC2JpBnLJY0x46dMPv3v2CPs2bNGrNixQrzyiuvmPr6hqJVki0pZRmqxnlxJAcrXFgMIFkOKcMEogX5Yg7yRXqqXNCohsY1EO8IXbM++t1J8zNUGbV1dXUdpWv0yr333uubEDNFQAmakORWblY88nVQEkQ1EuKHlomcQ594+1z60RdyfC9hykB/L2Eyqnm1taIaqkU2VFOCTDzy9Zwbrfj6sr+L13+OUMDE6pcbzNC4Jsdl4Ia1TCZX6l7MHS9YecrBcSQZc0OXJF55bb1qHJA+MFcm/LfDx8cxzp07ZysKEOmJEyfsb6h1bnTjcDImdiZhthqKUQ0lQi7aEg7tV6D0CGjI0DlO0DRC1+JUW1vb/7njjjv2LuRIhyAjcAR9++23L7rpppv+9h/+4R/sQ44HAw88gIcBkOpJNpow+OHk10ipnJF+rseT9ZJote3eSAUZ3lUrPxn3LQfI8U6FQm4GMbM6lR0X+LqDgKW9gGgG2ArcaYL9WY564B5tchAcEBg3aLHFgAHY0dgmiRbkxvuw7SDHkgDkWwPAnZq4cmZV6x1Uh4+D/GQcMRMtny9ULVcCSAsVvWrVKkvEGMAHJIx1UMGY6Dpk29vbT9H8JboWB+k6HKbr9Ns9e/b0XQjx3nbbbedLovApAkfQ9BCso7/pxscff9yqEDxEeLi5AQhwX0djFUH2Ms6TH1QQBZbdD07GS8Q+1zifpy7fFuQ6ScAyIkB6rqxyQY5sMfDQj2w3jI+PljpJQNnKxjT2e1ntSnuimo3ERCcjEzCxmuRKQfYwKyv1ciXBpCorLFbSfE48wI93TAcepIfTyjcoVr08IQ+O3+UygnTxNwayPX78+K/onM9hLBhal8KcME7TMF3HQTruQF9fXz9NU/S7j8j4lbvvvvtctfvIna0UCxeBI2h6IBazKsZDA5LgB46tCqgsbgxatmxZ6eOSkkCQ/tixY+aKK64ohTzxUItzCa9FUY2s3VVlv5SVrVfpyp5qHIfL4y1wpwkmXg4nc8fgHSvty/swkTPxeWOObYk8fjWTLl9vjn7whjdKS4H3LeZYQcqSxGfzvtny4oY1VL48Chp3oEDljjmyoO15Wi5Q+ix6tNFyjuY5KlcWnSuwneb5M2fOPH3rrbf+jzd+lxUKF4EjaHpIm/FA4zUTykaqKH5t504EUIB4MNlD9EYDdHZ2llrhmdCl+gTeiCddzaqotW62N10mXq5oEMKFiZUwK1uO38Wcx9tlJYzf6EDBMb0gYjnEI3dw4MbT2VQ8K3gZMiY/S8TWg1TPAH6zcveGn/F5Sj+bKyJex/eXx5HgMnOYmYxqYHsBPu/SpUvtevy9YL+DBw/+S09PTytVTge1UU0xlwgcQaMXIZOm7AXG/iQeSLyW80MLIvJ2w5UNQFCH2A+kBUXlDfb3kol8febt2CYJ3m2tz1aQHHubRdVW8SrvolBStSBVXpYNZ93d3fbcpqfTRLrD1t8F4XEesjHNG5XAJMzXAoQlK55ytEV5zAhvxIf3OrB1wB4tEzyrXjksJCacO8rL5M77cKXKeXFDXyKRJNVbX0G8uFfs8YJ46frkurq6TlI+GMNhjI45grEcKM9BWh6g+zpIyreHrk03JjrE2dl6tikUbyYCR9BEfik86Ey83ogNhvRda6lB+bkdAIQDUme1xvnzdm/YmXzNlw2PyDefd8di4N98LDSiYc7K1h3mEZaDO+Qjd6LgzhIctcCTS74g4/KYvuy7ynAyhrRtvJUTVzSVYXDlkc28bxTy+koF7e1MIb1gnDcIlQkfvi7mHBbJQ0hC2YOAcW+5d9yGDRvNtdf+LkYwG6N1o4h0oHmIjpFFV+JXX331X/fv3/+1ffv2Tb3hPyyFYg4QOIKmhzmJh5rJDuCHmnt8MbyhZ558Sq/cIET0suJYWqg09lur2Rs4BoeLATzWLo9CBrXb348vS4xYlctxvK6/O1Han/fJ50G0ZZuGlSV7qNXGl+DRyRhM1nJZdhWWkFEgXqXtrq8cXIfz5PEevA2BKAeuGStfeL3s93JZUPnxPZLXEbYDytjW1mYVMe4D2xhQwJ2dnb84evTozXv27KnapXjnzp2z/LUoFPMbgSRo2frOIVYgCh4pjMlFdpQo7luRF6taqDtubMRvWAn8BQkQLLxb9nGlDcED5/BIZTIaIhYrq1gmM3e9S6pMZi4Zm1KvM2/jm2wkY5uEw8+kuuV8q71FeMPPZCcM7xtINApCL1s1XEYQMCYe0wE919DtGYoYpIrGWO5SjH26urqGqQI9vX79hs3PP79/EancEmEjDfJndY11+DCojK9G2snJqdN0H6ZqkbNC4XcEjqDpwY7zp3PwgEvIUDpvfLAXWEfKrNSdli0FkAXImBvc5DfYyvZFuUGsVo+9QsG1ImRYl/SAvUQKy8JrIfA22VDpkurMb895LQupkGVvOo4x5omHhgRpco+2hoY6W/lRxZMuFJwxWp6MxaK5ZDIVIhKGxxSjKZpMJiLRqI2YyGWzmfHu7p7OoaHBl9vbO799zz33HMfx/+7vvn+Arut7sIyKTEaecFngq7e0NNv2A/bz3TI1NFH51r7+vxaFYn4jcARNJDTFD7n0Sln9ZXMZlwQMyKpg1WlBDLSO5XCEXrWJEH/zm1csSUORyo9jAm7jo92r+FrulMiRiRfb3JAuGXvrWDXM22UDG9J6RxsrLtmY31CIQ+gqxzYG2cPTZvsB3ci5p5pU3RzHLZUv0oB8QbisdpmIeeAfHtuByujQlDt1qu2ltrZTH2tt3dNxCe5XhJRwsbyxUuNpliq6FGwQqiAWFz1qlMUUzwcVx+/93vVbhodHe99oGRSK+YrAETQR55hsXAIxwWrAuAirV68wHZ3tNnwOQjUaC5vp9KTdz4Z+ObBDoGBB0o4d6wETINUriAINfEx+8XiipE4xIA7AhOxO7PlWfq4eRC27kbv7xypIlZWwHDhHdjl2ywX1Xe7ODOD8OZxMzkG2sB9gOcDfRQNbb2/vQUQ30L55+Lr0FtBN8x5Srp09PT0dpGzPtra29nAZb7zxxkt2v+rq6qPvfe8O09HRaX72s5+ZZUtbTIIqjrVr19pzR7kxABEIef/+/VZNQ0mDtCN0k8bGxoYuWWEUinmGIBL0GbYKYDdwj0E7qAyRJ4iLByWHCpaf5sErNh5+7mmYz1X3pqU9IL8eXPaAQxUk6h2giPOUHri0HeSg7NU6U6CM7PuCcHngHNru0DlMQuVSunAqlXJo3xzlO47QMiobwswmCQMnTpw4NzQ09KMvf/nLz83lOA6vvfbaU+vWrWv88Ic/vHTHjh2JxkUN4bq6VGj16tUhjGUBfx8hc/D98XaB84fdVLzWOYxLMVdlVyguNwJH0KSofgVCAwlzzzLujNLT3WMfeERNgNT4Y5MAe8eInHBVbfUGNYAJVTaiyWgHGaYmO2HwnBstmYR5fAkmXSZh+KyYw14AAXO3YlgPPJAOldmhKXfw4MEf/OVf/uXHLpZs77rrrjdwtd84du7ciQLMKMS3v/3IV7e+9a1fRiQON85yDDfOG9dkenoK36mbOZiKQhEQBI6g9+zZM0RklSeSi8jGOpBiw6IWYlfHDv8ItcwNiUwAIHIQNFSpHYA9lqqIYQbkOA1M7tivbFu4ypnJlkPeip98LzW4QRVC1fMngrCMMDLsQ5UMXt2naRqdmJjom5qa6qGpg6ZTp0+fPnrkyJGTVP52aTtcffXV5jOf+czcXPTLALqOCZAz7hMqU8w5xBCNtbimo2PjQ3SNTsx1WRWKy4XAETRAr8OnPvWpT235zne+Y8PbQKZ4LV6ypNmsWL7CnDvbToTsfpo+lIpYck4lXUWaTNSZbC4Lf7PCjpAj2IEkoGYxxz5QtVB0aGDDBJIlFGi/NM1hYk/S/vgc0DjN7aeBKG9MU0TAgyMjI91UUbTTdHxgYOCXDzzwwILvWOE4oTgGvsc1BlFzZQqiRgU6Njae7Tx+cjfdw3+Z67IqFJcLgSRoUsif+cAHPvDTG2+8MXr48GH7gKNxKZNxPWbwLkgUxI2QObYZ2O+NZDiGODLDtgDe8573mLe//e1QxBhAx4HXC/+X9klTRXCWFO5/++pXv/rcHF8GX2NwsPeZ0dGxv9i2bdsiDE2Kj5DifiHWHPduzZrVsTZ6n6DKTGOgFYFFIAn6jjvu+Oddu3Y1btmyZc+3vvWt/97R0WEOHTpkB1A/c+YM1JnJZvNEsClS1dGK3nRsYXiHoWSbA3bEDTfcMPnNb35z8YEDB/STQJcJd965+x9p1njffffdVF9f96HGxkVvSabq6FbFMrl8Ltfe0ZFuaEgMz3U5FYrLiUASNFC0Cf76oYceaidVvIpelVds375983vf+963E8kuQlTA2bNnLWlbq6PoG/Mwkzy+L4+ChomUeLa/v//cyZMn/0LJ+c3B7bff/nOa/Xyuy6FQzAUCS9CMW2655QHvum984xv/Yd26dbdfeeWVV73zne+so1Uh8RFQxKGlx8bGhul1up3mR3t7e18aGhr6v62trV1vdvkVCsXCxf8H5lwvl3zsLgMAAAAASUVORK5CYII=</Swatch>
+  </swatchLibrary>
+</Fixture>

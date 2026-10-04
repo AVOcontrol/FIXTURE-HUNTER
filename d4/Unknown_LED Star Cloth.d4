@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LED Star Cloth" ShortName="Star Cloth" Company="Unknown">
+  <Copyright Notice="© Avolites Ltd. 2019" />
+  <History Date="28-10-19" Author="Nic Morris" Comment="Created (poor documentation.  charts contain errors)" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="1~9" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="3" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="10~255" />
+    </Attribute>
+    <Attribute ID="Macro" Name="Macro" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Macro" Display="'No Macro'" Dmx="0~0" />
+      <Function ID="2" Name="Jump" Display="'Jump'" Dmx="51~100" />
+      <Function ID="3" Name="Gradual" Display="'Gradual'" Dmx="101~150" />
+      <Function ID="4" Name="Pulse" Display="'Pulse'" Dmx="151~200" />
+      <Function ID="5" Name="Sound" Display="'Sound'" Dmx="201~255" />
+    </Attribute>
+    <Attribute ID="Macro_Spd" Name="Macro Spd" Description="" Group="E">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+  </Control>
+  <Mode Name="8 DMX" Channels="8">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+        <Attribute ID="Shutter" ChannelOffset="2" Wheel="4" />
+        <Attribute ID="Macro" ChannelOffset="3" Wheel="22" />
+        <Attribute ID="Macro_Spd" ChannelOffset="4" Wheel="23" />
+        <Attribute ID="Colour1" Wheel="7" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="5" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="6" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="7" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="8" ModeLink="Cell" X="0" Y="3">
+        <AttributeLink SourceId="Colour1" TargetId="Colour1" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="1" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Colour1" ChannelOffset="1" Wheel="7" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Shutter">
+      <Palette ID="1" Name="Open" Number="31" Page="1" SetControl="Shutter:2" />
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:3:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:3:100" />
+      <Palette ID="6" Name="Closed" Legend="Close" Number="38" Page="1" SetControl="Shutter:1" />
+    </Group>
+  </Palettes>
+</Fixture>
