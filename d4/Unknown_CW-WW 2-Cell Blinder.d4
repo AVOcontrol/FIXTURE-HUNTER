@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="CW-WW 2-Cell Blinder" ShortName="CWWW Blind" Company="Unknown">
+  <Copyright Notice="© Avolites Ltd. 2019" />
+  <History Date="03-04-19" Author="Nic Morris" Comment="Created (channels only)" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="WarmWhite" Name="Warm White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="ColdWhite" Name="Cold White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="200,200,255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="4 DMX" Channels="4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="WarmWhite" Wheel="7" />
+        <Attribute ID="ColdWhite" Wheel="8" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="1" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="WarmWhite" TargetId="WarmWhite" />
+        <AttributeLink SourceId="ColdWhite" TargetId="ColdWhite" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="3" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="WarmWhite" TargetId="WarmWhite" />
+        <AttributeLink SourceId="ColdWhite" TargetId="ColdWhite" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="2" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="WarmWhite" ChannelOffset="1" Wheel="7" VirtualControl="Dimmer" />
+      <Attribute ID="ColdWhite" ChannelOffset="2" Wheel="8" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+</Fixture>

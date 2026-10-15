@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Mode M" ShortName="Mode M" Company="Starway">
+  <Copyright Notice="© Avolites Ltd. 2015" />
+  <History Date="06-05-15" Author="Gabi de Moitelle" Comment="Created" />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Changed mode 1 dimmer resolution to none and removed from mapping." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Changed 'Dim Cell' mode to use 'Dimmer' attribute for HTP compatibility.  Removed 'dimmer cell' attribute." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Recreated mode 6.  Changed RGB DimV cell mode to use Red Green Blue and Dimmer attributes for shape and HTP compatibility." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Recreated mode 4.  Increased wheel resolution.  Removed clear value from dimmer as it has no function." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Merged mode 5 conditionals into RGB channels for shape compatibility.  Also fixed mode 5 RGB locates as by-product." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Changed Dimmer 1 in mode 5 to Dimmer.  Removed extraneous attributes." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Changed speed else condition function to Raw DMX.  Changed effect speed and audio sensitivity to full 0-255 DMX ranges." />
+  <History Date="07-05-15" Author="Nic Morris" Comment="Recreated palettes.  Updated power on to locate values." />
+  <History Date="19-05-15" Author="Nic Morris" Comment="Revised Effect functions.  Added 78 DMX mode." />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="Character" ID="2" If="'Effect_Mode'&gt;16&amp;&amp;'Effect_Mode'&lt;21" />
+      <Else ID="1" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+      <Function ID="2" Name="Character" Display="'%.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Condition Name="Character" ID="2" If="'Effect_Mode'&gt;16&amp;&amp;'Effect_Mode'&lt;21" />
+      <Else ID="1" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+      <Function ID="2" Name="Char Color" Display="'%.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Condition Name="Character" ID="2" If="'Effect_Mode'&gt;16&amp;&amp;'Effect_Mode'&lt;21" />
+      <Else ID="1" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+      <Function ID="2" Name="Back Color" Display="'%.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Intensity="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="1~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Effect_Mode" Name="Effect" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~12" Update="Speed, Red, Green, Blue" />
+      <Function ID="2" Name="R" Display="'R'" Dmx="13~19" Update="Speed, Red, Green, Blue" />
+      <Function ID="3" Name="G" Display="'G'" Dmx="20~26" Update="Speed, Red, Green, Blue" />
+      <Function ID="4" Name="B" Display="'B'" Dmx="27~33" Update="Speed, Red, Green, Blue" />
+      <Function ID="5" Name="RG" Display="'RG'" Dmx="34~40" Update="Speed, Red, Green, Blue" />
+      <Function ID="6" Name="GB" Display="'GB'" Dmx="41~47" Update="Speed, Red, Green, Blue" />
+      <Function ID="7" Name="RB" Display="'RB'" Dmx="48~54" Update="Speed, Red, Green, Blue" />
+      <Function ID="8" Name="RGB" Display="'RGB'" Dmx="55~61" Update="Speed, Red, Green, Blue" />
+      <Function ID="9" Name="Colour 1" Display="'Colour 1'" Dmx="62~68" Update="Speed, Red, Green, Blue" />
+      <Function ID="10" Name="Colour 2" Display="'Colour 2'" Dmx="69~75" Update="Speed, Red, Green, Blue" />
+      <Function ID="11" Name="Colour 3" Display="'Colour 3'" Dmx="76~82" Update="Speed, Red, Green, Blue" />
+      <Function ID="12" Name="Colour 4" Display="'Colour 4'" Dmx="83~89" Update="Speed, Red, Green, Blue" />
+      <Function ID="13" Name="Colour 5" Display="'Colour 5'" Dmx="90~96" Update="Speed, Red, Green, Blue" />
+      <Function ID="14" Name="Colour 6" Display="'Colour 6'" Dmx="97~103" Update="Speed, Red, Green, Blue" />
+      <Function ID="15" Name="Colour 7" Display="'Colour 7'" Dmx="104~110" Update="Speed, Red, Green, Blue" />
+      <Function ID="16" Name="Colour 8" Display="'Colour 8'" Dmx="111~117" Update="Speed, Red, Green, Blue" />
+      <Function ID="17" Name="Char 0 deg" Display="'Char 0 deg'" Dmx="118~124" Update="Speed, Red, Green, Blue" />
+      <Function ID="18" Name="Char 90 deg" Display="'Char 90 deg'" Dmx="125~131" Update="Speed, Red, Green, Blue" />
+      <Function ID="19" Name="Char 180 deg" Display="'Char 180 deg'" Dmx="132~138" Update="Speed, Red, Green, Blue" />
+      <Function ID="20" Name="Char 270 deg" Display="'Char 270 deg'" Dmx="139~145" Update="Speed, Red, Green, Blue" />
+      <Function ID="21" Name="Dream" Display="'Dream'" Dmx="146~152" Update="Speed, Red, Green, Blue" />
+      <Function ID="22" Name="Meteor" Display="'Meteor'" Dmx="153~159" Update="Speed, Red, Green, Blue" />
+      <Function ID="23" Name="Fade" Display="'Fade'" Dmx="160~166" Update="Speed, Red, Green, Blue" />
+      <Function ID="24" Name="Change" Display="'Change'" Dmx="167~173" Update="Speed, Red, Green, Blue" />
+      <Function ID="25" Name="Flow 1" Display="'Flow 1'" Dmx="174~180" Update="Speed, Red, Green, Blue" />
+      <Function ID="26" Name="Flow 2" Display="'Flow 2'" Dmx="181~187" Update="Speed, Red, Green, Blue" />
+      <Function ID="27" Name="Flow 3" Display="'Flow 3'" Dmx="188~194" Update="Speed, Red, Green, Blue" />
+      <Function ID="28" Name="Flow 4" Display="'Flow 4'" Dmx="195~201" Update="Speed, Red, Green, Blue" />
+      <Function ID="29" Name="Flow 5" Display="'Flow 5'" Dmx="202~208" Update="Speed, Red, Green, Blue" />
+      <Function ID="30" Name="Flow 6" Display="'Flow 6'" Dmx="209~215" Update="Speed, Red, Green, Blue" />
+      <Function ID="31" Name="Flow 7" Display="'Flow 7'" Dmx="216~222" Update="Speed, Red, Green, Blue" />
+      <Function ID="32" Name="Flow 8" Display="'Flow 8'" Dmx="223~229" Update="Speed, Red, Green, Blue" />
+      <Function ID="33" Name="Flow 9" Display="'Flow 9'" Dmx="230~236" Update="Speed, Red, Green, Blue" />
+      <Function ID="34" Name="Sound" Display="'Sound'" Dmx="237~255" Update="Speed, Red, Green, Blue" />
+    </Attribute>
+    <Attribute ID="Speed" Name="Speed" Description="" Group="E">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Fade Speed" ID="2" If="'Effect_Mode'&gt;1&amp;&amp;'Effect_Mode'&lt;21" />
+      <Condition Name="Effect Speed" ID="3" If="'Effect_Mode'&gt;20&amp;&amp;'Effect_Mode'&lt;34" />
+      <Condition Name="Sensitivity" ID="4" If="'Effect_Mode'==34" />
+      <Else ID="1" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+      <Function ID="2" Name="Fade Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="3" Name="Effect Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="4" Name="Sensitivitiy" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Shutter1" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Intensity="0~0" />
+      <Function ID="2" Name="Strobe" Display="'Strobe %.f%%',0~100" Dmx="1~85" Intensity="0~0" />
+      <Function ID="3" Name="Pixel Irreg" Display="'Pixel Irreg %.f%%',0~100" Dmx="86~170" Intensity="0~0" />
+      <Function ID="4" Name="Panel Irreg" Display="'Panel Irreg %.f%%',0~100" Dmx="171~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Effect1" Name="Effect" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~12" Update="Master_Dimmer" />
+      <Function ID="2" Name="R" Display="'R'" Dmx="13~19" Update="Master_Dimmer" />
+      <Function ID="3" Name="G" Display="'G'" Dmx="20~26" Update="Master_Dimmer" />
+      <Function ID="4" Name="B" Display="'B'" Dmx="27~33" Update="Master_Dimmer" />
+      <Function ID="5" Name="RG" Display="'RG'" Dmx="34~40" Update="Master_Dimmer" />
+      <Function ID="6" Name="GB" Display="'GB'" Dmx="41~47" Update="Master_Dimmer" />
+      <Function ID="7" Name="RB" Display="'RB'" Dmx="48~54" Update="Master_Dimmer" />
+      <Function ID="8" Name="RGB" Display="'RGB'" Dmx="55~61" Update="Master_Dimmer" />
+      <Function ID="9" Name="Colour 1" Display="'Colour 1'" Dmx="62~68" Update="Master_Dimmer" />
+      <Function ID="10" Name="Colour 2" Display="'Colour 2'" Dmx="69~75" Update="Master_Dimmer" />
+      <Function ID="11" Name="Colour 3" Display="'Colour 3'" Dmx="76~82" Update="Master_Dimmer" />
+      <Function ID="12" Name="Colour 4" Display="'Colour 4'" Dmx="83~89" Update="Master_Dimmer" />
+      <Function ID="13" Name="Colour 5" Display="'Colour 5'" Dmx="90~96" Update="Master_Dimmer" />
+      <Function ID="14" Name="Colour 6" Display="'Colour 6'" Dmx="97~103" Update="Master_Dimmer" />
+      <Function ID="15" Name="Colour 7" Display="'Colour 7'" Dmx="104~110" Update="Master_Dimmer" />
+      <Function ID="16" Name="Colour 8" Display="'Colour 8'" Dmx="111~117" Update="Master_Dimmer" />
+      <Function ID="17" Name="Dream" Display="'Dream'" Dmx="146~152" Update="Master_Dimmer" />
+      <Function ID="18" Name="Meteor" Display="'Meteor'" Dmx="153~159" Update="Master_Dimmer" />
+      <Function ID="19" Name="Fade" Display="'Fade'" Dmx="160~166" Update="Master_Dimmer" />
+      <Function ID="20" Name="Change" Display="'Change'" Dmx="167~173" Update="Master_Dimmer" />
+      <Function ID="21" Name="Flow 1" Display="'Flow 1'" Dmx="174~180" Update="Master_Dimmer" />
+      <Function ID="22" Name="Flow 2" Display="'Flow 2'" Dmx="181~187" Update="Master_Dimmer" />
+      <Function ID="23" Name="Flow 3" Display="'Flow 3'" Dmx="188~194" Update="Master_Dimmer" />
+      <Function ID="24" Name="Flow 4" Display="'Flow 4'" Dmx="195~201" Update="Master_Dimmer" />
+      <Function ID="25" Name="Flow 5" Display="'Flow 5'" Dmx="202~208" Update="Master_Dimmer" />
+      <Function ID="26" Name="Flow 6" Display="'Flow 6'" Dmx="209~215" Update="Master_Dimmer" />
+      <Function ID="27" Name="Flow 7" Display="'Flow 7'" Dmx="216~222" Update="Master_Dimmer" />
+      <Function ID="28" Name="Flow 8" Display="'Flow 8'" Dmx="223~229" Update="Master_Dimmer" />
+      <Function ID="29" Name="Flow 9" Display="'Flow 9'" Dmx="230~236" Update="Master_Dimmer" />
+      <Function ID="30" Name="Sound" Display="'Sound'" Dmx="237~255" Update="Master_Dimmer" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Condition Name="Speed" ID="2" If="'Effect1'&gt;16&amp;&amp;'Effect1'&lt;30" />
+      <Condition Name="Sensitivity" ID="3" If="'Effect1'==30" />
+      <Else ID="1" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+      <Function ID="2" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+      <Function ID="3" Name="Sensitivity" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+  </Control>
+  <Mode Name="Mode 1 - 3dmx" Channels="3">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" />
+    </Include>
+  </Mode>
+  <Mode Name="Mode 2 - 4 dmx" Channels="4">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" />
+    </Include>
+  </Mode>
+  <Mode Name="Mode 3 - 5 dmx" Channels="5">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Shutter" ChannelOffset="5" Wheel="4" />
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" />
+    </Include>
+  </Mode>
+  <Mode Name="Mode 4 - 75 dmx" Channels="75">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Red" Wheel="10" VirtualControl="Dimmer" />
+        <Attribute ID="Green" Wheel="11" VirtualControl="Dimmer" />
+        <Attribute ID="Blue" Wheel="12" VirtualControl="Dimmer" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="1" ModeLink="RGB DimV cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="4" ModeLink="RGB DimV cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="7" ModeLink="RGB DimV cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="10" ModeLink="RGB DimV cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Cell 5" ChannelOffset="13" ModeLink="RGB DimV cell" X="4" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Cell 6" ChannelOffset="16" ModeLink="RGB DimV cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Cell 7" ChannelOffset="19" ModeLink="RGB DimV cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Cell 8" ChannelOffset="22" ModeLink="RGB DimV cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Cell 9" ChannelOffset="25" ModeLink="RGB DimV cell" X="3" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Cell 10" ChannelOffset="28" ModeLink="RGB DimV cell" X="4" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Cell 11" ChannelOffset="31" ModeLink="RGB DimV cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Cell 12" ChannelOffset="34" ModeLink="RGB DimV cell" X="1" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Cell 13" ChannelOffset="37" ModeLink="RGB DimV cell" X="2" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Cell 14" ChannelOffset="40" ModeLink="RGB DimV cell" X="3" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Cell 15" ChannelOffset="43" ModeLink="RGB DimV cell" X="4" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Cell 16" ChannelOffset="46" ModeLink="RGB DimV cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Cell 17" ChannelOffset="49" ModeLink="RGB DimV cell" X="1" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Cell 18" ChannelOffset="52" ModeLink="RGB DimV cell" X="2" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Cell 19" ChannelOffset="55" ModeLink="RGB DimV cell" X="3" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Cell 20" ChannelOffset="58" ModeLink="RGB DimV cell" X="4" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Cell 21" ChannelOffset="61" ModeLink="RGB DimV cell" X="0" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Cell 22" ChannelOffset="64" ModeLink="RGB DimV cell" X="1" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Cell 23" ChannelOffset="67" ModeLink="RGB DimV cell" X="2" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Cell 24" ChannelOffset="70" ModeLink="RGB DimV cell" X="3" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Cell 25" ChannelOffset="73" ModeLink="RGB DimV cell" X="4" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Mode 5 - 7dmx" Channels="7">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="3" Wheel="1" />
+      <Attribute ID="Shutter1" ChannelOffset="4" Wheel="4" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" />
+      <Attribute ID="Effect_Mode" ChannelOffset="1" Wheel="22" />
+      <Attribute ID="Speed" ChannelOffset="2" Wheel="23" />
+    </Include>
+  </Mode>
+  <Mode Name="Mode 6 - 25 dmx" Channels="25">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="1" ModeLink="Dim Cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="2" ModeLink="Dim Cell" X="1" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="3" ModeLink="Dim Cell" X="2" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="4" ModeLink="Dim Cell" X="3" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Cell 5" ChannelOffset="5" ModeLink="Dim Cell" X="4" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Cell 6" ChannelOffset="6" ModeLink="Dim Cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Cell 7" ChannelOffset="7" ModeLink="Dim Cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Cell 8" ChannelOffset="8" ModeLink="Dim Cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Cell 9" ChannelOffset="9" ModeLink="Dim Cell" X="3" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Cell 10" ChannelOffset="10" ModeLink="Dim Cell" X="4" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Cell 11" ChannelOffset="11" ModeLink="Dim Cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Cell 12" ChannelOffset="12" ModeLink="Dim Cell" X="1" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Cell 13" ChannelOffset="13" ModeLink="Dim Cell" X="2" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Cell 14" ChannelOffset="14" ModeLink="Dim Cell" X="3" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Cell 15" ChannelOffset="15" ModeLink="Dim Cell" X="4" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Cell 16" ChannelOffset="16" ModeLink="Dim Cell" X="0" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Cell 17" ChannelOffset="17" ModeLink="Dim Cell" X="1" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Cell 18" ChannelOffset="18" ModeLink="Dim Cell" X="2" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Cell 19" ChannelOffset="19" ModeLink="Dim Cell" X="3" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Cell 20" ChannelOffset="20" ModeLink="Dim Cell" X="4" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Cell 21" ChannelOffset="21" ModeLink="Dim Cell" X="0" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Cell 22" ChannelOffset="22" ModeLink="Dim Cell" X="1" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Cell 23" ChannelOffset="23" ModeLink="Dim Cell" X="2" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Cell 24" ChannelOffset="24" ModeLink="Dim Cell" X="3" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Cell 25" ChannelOffset="25" ModeLink="Dim Cell" X="4" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Dim Cell" Channels="1" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="RGB DimV cell" Channels="3" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+    </Include>
+  </Mode>
+  <Mode Name="78 DMX" Channels="78">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="Red" Wheel="10" VirtualControl="Dimmer" />
+        <Attribute ID="Green" Wheel="11" VirtualControl="Dimmer" />
+        <Attribute ID="Blue" Wheel="12" VirtualControl="Dimmer" />
+        <Attribute ID="Effect1" ChannelOffset="1" Wheel="23" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="2" Wheel="5" />
+        <Attribute ID="Shutter1" ChannelOffset="3" Wheel="4" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="4" ModeLink="RGB DimV cell" X="0" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="7" ModeLink="RGB DimV cell" X="1" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="10" ModeLink="RGB DimV cell" X="2" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="13" ModeLink="RGB DimV cell" X="3" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell5" Name="Cell 5" ChannelOffset="16" ModeLink="RGB DimV cell" X="4" Y="0">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell6" Name="Cell 6" ChannelOffset="19" ModeLink="RGB DimV cell" X="0" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell7" Name="Cell 7" ChannelOffset="22" ModeLink="RGB DimV cell" X="1" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell8" Name="Cell 8" ChannelOffset="25" ModeLink="RGB DimV cell" X="2" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell9" Name="Cell 9" ChannelOffset="28" ModeLink="RGB DimV cell" X="3" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell10" Name="Cell 10" ChannelOffset="31" ModeLink="RGB DimV cell" X="4" Y="1">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell11" Name="Cell 11" ChannelOffset="34" ModeLink="RGB DimV cell" X="0" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell12" Name="Cell 12" ChannelOffset="37" ModeLink="RGB DimV cell" X="1" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell13" Name="Cell 13" ChannelOffset="40" ModeLink="RGB DimV cell" X="2" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell14" Name="Cell 14" ChannelOffset="43" ModeLink="RGB DimV cell" X="3" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell15" Name="Cell 15" ChannelOffset="46" ModeLink="RGB DimV cell" X="4" Y="2">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell16" Name="Cell 16" ChannelOffset="49" ModeLink="RGB DimV cell" X="0" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell17" Name="Cell 17" ChannelOffset="52" ModeLink="RGB DimV cell" X="1" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell18" Name="Cell 18" ChannelOffset="55" ModeLink="RGB DimV cell" X="2" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell19" Name="Cell 19" ChannelOffset="58" ModeLink="RGB DimV cell" X="3" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell20" Name="Cell 20" ChannelOffset="61" ModeLink="RGB DimV cell" X="4" Y="3">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell21" Name="Cell 21" ChannelOffset="64" ModeLink="RGB DimV cell" X="0" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell22" Name="Cell 22" ChannelOffset="67" ModeLink="RGB DimV cell" X="1" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell23" Name="Cell 23" ChannelOffset="70" ModeLink="RGB DimV cell" X="2" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell24" Name="Cell 24" ChannelOffset="73" ModeLink="RGB DimV cell" X="3" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+      <Cell ID="Cell25" Name="Cell 25" ChannelOffset="76" ModeLink="RGB DimV cell" X="4" Y="4">
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

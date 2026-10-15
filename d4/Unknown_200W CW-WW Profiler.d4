@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="200W CW-WW Profiler" ShortName="200WCWWWPr" Company="Unknown" Version="1">
+  <Copyright Notice="© Avolites Ltd. 2025" />
+  <History Date="19-08-24" Author="Nic Morris" Comment="Created (very poor documentation.  charts only.  assumed 'Motor' is zoom.  Channel 8 has conflicting ranges/description and doesn't make any sense)" Version="0" />
+  <History Date="14-08-25" Author="Nic Morris" Comment="Created from Unknown Frontline Spot (assumed 'Focus' is zoom.  contains range conflicts)" Version="1" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="WarmWhite" Name="Warm White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="White" Name="True White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Auto" Name="Auto" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="2" Name="Auto" Display="'Auto'" Dmx="51~150" />
+      <Function ID="3" Name="Sound" Display="'Sound'" Dmx="151~255" />
+    </Attribute>
+    <Attribute ID="Auto_Spd" Name="Auto Spd" Description="" Group="E">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Zoom" Name="Zoom" Description="" Group="B">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Zoom" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Zoom_Spd/Reset" Name="Zoom Spd/Reset" Description="" Group="S">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Zoom Spd" Display="'Zoom Spd %.1f%%',0.0~100.0" Dmx="0~250" />
+      <Function ID="2" Name="Reset" Display="'Reset'" Dmx="255~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="8 DMX" Channels="8" Id="fd16ef8a-3144-44dd-93db-be300f1d93cc">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="WarmWhite" ChannelOffset="2" Wheel="10" />
+      <Attribute ID="White" ChannelOffset="3" Wheel="11" />
+      <Attribute ID="Shutter" ChannelOffset="4" Wheel="5" />
+      <Attribute ID="Auto" ChannelOffset="5" Wheel="22" />
+      <Attribute ID="Auto_Spd" ChannelOffset="6" Wheel="23" />
+      <Attribute ID="Zoom" ChannelOffset="7" Wheel="19" />
+      <Attribute ID="Zoom_Spd/Reset" ChannelOffset="8" Wheel="28" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Reset">
+      <Set Channel="Zoom_Spd/Reset:2" Delay="6000" />
+      <Set Channel="Zoom_Spd/Reset:1:100" Delay="0" />
+    </Macro>
+  </Macro>
+  <Palettes>
+    <Group Name="Beam">
+      <Palette ID="1" Name="Zoom Small" Number="41" Page="1" SetControl="Zoom:1:0" />
+      <Palette ID="2" Name="Zoom Medium" Legend="Zoom Med" Number="42" Page="1" SetControl="Zoom:1:50" />
+      <Palette ID="3" Name="Zoom Large" Number="43" Page="1" SetControl="Zoom:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

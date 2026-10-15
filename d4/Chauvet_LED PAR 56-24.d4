@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LED PAR 56-24" ShortName="PAR 56-24" Company="Chauvet">
+  <Copyright Notice="© Avolites Ltd. 2017" />
+  <History Date="10-04-08" Author="Ion Balan" Comment="Created" />
+  <History Date="10-04-08" Author="Ion Balan" Comment="Checked" />
+  <History Date="10-04-08" Author="Gregory Haynes" Comment="Checked" />
+  <History Date="02-02-09" Author="D4 Personality Fixer 2009" Comment="Changed Function Names" />
+  <History Date="19-04-12" Author="Locate Fix" Comment="Updated locate, power on, highlight and lowlight values to valid values" />
+  <History Date="11-02-14" Author="RGB Power on Updater" Comment="Updated RGB Power on values to match Locate." />
+  <History Date="07-10-17" Author="Nic Morris" Comment="Changed name from Led Par 56 to LED PAR 56-24.  Removed manufacturer shortcode from display name." />
+  <History Date="07-10-17" Author="Nic Morris" Comment="Removed channel offset from attribute names.  Revised modes.  Added Atlabase ID's." />
+  <History Date="07-10-17" Author="Nic Morris" Comment="Added open shutter function.  Revised conditions." />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="7f6b8371-066b-464b-99f4-2396654b76f7" />
+  <Control>
+    <Attribute ID="Effect" Name="Effect" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" Update="Shutter" />
+      <Function ID="2" Name="Open Pulse" Display="'Open Pulse'" Dmx="32~63" Update="Shutter" />
+      <Function ID="3" Name="Close Pulse" Display="'Close Pulse'" Dmx="64~95" Update="Shutter" />
+      <Function ID="4" Name="Pulse" Display="'Pulse'" Dmx="96~127" Update="Shutter" />
+      <Function ID="5" Name="Auto Fade" Display="'Auto Fade'" Dmx="128~159" Update="Shutter" />
+      <Function ID="6" Name="3 Col Snap" Display="'3 Col Snap'" Dmx="160~191" Update="Shutter" />
+      <Function ID="7" Name="7 Col Snap" Display="'7 Col Snap'" Dmx="192~223" Update="Shutter" />
+      <Function ID="8" Name="Sound" Display="'Sound'" Dmx="224~255" Update="Shutter" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Speed" ID="3" If="'Effect'&gt;1&amp;&amp;'Effect'&lt;8" />
+      <Else ID="1,2" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="16~255" Intensity="0~0" />
+      <Function ID="3" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Colour_Macro" Name="Colour Macro" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Colour" Display="'Colour %.1f%%',0.0~100.0" Dmx="16~255" Colour="255,255,255" />
+    </Attribute>
+  </Control>
+  <Mode Name="7 DMX" Channels="7">
+    <Import PearlRef="CHLP56" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="c3795a6b-db25-41ad-ba6d-32467edf7286" />
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="5" Wheel="4" />
+      <Attribute ID="Dimmer" ChannelOffset="7" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" />
+      <Attribute ID="Effect" ChannelOffset="6" Wheel="22" />
+      <Attribute ID="Colour_Macro" ChannelOffset="4" Wheel="9" />
+    </Include>
+  </Mode>
+  <Mode Name="3 DMX" Channels="3">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="828685b1-398c-411a-bda8-c1b2b18eb962" />
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+</Fixture>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Centerpiece" ShortName="Centrpiece" Company="Martin">
+  <Copyright Notice="© Avolites Ltd. 2014" />
+  <History Date="09-06-14" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~49" />
+      <Function ID="2" Name="Music Random" Display="'Music Random'" Dmx="50~99" />
+      <Function ID="3" Name="Auto Random" Display="'Auto Random'" Dmx="100~149" />
+      <Function ID="4" Name="Music" Display="'Music'" Dmx="150~199" />
+      <Function ID="5" Name="Auto" Display="'Auto'" Dmx="200~247" />
+      <Function ID="6" Name="Reset" Display="'Reset'" Dmx="248~252" />
+      <Function ID="7" Name="Lamp On" Display="'Lamp On'" Dmx="253~255" />
+    </Attribute>
+    <Attribute ID="Tilt" Name="Tilt" Description="" Group="P">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Tilt" Display="'Tilt %.1f%%',0.0~100.0" Dmx="0~198" />
+      <Function ID="2" Name="Full Open" Display="'Full Open'" Dmx="199~255" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Scroll CW" Display="'Scroll CW     %.1f%%',100.0~0.0" Dmx="0~123" Colour="0,0,0" />
+      <Function ID="2" Name="No Scroll" Display="'No Scroll'" Dmx="124~131" Colour="255,255,255" />
+      <Function ID="3" Name="Scroll CCW" Display="'Scroll CCW    %.1f%%',0.0~100.0" Dmx="132~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Generic" Name="Mirror" Description="" Group="G">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Spin CW" Display="'Spin CW %.1f%%',100.0~0.0" Dmx="0~123" GoboSpin="0~0" GoboOrientation="0~0" />
+      <Function ID="2" Name="No Spin" Display="'No Spin'" Dmx="124~131" GoboSpin="0~0" GoboOrientation="0~0" />
+      <Function ID="3" Name="Spin CCW" Display="'Spin CCW %.1f%%',0.0~100.0" Dmx="132~255" GoboSpin="0~0" GoboOrientation="0~0" />
+    </Attribute>
+  </Control>
+  <Mode Name="7 DMX" Channels="7">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Mirror" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Control" ChannelOffset="1" Wheel="28" />
+        <Attribute ID="Tilt" Wheel="3" />
+        <Attribute ID="Colour1" ChannelOffset="6" Wheel="8" />
+        <Attribute ID="Generic" ChannelOffset="7" Wheel="13" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="2" ModeLink="Tilt cell" X="0" Y="0">
+        <AttributeLink SourceId="Tilt" TargetId="Tilt" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="3" ModeLink="Tilt cell" X="0" Y="1">
+        <AttributeLink SourceId="Tilt" TargetId="Tilt" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="4" ModeLink="Tilt cell" X="0" Y="2">
+        <AttributeLink SourceId="Tilt" TargetId="Tilt" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="5" ModeLink="Tilt cell" X="0" Y="3">
+        <AttributeLink SourceId="Tilt" TargetId="Tilt" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Tilt cell" Channels="1" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Mirror" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Tilt" ChannelOffset="1" Wheel="3" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Reset">
+      <Set Channel="Control:6" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Lamp On">
+      <Set Channel="Control:7" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

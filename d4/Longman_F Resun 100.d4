@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="F Resun 100" ShortName="FResun 100" Company="Longman">
+  <Copyright Notice="© Avolites Ltd. 2013" />
+  <History Date="12-10-10" Author="John Rogers" Comment="Created" />
+  <History Date="30-04-13" Author="Peter Budd" Comment="Created from Longman V Power 483" />
+  <History Date="30-04-13" Author="Peter Budd" Comment="Created from Longman F100" />
+  <History Date="30-04-13" Author="Peter Budd" Comment="Created from Longman F200." />
+  <History Date="18-06-13" Author="Peter Budd" Comment="Created from the Longman F Resun 300." />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Amber" Name="Amber" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:0" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Amber C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,100,0" />
+    </Attribute>
+    <Attribute ID="Warm_White" Name="Warm White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:0" Highlight="1:0" Lowlight="1:0" />
+      <Function ID="1" Name="Warm C-Mix" Display="'Warm C-Mix %.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Cool_White" Name="Cool White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:0" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Cool C-Mix" Display="'Cool C-Mix %.1f%%',0.0~100.0" Dmx="0~255" Colour="230,230,255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Speed" ID="3" If="'Colour_Macro'&gt;1&amp;&amp;'Colour_Macro'&lt;8" />
+      <Else ID="1,2" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~14" Intensity="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.f%%',0~100" Dmx="15~255" Intensity="0~0" />
+      <Function ID="3" Name="Speed" Display="'%.1f%%',100.0~0.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Colour_Macro" Name="Colour Macro" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Macro" Display="'No Macro'" Dmx="0~31" Update="Shutter" Colour="0,0,0" />
+      <Function ID="2" Name="Dim to Bright" Display="'Dim to Bright'" Dmx="32~63" Update="Shutter" Colour="0,0,0" />
+      <Function ID="3" Name="Bright to Dim" Display="'Bright to Dim'" Dmx="64~95" Update="Shutter" Colour="0,0,0" />
+      <Function ID="4" Name="Dim-Bright-Dim" Display="'Dim-Bright-Dim'" Dmx="96~127" Update="Shutter" Colour="0,0,0" />
+      <Function ID="5" Name="RGB Gradual" Display="'RGB Gradual'" Dmx="128~159" Update="Shutter" Colour="0,0,0" />
+      <Function ID="6" Name="3 Colour" Display="'3 Colour'" Dmx="165~191" Update="Shutter" Colour="0,0,0" />
+      <Function ID="7" Name="7 Colour" Display="'7 Colour'" Dmx="192~223" Update="Shutter" Colour="0,0,0" />
+      <Function ID="8" Name="Sound" Display="'Sound'" Dmx="224~255" Update="Shutter" Colour="0,0,0" />
+    </Attribute>
+  </Control>
+  <Mode Name="6 DMX, 8bit" Channels="6">
+    <Import PearlRef="LO_FResn300" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Shutter" ChannelOffset="5" Wheel="4" />
+      <Attribute ID="Amber" ChannelOffset="2" Wheel="10" />
+      <Attribute ID="Warm_White" ChannelOffset="3" Wheel="11" />
+      <Attribute ID="Cool_White" ChannelOffset="4" Wheel="12" />
+      <Attribute ID="Colour_Macro" ChannelOffset="6" Wheel="8" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Shutter">
+      <Palette ID="1" Name="Open" Number="31" Page="1" SetControl="Shutter:2" />
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:3:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:3:100" />
+      <Palette ID="8" Name="Closed" Legend="Close" Number="38" Page="1" SetControl="Shutter:1" />
+    </Group>
+  </Palettes>
+</Fixture>

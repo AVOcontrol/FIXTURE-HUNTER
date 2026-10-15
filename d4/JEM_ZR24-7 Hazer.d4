@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="ZR24/7 Hazer" ShortName="ZR 24/7" Company="JEM">
+  <Copyright Notice="© Avolites Ltd. 2017" />
+  <History Date="08-12-03" Author="Oliver Waits" Comment="Created" />
+  <History Date="09-12-03" Author="Greg Brown" Comment="Checked" />
+  <History Date="09-02-04" Author="L.Gallagher" Comment="Error Found 1. Prime - Full on as locate should be channel 1+2 or 10" />
+  <History Date="09-02-04" Author="L.Gallagher" Comment="Error Found 2. Switch off - No effect. Should be channel 2 or 255" />
+  <History Date="01-11-04" Author="Phil Rogers" Comment="Shortened short name" />
+  <History Date="15-03-05" Author="Phil Rogers" Comment="Moved from Martin to JEM" />
+  <History Date="06-04-06" Author="Ed" Comment="Changed fan to special group" />
+  <History Date="28-01-09" Author="D4 Personality Fixer 2009" Comment="Changed manufacturer from Jem to JEM" />
+  <History Date="08-03-17" Author="Nic Morris" Comment="Added prime function to Fog and revised output level range accordingly (note manufacturer's documentation has range conflicts)." />
+  <History Date="08-03-17" Author="Nic Morris" Comment="Added Auto and All Off functions to Fan attribute and adjusted fan speed range accordingly." />
+  <History Date="08-03-17" Author="Nic Morris" Comment="Revised macros (previously 'switch off' would never have worked)." />
+  <History Date="08-03-17" Author="Nic Morris" Comment="Moved Fan wheel slot from tilt to special." />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Fog" Description="" Group="I">
+      <Locate Locate="2:100" PowerOn="1" />
+      <Function ID="1" Name="No Fog" Display="'No Fog'" Dmx="0~0" Intensity="0~0" />
+      <Function ID="2" Name="Level" Display="'Level %.1f%%',0.0~100.0" Dmx="20~219" Intensity="0~0" />
+      <Function ID="3" Name="Prime" Display="'Prime'" Dmx="220~230" />
+    </Attribute>
+    <Attribute ID="Fan" Name="Fan" Description="" Group="S">
+      <Locate Locate="2:100" PowerOn="1" />
+      <Function ID="1" Name="Off" Display="'Off'" Dmx="0~0" />
+      <Function ID="2" Name="Speed" Display="'Speed %.1f%%',0.0~100.0" Dmx="20~219" />
+      <Function ID="3" Name="Auto" Display="'Auto'" Dmx="220~230" />
+      <Function ID="4" Name="All Off" Display="'All Off'" Dmx="245~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="2 DMX" Channels="2">
+    <Import PearlRef="JEM_ZR247Hz" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Fan" ChannelOffset="2" Wheel="25" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Switch Off">
+      <Set Channel="Fan:4" Delay="6000" />
+    </Macro>
+    <Macro Name="Prime">
+      <Set Channel="Dimmer:3" Delay="6000" />
+    </Macro>
+  </Macro>
+</Fixture>

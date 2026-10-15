@@ -1,0 +1,911 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Mac Quantum Wash" ShortName="Quantum Ws" Company="Martin">
+  <Copyright Notice="© Avolites Ltd. 2018" />
+  <Thumbnail>bfcba84a-9ea5-471b-8771-aea4f0e9dfe6</Thumbnail>
+  <History Date="31-03-14" Author="Nic Morris" Comment="Created" />
+  <History Date="11-06-14" Author="Nic Morris" Comment="Added compatibility attributes to extended mode for r20 export." />
+  <History Date="19-06-14" Author="Nic Morris" Comment="Fixed beam twister ranges." />
+  <History Date="24-06-14" Author="Peter Budd" Comment="Called the Aura Cell. Aura 4 so it would exchange." />
+  <History Date="10-03-15" Author="Nic Morris" Comment="Updated to firmware version 2.0.0 (FX - manual rev B) in response to customer bug report." />
+  <History Date="30-05-15" Author="Nic Morris" Comment="Updated RGB in basic mode to 16-bit in line with latest documentation in response to customer request." />
+  <History Date="21-07-15" Author="Nic Morris" Comment="Resynced beam twister range fixes." />
+  <History Date="25-05-16" Author="AtlaBaseLibraryUpdater" Comment="Added AltaBase information" />
+  <History Date="30-09-17" Author="Nic Morris" Comment="Revised mode names with channel counts.  Revised cell names." />
+  <History Date="30-09-17" Author="Nic Morris" Comment="Fixed colour conditions.  Added LEE filter names.  Added vdim to cells.  Fixed aura cell links." />
+  <History Date="07-01-18" Author="Nic Morris" Comment="Added product thumbnail" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="4677b798-7038-4922-a53e-15e7138107eb" />
+  <Control>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="0~0" Intensity="0~0" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="30~30" Intensity="0~0" />
+      <Function ID="3" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="50~200" Intensity="0~0" />
+      <Function ID="4" Name="Rnd Strobe" Display="'Rnd Strobe    %.f%%',0~100" Dmx="211~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Red" Name="Red" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="CTO" Name="CTO" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="CTO C-Mix" Display="'CTO C-Mix %.1f%%',0.0~100.0" Dmx="11~171" Colour="255,240,200" />
+      <Function ID="3" Name="10000K" Display="'10000K'" Dmx="255~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Colour1Func" Name="Colour Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="2" Name="Fixed Scroll" Display="'Fixed Scroll'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="3" Name="Split" Display="'Split'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="4" Name="Split Scroll" Display="'Split Scroll'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="5" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37" If="'Colour1Func'==1" />
+      <Condition Name="Fixed Scroll" ID="38,39,40,41" If="'Colour1Func'==2" />
+      <Condition Name="Split" ID="42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77" If="'Colour1Func'==3" />
+      <Condition Name="Split Scroll" ID="78,79,80,81" If="'Colour1Func'==4" />
+      <Else ID="82" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="L790 (Moroccan Pink)" Display="'L790 (Moroccan Pink)'" Dmx="11~12" Colour="255,180,165" />
+      <Function ID="3" Name="L157 (Pink)" Display="'L157 (Pink)'" Dmx="13~14" Colour="255,146,163" />
+      <Function ID="4" Name="L332 (Special Rose Pink)" Display="'L332 (Special Rose Pink)'" Dmx="15~16" Colour="255,55,135" />
+      <Function ID="5" Name="L328 (Follies Pink)" Display="'L328 (Follies Pink)'" Dmx="17~18" Colour="255,100,200" />
+      <Function ID="6" Name="L345 (Fuchsia Pink)" Display="'L345 (Fuchsia Pink)'" Dmx="19~20" Colour="205,110,215" />
+      <Function ID="7" Name="L194 (Surprise Pink)" Display="'L194 (Surprise Pink)'" Dmx="21~22" Colour="190,140,240" />
+      <Function ID="8" Name="L181 (Congo Blue)" Display="'L181 (Congo Blue)'" Dmx="23~24" Colour="80,0,170" />
+      <Function ID="9" Name="L071 (Tokyo Blue)" Display="'L071 (Tokyo Blue)'" Dmx="25~26" Colour="0,0,180" />
+      <Function ID="10" Name="L120 (Deep Blue)" Display="'L120 (Deep Blue)'" Dmx="27~28" Colour="0,95,190" />
+      <Function ID="11" Name="L079 (Just Blue)" Display="'L079 (Just Blue)'" Dmx="29~30" Colour="60,140,210" />
+      <Function ID="12" Name="L132 (Medium Blue)" Display="'L132 (Medium Blue)'" Dmx="31~32" Colour="0,160,220" />
+      <Function ID="13" Name="L200 (Double CT Blue)" Display="'L200 (Double CT Blue)'" Dmx="33~34" Colour="145,190,245" />
+      <Function ID="14" Name="L161 (Slate Blue)" Display="'L161 (Slate Blue)'" Dmx="35~36" Colour="125,210,245" />
+      <Function ID="15" Name="L201 (Full CT Blue)" Display="'L201 (Full CT Blue)'" Dmx="37~38" Colour="195,225,250" />
+      <Function ID="16" Name="L202 (Half CT Blue)" Display="'L202 (Half CT Blue)'" Dmx="39~40" Colour="215,240,255" />
+      <Function ID="17" Name="L117 (Steel Blue)" Display="'L117 (Steel Blue)'" Dmx="41~42" Colour="180,250,245" />
+      <Function ID="18" Name="L353 (Lighter Blue)" Display="'L353 (Lighter Blue)'" Dmx="43~44" Colour="97,232,227" />
+      <Function ID="19" Name="L118 (Light Blue)" Display="'L118 (Light Blue)'" Dmx="45~46" Colour="0,225,235" />
+      <Function ID="20" Name="L116 (Medium Blue Green)" Display="'L116 (Medium Blue Green)'" Dmx="47~48" Colour="0,200,185" />
+      <Function ID="21" Name="L124 (Dark Green)" Display="'L124 (Dark Green)'" Dmx="49~50" Colour="0,220,120" />
+      <Function ID="22" Name="L139 (Primary Green)" Display="'L139 (Primary Green)'" Dmx="51~52" Colour="75,195,0" />
+      <Function ID="23" Name="L089 (Moss Green)" Display="'L089 (Moss Green)'" Dmx="53~54" Colour="90,220,90" />
+      <Function ID="24" Name="L122 (Fern Green)" Display="'L122 (Fern Green)'" Dmx="55~56" Colour="120,250,110" />
+      <Function ID="25" Name="L738 (JAS Green)" Display="'L738 (JAS Green)'" Dmx="57~58" Colour="170,255,0" />
+      <Function ID="26" Name="L088 (Lime Green)" Display="'L088 (Lime Green)'" Dmx="59~60" Colour="220,255,100" />
+      <Function ID="27" Name="L100 (Spring Yellow)" Display="'L100 (Spring Yellow)'" Dmx="61~62" Colour="245,255,0" />
+      <Function ID="28" Name="L104 (Deep Amber)" Display="'L104 (Deep Amber)'" Dmx="63~64" Colour="255,220,0" />
+      <Function ID="29" Name="L179 (Chrome Orange)" Display="'L179 (Chrome Orange)'" Dmx="65~66" Colour="255,190,0" />
+      <Function ID="30" Name="L105 (Orange)" Display="'L105 (Orange)'" Dmx="67~68" Colour="255,160,0" />
+      <Function ID="31" Name="L021 (Gold Amber)" Display="'L021 (Gold Amber)'" Dmx="69~70" Colour="255,140,50" />
+      <Function ID="32" Name="L778 (Millennium Gold)" Display="'L778 (Millennium Gold)'" Dmx="71~72" Colour="255,118,0" />
+      <Function ID="33" Name="L135 (Deep Golden Amber)" Display="'L135 (Deep Golden Amber)'" Dmx="73~74" Colour="255,95,0" />
+      <Function ID="34" Name="L164 (Flame Red)" Display="'L164 (Flame Red)'" Dmx="75~76" Colour="255,50,0" />
+      <Function ID="35" Name="Magenta" Display="'Magenta'" Dmx="77~78" Colour="255,0,255" />
+      <Function ID="36" Name="Medium Lavender" Display="'Medium Lavender'" Dmx="79~80" Colour="255,128,255" />
+      <Function ID="37" Name="White" Display="'White'" Dmx="81~82" Colour="255,255,255" />
+      <Function ID="38" Name="No Scroll" Display="'No Scroll'" Dmx="104~106" Colour="0,0,0" />
+      <Function ID="39" Name="Scroll CW" Display="'Scroll CW     %.f%%',100~0" Dmx="83~103" Colour="0,0,0" />
+      <Function ID="40" Name="No Scroll" Display="'No Scroll'" Dmx="104~106" Colour="255,255,255" />
+      <Function ID="41" Name="Scroll CCW" Display="'Scroll CCW    %.f%%',0~100" Dmx="107~127" Colour="0,0,0" />
+      <Function ID="42" Name="Colour 1" Display="'Colour 1'" Dmx="128~129" Colour="0,0,0" />
+      <Function ID="43" Name="Colour 2" Display="'Colour 2'" Dmx="130~131" Colour="0,0,0" />
+      <Function ID="44" Name="Colour 3" Display="'Colour 3'" Dmx="132~133" Colour="0,0,0" />
+      <Function ID="45" Name="Colour 4" Display="'Colour 4'" Dmx="134~135" Colour="0,0,0" />
+      <Function ID="46" Name="Colour 5" Display="'Colour 5'" Dmx="136~137" Colour="0,0,0" />
+      <Function ID="47" Name="Colour 6" Display="'Colour 6'" Dmx="138~139" Colour="0,0,0" />
+      <Function ID="48" Name="Colour 7" Display="'Colour 7'" Dmx="140~141" Colour="0,0,0" />
+      <Function ID="49" Name="Colour 8" Display="'Colour 8'" Dmx="142~143" Colour="0,0,0" />
+      <Function ID="50" Name="Colour 9" Display="'Colour 9'" Dmx="144~145" Colour="0,0,0" />
+      <Function ID="51" Name="Colour 10" Display="'Colour 10'" Dmx="146~147" Colour="0,0,0" />
+      <Function ID="52" Name="Colour 11" Display="'Colour 11'" Dmx="148~149" Colour="0,0,0" />
+      <Function ID="53" Name="Colour 12" Display="'Colour 12'" Dmx="150~151" Colour="0,0,0" />
+      <Function ID="54" Name="Colour 13" Display="'Colour 13'" Dmx="152~153" Colour="0,0,0" />
+      <Function ID="55" Name="Colour 14" Display="'Colour 14'" Dmx="154~155" Colour="0,0,0" />
+      <Function ID="56" Name="Colour 15" Display="'Colour 15'" Dmx="156~157" Colour="0,0,0" />
+      <Function ID="57" Name="Colour 16" Display="'Colour 16'" Dmx="158~159" Colour="0,0,0" />
+      <Function ID="58" Name="Colour 17" Display="'Colour 17'" Dmx="160~161" Colour="0,0,0" />
+      <Function ID="59" Name="Colour 18" Display="'Colour 18'" Dmx="162~163" Colour="0,0,0" />
+      <Function ID="60" Name="Colour 19" Display="'Colour 19'" Dmx="164~165" Colour="0,0,0" />
+      <Function ID="61" Name="Colour 20" Display="'Colour 20'" Dmx="166~167" Colour="0,0,0" />
+      <Function ID="62" Name="Colour 21" Display="'Colour 21'" Dmx="168~169" Colour="0,0,0" />
+      <Function ID="63" Name="Colour 22" Display="'Colour 22'" Dmx="170~171" Colour="0,0,0" />
+      <Function ID="64" Name="Colour 23" Display="'Colour 23'" Dmx="172~173" Colour="0,0,0" />
+      <Function ID="65" Name="Colour 24" Display="'Colour 24'" Dmx="174~175" Colour="0,0,0" />
+      <Function ID="66" Name="Colour 25" Display="'Colour 25'" Dmx="176~177" Colour="0,0,0" />
+      <Function ID="67" Name="Colour 26" Display="'Colour 26'" Dmx="178~179" Colour="0,0,0" />
+      <Function ID="68" Name="Colour 27" Display="'Colour 27'" Dmx="180~181" Colour="0,0,0" />
+      <Function ID="69" Name="Colour 28" Display="'Colour 28'" Dmx="182~183" Colour="0,0,0" />
+      <Function ID="70" Name="Colour 29" Display="'Colour 29'" Dmx="184~185" Colour="0,0,0" />
+      <Function ID="71" Name="Colour 30" Display="'Colour 30'" Dmx="186~187" Colour="0,0,0" />
+      <Function ID="72" Name="Colour 31" Display="'Colour 31'" Dmx="188~189" Colour="0,0,0" />
+      <Function ID="73" Name="Colour 32" Display="'Colour 32'" Dmx="190~191" Colour="0,0,0" />
+      <Function ID="74" Name="Colour 33" Display="'Colour 33'" Dmx="192~193" Colour="0,0,0" />
+      <Function ID="75" Name="Colour 34" Display="'Colour 34'" Dmx="194~195" Colour="0,0,0" />
+      <Function ID="76" Name="Colour 35" Display="'Colour 35'" Dmx="196~197" Colour="0,0,0" />
+      <Function ID="77" Name="Colour 36" Display="'Colour 36'" Dmx="198~199" Colour="0,0,0" />
+      <Function ID="78" Name="No Scroll" Display="'No Scroll'" Dmx="221~224" Colour="0,0,0" />
+      <Function ID="79" Name="Scroll CW" Display="'Scroll CW     %.f%%',100~0" Dmx="200~220" Colour="0,0,0" />
+      <Function ID="80" Name="No Scroll" Display="'No Scroll'" Dmx="221~224" Colour="255,255,255" />
+      <Function ID="81" Name="Scroll CCW" Display="'Scroll CCW    %.f%%',0~100" Dmx="225~245" Colour="0,0,0" />
+      <Function ID="82" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Zoom" Name="Zoom" Description="" Group="B">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Zoom" Display="'Zoom %.1f%%',0.0~100.0" Dmx="200~0" Iris="0~0" Zoom="0~0" />
+      <Function ID="2" Name="Overdrive" Display="'Overdrive %.f%%',0~100" Dmx="201~255" Iris="0~0" Zoom="0~0" />
+    </Attribute>
+    <Attribute ID="Pan" Name="Pan" Description="" Group="P" Size="2">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Pan" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Tilt" Name="Tilt" Description="" Group="P" Size="2">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Tilt" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Reset All" Display="'Reset All'" Dmx="10~14" />
+      <Function ID="3" Name="Reset Intensity" Display="'Reset Intensity'" Dmx="15~15" />
+      <Function ID="4" Name="Reset Colour" Display="'Reset Colour'" Dmx="16~16" />
+      <Function ID="5" Name="Reset Beam" Display="'Reset Beam'" Dmx="17~17" />
+      <Function ID="6" Name="Reset P/T" Display="'Reset P/T'" Dmx="18~18" />
+      <Function ID="7" Name="Dim Linear" Display="'Dim Linear'" Dmx="23~23" />
+      <Function ID="8" Name="Dim Square" Display="'Dim Square'" Dmx="24~24" />
+      <Function ID="9" Name="Dim Inv Square" Display="'Dim Inv Square'" Dmx="25~25" />
+      <Function ID="10" Name="Dim S-Curve" Display="'Dim S-Curve'" Dmx="26~26" />
+      <Function ID="11" Name="P/T Fast" Display="'P/T Fast'" Dmx="28~28" />
+      <Function ID="12" Name="P/T Smooth" Display="'P/T Smooth'" Dmx="29~29" />
+      <Function ID="13" Name="Parameter Shortcuts On" Display="'Parameter Shortcuts On'" Dmx="30~30" />
+      <Function ID="14" Name="Parameter Shortcuts Off" Display="'Parameter Shortcuts Off'" Dmx="31~31" />
+      <Function ID="15" Name="Video Tracking Enable" Display="'Video Tracking Enable'" Dmx="36~36" />
+      <Function ID="16" Name="Video Tracking Disable" Display="'Video Tracking Disable'" Dmx="37~37" />
+      <Function ID="17" Name="Col Extended" Display="'Col Extended'" Dmx="38~38" />
+      <Function ID="18" Name="Col Calibrated" Display="'Col Calibrated'" Dmx="39~39" />
+      <Function ID="19" Name="Fan Auto" Display="'Fan Auto'" Dmx="50~50" />
+      <Function ID="20" Name="Fan Fixed" Display="'Fan Fixed'" Dmx="51~51" />
+      <Function ID="21" Name="Display On" Display="'Display On'" Dmx="52~52" />
+      <Function ID="22" Name="Display Off" Display="'Display Off'" Dmx="53~53" />
+      <Function ID="23" Name="Enable Cal" Display="'Enable Cal'" Dmx="100~100" />
+      <Function ID="24" Name="Store P/T Cal" Display="'Store P/T Cal'" Dmx="101~101" />
+      <Function ID="25" Name="Store Dim Cal" Display="'Store Dim Cal'" Dmx="102~102" />
+      <Function ID="26" Name="Store Beam Cal" Display="'Store Beam Cal'" Dmx="111~111" />
+      <Function ID="27" Name="Store Zoom Cal" Display="'Store Zoom Cal'" Dmx="114~114" />
+      <Function ID="28" Name="Store Pan Cal" Display="'Store Pan Cal'" Dmx="115~115" />
+      <Function ID="29" Name="Store Tilt Cal" Display="'Store Tilt Cal'" Dmx="116~116" />
+      <Function ID="30" Name="Reset Cal" Display="'Reset Cal'" Dmx="199~199" />
+    </Attribute>
+    <Attribute ID="Beam_Twister" Name="Beam Twister" Description="" Group="E" Size="2">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Index" Display="'Index %.2f°',0.00~360.00" Dmx="0~32768" />
+      <Function ID="2" Name="Disable" Display="'Disable'" Dmx="32769~40000" />
+      <Function ID="3" Name="Spin CW" Display="'Spin CW %.2f%%',100.00~0.00" Dmx="40001~49990" />
+      <Function ID="4" Name="No Spin" Display="'No Spin'" Dmx="49991~50000" />
+      <Function ID="5" Name="Spin CCW" Display="'Spin CCW %.2f%%',0.00~100.00" Dmx="50001~59990" />
+      <Function ID="6" Name="Disabled" Display="'Disabled'" Dmx="59991~59999" />
+      <Function ID="7" Name="Wide" Display="'Wide'" Dmx="60000~60099" />
+      <Function ID="8" Name="Smooth" Display="'Smooth'" Dmx="60100~60199" />
+      <Function ID="9" Name="Texture" Display="'Texture'" Dmx="60200~60299" />
+      <Function ID="10" Name="Dots" Display="'Dots'" Dmx="60300~60399" />
+      <Function ID="11" Name="Eye" Display="'Eye'" Dmx="60400~60499" />
+      <Function ID="12" Name="Donut" Display="'Donut'" Dmx="60500~60599" />
+      <Function ID="13" Name="Beam" Display="'Beam'" Dmx="60600~60699" />
+      <Function ID="14" Name="Beam 2" Display="'Beam 2'" Dmx="60700~60799" />
+      <Function ID="15" Name="Beam 3" Display="'Beam 3'" Dmx="60800~60899" />
+      <Function ID="16" Name="Beam 4" Display="'Beam 4'" Dmx="60900~60999" />
+      <Function ID="17" Name="Mixed" Display="'Mixed'" Dmx="61000~61099" />
+      <Function ID="18" Name="Separation" Display="'Separation'" Dmx="61100~61199" />
+      <Function ID="19" Name="Separation 2" Display="'Separation 2'" Dmx="61200~61299" />
+      <Function ID="20" Name="Rays" Display="'Rays'" Dmx="61300~61399" />
+      <Function ID="21" Name="Halo" Display="'Halo'" Dmx="61400~61499" />
+      <Function ID="22" Name="Two Areas" Display="'Two Areas'" Dmx="61500~61599" />
+      <Function ID="23" Name="Clean Colours" Display="'Clean Colours'" Dmx="61600~61699" />
+      <Function ID="24" Name="Crossover" Display="'Crossover'" Dmx="61700~61799" />
+      <Function ID="25" Name="No Function" Display="'No Function'" Dmx="61800~61999" />
+      <Function ID="26" Name="Disable" Display="'Disable'" Dmx="62000~65535" />
+    </Attribute>
+    <Attribute ID="FX_1_Sel" Name="FX 1 Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Aura All Sync Center" Display="'Aura All Sync Center'" Dmx="1~1" />
+      <Function ID="3" Name="Aura All Sync Mid" Display="'Aura All Sync Mid'" Dmx="2~2" />
+      <Function ID="4" Name="Aura All Sync Out" Display="'Aura All Sync Out'" Dmx="3~3" />
+      <Function ID="5" Name="Aura Col Offset" Display="'Aura Col Offset'" Dmx="4~4" />
+      <Function ID="6" Name="Dim Sync" Display="'Dim Sync'" Dmx="5~5" />
+      <Function ID="7" Name="Strobe Sync" Display="'Strobe Sync'" Dmx="6~6" />
+      <Function ID="8" Name="Dim+Strobe Sync" Display="'Dim+Strobe Sync'" Dmx="7~7" />
+      <Function ID="9" Name="Beam Col Tuner" Display="'Beam Col Tuner'" Dmx="9~9" />
+      <Function ID="10" Name="Ring Chase Fade" Display="'Ring Chase Fade'" Dmx="10~10" />
+      <Function ID="11" Name="Ring Chase Ramp" Display="'Ring Chase Ramp'" Dmx="11~11" />
+      <Function ID="12" Name="SineWave Roll" Display="'SineWave Roll'" Dmx="12~12" />
+      <Function ID="13" Name="Ring Chase Fade Rnd" Display="'Ring Chase Fade Rnd'" Dmx="13~13" />
+      <Function ID="14" Name="Ring Pulse VU" Display="'Ring Pulse VU'" Dmx="14~14" />
+      <Function ID="15" Name="Ring Roll" Display="'Ring Roll'" Dmx="15~15" />
+      <Function ID="16" Name="Ring Strobe" Display="'Ring Strobe'" Dmx="16~16" />
+      <Function ID="17" Name="Ring Strobe Rnd" Display="'Ring Strobe Rnd'" Dmx="17~17" />
+      <Function ID="18" Name="Ring Rnd Strobe Mid" Display="'Ring Rnd Strobe Mid'" Dmx="18~18" />
+      <Function ID="19" Name="Ring Chase Uni Strobe" Display="'Ring Chase Uni Strobe'" Dmx="19~19" />
+      <Function ID="20" Name="Ring Rnd Strobe Uni" Display="'Ring Rnd Strobe Uni'" Dmx="20~20" />
+      <Function ID="21" Name="Ring Chase Rnd Strobe" Display="'Ring Chase Rnd Strobe'" Dmx="21~21" />
+      <Function ID="22" Name="Ring Rnd Strobe Rnd" Display="'Ring Rnd Strobe Rnd'" Dmx="22~22" />
+      <Function ID="23" Name="Ring Rnd Strobe Mid Uni" Display="'Ring Rnd Strobe Mid Uni'" Dmx="23~23" />
+      <Function ID="24" Name="Flash Ringscroll" Display="'Flash Ringscroll'" Dmx="24~24" />
+      <Function ID="25" Name="Strobe Alt 1" Display="'Strobe Alt 1'" Dmx="25~25" />
+      <Function ID="26" Name="Strobe Alt 2" Display="'Strobe Alt 2'" Dmx="26~26" />
+      <Function ID="27" Name="Strobe Alt 3" Display="'Strobe Alt 3'" Dmx="27~27" />
+      <Function ID="28" Name="3-Step Strobe" Display="'3-Step Strobe'" Dmx="28~28" />
+      <Function ID="29" Name="Tick Tock" Display="'Tick Tock'" Dmx="29~29" />
+      <Function ID="30" Name="Tick Tock Rnd" Display="'Tick Tock Rnd'" Dmx="30~30" />
+      <Function ID="31" Name="Beam Pulse" Display="'Beam Pulse'" Dmx="32~32" />
+      <Function ID="32" Name="Beam Ramp" Display="'Beam Ramp'" Dmx="33~33" />
+      <Function ID="33" Name="Aura Pulse" Display="'Aura Pulse'" Dmx="34~34" />
+      <Function ID="34" Name="Aura Ramp" Display="'Aura Ramp'" Dmx="35~35" />
+      <Function ID="35" Name="Aura Ramp BmFlash" Display="'Aura Ramp BmFlash'" Dmx="36~36" />
+      <Function ID="36" Name="BmRamp Aura Flash" Display="'BmRamp Aura Flash'" Dmx="37~37" />
+      <Function ID="37" Name="Bm+Aura Ramp" Display="'Bm+Aura Ramp'" Dmx="38~38" />
+      <Function ID="38" Name="Ring Rnd Strobe Uni" Display="'Ring Rnd Strobe Uni'" Dmx="39~39" />
+      <Function ID="39" Name="Electric Arc" Display="'Electric Arc'" Dmx="46~46" />
+      <Function ID="40" Name="Thunder Atomic" Display="'Thunder Atomic'" Dmx="47~47" />
+      <Function ID="41" Name="Thunder" Display="'Thunder'" Dmx="48~48" />
+      <Function ID="42" Name="Welding" Display="'Welding'" Dmx="49~49" />
+      <Function ID="43" Name="Rainbow Fade" Display="'Rainbow Fade'" Dmx="50~50" />
+      <Function ID="44" Name="Rainbow Solid" Display="'Rainbow Solid'" Dmx="51~51" />
+      <Function ID="45" Name="Rainbow Roll" Display="'Rainbow Roll'" Dmx="52~52" />
+      <Function ID="46" Name="RGB Fade" Display="'RGB Fade'" Dmx="53~53" />
+      <Function ID="47" Name="RGB Step" Display="'RGB Step'" Dmx="54~54" />
+      <Function ID="48" Name="RGB Roll" Display="'RGB Roll'" Dmx="55~55" />
+      <Function ID="49" Name="CMY Fade" Display="'CMY Fade'" Dmx="56~56" />
+      <Function ID="50" Name="CMY Step" Display="'CMY Step'" Dmx="57~57" />
+      <Function ID="51" Name="CMY Roll" Display="'CMY Roll'" Dmx="58~58" />
+      <Function ID="52" Name="Bm R/W/B/W" Display="'Bm R/W/B/W'" Dmx="59~59" />
+      <Function ID="53" Name="Bm R/W" Display="'Bm R/W'" Dmx="60~60" />
+      <Function ID="54" Name="Bm W Chase" Display="'Bm W Chase'" Dmx="61~61" />
+      <Function ID="55" Name="Bm Rnd W Chase" Display="'Bm Rnd W Chase'" Dmx="62~62" />
+      <Function ID="56" Name="Bm Rnd Col Rings" Display="'Bm Rnd Col Rings'" Dmx="63~63" />
+      <Function ID="57" Name="Bm Col Flicker" Display="'Bm Col Flicker'" Dmx="64~64" />
+      <Function ID="58" Name="Twister Anim 1" Display="'Twister Anim 1'" Dmx="80~80" />
+      <Function ID="59" Name="Twister Anim 2" Display="'Twister Anim 2'" Dmx="81~81" />
+      <Function ID="60" Name="Zoom Ramp" Display="'Zoom Ramp'" Dmx="90~90" />
+      <Function ID="61" Name="Zoom Saw" Display="'Zoom Saw'" Dmx="91~91" />
+      <Function ID="62" Name="Zoom Dim Ramp" Display="'Zoom Dim Ramp'" Dmx="92~92" />
+      <Function ID="63" Name="Zoom Dim Saw" Display="'Zoom Dim Saw'" Dmx="93~93" />
+      <Function ID="64" Name="Zoom Saw Col W" Display="'Zoom Saw Col W'" Dmx="94~94" />
+      <Function ID="65" Name="Eye Candy 1" Display="'Eye Candy 1'" Dmx="160~160" />
+      <Function ID="66" Name="Eye Candy 2" Display="'Eye Candy 2'" Dmx="161~161" />
+      <Function ID="67" Name="Eye Candy 3" Display="'Eye Candy 3'" Dmx="162~162" />
+      <Function ID="68" Name="Eye Candy 4" Display="'Eye Candy 4'" Dmx="163~163" />
+      <Function ID="69" Name="Eye Candy 5" Display="'Eye Candy 5'" Dmx="164~164" />
+      <Function ID="70" Name="Eye Candy 6" Display="'Eye Candy 6'" Dmx="165~165" />
+      <Function ID="71" Name="Eye Candy 7" Display="'Eye Candy 7'" Dmx="166~166" />
+      <Function ID="72" Name="Eye Candy 8" Display="'Eye Candy 8'" Dmx="167~167" />
+      <Function ID="73" Name="Eye Candy 9" Display="'Eye Candy 9'" Dmx="168~168" />
+      <Function ID="74" Name="Eye Candy 10" Display="'Eye Candy 10'" Dmx="169~169" />
+      <Function ID="75" Name="Eye Candy 11" Display="'Eye Candy 11'" Dmx="170~170" />
+      <Function ID="76" Name="Eye Candy 12" Display="'Eye Candy 12'" Dmx="171~171" />
+      <Function ID="77" Name="Eye Candy 13" Display="'Eye Candy 13'" Dmx="172~172" />
+      <Function ID="78" Name="Eye Candy 14" Display="'Eye Candy 14'" Dmx="173~173" />
+      <Function ID="79" Name="Eye Candy 15" Display="'Eye Candy 15'" Dmx="174~174" />
+      <Function ID="80" Name="Eye Candy 16" Display="'Eye Candy 16'" Dmx="175~175" />
+      <Function ID="81" Name="Eye Candy 17" Display="'Eye Candy 17'" Dmx="176~176" />
+      <Function ID="82" Name="Eye Candy 18" Display="'Eye Candy 18'" Dmx="177~177" />
+      <Function ID="83" Name="Eye Candy 19" Display="'Eye Candy 19'" Dmx="178~178" />
+      <Function ID="84" Name="Eye Candy 20" Display="'Eye Candy 20'" Dmx="179~179" />
+      <Function ID="85" Name="Eye Candy 21" Display="'Eye Candy 21'" Dmx="180~180" />
+      <Function ID="86" Name="Eye Candy 22" Display="'Eye Candy 22'" Dmx="181~181" />
+      <Function ID="87" Name="Eye Candy 23" Display="'Eye Candy 23'" Dmx="182~182" />
+      <Function ID="88" Name="Ani Twist Fade" Display="'Ani Twist Fade'" Dmx="210~210" />
+      <Function ID="89" Name="Ani Twist All" Display="'Ani Twist All'" Dmx="211~211" />
+      <Function ID="90" Name="Ani Twist Rings" Display="'Ani Twist Rings'" Dmx="212~212" />
+      <Function ID="91" Name="Twist Aura" Display="'Twist Aura'" Dmx="213~213" />
+      <Function ID="92" Name="Crazy Twister" Display="'Crazy Twister'" Dmx="214~214" />
+    </Attribute>
+    <Attribute ID="FX_1_Adj" Name="FX 1 Adj" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="FWD" Display="'FWD %.1f%%',100.0~0.0" Dmx="255~129" />
+      <Function ID="2" Name="Stop" Display="'Stop'" Dmx="128~128" />
+      <Function ID="3" Name="REV" Display="'REV %.1f%%',0.0~100.0" Dmx="126~0" />
+    </Attribute>
+    <Attribute ID="FX_2_Sel" Name="FX 2 Sel" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Aura All Sync Center" Display="'Aura All Sync Center'" Dmx="1~1" />
+      <Function ID="3" Name="Aura All Sync Mid" Display="'Aura All Sync Mid'" Dmx="2~2" />
+      <Function ID="4" Name="Aura All Sync Out" Display="'Aura All Sync Out'" Dmx="3~3" />
+      <Function ID="5" Name="Aura Col Offset" Display="'Aura Col Offset'" Dmx="4~4" />
+      <Function ID="6" Name="Dim Sync" Display="'Dim Sync'" Dmx="5~5" />
+      <Function ID="7" Name="Strobe Sync" Display="'Strobe Sync'" Dmx="6~6" />
+      <Function ID="8" Name="Dim+Strobe Sync" Display="'Dim+Strobe Sync'" Dmx="7~7" />
+      <Function ID="9" Name="Beam Col Tuner" Display="'Beam Col Tuner'" Dmx="9~9" />
+      <Function ID="10" Name="Ring Chase Fade" Display="'Ring Chase Fade'" Dmx="10~10" />
+      <Function ID="11" Name="Ring Chase Ramp" Display="'Ring Chase Ramp'" Dmx="11~11" />
+      <Function ID="12" Name="SineWave Roll" Display="'SineWave Roll'" Dmx="12~12" />
+      <Function ID="13" Name="Ring Chase Fade Rnd" Display="'Ring Chase Fade Rnd'" Dmx="13~13" />
+      <Function ID="14" Name="Ring Pulse VU" Display="'Ring Pulse VU'" Dmx="14~14" />
+      <Function ID="15" Name="Ring Roll" Display="'Ring Roll'" Dmx="15~15" />
+      <Function ID="16" Name="Ring Strobe" Display="'Ring Strobe'" Dmx="16~16" />
+      <Function ID="17" Name="Ring Strobe Rnd" Display="'Ring Strobe Rnd'" Dmx="17~17" />
+      <Function ID="18" Name="Ring Rnd Strobe Mid" Display="'Ring Rnd Strobe Mid'" Dmx="18~18" />
+      <Function ID="19" Name="Ring Chase Uni Strobe" Display="'Ring Chase Uni Strobe'" Dmx="19~19" />
+      <Function ID="20" Name="Ring Rnd Strobe Uni" Display="'Ring Rnd Strobe Uni'" Dmx="20~20" />
+      <Function ID="21" Name="Ring Chase Rnd Strobe" Display="'Ring Chase Rnd Strobe'" Dmx="21~21" />
+      <Function ID="22" Name="Ring Rnd Strobe Rnd" Display="'Ring Rnd Strobe Rnd'" Dmx="22~22" />
+      <Function ID="23" Name="Ring Rnd Strobe Mid Uni" Display="'Ring Rnd Strobe Mid Uni'" Dmx="23~23" />
+      <Function ID="24" Name="Flash Ringscroll" Display="'Flash Ringscroll'" Dmx="24~24" />
+      <Function ID="25" Name="Strobe Alt 1" Display="'Strobe Alt 1'" Dmx="25~25" />
+      <Function ID="26" Name="Strobe Alt 2" Display="'Strobe Alt 2'" Dmx="26~26" />
+      <Function ID="27" Name="Strobe Alt 3" Display="'Strobe Alt 3'" Dmx="27~27" />
+      <Function ID="28" Name="3-Step Strobe" Display="'3-Step Strobe'" Dmx="28~28" />
+      <Function ID="29" Name="Tick Tock" Display="'Tick Tock'" Dmx="29~29" />
+      <Function ID="30" Name="Tick Tock Rnd" Display="'Tick Tock Rnd'" Dmx="30~30" />
+      <Function ID="31" Name="Beam Pulse" Display="'Beam Pulse'" Dmx="32~32" />
+      <Function ID="32" Name="Beam Ramp" Display="'Beam Ramp'" Dmx="33~33" />
+      <Function ID="33" Name="Aura Pulse" Display="'Aura Pulse'" Dmx="34~34" />
+      <Function ID="34" Name="Aura Ramp" Display="'Aura Ramp'" Dmx="35~35" />
+      <Function ID="35" Name="Aura Ramp BmFlash" Display="'Aura Ramp BmFlash'" Dmx="36~36" />
+      <Function ID="36" Name="BmRamp Aura Flash" Display="'BmRamp Aura Flash'" Dmx="37~37" />
+      <Function ID="37" Name="Bm+Aura Ramp" Display="'Bm+Aura Ramp'" Dmx="38~38" />
+      <Function ID="38" Name="Ring Rnd Strobe Uni" Display="'Ring Rnd Strobe Uni'" Dmx="39~39" />
+      <Function ID="39" Name="Electric Arc" Display="'Electric Arc'" Dmx="46~46" />
+      <Function ID="40" Name="Thunder Atomic" Display="'Thunder Atomic'" Dmx="47~47" />
+      <Function ID="41" Name="Thunder" Display="'Thunder'" Dmx="48~48" />
+      <Function ID="42" Name="Welding" Display="'Welding'" Dmx="49~49" />
+      <Function ID="43" Name="Rainbow Fade" Display="'Rainbow Fade'" Dmx="50~50" />
+      <Function ID="44" Name="Rainbow Solid" Display="'Rainbow Solid'" Dmx="51~51" />
+      <Function ID="45" Name="Rainbow Roll" Display="'Rainbow Roll'" Dmx="52~52" />
+      <Function ID="46" Name="RGB Fade" Display="'RGB Fade'" Dmx="53~53" />
+      <Function ID="47" Name="RGB Step" Display="'RGB Step'" Dmx="54~54" />
+      <Function ID="48" Name="RGB Roll" Display="'RGB Roll'" Dmx="55~55" />
+      <Function ID="49" Name="CMY Fade" Display="'CMY Fade'" Dmx="56~56" />
+      <Function ID="50" Name="CMY Step" Display="'CMY Step'" Dmx="57~57" />
+      <Function ID="51" Name="CMY Roll" Display="'CMY Roll'" Dmx="58~58" />
+      <Function ID="52" Name="Bm R/W/B/W" Display="'Bm R/W/B/W'" Dmx="59~59" />
+      <Function ID="53" Name="Bm R/W" Display="'Bm R/W'" Dmx="60~60" />
+      <Function ID="54" Name="Bm W Chase" Display="'Bm W Chase'" Dmx="61~61" />
+      <Function ID="55" Name="Bm Rnd W Chase" Display="'Bm Rnd W Chase'" Dmx="62~62" />
+      <Function ID="56" Name="Bm Rnd Col Rings" Display="'Bm Rnd Col Rings'" Dmx="63~63" />
+      <Function ID="57" Name="Bm Col Flicker" Display="'Bm Col Flicker'" Dmx="64~64" />
+      <Function ID="58" Name="Twister Anim 1" Display="'Twister Anim 1'" Dmx="80~80" />
+      <Function ID="59" Name="Twister Anim 2" Display="'Twister Anim 2'" Dmx="81~81" />
+      <Function ID="60" Name="Zoom Ramp" Display="'Zoom Ramp'" Dmx="90~90" />
+      <Function ID="61" Name="Zoom Saw" Display="'Zoom Saw'" Dmx="91~91" />
+      <Function ID="62" Name="Zoom Dim Ramp" Display="'Zoom Dim Ramp'" Dmx="92~92" />
+      <Function ID="63" Name="Zoom Dim Saw" Display="'Zoom Dim Saw'" Dmx="93~93" />
+      <Function ID="64" Name="Zoom Saw Col W" Display="'Zoom Saw Col W'" Dmx="94~94" />
+      <Function ID="65" Name="Eye Candy 1" Display="'Eye Candy 1'" Dmx="160~160" />
+      <Function ID="66" Name="Eye Candy 2" Display="'Eye Candy 2'" Dmx="161~161" />
+      <Function ID="67" Name="Eye Candy 3" Display="'Eye Candy 3'" Dmx="162~162" />
+      <Function ID="68" Name="Eye Candy 4" Display="'Eye Candy 4'" Dmx="163~163" />
+      <Function ID="69" Name="Eye Candy 5" Display="'Eye Candy 5'" Dmx="164~164" />
+      <Function ID="70" Name="Eye Candy 6" Display="'Eye Candy 6'" Dmx="165~165" />
+      <Function ID="71" Name="Eye Candy 7" Display="'Eye Candy 7'" Dmx="166~166" />
+      <Function ID="72" Name="Eye Candy 8" Display="'Eye Candy 8'" Dmx="167~167" />
+      <Function ID="73" Name="Eye Candy 9" Display="'Eye Candy 9'" Dmx="168~168" />
+      <Function ID="74" Name="Eye Candy 10" Display="'Eye Candy 10'" Dmx="169~169" />
+      <Function ID="75" Name="Eye Candy 11" Display="'Eye Candy 11'" Dmx="170~170" />
+      <Function ID="76" Name="Eye Candy 12" Display="'Eye Candy 12'" Dmx="171~171" />
+      <Function ID="77" Name="Eye Candy 13" Display="'Eye Candy 13'" Dmx="172~172" />
+      <Function ID="78" Name="Eye Candy 14" Display="'Eye Candy 14'" Dmx="173~173" />
+      <Function ID="79" Name="Eye Candy 15" Display="'Eye Candy 15'" Dmx="174~174" />
+      <Function ID="80" Name="Eye Candy 16" Display="'Eye Candy 16'" Dmx="175~175" />
+      <Function ID="81" Name="Eye Candy 17" Display="'Eye Candy 17'" Dmx="176~176" />
+      <Function ID="82" Name="Eye Candy 18" Display="'Eye Candy 18'" Dmx="177~177" />
+      <Function ID="83" Name="Eye Candy 19" Display="'Eye Candy 19'" Dmx="178~178" />
+      <Function ID="84" Name="Eye Candy 20" Display="'Eye Candy 20'" Dmx="179~179" />
+      <Function ID="85" Name="Eye Candy 21" Display="'Eye Candy 21'" Dmx="180~180" />
+      <Function ID="86" Name="Eye Candy 22" Display="'Eye Candy 22'" Dmx="181~181" />
+      <Function ID="87" Name="Eye Candy 23" Display="'Eye Candy 23'" Dmx="182~182" />
+      <Function ID="88" Name="Ani Twist Fade" Display="'Ani Twist Fade'" Dmx="210~210" />
+      <Function ID="89" Name="Ani Twist All" Display="'Ani Twist All'" Dmx="211~211" />
+      <Function ID="90" Name="Ani Twist Rings" Display="'Ani Twist Rings'" Dmx="212~212" />
+      <Function ID="91" Name="Twist Aura" Display="'Twist Aura'" Dmx="213~213" />
+      <Function ID="92" Name="Crazy Twister" Display="'Crazy Twister'" Dmx="214~214" />
+    </Attribute>
+    <Attribute ID="FX_2_Adj" Name="FX 2 Adj" Description="" Group="E">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="FWD" Display="'FWD %.1f%%',100.0~0.0" Dmx="255~129" />
+      <Function ID="2" Name="Stop" Display="'Stop'" Dmx="128~128" />
+      <Function ID="3" Name="REV" Display="'REV %.1f%%',0.0~100.0" Dmx="126~0" />
+    </Attribute>
+    <Attribute ID="FX_Sync" Name="FX Sync" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Sync" Display="'No Sync'" Dmx="0~0" />
+      <Function ID="2" Name="Offset Shift 10°" Display="'Offset Shift 10°'" Dmx="1~1" />
+      <Function ID="3" Name="Offset Shift 20°" Display="'Offset Shift 20°'" Dmx="2~2" />
+      <Function ID="4" Name="Offset Shift 30°" Display="'Offset Shift 30°'" Dmx="3~3" />
+      <Function ID="5" Name="Offset Shift 40°" Display="'Offset Shift 40°'" Dmx="4~4" />
+      <Function ID="6" Name="Offset Shift 50°" Display="'Offset Shift 50°'" Dmx="5~5" />
+      <Function ID="7" Name="Offset Shift 60°" Display="'Offset Shift 60°'" Dmx="6~6" />
+      <Function ID="8" Name="Offset Shift 70°" Display="'Offset Shift 70°'" Dmx="7~7" />
+      <Function ID="9" Name="Offset Shift 80°" Display="'Offset Shift 80°'" Dmx="8~8" />
+      <Function ID="10" Name="Offset Shift 90°" Display="'Offset Shift 90°'" Dmx="9~9" />
+      <Function ID="11" Name="Offset Shift 100°" Display="'Offset Shift 100°'" Dmx="10~10" />
+      <Function ID="12" Name="Offset Shift 110°" Display="'Offset Shift 110°'" Dmx="11~11" />
+      <Function ID="13" Name="Offset Shift 120°" Display="'Offset Shift 120°'" Dmx="12~12" />
+      <Function ID="14" Name="Offset Shift 130°" Display="'Offset Shift 130°'" Dmx="13~13" />
+      <Function ID="15" Name="Offset Shift 140°" Display="'Offset Shift 140°'" Dmx="14~14" />
+      <Function ID="16" Name="Offset Shift 150°" Display="'Offset Shift 150°'" Dmx="15~15" />
+      <Function ID="17" Name="Offset Shift 160°" Display="'Offset Shift 160°'" Dmx="16~16" />
+      <Function ID="18" Name="Offset Shift 170°" Display="'Offset Shift 170°'" Dmx="17~17" />
+      <Function ID="19" Name="Offset Shift 180°" Display="'Offset Shift 180°'" Dmx="18~18" />
+      <Function ID="20" Name="Offset Shift 190°" Display="'Offset Shift 190°'" Dmx="19~19" />
+      <Function ID="21" Name="Offset Shift 200°" Display="'Offset Shift 200°'" Dmx="20~20" />
+      <Function ID="22" Name="Offset Shift 210°" Display="'Offset Shift 210°'" Dmx="21~21" />
+      <Function ID="23" Name="Offset Shift 220°" Display="'Offset Shift 220°'" Dmx="22~22" />
+      <Function ID="24" Name="Offset Shift 230°" Display="'Offset Shift 230°'" Dmx="23~23" />
+      <Function ID="25" Name="Offset Shift 240°" Display="'Offset Shift 240°'" Dmx="24~24" />
+      <Function ID="26" Name="Offset Shift 250°" Display="'Offset Shift 250°'" Dmx="25~25" />
+      <Function ID="27" Name="Offset Shift 260°" Display="'Offset Shift 260°'" Dmx="26~26" />
+      <Function ID="28" Name="Offset Shift 270°" Display="'Offset Shift 270°'" Dmx="27~27" />
+      <Function ID="29" Name="Offset Shift 280°" Display="'Offset Shift 280°'" Dmx="28~28" />
+      <Function ID="30" Name="Offset Shift 290°" Display="'Offset Shift 290°'" Dmx="29~29" />
+      <Function ID="31" Name="Offset Shift 300°" Display="'Offset Shift 300°'" Dmx="30~30" />
+      <Function ID="32" Name="Offset Shift 310°" Display="'Offset Shift 310°'" Dmx="31~31" />
+      <Function ID="33" Name="Offset Shift 320°" Display="'Offset Shift 320°'" Dmx="32~32" />
+      <Function ID="34" Name="Offset Shift 330°" Display="'Offset Shift 330°'" Dmx="33~33" />
+      <Function ID="35" Name="Offset Shift 340°" Display="'Offset Shift 340°'" Dmx="34~34" />
+      <Function ID="36" Name="Offset Shift 350°" Display="'Offset Shift 350°'" Dmx="35~35" />
+      <Function ID="37" Name="Rnd Start" Display="'Rnd Start'" Dmx="101~120" />
+      <Function ID="38" Name="Rnd Duration" Display="'Rnd Duration'" Dmx="121~140" />
+    </Attribute>
+    <Attribute ID="Red1" Name="Red 1" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green1" Name="Green 1" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue1" Name="Blue 1" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Red2" Name="Red 2" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green2" Name="Green 2" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue2" Name="Blue 2" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Red3" Name="Red 3" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green3" Name="Green 3" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue3" Name="Blue 3" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Aura_Red" Name="Aura Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Aura_Green" Name="Aura Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Aura_Blue" Name="Aura Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Aura_Dimmer" Name="Aura Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Aura_Shutter" Name="Aura Shutter" Description="" Group="I">
+      <Locate Locate="2" PowerOn="2" />
+      <Function ID="1" Name="Closed" Display="'Closed'" Dmx="0~0" Intensity="0~0" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="20~49" Intensity="0~0" />
+      <Function ID="3" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="50~200" Intensity="0~0" />
+      <Function ID="4" Name="Rnd Strobe" Display="'Rnd Strobe    %.f%%',0~100" Dmx="211~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Aura_Col_Func" Name="Aura Col Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+      <Function ID="2" Name="Scroll" Display="'Scroll'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+      <Function ID="3" Name="Random" Display="'Random'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Aura_Colour" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Aura_Colour" Name="Aura Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37" If="'Aura_Col_Func'==1" />
+      <Condition Name="Scroll" ID="38,39,40,41" If="'Aura_Col_Func'==2" />
+      <Condition Name="Random" ID="42,43,44,45" If="'Aura_Col_Func'==3" />
+      <Else ID="46" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="L790 (Moroccan Pink)" Display="'L790 (Moroccan Pink)'" Dmx="11~15" Colour="255,180,165" />
+      <Function ID="3" Name="L157 (Pink)" Display="'L157 (Pink)'" Dmx="16~20" Colour="255,146,163" />
+      <Function ID="4" Name="L332 (Special Rose Pink)" Display="'L332 (Special Rose Pink)'" Dmx="21~25" Colour="255,55,135" />
+      <Function ID="5" Name="L328 (Follies Pink)" Display="'L328 (Follies Pink)'" Dmx="26~30" Colour="255,100,200" />
+      <Function ID="6" Name="L345 (Fuchsia Pink)" Display="'L345 (Fuchsia Pink)'" Dmx="31~35" Colour="205,110,215" />
+      <Function ID="7" Name="L194 (Surprise Pink)" Display="'L194 (Surprise Pink)'" Dmx="36~40" Colour="190,140,240" />
+      <Function ID="8" Name="L181 (Congo Blue)" Display="'L181 (Congo Blue)'" Dmx="41~45" Colour="80,0,170" />
+      <Function ID="9" Name="L071 (Tokyo Blue)" Display="'L071 (Tokyo Blue)'" Dmx="46~50" Colour="0,0,180" />
+      <Function ID="10" Name="L120 (Deep Blue)" Display="'L120 (Deep Blue)'" Dmx="51~55" Colour="0,95,190" />
+      <Function ID="11" Name="L079 (Just Blue)" Display="'L079 (Just Blue)'" Dmx="56~60" Colour="60,140,210" />
+      <Function ID="12" Name="L132 (Medium Blue)" Display="'L132 (Medium Blue)'" Dmx="61~65" Colour="0,160,220" />
+      <Function ID="13" Name="L200 (Double CT Blue)" Display="'L200 (Double CT Blue)'" Dmx="66~70" Colour="145,190,245" />
+      <Function ID="14" Name="L161 (Slate Blue)" Display="'L161 (Slate Blue)'" Dmx="71~75" Colour="125,210,245" />
+      <Function ID="15" Name="L201 (Full CT Blue)" Display="'L201 (Full CT Blue)'" Dmx="76~80" Colour="195,225,250" />
+      <Function ID="16" Name="L202 (Half CT Blue)" Display="'L202 (Half CT Blue)'" Dmx="81~85" Colour="215,240,255" />
+      <Function ID="17" Name="L117 (Steel Blue)" Display="'L117 (Steel Blue)'" Dmx="86~90" Colour="180,250,245" />
+      <Function ID="18" Name="L353 (Lighter Blue)" Display="'L353 (Lighter Blue)'" Dmx="91~95" Colour="97,232,227" />
+      <Function ID="19" Name="L118 (Light Blue)" Display="'L118 (Light Blue)'" Dmx="96~100" Colour="0,225,235" />
+      <Function ID="20" Name="L116 (Medium Blue Green)" Display="'L116 (Medium Blue Green)'" Dmx="101~105" Colour="0,200,185" />
+      <Function ID="21" Name="L124 (Dark Green)" Display="'L124 (Dark Green)'" Dmx="106~110" Colour="0,220,120" />
+      <Function ID="22" Name="L139 (Primary Green)" Display="'L139 (Primary Green)'" Dmx="111~115" Colour="75,195,0" />
+      <Function ID="23" Name="L089 (Moss Green)" Display="'L089 (Moss Green)'" Dmx="116~120" Colour="90,220,90" />
+      <Function ID="24" Name="L122 (Fern Green)" Display="'L122 (Fern Green)'" Dmx="121~125" Colour="120,250,110" />
+      <Function ID="25" Name="L738 (JAS Green)" Display="'L738 (JAS Green)'" Dmx="126~130" Colour="170,255,0" />
+      <Function ID="26" Name="L088 (Lime Green)" Display="'L088 (Lime Green)'" Dmx="131~135" Colour="220,255,100" />
+      <Function ID="27" Name="L100 (Spring Yellow)" Display="'L100 (Spring Yellow)'" Dmx="136~140" Colour="245,255,0" />
+      <Function ID="28" Name="L104 (Deep Amber)" Display="'L104 (Deep Amber)'" Dmx="141~145" Colour="255,220,0" />
+      <Function ID="29" Name="L179 (Chrome Orange)" Display="'L179 (Chrome Orange)'" Dmx="146~150" Colour="255,190,0" />
+      <Function ID="30" Name="L105 (Orange)" Display="'L105 (Orange)'" Dmx="151~155" Colour="255,160,0" />
+      <Function ID="31" Name="L021 (Gold Amber)" Display="'L021 (Gold Amber)'" Dmx="156~160" Colour="255,140,50" />
+      <Function ID="32" Name="L778 (Millennium Gold)" Display="'L778 (Millennium Gold)'" Dmx="161~165" Colour="255,118,0" />
+      <Function ID="33" Name="L135 (Deep Golden Amber)" Display="'L135 (Deep Golden Amber)'" Dmx="166~170" Colour="255,95,0" />
+      <Function ID="34" Name="L164 (Flame Red)" Display="'L164 (Flame Red)'" Dmx="171~175" Colour="255,50,0" />
+      <Function ID="35" Name="Magenta" Display="'Magenta'" Dmx="176~180" Colour="255,0,255" />
+      <Function ID="36" Name="Medium Lavender" Display="'Medium Lavender'" Dmx="181~185" Colour="255,128,255" />
+      <Function ID="37" Name="White" Display="'White'" Dmx="186~190" Colour="255,255,255" />
+      <Function ID="38" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="0,0,0" />
+      <Function ID="39" Name="Scroll CW" Display="'Scroll CW     %.f%%',100~0" Dmx="191~214" Colour="0,0,0" />
+      <Function ID="40" Name="No Scroll" Display="'No Scroll'" Dmx="215~219" Colour="255,255,255" />
+      <Function ID="41" Name="Scroll CCW" Display="'Scroll CCW    %.f%%',0~100" Dmx="220~243" Colour="0,0,0" />
+      <Function ID="42" Name="Open" Display="'Open'" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="43" Name="Rand Slow" Display="'Rand Slow'" Dmx="252~255" Colour="255,255,255" />
+      <Function ID="44" Name="Rand Med" Display="'Rand Med'" Dmx="248~251" Colour="255,255,255" />
+      <Function ID="45" Name="Rand Fast" Display="'Rand Fast'" Dmx="244~247" Colour="255,255,255" />
+      <Function ID="46" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I" Size="2">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.2f%%',0.00~100.00" Dmx="0~65535" />
+    </Attribute>
+  </Control>
+  <Mode Name="Basic, 17 DMX" Channels="17">
+    <Import PearlRef="MTMACQWB" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="270" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="00ec8009-e1a7-4875-acbc-46a469ffd658" />
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="6" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Pan" ChannelOffset="13,14" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="15,16" Wheel="3" />
+      <Attribute ID="Red" ChannelOffset="4,5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6,7" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="8,9" Wheel="12" />
+      <Attribute ID="CTO" ChannelOffset="10" Wheel="9" />
+      <Attribute ID="Colour1Func" Wheel="7" />
+      <Attribute ID="Colour1" ChannelOffset="11" Wheel="8" />
+      <Attribute ID="Zoom" ChannelOffset="12" Wheel="19" />
+      <Attribute ID="Control" ChannelOffset="17" Wheel="28" />
+    </Include>
+  </Mode>
+  <Mode Name="Extended, 33 DMX" Channels="33">
+    <Import PearlRef="MTMACQWX" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="270" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="e3e7a258-8444-4b31-af20-369ed799881f" />
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="6" />
+      <Attribute ID="Dimmer" ChannelOffset="2,3" Wheel="1" />
+      <Attribute ID="Aura_Shutter" ChannelOffset="28" Wheel="34" />
+      <Attribute ID="Aura_Dimmer" ChannelOffset="29" Wheel="5" />
+      <Attribute ID="Pan" ChannelOffset="9,10" Wheel="2" />
+      <Attribute ID="Tilt" ChannelOffset="11,12" Wheel="3" />
+      <Attribute ID="Aura_Col_Func" Wheel="37" />
+      <Attribute ID="CTO" ChannelOffset="4" Wheel="9" />
+      <Attribute ID="Colour1Func" Wheel="7" />
+      <Attribute ID="Colour1" ChannelOffset="5" Wheel="8" />
+      <Attribute ID="Red1" ChannelOffset="19" Wheel="10" />
+      <Attribute ID="Green1" ChannelOffset="20" Wheel="11" />
+      <Attribute ID="Blue1" ChannelOffset="21" Wheel="12" />
+      <Attribute ID="Red2" ChannelOffset="22" Wheel="40" />
+      <Attribute ID="Green2" ChannelOffset="23" Wheel="41" />
+      <Attribute ID="Blue2" ChannelOffset="24" Wheel="42" />
+      <Attribute ID="Red3" ChannelOffset="25" Wheel="70" />
+      <Attribute ID="Green3" ChannelOffset="26" Wheel="71" />
+      <Attribute ID="Blue3" ChannelOffset="27" Wheel="72" />
+      <Attribute ID="Aura_Red" ChannelOffset="30" Wheel="100" />
+      <Attribute ID="Aura_Green" ChannelOffset="31" Wheel="101" />
+      <Attribute ID="Aura_Blue" ChannelOffset="32" Wheel="102" />
+      <Attribute ID="Aura_Colour" ChannelOffset="33" Wheel="38" />
+      <Attribute ID="Zoom" ChannelOffset="6" Wheel="19" />
+      <Attribute ID="Beam_Twister" ChannelOffset="7,8" Wheel="22" />
+      <Attribute ID="FX_1_Sel" ChannelOffset="14" Wheel="23" />
+      <Attribute ID="FX_1_Adj" ChannelOffset="15" Wheel="24" />
+      <Attribute ID="FX_2_Sel" ChannelOffset="16" Wheel="52" />
+      <Attribute ID="FX_2_Adj" ChannelOffset="17" Wheel="53" />
+      <Attribute ID="FX_Sync" ChannelOffset="18" Wheel="54" />
+      <Attribute ID="Control" ChannelOffset="13" Wheel="28" />
+    </Include>
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Shutter" ChannelOffset="1" Wheel="6" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="CTO" ChannelOffset="4" Wheel="9" />
+        <Attribute ID="Colour1Func" Wheel="7" />
+        <Attribute ID="Colour1" ChannelOffset="5" Wheel="8" />
+        <Attribute ID="Zoom" ChannelOffset="6" Wheel="19" />
+        <Attribute ID="Beam_Twister" ChannelOffset="7,8" Wheel="22" />
+        <Attribute ID="Pan" ChannelOffset="9,10" Wheel="2" />
+        <Attribute ID="Tilt" ChannelOffset="11,12" Wheel="3" />
+        <Attribute ID="Control" ChannelOffset="13" Wheel="28" />
+        <Attribute ID="FX_1_Sel" ChannelOffset="14" Wheel="23" />
+        <Attribute ID="FX_1_Adj" ChannelOffset="15" Wheel="24" />
+        <Attribute ID="FX_2_Sel" ChannelOffset="16" Wheel="52" />
+        <Attribute ID="FX_2_Adj" ChannelOffset="17" Wheel="53" />
+        <Attribute ID="FX_Sync" ChannelOffset="18" Wheel="54" />
+        <Attribute ID="Master_Dimmer" ChannelOffset="2,3" Wheel="4" />
+        <Attribute ID="Aura_Shutter" Wheel="34" />
+        <Attribute ID="Aura_Dimmer" Wheel="5" />
+        <Attribute ID="Aura_Red" Wheel="100" />
+        <Attribute ID="Aura_Green" Wheel="101" />
+        <Attribute ID="Aura_Blue" Wheel="102" />
+        <Attribute ID="Aura_Col_Func" Wheel="37" />
+        <Attribute ID="Aura_Colour" Wheel="38" />
+      </Master>
+      <Cell ID="Cell1" Name="Centre-1" ChannelOffset="19" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Middle-2" ChannelOffset="22" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Outer-3" ChannelOffset="25" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Aura-4" ChannelOffset="28" ModeLink="Aura" X="0" Y="3">
+        <AttributeLink SourceId="Aura_Red" TargetId="Red" />
+        <AttributeLink SourceId="Aura_Green" TargetId="Green" />
+        <AttributeLink SourceId="Aura_Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Aura_Shutter" TargetId="Shutter" />
+        <AttributeLink SourceId="Aura_Dimmer" TargetId="Dimmer" />
+        <AttributeLink SourceId="Aura_Col_Func" TargetId="Aura_Col_Func" />
+        <AttributeLink SourceId="Aura_Colour" TargetId="Aura_Colour" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="3" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="270" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Mode Name="Aura" Channels="6" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Head" PanMax="540" TiltMax="270" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Shutter" ChannelOffset="1" Wheel="6" />
+      <Attribute ID="Dimmer" ChannelOffset="2" Wheel="1" />
+      <Attribute ID="Red" ChannelOffset="3" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="4" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="5" Wheel="12" />
+      <Attribute ID="Aura_Col_Func" Wheel="37" />
+      <Attribute ID="Aura_Colour" ChannelOffset="6" Wheel="38" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Reset All">
+      <Set Channel="Control:2" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset Intensity">
+      <Set Channel="Control:3" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset Colour">
+      <Set Channel="Control:4" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset Beam">
+      <Set Channel="Control:5" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset P/T">
+      <Set Channel="Control:6" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset Cal">
+      <Set Channel="Control:30" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Linear">
+      <Set Channel="Control:7" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Square">
+      <Set Channel="Control:8" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim Inv Square">
+      <Set Channel="Control:9" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Dim S-Curve">
+      <Set Channel="Control:10" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="P/T Fast">
+      <Set Channel="Control:11" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="P/T Smooth">
+      <Set Channel="Control:12" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Parameter Shortcuts On">
+      <Set Channel="Control:13" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Parameter Shortcuts Off">
+      <Set Channel="Control:14" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Video Tracking Enable">
+      <Set Channel="Control:15" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Video Tracking Disable">
+      <Set Channel="Control:16" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Col Extended">
+      <Set Channel="Control:17" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Col Calibrated">
+      <Set Channel="Control:18" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Auto">
+      <Set Channel="Control:19" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Fan Fixed">
+      <Set Channel="Control:20" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Display On">
+      <Set Channel="Control:21" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Display Off">
+      <Set Channel="Control:22" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Enable Cal">
+      <Set Channel="Control:23" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store P/T Cal">
+      <Set Channel="Control:24" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Dim Cal">
+      <Set Channel="Control:25" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Beam Cal">
+      <Set Channel="Control:26" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Zoom Cal">
+      <Set Channel="Control:27" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Pan Cal">
+      <Set Channel="Control:28" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Store Tilt Cal">
+      <Set Channel="Control:29" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100,Red1:1:100,Red2:1:100,Red3:1:100,Aura_Red:1:100,Green1:1:100,Green2:1:100,Green3:1:100,Aura_Green:1:100,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0,Red1:1:100,Red2:1:100,Red3:1:100,Aura_Red:1:100,Green1:1:0,Green2:1:0,Green3:1:0,Aura_Green:1:0,Blue1:1:0,Blue2:1:0,Blue3:1:0,Aura_Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0,Red1:1:100,Red2:1:100,Red3:1:100,Aura_Red:1:100,Green1:1:50,Green2:1:50,Green3:1:50,Aura_Green:1:50,Blue1:1:0,Blue2:1:0,Blue3:1:0,Aura_Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0,Red1:1:100,Red2:1:100,Red3:1:100,Aura_Red:1:100,Green1:1:100,Green2:1:100,Green3:1:100,Aura_Green:1:100,Blue1:1:0,Blue2:1:0,Blue3:1:0,Aura_Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0,Red1:1:50,Red2:1:50,Red3:1:50,Aura_Red:1:50,Green1:1:100,Green2:1:100,Green3:1:100,Aura_Green:1:100,Blue1:1:0,Blue2:1:0,Blue3:1:0,Aura_Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0,Red1:1:0,Red2:1:0,Red3:1:0,Aura_Red:1:0,Green1:1:100,Green2:1:100,Green3:1:100,Aura_Green:1:100,Blue1:1:0,Blue2:1:0,Blue3:1:0,Aura_Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50,Red1:1:0,Red2:1:0,Red3:1:0,Aura_Red:1:0,Green1:1:100,Green2:1:100,Green3:1:100,Aura_Green:1:100,Blue1:1:50,Blue2:1:50,Blue3:1:50,Aura_Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100,Red1:1:0,Red2:1:0,Red3:1:0,Aura_Red:1:0,Green1:1:100,Green2:1:100,Green3:1:100,Aura_Green:1:100,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100,Red1:1:0,Red2:1:0,Red3:1:0,Aura_Red:1:0,Green1:1:50,Green2:1:50,Green3:1:50,Aura_Green:1:50,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100,Red1:1:0,Red2:1:0,Red3:1:0,Aura_Red:1:0,Green1:1:0,Green2:1:0,Green3:1:0,Aura_Green:1:0,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100,Red1:1:50,Red2:1:50,Red3:1:50,Aura_Red:1:50,Green1:1:0,Green2:1:0,Green3:1:0,Aura_Green:1:0,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100,Red1:1:100,Red2:1:100,Red3:1:100,Aura_Red:1:100,Green1:1:0,Green2:1:0,Green3:1:0,Aura_Green:1:0,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50,Red1:1:100,Red2:1:100,Red3:1:100,Aura_Red:1:100,Green1:1:0,Green2:1:0,Green3:1:0,Aura_Green:1:0,Blue1:1:50,Blue2:1:50,Blue3:1:50,Aura_Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94,Red1:1:71,Red2:1:71,Red3:1:71,Aura_Red:1:71,Green1:1:43,Green2:1:43,Green3:1:43,Aura_Green:1:43,Blue1:1:94,Blue2:1:94,Blue3:1:94,Aura_Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100,Red1:1:20,Red2:1:20,Red3:1:20,Aura_Red:1:20,Green1:1:0,Green2:1:0,Green3:1:0,Aura_Green:1:0,Blue1:1:100,Blue2:1:100,Blue3:1:100,Aura_Blue:1:100" />
+    </Group>
+    <Group Name="Position">
+      <Palette ID="1" Name="Middle" Number="21" Page="1" SetControl="Pan:1:50,Tilt:1:50" />
+      <Palette ID="2" Name="Left" Number="22" Page="1" SetControl="Pan:1:31,Tilt:1:50" />
+      <Palette ID="3" Name="Right" Number="23" Page="1" SetControl="Pan:1:69,Tilt:1:50" />
+      <Palette ID="4" Name="Top" Number="24" Page="1" SetControl="Pan:1:50,Tilt:1:31" />
+      <Palette ID="5" Name="Bottom" Number="25" Page="1" SetControl="Pan:1:50,Tilt:1:69" />
+      <Palette ID="6" Name="TLeft" Number="26" Page="1" SetControl="Pan:1:31,Tilt:1:31" />
+      <Palette ID="7" Name="TRight" Number="27" Page="1" SetControl="Pan:1:69,Tilt:1:69" />
+      <Palette ID="8" Name="BLeft" Number="28" Page="1" SetControl="Pan:1:31,Tilt:1:69" />
+      <Palette ID="9" Name="BRight" Number="29" Page="1" SetControl="Pan:1:69,Tilt:1:31" />
+    </Group>
+    <Group Name="Shutter">
+      <Palette ID="1" Name="Open" Number="31" Page="1" SetControl="Shutter:2" />
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:3:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:3:100" />
+      <Palette ID="6" Name="Closed" Legend="Close" Number="38" Page="1" SetControl="Shutter:1" />
+    </Group>
+    <Group Name="Beam">
+      <Palette ID="1" Name="Zoom Small" Number="41" Page="1" SetControl="Zoom:1:0" />
+      <Palette ID="2" Name="Zoom Medium" Legend="Zoom Med" Number="42" Page="1" SetControl="Zoom:1:50" />
+      <Palette ID="3" Name="Zoom Large" Number="43" Page="1" SetControl="Zoom:1:100" />
+    </Group>
+  </Palettes>
+  <swatchLibrary>
+    <Swatch id="bfcba84a-9ea5-471b-8771-aea4f0e9dfe6">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</Swatch>
+  </swatchLibrary>
+</Fixture>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Rele Teatro" ShortName="ReleTeatro" Company="RoboSystem" Version="0">
+  <Copyright Notice="© Avolites Ltd. 2022" />
+  <History Date="01-05-22" Author="Nic Morris" Comment="Created" Version="0" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="2" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Enable" Display="'Enable'" Dmx="115~141" />
+    </Attribute>
+    <Attribute ID="Lamp_On" Name="Lamp On" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Lamp On" Display="'Lamp On'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Lamp_Off" Name="Lamp Off" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Lamp Off" Display="'Lamp Off'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Curtain_Open" Name="Curtain Open" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Open" Display="'Open'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Curtain_Close" Name="Curtain Close" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Close" Display="'Close'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Curtain_Stop" Name="Curtain Stop" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Stop" Display="'Stop'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Screen_Up" Name="Screen Up" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Up" Display="'Up'" Dmx="255~255" />
+    </Attribute>
+    <Attribute ID="Screen_Down" Name="Screen Down" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~0" />
+      <Function ID="2" Name="Down" Display="'Down'" Dmx="255~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="14 DMX" Channels="14">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Control" ChannelOffset="1" Wheel="28" />
+        <Attribute ID="Lamp_On" Wheel="29" />
+        <Attribute ID="Lamp_Off" Wheel="30" />
+        <Attribute ID="Curtain_Open" Wheel="58" />
+        <Attribute ID="Curtain_Close" Wheel="59" />
+        <Attribute ID="Curtain_Stop" Wheel="60" />
+        <Attribute ID="Screen_Up" Wheel="88" />
+        <Attribute ID="Screen_Down" Wheel="89" />
+      </Master>
+      <Cell ID="Cell1" Name="Room Light 1" ChannelOffset="2" ModeLink="Lamp cell" X="0" Y="0">
+        <AttributeLink SourceId="Lamp_On" TargetId="Lamp_On" />
+        <AttributeLink SourceId="Lamp_Off" TargetId="Lamp_Off" />
+      </Cell>
+      <Cell ID="Cell2" Name="Room Light 2" ChannelOffset="4" ModeLink="Lamp cell" X="0" Y="1">
+        <AttributeLink SourceId="Lamp_On" TargetId="Lamp_On" />
+        <AttributeLink SourceId="Lamp_Off" TargetId="Lamp_Off" />
+      </Cell>
+      <Cell ID="Cell3" Name="Room Light 3" ChannelOffset="6" ModeLink="Lamp cell" X="0" Y="2">
+        <AttributeLink SourceId="Lamp_On" TargetId="Lamp_On" />
+        <AttributeLink SourceId="Lamp_Off" TargetId="Lamp_Off" />
+      </Cell>
+      <Cell ID="Cell4" Name="Theatrical Curtain" ChannelOffset="8" ModeLink="Curtain cell 1" X="0" Y="3">
+        <AttributeLink SourceId="Curtain_Open" TargetId="Curtain_Open" />
+        <AttributeLink SourceId="Curtain_Close" TargetId="Curtain_Close" />
+        <AttributeLink SourceId="Curtain_Stop" TargetId="Curtain_Stop" />
+      </Cell>
+      <Cell ID="Cell5" Name="Backdrop Curtain" ChannelOffset="11" ModeLink="Curtain cell 2" X="0" Y="4">
+        <AttributeLink SourceId="Curtain_Open" TargetId="Curtain_Open" />
+        <AttributeLink SourceId="Curtain_Close" TargetId="Curtain_Close" />
+      </Cell>
+      <Cell ID="Cell6" Name="Cinema Screen" ChannelOffset="13" ModeLink="Screen cell" X="0" Y="5">
+        <AttributeLink SourceId="Screen_Up" TargetId="Screen_Up" />
+        <AttributeLink SourceId="Screen_Down" TargetId="Screen_Down" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Lamp cell" Channels="2" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Lamp_On" ChannelOffset="1" Wheel="29" />
+      <Attribute ID="Lamp_Off" ChannelOffset="2" Wheel="30" />
+    </Include>
+  </Mode>
+  <Mode Name="Curtain cell 1" Channels="3" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Curtain_Open" ChannelOffset="1" Wheel="58" />
+      <Attribute ID="Curtain_Close" ChannelOffset="2" Wheel="59" />
+      <Attribute ID="Curtain_Stop" ChannelOffset="3" Wheel="60" />
+    </Include>
+  </Mode>
+  <Mode Name="Curtain cell 2" Channels="2" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Curtain_Open" ChannelOffset="1" Wheel="58" />
+      <Attribute ID="Curtain_Close" ChannelOffset="2" Wheel="59" />
+    </Include>
+  </Mode>
+  <Mode Name="Screen cell" Channels="2" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Screen_Up" ChannelOffset="1" Wheel="88" />
+      <Attribute ID="Screen_Down" ChannelOffset="2" Wheel="89" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Lamp On">
+      <Set Channel="Control:2,Lamp_On:2,Lamp_Off:1" Delay="2000" />
+      <Set Channel="Lamp_On:1" Delay="0" />
+    </Macro>
+    <Macro Name="Lamp Off">
+      <Set Channel="Control:2,Lamp_On:1,Lamp_Off:2" Delay="2000" />
+      <Set Channel="Lamp_Off:1" Delay="0" />
+    </Macro>
+    <Macro Name="Curtain Open">
+      <Set Channel="Control:2,Curtain_Open:2,Curtain_Close:1,Curtain_Stop:1" Delay="2000" />
+      <Set Channel="Curtain_Open:1" Delay="0" />
+    </Macro>
+    <Macro Name="Curtain Close">
+      <Set Channel="Control:2,Curtain_Open:1,Curtain_Close:2,Curtain_Stop:1" Delay="2000" />
+      <Set Channel="Curtain_Close:1" Delay="0" />
+    </Macro>
+    <Macro Name="Curtain Stop">
+      <Set Channel="Control:2,Curtain_Open:1,Curtain_Close:1,Curtain_Stop:2" Delay="2000" />
+      <Set Channel="Curtain_Stop:1" Delay="0" />
+    </Macro>
+    <Macro Name="Screen Up">
+      <Set Channel="Control:2,Screen_Up:2,Screen_Down:1" Delay="2000" />
+      <Set Channel="Screen_Up:1" Delay="0" />
+    </Macro>
+    <Macro Name="Screen Down">
+      <Set Channel="Control:2,Screen_Up:1,Screen_Down:2" Delay="2000" />
+      <Set Channel="Screen_Down:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

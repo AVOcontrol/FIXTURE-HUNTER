@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LED Wave 100" ShortName="LED Wv100" Company="ACME">
+  <Copyright Notice="© Avolites Ltd. 2015" />
+  <History Date="18-07-15" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Rotate" Name="Rotate" Description="" Group="G">
+      <Locate Locate="3" PowerOn="3" />
+      <Function ID="1" Name="No Spin" Display="'No Spin'" Dmx="0~9" GoboSpin="0~0" GoboOrientation="0~0" />
+      <Function ID="2" Name="Spin CW" Display="'Spin CW %.1f%%',100.0~0.0" Dmx="10~120" GoboSpin="0~0" GoboOrientation="0~0" />
+      <Function ID="3" Name="No Spin" Display="'No Spin'" Dmx="121~134" GoboSpin="0~0" GoboOrientation="0~0" />
+      <Function ID="4" Name="Spin CCW" Display="'Spin CCW %.1f%%',0.0~100.0" Dmx="135~255" GoboSpin="0~0" GoboOrientation="0~0" />
+    </Attribute>
+    <Attribute ID="Colour1Func" Name="Colour Func" Description="" Group="C" Size="0">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Fixed" Display="'Fixed'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="2" Name="Index" Display="'Index'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="3" Name="Scroll" Display="'Scroll'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+      <Function ID="4" Name="Raw DMX" Display="'Raw DMX'" Dmx="0~0" Update="Colour1" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Fixed" ID="1,2,3,4,5,6" If="'Colour1Func'==1" />
+      <Condition Name="Index" ID="7,8,9,10,11,12" If="'Colour1Func'==2" />
+      <Condition Name="Scroll" ID="13,14,15" If="'Colour1Func'==3" />
+      <Else ID="16" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~10" WheelPosition="0" Colour="255,255,255" />
+      <Function ID="2" Name="Colour 1" Display="'Colour 1'" Dmx="22~32" WheelPosition="1" Colour="0,0,0" />
+      <Function ID="3" Name="Colour 2" Display="'Colour 2'" Dmx="44~54" WheelPosition="2" Colour="0,0,0" />
+      <Function ID="4" Name="Colour 3" Display="'Colour 3'" Dmx="66~76" WheelPosition="3" Colour="0,0,0" />
+      <Function ID="5" Name="Colour 4" Display="'Colour 4'" Dmx="88~98" WheelPosition="4" Colour="0,0,0" />
+      <Function ID="6" Name="Colour 5" Display="'Colour 5'" Dmx="110~120" WheelPosition="5" Colour="0,0,0" />
+      <Function ID="7" Name="Op/ 1" Display="'Op/ 1 %.f%%',0~100" Dmx="10~21" WheelPosition="0" Colour="255,255,255" />
+      <Function ID="8" Name="1/ 2" Display="'1/ 2 %.f%%',0~100" Dmx="33~43" WheelPosition="1" Colour="0,0,0" />
+      <Function ID="9" Name="2/ 3" Display="'2/ 3 %.f%%',0~100" Dmx="55~65" WheelPosition="2" Colour="0,0,0" />
+      <Function ID="10" Name="3/ 4" Display="'3/ 4 %.f%%',0~100" Dmx="77~87" WheelPosition="3" Colour="0,0,0" />
+      <Function ID="11" Name="4/ 5" Display="'4/ 5 %.f%%',0~100" Dmx="99~109" WheelPosition="4" Colour="0,0,0" />
+      <Function ID="12" Name="5/ Op" Display="'5/ Op %.f%%',0~100" Dmx="121~127" WheelPosition="5" Colour="0,0,0" />
+      <Function ID="13" Name="Scroll CW" Display="'Scroll CW     %.f%%',100~0" Dmx="128~187" Colour="0,0,0" />
+      <Function ID="14" Name="No Scroll" Display="'No Scroll'" Dmx="188~196" Colour="255,255,255" />
+      <Function ID="15" Name="Scroll CCW" Display="'Scroll CCW    %.f%%',0~100" Dmx="197~255" Colour="0,0,0" />
+      <Function ID="16" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+  </Control>
+  <Mode Name="3 DMX" Channels="3">
+    <Import PearlRef="AMEWV100" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Colour1Func" Wheel="7" />
+      <Attribute ID="Colour1" ChannelOffset="3" Wheel="8" />
+      <Attribute ID="Rotate" ChannelOffset="2" Wheel="15" />
+    </Include>
+  </Mode>
+</Fixture>

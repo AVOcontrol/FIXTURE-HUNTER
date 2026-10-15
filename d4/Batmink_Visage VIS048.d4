@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Visage VIS048" ShortName="VIS048" Company="Batmink" Version="4">
+  <Copyright Notice="© Avolites Ltd. 2020" />
+  <History Date="09-02-12" Author="Peter Budd" Comment="Created" Version="1" />
+  <History Date="11-02-14" Author="RGB Power on Updater" Comment="Updated RGB Power on values to match Locate." Version="2" />
+  <History Date="24-03-20" Author="Nic Morris" Comment="Added Atlabase ID's.  Moved main RGB and shutter functions into else conditions." Version="3" />
+  <History Date="24-03-20" Author="Nic Morris" Comment="Revised shutter functions.  Increased wheel resolution and revised speed wheel direction.  Removed invalid palettes." Version="3" />
+  <History Date="24-03-20" Author="Nic Morris" Comment="Removed manufacturer shortcode from display name and corrected." Version="3" />
+  <History Date="25-03-20" Author="Nic Morris" Comment="Removed disabled conditions from colour mix controls as the colour mix function levels get lost when switching to macros and back again resulting in no output." Version="4" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="c50592f9-083b-40a5-b430-4dce6e7d0c66" />
+  <Control>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="White" Name="White" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,255,255" />
+    </Attribute>
+    <Attribute ID="Amber" Name="Amber" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Condition Name="Speed" ID="2" If="'Colour1'&gt;32&amp;&amp;'Colour1'&lt;36" />
+      <Else ID="1" />
+      <Function ID="1" Name="Amber C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,100,0" />
+      <Function ID="2" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Strobe" ID="3,4" If="'Colour1'==36" />
+      <Else ID="1,2" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="11~255" Intensity="0~0" />
+      <Function ID="3" Name="Off" Display="'Off'" Dmx="0~0" />
+      <Function ID="4" Name="Sensitivity" Display="'Sensitivity %.1f%%',0.0~100.0" Dmx="8~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour Macro" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Update="Amber" Colour="255,255,255" />
+      <Function ID="2" Name="Red" Display="'Red'" Dmx="11~17" Update="Amber" Colour="255,0,0" />
+      <Function ID="3" Name="Green" Display="'Green'" Dmx="18~24" Update="Amber" Colour="0,255,0" />
+      <Function ID="4" Name="Blue" Display="'Blue'" Dmx="25~31" Update="Amber" Colour="0,0,255" />
+      <Function ID="5" Name="Open" Display="'Open'" Dmx="32~38" Update="Amber" Colour="255,255,255" />
+      <Function ID="6" Name="Amber" Display="'Amber'" Dmx="39~45" Update="Amber" Colour="255,100,0" />
+      <Function ID="7" Name="Red+Green" Display="'Red+Green'" Dmx="46~52" Update="Amber" Colour="0,0,0" />
+      <Function ID="8" Name="Red+Blue" Display="'Red+Blue'" Dmx="53~59" Update="Amber" Colour="0,0,0" />
+      <Function ID="9" Name="Red+White" Display="'Red+White'" Dmx="60~66" Update="Amber" Colour="0,0,0" />
+      <Function ID="10" Name="Red+Amber" Display="'Red+Amber'" Dmx="67~73" Update="Amber" Colour="0,0,0" />
+      <Function ID="11" Name="Green+Blue" Display="'Green+Blue'" Dmx="74~80" Update="Amber" Colour="0,0,0" />
+      <Function ID="12" Name="Green+White" Display="'Green+White'" Dmx="81~87" Update="Amber" Colour="0,0,0" />
+      <Function ID="13" Name="Green+Amber" Display="'Green+Amber'" Dmx="88~94" Update="Amber" Colour="0,0,0" />
+      <Function ID="14" Name="Blue+White" Display="'Blue+White'" Dmx="95~101" Update="Amber" Colour="0,0,0" />
+      <Function ID="15" Name="Blue+Amber" Display="'Blue+Amber'" Dmx="102~108" Update="Amber" Colour="0,0,0" />
+      <Function ID="16" Name="White+Amber" Display="'White+Amber'" Dmx="109~115" Update="Amber" Colour="0,0,0" />
+      <Function ID="17" Name="Rd+Gr+Bl" Display="'Rd+Gr+Bl'" Dmx="116~122" Update="Amber" Colour="0,0,0" />
+      <Function ID="18" Name="Rd+Gr+Wt" Display="'Rd+Gr+Wt'" Dmx="123~129" Update="Amber" Colour="0,0,0" />
+      <Function ID="19" Name="Rd+Gr+Am" Display="'Rd+Gr+Am'" Dmx="130~136" Update="Amber" Colour="0,0,0" />
+      <Function ID="20" Name="Rd+Bl+Wt" Display="'Rd+Bl+Wt'" Dmx="137~143" Update="Amber" Colour="0,0,0" />
+      <Function ID="21" Name="Rd+Bl+Am" Display="'Rd+Bl+Am'" Dmx="144~150" Update="Amber" Colour="0,0,0" />
+      <Function ID="22" Name="Rd+Wt+Am" Display="'Rd+Wt+Am'" Dmx="151~157" Update="Amber" Colour="0,0,0" />
+      <Function ID="23" Name="Gr+Bl+Wt" Display="'Gr+Bl+Wt'" Dmx="158~164" Update="Amber" Colour="0,0,0" />
+      <Function ID="24" Name="Gr+Bl+Am" Display="'Gr+Bl+Am'" Dmx="165~171" Update="Amber" Colour="0,0,0" />
+      <Function ID="25" Name="Gr+Wt+Am" Display="'Gr+Wt+Am'" Dmx="172~178" Update="Amber" Colour="0,0,0" />
+      <Function ID="26" Name="Bl+Wt+Am" Display="'Bl+Wt+Am'" Dmx="179~185" Update="Amber" Colour="0,0,0" />
+      <Function ID="27" Name="Rd+Gr+Bl+Wt" Display="'Rd+Gr+Bl+Wt'" Dmx="186~192" Update="Amber" Colour="0,0,0" />
+      <Function ID="28" Name="Rd+Gr+Bl+Am" Display="'Rd+Gr+Bl+Am'" Dmx="193~199" Update="Amber" Colour="0,0,0" />
+      <Function ID="29" Name="Rd+Bl+Wt+Am" Display="'Rd+Bl+Wt+Am'" Dmx="200~206" Update="Amber" Colour="0,0,0" />
+      <Function ID="30" Name="Rd+Gr+Wt+Am" Display="'Rd+Gr+Wt+Am'" Dmx="207~213" Update="Amber" Colour="0,0,0" />
+      <Function ID="31" Name="Gr+Bl+Wt+Am" Display="'Gr+Bl+Wt+Am'" Dmx="214~220" Update="Amber" Colour="0,0,0" />
+      <Function ID="32" Name="Rd+Gr+Bl+Wt+Am" Display="'Rd+Gr+Bl+Wt+Am'" Dmx="221~227" Update="Amber" Colour="0,0,0" />
+      <Function ID="33" Name="Change" Display="'Change'" Dmx="228~234" Update="Amber" Colour="0,0,0" />
+      <Function ID="34" Name="Dream" Display="'Dream'" Dmx="235~241" Update="Amber" Colour="0,0,0" />
+      <Function ID="35" Name="Auto" Display="'Auto'" Dmx="242~248" Update="Amber" Colour="0,0,0" />
+      <Function ID="36" Name="Sound" Display="'Sound'" Dmx="249~255" Update="Amber" Colour="0,0,0" />
+    </Attribute>
+  </Control>
+  <Mode Name="8 DMX, 8bit" Channels="8">
+    <Import PearlRef="BM_V0483" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="ce3f9e9d-8188-4e7b-a471-df1869737ef2" />
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="6" Wheel="1" />
+      <Attribute ID="Shutter" ChannelOffset="7" Wheel="4" />
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" />
+      <Attribute ID="White" ChannelOffset="4" Wheel="40" />
+      <Attribute ID="Amber" ChannelOffset="5" Wheel="41" />
+      <Attribute ID="Colour1" ChannelOffset="8" Wheel="7" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>

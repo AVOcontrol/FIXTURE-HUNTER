@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0c0f"><title>AVOcontrol Fixture Hunter</title>
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="studio.css"><link rel="stylesheet" href="i18n.css">
+</head><body>
+<div id="app-intro"><div class="intro-stage"><img src="assets/fixture_hunter_intro_v12_5.jpg" alt="AVOcontrol Fixture Hunter"><button class="intro-open" id="intro-open" type="button">Abrir buscador ↗</button></div></div>
+<header class="top"><div class="wrap"><div class="wordmark"><b>AVO</b>control</div><span class="product">Fixture Hunter</span><span class="tag" id="d4-api-badge">Catálogo de aparatos</span></div></header>
+<main>
+<section class="titlebar"><div><p class="eyebrow">AVOcontrol · Herramientas de iluminación</p><h1>Encuentra tu aparato</h1><p class="subtitle">Personalidades, canales DMX y recursos técnicos en un mismo lugar.</p></div><div class="stats"><div><strong id="fixture-count">21.608</strong><span>aparatos</span></div><div><strong id="mode-count">80.285</strong><span>modos DMX</span></div></div></section>
+<div id="update-notice" class="update-notice" hidden role="status"><span id="update-message"></span><a id="update-download" class="btn primary" target="_blank" rel="noopener">Descargar actualización</a><button id="update-dismiss" type="button" class="btn">Más tarde</button></div>
+<div class="workspace">
+<aside class="filter-pane"><h2 class="section-label">Filtros de búsqueda</h2>
+<form id="hunter-form" class="search" autocomplete="off">
+<label><span class="label-heading">Marca <small>(CONTIENE)</small></span><input id="manufacturer" list="manufacturer-list" placeholder="Una parte del nombre" autocomplete="off"><datalist id="manufacturer-list"></datalist></label>
+<label><span class="label-heading">Modelo <small>(CONTIENE)</small></span><input id="model" list="model-list" placeholder="Por ejemplo: Quantum" autocomplete="off"><datalist id="model-list"></datalist></label>
+<label for="footprint">Total de canales DMX</label><div class="combo"><select id="comparison" aria-label="Comparación de canales"><option value="eq">Igual a</option><option value="min">Al menos</option><option value="max">Como máximo</option></select><input id="footprint" type="number" min="1" placeholder="—" aria-label="Total de canales DMX"></div>
+<div class="dmx-filter-builder" id="dmx-filter-builder"><div class="dmx-filter-title"><strong>Funciones por canal DMX</strong><span>Añade condiciones Canal + Función.</span></div><div id="dmx-filter-rows" class="dmx-filter-rows"></div></div>
+<label>Células internas (opcional)<input id="cells" type="number" min="0" placeholder="Sin filtro de células" autocomplete="off"></label>
+<div class="actions"><button class="btn primary" type="submit" id="search-button" disabled>Buscar aparatos</button><button class="btn text-button" type="reset">Limpiar filtros</button></div>
+</form><p class="filter-tip">Los filtros se combinan. Si no hay una coincidencia exacta, revisa las alternativas cercanas.</p>
+</aside>
+<section class="results-pane" aria-label="Resultados de búsqueda">
+<div id="results-view"><div class="result-head"><strong id="hunter-status" class="status" role="status" aria-live="polite">Cargando catálogo…</strong><span>Marca · modelo · modo DMX</span></div>
+<div id="active-filters" class="filters" aria-label="Filtros activos"></div><button type="button" class="btn" id="clear-extra" hidden>Quitar filtros de canal, función y células</button>
+<div class="table-wrap"><table class="table hunter-table"><thead><tr><th>Aparato</th><th>Modo DMX</th><th>Canales</th></tr></thead><tbody id="hunter-results"></tbody></table></div>
+<div id="hunter-suggestions" class="hunter-suggestions" hidden aria-live="polite"></div>
+<div class="pages"><button class="btn" id="previous" disabled>Anterior</button><span id="page-count">—</span><button class="btn" id="next" disabled>Siguiente</button></div></div>
+<section id="channels-view" hidden><div class="channel-head"><button class="btn text-button" id="back-results" type="button">← Volver a resultados</button><button class="btn" id="center-export" type="button" disabled>Exportar CSV</button></div><p class="eyebrow">Distribución DMX</p><h2 id="channels-title"></h2><p id="channels-subtitle" class="hunter-note"></p><div id="channels-body" aria-live="polite"></div></section>
+</section>
+<aside class="inspector-pane" aria-label="Aparato seleccionado"><div id="inspector-empty" class="inspector-empty"><span class="empty-symbol" aria-hidden="true">⌕</span><h2>Selecciona un aparato</h2><p>Consulta su modo DMX, sus imágenes y los archivos disponibles.</p></div>
+<dialog class="hunter-dialog" id="hunter-detail" aria-labelledby="detail-title"><header><div><p class="avc-etiqueta" id="detail-manufacturer"></p><h2 id="detail-title"></h2><p id="detail-mode" class="hunter-note"></p></div><button class="btn close-inspector" id="close-detail" type="button" aria-label="Cerrar">×</button></header>
+<div id="detail-body"></div><p class="section-label resources-heading">Descargas disponibles</p><div class="detail-actions"><button class="btn resource" id="detail-planta" type="button" disabled>PLANTA PNG</button><button class="btn resource" id="detail-frontal" type="button" disabled>FRONTAL PNG</button><button class="btn resource" id="detail-3d" type="button" disabled>3D GLB</button><button class="btn resource d4-detail-btn" id="detail-d4" type="button" disabled>DESCARGAR .D4</button></div>
+<div class="inspector-actions"><button class="btn primary" id="inspector-channels" type="button">Ver canales</button><button class="btn" id="detail-manual" type="button">Buscar manual</button><button class="btn" id="detail-table" type="button" disabled>GUARDAR TABLA</button></div></dialog></aside>
+</div></main>
+<footer class="footer"><span>AVOcontrol Fixture Hunter · Proyecto independiente de Avolites.</span><button class="btn text-button" id="check-updates" type="button" hidden>Buscar actualizaciones</button><a href="descargar/index.html">Descargar APK</a></footer>
+<script src="assets/hunter/index.js"></script><script src="assets/fixture_views/manifest.js"></script><script src="d4-config.js"></script><script src="d4-files.js"></script><script src="native-bridge.js"></script><script src="app.js"></script><script src="suggest.js"></script><script src="locales.js"></script><script src="i18n.js"></script><script src="updates.js"></script>
+<script>document.getElementById('intro-open').addEventListener('click',()=>{document.getElementById('app-intro').hidden=true;window.scrollTo(0,0)});</script></body></html>

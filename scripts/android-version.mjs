@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+const version=JSON.parse(fs.readFileSync('package.json','utf8')).version;
+const file='android/app/build.gradle';let s=fs.readFileSync(file,'utf8');
+const code=JSON.parse(fs.readFileSync('www/build-info.json','utf8')).versionCode;
+if(!Number.isSafeInteger(code)||code<1||code>2100000000)throw Error('Invalid Android version code');
+if(!/versionCode\s+\d+/.test(s)||!/versionName\s+"[^"]+"/.test(s))throw Error('Android version fields not found');
+s=s.replace(/versionCode\s+\d+/,'versionCode '+code).replace(/versionName\s+"[^"]+"/,'versionName "'+version+'"');
+fs.writeFileSync(file,s);
+const properties='android/gradle.properties';let p=fs.readFileSync(properties,'utf8');
+p=p.replace(/^org\.gradle\.jvmargs=.*$/gm,'org.gradle.jvmargs=-Xmx4g');fs.writeFileSync(properties,p);

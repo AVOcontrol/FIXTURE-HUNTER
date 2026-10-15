@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Hazer Pro" ShortName="Hazer Pro" Company="JEM">
+  <Copyright Notice="© Avolites Ltd. 2015" />
+  <History Date="02-05-15" Author="Nic Morris" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Haze" Name="Haze" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Level" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Fan" Name="Fan" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~50" />
+      <Function ID="2" Name="Prime" Display="'Prime'" Dmx="51~100" />
+      <Function ID="3" Name="Auto Fan" Display="'Auto Fan'" Dmx="101~150" />
+      <Function ID="4" Name="Shutdown" Display="'Shutdown'" Dmx="151~200" />
+      <Function ID="5" Name="Heater On" Display="'Heater On'" Dmx="201~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="3 DMX" Channels="3">
+    <Import PearlRef="JEMHZPR" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Haze" ChannelOffset="1" Wheel="25" />
+      <Attribute ID="Fan" ChannelOffset="2" Wheel="26" />
+      <Attribute ID="Control" ChannelOffset="3" Wheel="28" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Prime">
+      <Set Channel="Control:2" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Auto Fan">
+      <Set Channel="Control:3" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Shutdown">
+      <Set Channel="Control:4" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Heater On">
+      <Set Channel="Control:5" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

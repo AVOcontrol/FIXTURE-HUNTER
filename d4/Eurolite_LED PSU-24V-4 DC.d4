@@ -1,0 +1,1504 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="LED PSU-24V-4 DC" ShortName="PSU 24V-4" Company="Eurolite" Version="1">
+  <Copyright Notice="© Avolites Ltd. 2022" />
+  <Thumbnail>a4b3778e-6075-48d8-8e40-648d684b0835</Thumbnail>
+  <History Date="08-04-22" Author="Nic Morris" Comment="Created" Version="0" />
+  <History Date="21-12-22" Author="Nic Morris" Comment="Created from Eurolite LED Pixel Tube 360° clear 1.5m" Version="1" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Red" Name="Red" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Red C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,0,0" />
+    </Attribute>
+    <Attribute ID="Green" Name="Green" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:100" Lowlight="1:0" />
+      <Function ID="1" Name="Green C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,255,0" />
+    </Attribute>
+    <Attribute ID="Blue" Name="Blue" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" Highlight="1:0" Lowlight="1:90" />
+      <Function ID="1" Name="Blue C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="0,0,255" />
+    </Attribute>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="11~255" />
+      <Function ID="3" Name="Sound" Display="'Sound'" Dmx="1~5" />
+    </Attribute>
+    <Attribute ID="Shutter1" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1" PowerOn="1" />
+      <Else ID="1,2" />
+      <Condition Name="Speed" ID="3" If="'Col_Mac_Func'==3||'Col_Mac_Func'==4" />
+      <Condition Name="Sensitivity" ID="4,5" If="'Col_Mac_Func'==5" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" />
+      <Function ID="2" Name="Strobe %" Display="'Strobe %.1f%%',0.0~100.0" Dmx="28~255" />
+      <Function ID="3" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+      <Function ID="4" Name="Off" Display="'Off'" Dmx="0~0" />
+      <Function ID="5" Name="Sensitivity" Display="'Sensitivity %.1f%%',0.0~100.0" Dmx="32~255" />
+    </Attribute>
+    <Attribute ID="Col_Mac_Func" Name="Col Mac Func" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Open" Display="'Open'" Dmx="0~0" Update="Colour_Macro, Shutter1" Colour="255,255,255" />
+      <Function ID="2" Name="Static Col" Display="'Static Col'" Dmx="52~102" Update="Colour_Macro, Shutter1" Colour="255,255,255" />
+      <Function ID="3" Name="Col Change" Display="'Col Change'" Dmx="103~153" Update="Colour_Macro, Shutter1" Colour="255,255,255" />
+      <Function ID="4" Name="Col Fade" Display="'Col Fade'" Dmx="154~204" Update="Colour_Macro, Shutter1" Colour="255,255,255" />
+      <Function ID="5" Name="Sound" Display="'Sound'" Dmx="205~255" Update="Colour_Macro, Shutter1" Colour="255,255,255" />
+      <Function ID="6" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Update="Colour_Macro, Shutter1" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Colour_Macro" Name="Colour Macro" Description="" Group="C">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="Open" ID="1" If="'Col_Mac_Func'==1" />
+      <Condition Name="Static Col" ID="2,3,4,5,6,7,8,9" If="'Col_Mac_Func'==2" />
+      <Condition Name="Col Change" ID="10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33" If="'Col_Mac_Func'==3" />
+      <Condition Name="Col Fade" ID="34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57" If="'Col_Mac_Func'==4" />
+      <Condition Name="Sound" ID="58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81" If="'Col_Mac_Func'==5" />
+      <Else ID="82" />
+      <Function ID="1" Name="Open" Display="''" Dmx="0~0" Colour="255,255,255" />
+      <Function ID="2" Name="Black" Display="'Black'" Dmx="0~0" Colour="0,0,0" />
+      <Function ID="3" Name="Red" Display="'Red'" Dmx="32~63" Colour="255,0,0" />
+      <Function ID="4" Name="Green" Display="'Green'" Dmx="64~95" Colour="0,255,0" />
+      <Function ID="5" Name="Blue" Display="'Blue'" Dmx="96~127" Colour="0,0,255" />
+      <Function ID="6" Name="Yellow" Display="'Yellow'" Dmx="128~159" Colour="255,255,0" />
+      <Function ID="7" Name="Purple" Display="'Purple'" Dmx="160~191" Colour="128,0,255" />
+      <Function ID="8" Name="Cyan" Display="'Cyan'" Dmx="192~223" Colour="0,255,255" />
+      <Function ID="9" Name="White" Display="'White'" Dmx="224~255" Colour="255,255,255" />
+      <Function ID="10" Name="Col Change 1" Display="'Col Change 1'" Dmx="0~0" WheelPosition="1" Colour="0,0,0" />
+      <Function ID="11" Name="Col Change 2" Display="'Col Change 2'" Dmx="11~20" WheelPosition="2" Colour="0,0,0" />
+      <Function ID="12" Name="Col Change 3" Display="'Col Change 3'" Dmx="21~31" WheelPosition="3" Colour="0,0,0" />
+      <Function ID="13" Name="Col Change 4" Display="'Col Change 4'" Dmx="32~42" WheelPosition="4" Colour="0,0,0" />
+      <Function ID="14" Name="Col Change 5" Display="'Col Change 5'" Dmx="43~52" WheelPosition="5" Colour="0,0,0" />
+      <Function ID="15" Name="Col Change 6" Display="'Col Change 6'" Dmx="53~63" WheelPosition="6" Colour="0,0,0" />
+      <Function ID="16" Name="Col Change 7" Display="'Col Change 7'" Dmx="64~74" WheelPosition="7" Colour="0,0,0" />
+      <Function ID="17" Name="Col Change 8" Display="'Col Change 8'" Dmx="75~84" WheelPosition="8" Colour="0,0,0" />
+      <Function ID="18" Name="Col Change 9" Display="'Col Change 9'" Dmx="85~95" WheelPosition="9" Colour="0,0,0" />
+      <Function ID="19" Name="Col Change 10" Display="'Col Change 10'" Dmx="96~106" WheelPosition="10" Colour="0,0,0" />
+      <Function ID="20" Name="Col Change 11" Display="'Col Change 11'" Dmx="107~117" WheelPosition="11" Colour="0,0,0" />
+      <Function ID="21" Name="Col Change 12" Display="'Col Change 12'" Dmx="118~127" WheelPosition="12" Colour="0,0,0" />
+      <Function ID="22" Name="Col Change 13" Display="'Col Change 13'" Dmx="128~138" WheelPosition="13" Colour="0,0,0" />
+      <Function ID="23" Name="Col Change 14" Display="'Col Change 14'" Dmx="139~148" WheelPosition="14" Colour="0,0,0" />
+      <Function ID="24" Name="Col Change 15" Display="'Col Change 15'" Dmx="149~159" WheelPosition="15" Colour="0,0,0" />
+      <Function ID="25" Name="Col Change 16" Display="'Col Change 16'" Dmx="160~170" WheelPosition="16" Colour="0,0,0" />
+      <Function ID="26" Name="Col Change 17" Display="'Col Change 17'" Dmx="171~180" WheelPosition="17" Colour="0,0,0" />
+      <Function ID="27" Name="Col Change 18" Display="'Col Change 18'" Dmx="181~191" WheelPosition="18" Colour="0,0,0" />
+      <Function ID="28" Name="Col Change 19" Display="'Col Change 19'" Dmx="192~202" WheelPosition="19" Colour="0,0,0" />
+      <Function ID="29" Name="Col Change 20" Display="'Col Change 20'" Dmx="203~212" WheelPosition="20" Colour="0,0,0" />
+      <Function ID="30" Name="Col Change 21" Display="'Col Change 21'" Dmx="213~223" WheelPosition="21" Colour="0,0,0" />
+      <Function ID="31" Name="Col Change 22" Display="'Col Change 22'" Dmx="224~234" WheelPosition="22" Colour="0,0,0" />
+      <Function ID="32" Name="Col Change 23" Display="'Col Change 23'" Dmx="235~244" WheelPosition="23" Colour="0,0,0" />
+      <Function ID="33" Name="Col Change 24" Display="'Col Change 24'" Dmx="245~255" WheelPosition="24" Colour="0,0,0" />
+      <Function ID="34" Name="Col Fade 1" Display="'Col Fade 1'" Dmx="0~0" WheelPosition="1" Colour="0,0,0" />
+      <Function ID="35" Name="Col Fade 2" Display="'Col Fade 2'" Dmx="11~20" WheelPosition="2" Colour="0,0,0" />
+      <Function ID="36" Name="Col Fade 3" Display="'Col Fade 3'" Dmx="21~31" WheelPosition="3" Colour="0,0,0" />
+      <Function ID="37" Name="Col Fade 4" Display="'Col Fade 4'" Dmx="32~42" WheelPosition="4" Colour="0,0,0" />
+      <Function ID="38" Name="Col Fade 5" Display="'Col Fade 5'" Dmx="43~52" WheelPosition="5" Colour="0,0,0" />
+      <Function ID="39" Name="Col Fade 6" Display="'Col Fade 6'" Dmx="53~63" WheelPosition="6" Colour="0,0,0" />
+      <Function ID="40" Name="Col Fade 7" Display="'Col Fade 7'" Dmx="64~74" WheelPosition="7" Colour="0,0,0" />
+      <Function ID="41" Name="Col Fade 8" Display="'Col Fade 8'" Dmx="75~84" WheelPosition="8" Colour="0,0,0" />
+      <Function ID="42" Name="Col Fade 9" Display="'Col Fade 9'" Dmx="85~95" WheelPosition="9" Colour="0,0,0" />
+      <Function ID="43" Name="Col Fade 10" Display="'Col Fade 10'" Dmx="96~106" WheelPosition="10" Colour="0,0,0" />
+      <Function ID="44" Name="Col Fade 11" Display="'Col Fade 11'" Dmx="107~117" WheelPosition="11" Colour="0,0,0" />
+      <Function ID="45" Name="Col Fade 12" Display="'Col Fade 12'" Dmx="118~127" WheelPosition="12" Colour="0,0,0" />
+      <Function ID="46" Name="Col Fade 13" Display="'Col Fade 13'" Dmx="128~138" WheelPosition="13" Colour="0,0,0" />
+      <Function ID="47" Name="Col Fade 14" Display="'Col Fade 14'" Dmx="139~148" WheelPosition="14" Colour="0,0,0" />
+      <Function ID="48" Name="Col Fade 15" Display="'Col Fade 15'" Dmx="149~159" WheelPosition="15" Colour="0,0,0" />
+      <Function ID="49" Name="Col Fade 16" Display="'Col Fade 16'" Dmx="160~170" WheelPosition="16" Colour="0,0,0" />
+      <Function ID="50" Name="Col Fade 17" Display="'Col Fade 17'" Dmx="171~180" WheelPosition="17" Colour="0,0,0" />
+      <Function ID="51" Name="Col Fade 18" Display="'Col Fade 18'" Dmx="181~191" WheelPosition="18" Colour="0,0,0" />
+      <Function ID="52" Name="Col Fade 19" Display="'Col Fade 19'" Dmx="192~202" WheelPosition="19" Colour="0,0,0" />
+      <Function ID="53" Name="Col Fade 20" Display="'Col Fade 20'" Dmx="203~212" WheelPosition="20" Colour="0,0,0" />
+      <Function ID="54" Name="Col Fade 21" Display="'Col Fade 21'" Dmx="213~223" WheelPosition="21" Colour="0,0,0" />
+      <Function ID="55" Name="Col Fade 22" Display="'Col Fade 22'" Dmx="224~234" WheelPosition="22" Colour="0,0,0" />
+      <Function ID="56" Name="Col Fade 23" Display="'Col Fade 23'" Dmx="235~244" WheelPosition="23" Colour="0,0,0" />
+      <Function ID="57" Name="Col Fade 24" Display="'Col Fade 24'" Dmx="245~255" WheelPosition="24" Colour="0,0,0" />
+      <Function ID="58" Name="Sound 1" Display="'Sound 1'" Dmx="0~0" WheelPosition="1" Colour="0,0,0" />
+      <Function ID="59" Name="Sound 2" Display="'Sound 2'" Dmx="11~20" WheelPosition="2" Colour="0,0,0" />
+      <Function ID="60" Name="Sound 3" Display="'Sound 3'" Dmx="21~31" WheelPosition="3" Colour="0,0,0" />
+      <Function ID="61" Name="Sound 4" Display="'Sound 4'" Dmx="32~42" WheelPosition="4" Colour="0,0,0" />
+      <Function ID="62" Name="Sound 5" Display="'Sound 5'" Dmx="43~52" WheelPosition="5" Colour="0,0,0" />
+      <Function ID="63" Name="Sound 6" Display="'Sound 6'" Dmx="53~63" WheelPosition="6" Colour="0,0,0" />
+      <Function ID="64" Name="Sound 7" Display="'Sound 7'" Dmx="64~74" WheelPosition="7" Colour="0,0,0" />
+      <Function ID="65" Name="Sound 8" Display="'Sound 8'" Dmx="75~84" WheelPosition="8" Colour="0,0,0" />
+      <Function ID="66" Name="Sound 9" Display="'Sound 9'" Dmx="85~95" WheelPosition="9" Colour="0,0,0" />
+      <Function ID="67" Name="Sound 10" Display="'Sound 10'" Dmx="96~106" WheelPosition="10" Colour="0,0,0" />
+      <Function ID="68" Name="Sound 11" Display="'Sound 11'" Dmx="107~117" WheelPosition="11" Colour="0,0,0" />
+      <Function ID="69" Name="Sound 12" Display="'Sound 12'" Dmx="118~127" WheelPosition="12" Colour="0,0,0" />
+      <Function ID="70" Name="Sound 13" Display="'Sound 13'" Dmx="128~138" WheelPosition="13" Colour="0,0,0" />
+      <Function ID="71" Name="Sound 14" Display="'Sound 14'" Dmx="139~148" WheelPosition="14" Colour="0,0,0" />
+      <Function ID="72" Name="Sound 15" Display="'Sound 15'" Dmx="149~159" WheelPosition="15" Colour="0,0,0" />
+      <Function ID="73" Name="Sound 16" Display="'Sound 16'" Dmx="160~170" WheelPosition="16" Colour="0,0,0" />
+      <Function ID="74" Name="Sound 17" Display="'Sound 17'" Dmx="171~180" WheelPosition="17" Colour="0,0,0" />
+      <Function ID="75" Name="Sound 18" Display="'Sound 18'" Dmx="181~191" WheelPosition="18" Colour="0,0,0" />
+      <Function ID="76" Name="Sound 19" Display="'Sound 19'" Dmx="192~202" WheelPosition="19" Colour="0,0,0" />
+      <Function ID="77" Name="Sound 20" Display="'Sound 20'" Dmx="203~212" WheelPosition="20" Colour="0,0,0" />
+      <Function ID="78" Name="Sound 21" Display="'Sound 21'" Dmx="213~223" WheelPosition="21" Colour="0,0,0" />
+      <Function ID="79" Name="Sound 22" Display="'Sound 22'" Dmx="224~234" WheelPosition="22" Colour="0,0,0" />
+      <Function ID="80" Name="Sound 23" Display="'Sound 23'" Dmx="235~244" WheelPosition="23" Colour="0,0,0" />
+      <Function ID="81" Name="Sound 24" Display="'Sound 24'" Dmx="245~255" WheelPosition="24" Colour="0,0,0" />
+      <Function ID="82" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="5 DMX" Channels="5">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" />
+      <Attribute ID="Dimmer" ChannelOffset="4" Wheel="1" />
+      <Attribute ID="Shutter" ChannelOffset="5" Wheel="5" />
+    </Include>
+  </Mode>
+  <Mode Name="7 DMX" Channels="7">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Shutter1" ChannelOffset="2" Wheel="5" />
+      <Attribute ID="Col_Mac_Func" ChannelOffset="3" Wheel="7" />
+      <Attribute ID="Colour_Macro" ChannelOffset="4" Wheel="8" />
+      <Attribute ID="Red" ChannelOffset="5" Wheel="10" />
+      <Attribute ID="Green" ChannelOffset="6" Wheel="11" />
+      <Attribute ID="Blue" ChannelOffset="7" Wheel="12" />
+    </Include>
+  </Mode>
+  <Mode Name="14 DMX" Channels="14">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Master_Dimmer" ChannelOffset="1" Wheel="4" />
+        <Attribute ID="Shutter1" ChannelOffset="2" Wheel="5" />
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="3" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="6" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Cell 3" ChannelOffset="9" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Cell 4" ChannelOffset="12" ModeLink="Cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="84 DMX (4x 0.5m Tube)" Channels="84">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Tube 1 Pix 1" ChannelOffset="1" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Tube 1 Pix 2" ChannelOffset="4" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Tube 1 Pix 3" ChannelOffset="7" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Tube 1 Pix 4" ChannelOffset="10" ModeLink="Cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Tube 1 Pix 5" ChannelOffset="13" ModeLink="Cell" X="0" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Tube 1 Pix 6" ChannelOffset="16" ModeLink="Cell" X="0" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Tube 1 Pix 7" ChannelOffset="19" ModeLink="Cell" X="0" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Tube 2 Pix 1" ChannelOffset="22" ModeLink="Cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Tube 2 Pix 2" ChannelOffset="25" ModeLink="Cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Tube 2 Pix 3" ChannelOffset="28" ModeLink="Cell" X="1" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Tube 2 Pix 4" ChannelOffset="31" ModeLink="Cell" X="1" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Tube 2 Pix 5" ChannelOffset="34" ModeLink="Cell" X="1" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Tube 2 Pix 6" ChannelOffset="37" ModeLink="Cell" X="1" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Tube 2 Pix 7" ChannelOffset="40" ModeLink="Cell" X="1" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Tube 3 Pix 1" ChannelOffset="43" ModeLink="Cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Tube 3 Pix 2" ChannelOffset="46" ModeLink="Cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Tube 3 Pix 3" ChannelOffset="49" ModeLink="Cell" X="2" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Tube 3 Pix 4" ChannelOffset="52" ModeLink="Cell" X="2" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Tube 3 Pix 5" ChannelOffset="55" ModeLink="Cell" X="2" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Tube 3 Pix 6" ChannelOffset="58" ModeLink="Cell" X="2" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Tube 3 Pix 7" ChannelOffset="61" ModeLink="Cell" X="2" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Tube 4 Pix 1" ChannelOffset="64" ModeLink="Cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Tube 4 Pix 2" ChannelOffset="67" ModeLink="Cell" X="3" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Tube 4 Pix 3" ChannelOffset="70" ModeLink="Cell" X="3" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Tube 4 Pix 4" ChannelOffset="73" ModeLink="Cell" X="3" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Tube 4 Pix 5" ChannelOffset="76" ModeLink="Cell" X="3" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Tube 4 Pix 6" ChannelOffset="79" ModeLink="Cell" X="3" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Tube 4 Pix 7" ChannelOffset="82" ModeLink="Cell" X="3" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="192 DMX (4x 1m Tube)" Channels="192">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Tube 1 Pix 1" ChannelOffset="1" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Tube 1 Pix 2" ChannelOffset="4" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Tube 1 Pix 3" ChannelOffset="7" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Tube 1 Pix 4" ChannelOffset="10" ModeLink="Cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Tube 1 Pix 5" ChannelOffset="13" ModeLink="Cell" X="0" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Tube 1 Pix 6" ChannelOffset="16" ModeLink="Cell" X="0" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Tube 1 Pix 7" ChannelOffset="19" ModeLink="Cell" X="0" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Tube 1 Pix 8" ChannelOffset="22" ModeLink="Cell" X="0" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Tube 1 Pix 9" ChannelOffset="25" ModeLink="Cell" X="0" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Tube 1 Pix 10" ChannelOffset="28" ModeLink="Cell" X="0" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Tube 1 Pix 11" ChannelOffset="31" ModeLink="Cell" X="0" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Tube 1 Pix 12" ChannelOffset="34" ModeLink="Cell" X="0" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Tube 1 Pix 13" ChannelOffset="37" ModeLink="Cell" X="0" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Tube 1 Pix 14" ChannelOffset="40" ModeLink="Cell" X="0" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Tube 1 Pix 15" ChannelOffset="43" ModeLink="Cell" X="0" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Tube 1 Pix 16" ChannelOffset="46" ModeLink="Cell" X="0" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Tube 2 Pix 1" ChannelOffset="49" ModeLink="Cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Tube 2 Pix 2" ChannelOffset="52" ModeLink="Cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Tube 2 Pix 3" ChannelOffset="55" ModeLink="Cell" X="1" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Tube 2 Pix 4" ChannelOffset="58" ModeLink="Cell" X="1" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Tube 2 Pix 5" ChannelOffset="61" ModeLink="Cell" X="1" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Tube 2 Pix 6" ChannelOffset="64" ModeLink="Cell" X="1" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Tube 2 Pix 7" ChannelOffset="67" ModeLink="Cell" X="1" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Tube 2 Pix 8" ChannelOffset="70" ModeLink="Cell" X="1" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Tube 2 Pix 9" ChannelOffset="73" ModeLink="Cell" X="1" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Tube 2 Pix 10" ChannelOffset="76" ModeLink="Cell" X="1" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Tube 2 Pix 11" ChannelOffset="79" ModeLink="Cell" X="1" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Tube 2 Pix 12" ChannelOffset="82" ModeLink="Cell" X="1" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell29" Name="Tube 2 Pix 13" ChannelOffset="85" ModeLink="Cell" X="1" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell30" Name="Tube 2 Pix 14" ChannelOffset="88" ModeLink="Cell" X="1" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell31" Name="Tube 2 Pix 15" ChannelOffset="91" ModeLink="Cell" X="1" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell32" Name="Tube 2 Pix 16" ChannelOffset="94" ModeLink="Cell" X="1" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell33" Name="Tube 3 Pix 1" ChannelOffset="97" ModeLink="Cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell34" Name="Tube 3 Pix 2" ChannelOffset="100" ModeLink="Cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell35" Name="Tube 3 Pix 3" ChannelOffset="103" ModeLink="Cell" X="2" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell36" Name="Tube 3 Pix 4" ChannelOffset="106" ModeLink="Cell" X="2" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell37" Name="Tube 3 Pix 5" ChannelOffset="109" ModeLink="Cell" X="2" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell38" Name="Tube 3 Pix 6" ChannelOffset="112" ModeLink="Cell" X="2" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell39" Name="Tube 3 Pix 7" ChannelOffset="115" ModeLink="Cell" X="2" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell40" Name="Tube 3 Pix 8" ChannelOffset="118" ModeLink="Cell" X="2" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell41" Name="Tube 3 Pix 9" ChannelOffset="121" ModeLink="Cell" X="2" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell42" Name="Tube 3 Pix 10" ChannelOffset="124" ModeLink="Cell" X="2" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell43" Name="Tube 3 Pix 11" ChannelOffset="127" ModeLink="Cell" X="2" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell44" Name="Tube 3 Pix 12" ChannelOffset="130" ModeLink="Cell" X="2" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell45" Name="Tube 3 Pix 13" ChannelOffset="133" ModeLink="Cell" X="2" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell46" Name="Tube 3 Pix 14" ChannelOffset="136" ModeLink="Cell" X="2" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell47" Name="Tube 3 Pix 15" ChannelOffset="139" ModeLink="Cell" X="2" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell48" Name="Tube 3 Pix 16" ChannelOffset="142" ModeLink="Cell" X="2" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell49" Name="Tube 4 Pix 1" ChannelOffset="145" ModeLink="Cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell50" Name="Tube 4 Pix 2" ChannelOffset="148" ModeLink="Cell" X="3" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell51" Name="Tube 4 Pix 3" ChannelOffset="151" ModeLink="Cell" X="3" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell52" Name="Tube 4 Pix 4" ChannelOffset="154" ModeLink="Cell" X="3" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell53" Name="Tube 4 Pix 5" ChannelOffset="157" ModeLink="Cell" X="3" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell54" Name="Tube 4 Pix 6" ChannelOffset="160" ModeLink="Cell" X="3" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell55" Name="Tube 4 Pix 7" ChannelOffset="163" ModeLink="Cell" X="3" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell56" Name="Tube 4 Pix 8" ChannelOffset="166" ModeLink="Cell" X="3" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell57" Name="Tube 4 Pix 9" ChannelOffset="169" ModeLink="Cell" X="3" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell58" Name="Tube 4 Pix 10" ChannelOffset="172" ModeLink="Cell" X="3" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell59" Name="Tube 4 Pix 11" ChannelOffset="175" ModeLink="Cell" X="3" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell60" Name="Tube 4 Pix 12" ChannelOffset="178" ModeLink="Cell" X="3" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell61" Name="Tube 4 Pix 13" ChannelOffset="181" ModeLink="Cell" X="3" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell62" Name="Tube 4 Pix 14" ChannelOffset="184" ModeLink="Cell" X="3" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell63" Name="Tube 4 Pix 15" ChannelOffset="187" ModeLink="Cell" X="3" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell64" Name="Tube 4 Pix 16" ChannelOffset="190" ModeLink="Cell" X="3" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="312 DMX (4x 1.5m Tube)" Channels="312">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Red" Wheel="10" />
+        <Attribute ID="Green" Wheel="11" />
+        <Attribute ID="Blue" Wheel="12" />
+        <Attribute ID="Dimmer" Wheel="1" />
+      </Master>
+      <Cell ID="Cell1" Name="Tube 1 Pix 1" ChannelOffset="1" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Tube 1 Pix 2" ChannelOffset="4" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell3" Name="Tube 1 Pix 3" ChannelOffset="7" ModeLink="Cell" X="0" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell4" Name="Tube 1 Pix 4" ChannelOffset="10" ModeLink="Cell" X="0" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell5" Name="Tube 1 Pix 5" ChannelOffset="13" ModeLink="Cell" X="0" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell6" Name="Tube 1 Pix 6" ChannelOffset="16" ModeLink="Cell" X="0" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell7" Name="Tube 1 Pix 7" ChannelOffset="19" ModeLink="Cell" X="0" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell8" Name="Tube 1 Pix 8" ChannelOffset="22" ModeLink="Cell" X="0" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell9" Name="Tube 1 Pix 9" ChannelOffset="25" ModeLink="Cell" X="0" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell10" Name="Tube 1 Pix 10" ChannelOffset="28" ModeLink="Cell" X="0" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell11" Name="Tube 1 Pix 11" ChannelOffset="31" ModeLink="Cell" X="0" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell12" Name="Tube 1 Pix 12" ChannelOffset="34" ModeLink="Cell" X="0" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell13" Name="Tube 1 Pix 13" ChannelOffset="37" ModeLink="Cell" X="0" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell14" Name="Tube 1 Pix 14" ChannelOffset="40" ModeLink="Cell" X="0" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell15" Name="Tube 1 Pix 15" ChannelOffset="43" ModeLink="Cell" X="0" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell16" Name="Tube 1 Pix 16" ChannelOffset="46" ModeLink="Cell" X="0" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell17" Name="Tube 1 Pix 17" ChannelOffset="49" ModeLink="Cell" X="0" Y="16">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell18" Name="Tube 1 Pix 18" ChannelOffset="52" ModeLink="Cell" X="0" Y="17">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell19" Name="Tube 1 Pix 19" ChannelOffset="55" ModeLink="Cell" X="0" Y="18">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell20" Name="Tube 1 Pix 20" ChannelOffset="58" ModeLink="Cell" X="0" Y="19">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell21" Name="Tube 1 Pix 21" ChannelOffset="61" ModeLink="Cell" X="0" Y="20">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell22" Name="Tube 1 Pix 22" ChannelOffset="64" ModeLink="Cell" X="0" Y="21">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell23" Name="Tube 1 Pix 23" ChannelOffset="67" ModeLink="Cell" X="0" Y="22">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell24" Name="Tube 1 Pix 24" ChannelOffset="70" ModeLink="Cell" X="0" Y="23">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell25" Name="Tube 1 Pix 25" ChannelOffset="73" ModeLink="Cell" X="0" Y="24">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell26" Name="Tube 1 Pix 26" ChannelOffset="76" ModeLink="Cell" X="0" Y="25">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell27" Name="Tube 2 Pix 1" ChannelOffset="79" ModeLink="Cell" X="1" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell28" Name="Tube 2 Pix 2" ChannelOffset="82" ModeLink="Cell" X="1" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell29" Name="Tube 2 Pix 3" ChannelOffset="85" ModeLink="Cell" X="1" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell30" Name="Tube 2 Pix 4" ChannelOffset="88" ModeLink="Cell" X="1" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell31" Name="Tube 2 Pix 5" ChannelOffset="91" ModeLink="Cell" X="1" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell32" Name="Tube 2 Pix 6" ChannelOffset="94" ModeLink="Cell" X="1" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell33" Name="Tube 2 Pix 7" ChannelOffset="97" ModeLink="Cell" X="1" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell34" Name="Tube 2 Pix 8" ChannelOffset="100" ModeLink="Cell" X="1" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell35" Name="Tube 2 Pix 9" ChannelOffset="103" ModeLink="Cell" X="1" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell36" Name="Tube 2 Pix 10" ChannelOffset="106" ModeLink="Cell" X="1" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell37" Name="Tube 2 Pix 11" ChannelOffset="109" ModeLink="Cell" X="1" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell38" Name="Tube 2 Pix 12" ChannelOffset="112" ModeLink="Cell" X="1" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell39" Name="Tube 2 Pix 13" ChannelOffset="115" ModeLink="Cell" X="1" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell40" Name="Tube 2 Pix 14" ChannelOffset="118" ModeLink="Cell" X="1" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell41" Name="Tube 2 Pix 15" ChannelOffset="121" ModeLink="Cell" X="1" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell42" Name="Tube 2 Pix 16" ChannelOffset="124" ModeLink="Cell" X="1" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell43" Name="Tube 2 Pix 17" ChannelOffset="127" ModeLink="Cell" X="1" Y="16">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell44" Name="Tube 2 Pix 18" ChannelOffset="130" ModeLink="Cell" X="1" Y="17">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell45" Name="Tube 2 Pix 19" ChannelOffset="133" ModeLink="Cell" X="1" Y="18">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell46" Name="Tube 2 Pix 20" ChannelOffset="136" ModeLink="Cell" X="1" Y="19">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell47" Name="Tube 2 Pix 21" ChannelOffset="139" ModeLink="Cell" X="1" Y="20">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell48" Name="Tube 2 Pix 22" ChannelOffset="142" ModeLink="Cell" X="1" Y="21">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell49" Name="Tube 2 Pix 23" ChannelOffset="145" ModeLink="Cell" X="1" Y="22">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell50" Name="Tube 2 Pix 24" ChannelOffset="148" ModeLink="Cell" X="1" Y="23">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell51" Name="Tube 2 Pix 25" ChannelOffset="151" ModeLink="Cell" X="1" Y="24">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell52" Name="Tube 3 Pix 1" ChannelOffset="154" ModeLink="Cell" X="1" Y="25">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell53" Name="Tube 3 Pix 2" ChannelOffset="157" ModeLink="Cell" X="2" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell54" Name="Tube 3 Pix 3" ChannelOffset="160" ModeLink="Cell" X="2" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell55" Name="Tube 3 Pix 4" ChannelOffset="163" ModeLink="Cell" X="2" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell56" Name="Tube 3 Pix 5" ChannelOffset="166" ModeLink="Cell" X="2" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell57" Name="Tube 3 Pix 6" ChannelOffset="169" ModeLink="Cell" X="2" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell58" Name="Tube 3 Pix 7" ChannelOffset="172" ModeLink="Cell" X="2" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell59" Name="Tube 3 Pix 8" ChannelOffset="175" ModeLink="Cell" X="2" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell60" Name="Tube 3 Pix 9" ChannelOffset="178" ModeLink="Cell" X="2" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell61" Name="Tube 3 Pix 10" ChannelOffset="181" ModeLink="Cell" X="2" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell62" Name="Tube 3 Pix 11" ChannelOffset="184" ModeLink="Cell" X="2" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell63" Name="Tube 3 Pix 12" ChannelOffset="187" ModeLink="Cell" X="2" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell64" Name="Tube 3 Pix 13" ChannelOffset="190" ModeLink="Cell" X="2" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell65" Name="Tube 3 Pix 14" ChannelOffset="193" ModeLink="Cell" X="2" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell66" Name="Tube 3 Pix 15" ChannelOffset="196" ModeLink="Cell" X="2" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell67" Name="Tube 3 Pix 16" ChannelOffset="199" ModeLink="Cell" X="2" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell68" Name="Tube 3 Pix 17" ChannelOffset="202" ModeLink="Cell" X="2" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell69" Name="Tube 3 Pix 18" ChannelOffset="205" ModeLink="Cell" X="2" Y="16">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell70" Name="Tube 3 Pix 19" ChannelOffset="208" ModeLink="Cell" X="2" Y="17">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell71" Name="Tube 3 Pix 20" ChannelOffset="211" ModeLink="Cell" X="2" Y="18">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell72" Name="Tube 3 Pix 21" ChannelOffset="214" ModeLink="Cell" X="2" Y="19">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell73" Name="Tube 3 Pix 22" ChannelOffset="217" ModeLink="Cell" X="2" Y="20">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell74" Name="Tube 3 Pix 23" ChannelOffset="220" ModeLink="Cell" X="2" Y="21">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell75" Name="Tube 3 Pix 24" ChannelOffset="223" ModeLink="Cell" X="2" Y="22">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell76" Name="Tube 3 Pix 25" ChannelOffset="226" ModeLink="Cell" X="2" Y="23">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell77" Name="Tube 3 Pix 26" ChannelOffset="229" ModeLink="Cell" X="2" Y="24">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell78" Name="Tube 3 Pix 27" ChannelOffset="232" ModeLink="Cell" X="2" Y="25">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell79" Name="Tube 4 Pix 1" ChannelOffset="235" ModeLink="Cell" X="3" Y="0">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell80" Name="Tube 4 Pix 2" ChannelOffset="238" ModeLink="Cell" X="3" Y="1">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell81" Name="Tube 4 Pix 3" ChannelOffset="241" ModeLink="Cell" X="3" Y="2">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell82" Name="Tube 4 Pix 4" ChannelOffset="244" ModeLink="Cell" X="3" Y="3">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell83" Name="Tube 4 Pix 5" ChannelOffset="247" ModeLink="Cell" X="3" Y="4">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell84" Name="Tube 4 Pix 6" ChannelOffset="250" ModeLink="Cell" X="3" Y="5">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell85" Name="Tube 4 Pix 7" ChannelOffset="253" ModeLink="Cell" X="3" Y="6">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell86" Name="Tube 4 Pix 8" ChannelOffset="256" ModeLink="Cell" X="3" Y="7">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell87" Name="Tube 4 Pix 9" ChannelOffset="259" ModeLink="Cell" X="3" Y="8">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell88" Name="Tube 4 Pix 10" ChannelOffset="262" ModeLink="Cell" X="3" Y="9">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell89" Name="Tube 4 Pix 11" ChannelOffset="265" ModeLink="Cell" X="3" Y="10">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell90" Name="Tube 4 Pix 12" ChannelOffset="268" ModeLink="Cell" X="3" Y="11">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell91" Name="Tube 4 Pix 13" ChannelOffset="271" ModeLink="Cell" X="3" Y="12">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell92" Name="Tube 4 Pix 14" ChannelOffset="274" ModeLink="Cell" X="3" Y="13">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell93" Name="Tube 4 Pix 15" ChannelOffset="277" ModeLink="Cell" X="3" Y="14">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell94" Name="Tube 4 Pix 16" ChannelOffset="280" ModeLink="Cell" X="3" Y="15">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell95" Name="Tube 4 Pix 17" ChannelOffset="283" ModeLink="Cell" X="3" Y="16">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell96" Name="Tube 4 Pix 18" ChannelOffset="286" ModeLink="Cell" X="3" Y="17">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell97" Name="Tube 4 Pix 19" ChannelOffset="289" ModeLink="Cell" X="3" Y="18">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell98" Name="Tube 4 Pix 20" ChannelOffset="292" ModeLink="Cell" X="3" Y="19">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell99" Name="Tube 4 Pix 21" ChannelOffset="295" ModeLink="Cell" X="3" Y="20">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell100" Name="Tube 4 Pix 22" ChannelOffset="298" ModeLink="Cell" X="3" Y="21">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell101" Name="Tube 4 Pix 23" ChannelOffset="301" ModeLink="Cell" X="3" Y="22">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell102" Name="Tube 4 Pix 24" ChannelOffset="304" ModeLink="Cell" X="3" Y="23">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell103" Name="Tube 4 Pix 25" ChannelOffset="307" ModeLink="Cell" X="3" Y="24">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell104" Name="Tube 4 Pix 26" ChannelOffset="310" ModeLink="Cell" X="3" Y="25">
+        <AttributeLink SourceId="Red" TargetId="Red" />
+        <AttributeLink SourceId="Green" TargetId="Green" />
+        <AttributeLink SourceId="Blue" TargetId="Blue" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="3" Hidden="True">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Red" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="Green" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Blue" ChannelOffset="3" Wheel="12" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Colour">
+      <Palette ID="1" Name="Open" Number="1" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:100" />
+      <Palette ID="2" Name="Red" Number="2" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:0" />
+      <Palette ID="3" Name="Amber" Number="3" Page="1" SetControl="Red:1:100,Green:1:50,Blue:1:0" />
+      <Palette ID="4" Name="Yellow" Legend="Yell" Number="4" Page="1" SetControl="Red:1:100,Green:1:100,Blue:1:0" />
+      <Palette ID="5" Name="Lime" Number="0" Page="1" SetControl="Red:1:50,Green:1:100,Blue:1:0" />
+      <Palette ID="6" Name="Green" Number="5" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:0" />
+      <Palette ID="7" Name="Aqua" Number="0" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:50" />
+      <Palette ID="8" Name="Cyan" Number="6" Page="1" SetControl="Red:1:0,Green:1:100,Blue:1:100" />
+      <Palette ID="9" Name="Light Blue" Number="0" Page="1" SetControl="Red:1:0,Green:1:50,Blue:1:100" />
+      <Palette ID="10" Name="Blue" Number="7" Page="1" SetControl="Red:1:0,Green:1:0,Blue:1:100" />
+      <Palette ID="11" Name="Purple" Legend="Purpl" Number="9" Page="1" SetControl="Red:1:50,Green:1:0,Blue:1:100" />
+      <Palette ID="12" Name="Magenta" Legend="Mag" Number="10" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:100" />
+      <Palette ID="13" Name="Rose" Number="0" Page="1" SetControl="Red:1:100,Green:1:0,Blue:1:50" />
+      <Palette ID="14" Name="Lavender" Legend="Lav" Number="8" Page="1" SetControl="Red:1:71,Green:1:43,Blue:1:94" />
+      <Palette ID="15" Name="Ultra Violet" Legend="UV" Number="0" Page="1" SetControl="Red:1:20,Green:1:0,Blue:1:100" />
+    </Group>
+    <Group Name="Shutter">
+      <Palette ID="1" Name="Open" Number="31" Page="1" SetControl="Shutter:1" />
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:2:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:2:100" />
+    </Group>
+  </Palettes>
+  <swatchLibrary>
+    <Swatch id="a4b3778e-6075-48d8-8e40-648d684b0835">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</Swatch>
+  </swatchLibrary>
+</Fixture>

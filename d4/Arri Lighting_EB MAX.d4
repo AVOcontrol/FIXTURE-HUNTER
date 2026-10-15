@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="EB MAX" ShortName="EB MAX" Company="Arri Lighting" Version="0">
+  <Copyright Notice="© Avolites Ltd. 2022" />
+  <History Date="11-03-22" Author="Nic Morris" Comment="Created" Version="0" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:50" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',50.0~100.0" Dmx="128~255" />
+    </Attribute>
+    <Attribute ID="Mode" Name="Mode" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Off" Display="'Off'" Dmx="0~0" Update="Frequency" />
+      <Function ID="2" Name="Flicker Free 75Hz" Display="'Flicker Free 75Hz'" Dmx="128~190" Update="Frequency" />
+      <Function ID="3" Name="Low Noise 60Hz" Display="'Low Noise 60Hz'" Dmx="191~195" Update="Frequency" />
+      <Function ID="4" Name="Low Noise 50Hz" Display="'Low Noise 50Hz'" Dmx="196~200" Update="Frequency" />
+      <Function ID="5" Name="High Speed AutoScan 1000Hz" Display="'High Speed AutoScan 1000Hz'" Dmx="201~205" Update="Frequency" />
+      <Function ID="6" Name="High Speed AutoMan 1000Hz" Display="'High Speed AutoMan 1000Hz'" Dmx="206~210" Update="Frequency" />
+      <Function ID="7" Name="High Speed Man 1000Hz" Display="'High Speed Man 1000Hz'" Dmx="211~215" Update="Frequency" />
+      <Function ID="8" Name="High Speed AutoScan 300Hz" Display="'High Speed AutoScan 300Hz'" Dmx="216~220" Update="Frequency" />
+      <Function ID="9" Name="High Speed AutoMan 300Hz" Display="'High Speed AutoMan 300Hz'" Dmx="221~225" Update="Frequency" />
+      <Function ID="10" Name="High Speed Man 300Hz" Display="'High Speed Man 300Hz'" Dmx="226~230" Update="Frequency" />
+      <Function ID="11" Name="High Speed AutoMan 1000Hz (variable)" Display="'High Speed AutoMan 1000Hz (variable)'" Dmx="231~235" Update="Frequency" />
+      <Function ID="12" Name="High Speed AutoMan 300Hz (variable)" Display="'High Speed AutoMan 300Hz (variable)'" Dmx="236~240" Update="Frequency" />
+      <Function ID="13" Name="High Speed Man 1000Hz (variable)" Display="'High Speed Man 1000Hz (variable)'" Dmx="241~245" Update="Frequency" />
+      <Function ID="14" Name="High Speed Man 300Hz (variable)" Display="'High Speed Man 300Hz (variable)'" Dmx="246~250" Update="Frequency" />
+      <Function ID="15" Name="Flicker Free 75Hz" Display="'Flicker Free 75Hz'" Dmx="251~255" Update="Frequency" />
+    </Attribute>
+    <Attribute ID="Frequency" Name="Frequency" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Condition Name="1000Hz" ID="2" If="'Mode'==11||'Mode'==13" />
+      <Condition Name="300Hz" ID="3" If="'Mode'==12||'Mode'==14" />
+      <Else ID="1" />
+      <Function ID="2" Name="900-1200Hz" Display="'900-1200Hz %.f Hz',900~1200" Dmx="0~255" />
+      <Function ID="3" Name="270-360Hz" Display="'270-360Hz %.f Hz',270~360" Dmx="0~255" />
+      <Function ID="1" Name="No Function" Display="''" Dmx="0~0" />
+    </Attribute>
+  </Control>
+  <Mode Name="3 DMX" Channels="3">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Mode" ChannelOffset="2" Wheel="28" />
+      <Attribute ID="Frequency" ChannelOffset="3" Wheel="29" />
+    </Include>
+  </Mode>
+</Fixture>

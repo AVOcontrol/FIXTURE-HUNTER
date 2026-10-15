@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const content=path.join(root,'desktop/content');fs.mkdirSync(content,{recursive:true});
+for(const folder of ['www','d4'])fs.cpSync(path.join(root,folder),path.join(content,folder),{recursive:true});
+const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
+const desktopFile=path.join(root,'desktop/package.json');const desktop=JSON.parse(fs.readFileSync(desktopFile,'utf8'));desktop.version=pkg.version;
+fs.writeFileSync(desktopFile,JSON.stringify(desktop,null,2)+'\n');
+console.log('Desktop content prepared. Package with @electron/packager and Electron 44.7.2.');

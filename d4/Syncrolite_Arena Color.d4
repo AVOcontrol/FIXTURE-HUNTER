@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="Arena Color" ShortName="SY_ArenaCl" Company="Syncrolite">
+  <Copyright Notice="© Avolites Ltd. 2016" />
+  <History Date="23-02-12" Author="Peter Budd" Comment="Created" />
+  <History Date="25-05-16" Author="AtlaBaseLibraryUpdater" Comment="Added AltaBase information" />
+  <Manual Filename="" Summary="" />
+  <AtlaBase TypeID="9bfe5ddf-e3c8-421e-b334-f331c9d61438" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Colour1" Name="Colour 1" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Colour2" Name="Colour 2" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Raw DMX" Display="'Raw DMX %.f',0~255" Dmx="0~255" Colour="0,0,0" />
+    </Attribute>
+    <Attribute ID="Command" Name="Command" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~42" />
+      <Function ID="2" Name="Lamp On" Display="'Lamp On'" Dmx="43~43" />
+      <Function ID="3" Name="Lamp Off" Display="'Lamp Off'" Dmx="85~85" />
+      <Function ID="4" Name="Reset" Display="'Reset'" Dmx="169~169" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Safe" Display="'Safe'" Dmx="0~85" />
+      <Function ID="2" Name="Setup" Display="'Setup'" Dmx="86~86" />
+      <Function ID="3" Name="Execute" Display="'Execute'" Dmx="171~171" />
+    </Attribute>
+  </Control>
+  <Mode Name="5 DMX, 8bit" Channels="5">
+    <Import PearlRef="SY_ArenaCl" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <AtlaBase ModeID="bc268495-c4ce-4dd4-b7f3-e4ba962fc78b" />
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Colour1" ChannelOffset="2" Wheel="7" />
+      <Attribute ID="Colour2" ChannelOffset="5" Wheel="8" />
+      <Attribute ID="Command" ChannelOffset="3" Wheel="28" />
+      <Attribute ID="Control" ChannelOffset="4" Wheel="29" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Lamp On">
+      <Set Channel="Command:2,Control:2" Delay="4000" />
+      <Set Channel="Command:2,Control:3" Delay="4000" />
+      <Set Channel="Command:1,Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Lamp Off">
+      <Set Channel="Command:3,Control:2" Delay="4000" />
+      <Set Channel="Command:3,Control:3" Delay="4000" />
+      <Set Channel="Command:1,Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Reset">
+      <Set Channel="Command:4,Control:2" Delay="4000" />
+      <Set Channel="Command:4,Control:3" Delay="4000" />
+      <Set Channel="Command:1,Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

@@ -1,0 +1,86 @@
+name: Build APK and web
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fixture-hunter-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - name: Android SDK
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - name: Dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Validate web
+        run: npm run build
+      - name: Create Android project
+        run: npx cap add android
+      - name: App icons
+        run: npx @capacitor/assets generate --android --iconBackgroundColor '#09090b' --iconBackgroundColorDark '#09090b'
+      - name: Android version
+        run: npm run android:version
+      - name: Preserve installation signing key
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$ANDROID_KEYSTORE_BASE64" ]; then
+            echo 'Configure ANDROID_KEYSTORE_BASE64 with the existing installation key before publishing updates.'
+            exit 1
+          fi
+          mkdir -p ~/.android
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > ~/.android/debug.keystore
+          chmod 600 ~/.android/debug.keystore
+      - name: Sync web and native plugins
+        run: npx cap sync android
+      - name: Include original offline fixture library
+        run: node scripts/android-offline.mjs
+      - name: Compile APK
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+      - name: Name APK
+        run: cp android/app/build/outputs/apk/debug/app-debug.apk AVOcontrol-Fixture-Hunter.apk
+      - name: Release metadata
+        id: metadata
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const info=JSON.parse(fs.readFileSync('www/build-info.json','utf8'));
+          fs.appendFileSync(process.env.GITHUB_OUTPUT,`version=${info.version}\ncode=${info.versionCode}\n`);
+          fs.writeFileSync('release-notes.md',`Fixture Hunter ${info.version}\n\nAPK completa: incluye la biblioteca .d4 disponible para descargas sin conexión. Instálala sobre la versión anterior; Android te pedirá confirmar la instalación.\n\n<!--fixture-hunter-update ${JSON.stringify({appId:info.appId,version:info.version,versionCode:info.versionCode})} -->\n`);
+          JS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AVOcontrol-Fixture-Hunter-apk
+          path: AVOcontrol-Fixture-Hunter.apk
+          if-no-files-found: error
+      - name: Release APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.metadata.outputs.version }}-build-${{ steps.metadata.outputs.code }}
+          name: Fixture Hunter ${{ steps.metadata.outputs.version }} (build ${{ steps.metadata.outputs.code }})
+          files: AVOcontrol-Fixture-Hunter.apk
+          body_path: release-notes.md
+          make_latest: true

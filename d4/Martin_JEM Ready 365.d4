@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="JEM Ready 365" ShortName="Ready 365" Company="Martin">
+  <Copyright Notice="© Avolites Ltd. 2013" />
+  <History Date="22-10-13" Author="Peter Budd" Comment="Created" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Haze" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Level" Display="'Level %.1f%%',0.0~100.0" Dmx="0~255" Intensity="0~0" />
+    </Attribute>
+    <Attribute ID="Speed" Name="Fan" Description="" Group="S">
+      <Locate Locate="1:0" PowerOn="1:100" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Control" Name="Control" Description="" Group="S">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="Idle" Display="'Idle'" Dmx="0~0" />
+      <Function ID="2" Name="Prime" Display="'Prime'" Dmx="51~100" />
+      <Function ID="3" Name="Auto" Display="'Auto'" Dmx="101~150" />
+      <Function ID="4" Name="Shutdown" Display="'Shutdown'" Dmx="151~200" />
+      <Function ID="5" Name="Heater On" Display="'Heater On'" Dmx="201~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="3 DMX, 8bit" Channels="3">
+    <Import PearlRef="MT_JMRdy365" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="Dimmer" ChannelOffset="1" Wheel="1" />
+      <Attribute ID="Speed" ChannelOffset="2" Wheel="25" />
+      <Attribute ID="Control" ChannelOffset="3" Wheel="28" />
+    </Include>
+  </Mode>
+  <Macro>
+    <Macro Name="Shutdown">
+      <Set Channel="Control:4" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+    <Macro Name="Heater On">
+      <Set Channel="Control:5" Delay="6000" />
+      <Set Channel="Control:1" Delay="0" />
+    </Macro>
+  </Macro>
+</Fixture>

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Fixture Name="2eyes LED Blinder Light" ShortName="2eyesBlind" Company="Unknown" Version="0">
+  <Copyright Notice="© Avolites Ltd. 2023" />
+  <History Date="17-08-23" Author="Nic Morris" Comment="Created (poor documentation)" Version="0" />
+  <Manual Filename="" Summary="" />
+  <Control>
+    <Attribute ID="Dimmer" Name="Dimmer" Description="" Group="I">
+      <Locate Locate="1:100" PowerOn="1:0" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Shutter" Name="Shutter" Description="" Group="I">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="Strobe %" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="ColdWhite" Name="Cold White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="200,200,255" />
+    </Attribute>
+    <Attribute ID="WarmWhite" Name="Warm White" Description="" Group="C">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="White C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="CTO" Name="CTO" Description="" Group="C">
+      <Locate Locate="1:0" PowerOn="1:0" />
+      <Function ID="1" Name="CTO C-Mix" Display="'%.1f%%',0.0~100.0" Dmx="0~255" Colour="255,240,200" />
+    </Attribute>
+    <Attribute ID="Auto" Name="Auto" Description="" Group="E">
+      <Locate Locate="1" PowerOn="1" />
+      <Function ID="1" Name="No Effect" Display="'No Effect'" Dmx="0~0" />
+      <Function ID="2" Name="#1 CW" Display="'#1 CW'" Dmx="20~29" />
+      <Function ID="3" Name="#1 WW" Display="'#1 WW'" Dmx="30~39" />
+      <Function ID="4" Name="#2 CW" Display="'#2 CW'" Dmx="40~49" />
+      <Function ID="5" Name="#2 WW" Display="'#2 WW'" Dmx="50~59" />
+      <Function ID="6" Name="#1 CW+WW" Display="'#1 CW+WW'" Dmx="60~69" />
+      <Function ID="7" Name="#1+2 CW" Display="'#1+2 CW'" Dmx="70~79" />
+      <Function ID="8" Name="#1 WW + #2 CW" Display="'#1 WW + #2 CW'" Dmx="80~89" />
+      <Function ID="9" Name="#1+2 CW+WW" Display="'#1+2 CW+WW'" Dmx="90~99" />
+      <Function ID="10" Name="Col Gradual Change" Display="'Col Gradual Change'" Dmx="100~149" />
+      <Function ID="11" Name="Col Pulse Change" Display="'Col Pulse Change'" Dmx="150~199" />
+      <Function ID="12" Name="Col Jump Change" Display="'Col Jump Change'" Dmx="200~229" />
+      <Function ID="13" Name="Sound" Display="'Sound'" Dmx="230~255" />
+    </Attribute>
+    <Attribute ID="Auto_Spd" Name="Auto Spd" Description="" Group="E">
+      <Locate Locate="1:50" PowerOn="1:50" />
+      <Function ID="1" Name="Speed" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+    <Attribute ID="Master_Dimmer" Name="Master Dimmer" Description="" Group="I" Merge="HTP">
+      <Locate Locate="1:100" PowerOn="1:100" />
+      <Function ID="1" Name="Dimmer" Display="'%.1f%%',0.0~100.0" Dmx="0~255" />
+    </Attribute>
+  </Control>
+  <Mode Name="9 DMX" Channels="9" Id="0cbe4df2-5938-479a-bc6f-7f3e496ca742">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include />
+    <Cells>
+      <Master>
+        <Attribute ID="Master_Dimmer" ChannelOffset="1" Wheel="4" />
+        <Attribute ID="Shutter" ChannelOffset="2" Wheel="5" />
+        <Attribute ID="ColdWhite" Wheel="10" />
+        <Attribute ID="WarmWhite" Wheel="11" />
+        <Attribute ID="Dimmer" Wheel="1" />
+        <Attribute ID="CTO" ChannelOffset="7" Wheel="7" />
+        <Attribute ID="Auto" ChannelOffset="8" Wheel="22" />
+        <Attribute ID="Auto_Spd" ChannelOffset="9" Wheel="23" />
+      </Master>
+      <Cell ID="Cell1" Name="Cell 1" ChannelOffset="3" ModeLink="Cell" X="0" Y="0">
+        <AttributeLink SourceId="ColdWhite" TargetId="ColdWhite" />
+        <AttributeLink SourceId="WarmWhite" TargetId="WarmWhite" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+      <Cell ID="Cell2" Name="Cell 2" ChannelOffset="5" ModeLink="Cell" X="0" Y="1">
+        <AttributeLink SourceId="ColdWhite" TargetId="ColdWhite" />
+        <AttributeLink SourceId="WarmWhite" TargetId="WarmWhite" />
+        <AttributeLink SourceId="Dimmer" TargetId="Dimmer" />
+      </Cell>
+    </Cells>
+  </Mode>
+  <Mode Name="Cell" Channels="2" Hidden="True" Id="a48b6593-c57c-4885-a760-35a7813ddd4c">
+    <Import PearlRef="" DiamondRef="" WysiwygRef="" />
+    <Physical>
+      <Bulb Type="" Lumens="" ColourTemp="" />
+      <Lens Name="" Degrees="" />
+      <Weight Kg="" />
+      <Size Height="" Width="" Depth="" />
+      <Focus Type="Fixed" PanMax="0" TiltMax="0" PanMaxSpeed="0" TiltMaxSpeed="0" />
+    </Physical>
+    <Include>
+      <Attribute ID="ColdWhite" ChannelOffset="1" Wheel="10" VirtualControl="Dimmer" />
+      <Attribute ID="WarmWhite" ChannelOffset="2" Wheel="11" VirtualControl="Dimmer" />
+      <Attribute ID="Dimmer" Wheel="1" />
+    </Include>
+  </Mode>
+  <Palettes>
+    <Group Name="Shutter">
+      <Palette ID="2" Name="Slow Strobe" Legend="Slow Strb" Number="32" Page="1" SetControl="Shutter:1:50" />
+      <Palette ID="3" Name="Fast Strobe" Legend="Fast Strb" Number="33" Page="1" SetControl="Shutter:1:100" />
+    </Group>
+  </Palettes>
+</Fixture>
