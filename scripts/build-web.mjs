@@ -13,7 +13,7 @@ fs.copyFileSync(path.join(root,'node_modules/@google/model-viewer/LICENSE'),path
 const d4Files=fs.readdirSync(path.join(root,'d4')).filter(name=>name.toLowerCase().endsWith('.d4')).sort();
 const d4Set=new Set(d4Files);
 fs.writeFileSync(path.join(web,'d4-files.js'),'window.FixtureHunterD4Files=new Set('+JSON.stringify(d4Files)+');\n');
-const required=['index.html','app.js','studio.css','i18n.js','i18n.css','locales.js','suggest.js','native-bridge.js','updates.js','d4-config.js','d4-files.js','vendor/model-viewer.min.js','descargar/index.html','assets/hunter/index.js','assets/fixture_views/manifest.js'];
+const required=['index.html','intro.js','app.js','studio.css','i18n.js','i18n.css','locales.js','suggest.js','native-bridge.js','updates.js','d4-config.js','d4-files.js','vendor/model-viewer.min.js','descargar/index.html','assets/hunter/index.js','assets/fixture_views/manifest.js'];
 for(const relative of required)if(!fs.statSync(path.join(web,relative)).isFile())throw Error('Missing web file: '+relative);
 for(const html of ['index.html','descargar/index.html']){
  const text=fs.readFileSync(path.join(web,html),'utf8');
