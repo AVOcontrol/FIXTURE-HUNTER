@@ -50,9 +50,9 @@ jobs:
             echo 'Configure ANDROID_KEYSTORE_BASE64 with the existing installation key before publishing updates.'
             exit 1
           fi
-          mkdir -p ~/.android
-          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > ~/.android/debug.keystore
-          chmod 600 ~/.android/debug.keystore
+          mkdir -p "$RUNNER_TEMP/fixture-hunter-signing"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/fixture-hunter-signing/original.keystore"
+          chmod 600 "$RUNNER_TEMP/fixture-hunter-signing/original.keystore"
       - name: Sync web and native plugins
         run: npx cap sync android
       - name: Include original offline fixture library
@@ -60,8 +60,21 @@ jobs:
       - name: Compile APK
         working-directory: android
         run: ./gradlew assembleDebug --no-daemon
-      - name: Name APK
-        run: cp android/app/build/outputs/apk/debug/app-debug.apk AVOcontrol-Fixture-Hunter.apk
+      - name: Sign and verify APK with original installation key
+        run: |
+          build_tools="$ANDROID_HOME/build-tools/35.0.0"
+          "$build_tools/apksigner" sign \
+            --ks "$RUNNER_TEMP/fixture-hunter-signing/original.keystore" \
+            --ks-key-alias androiddebugkey --ks-pass pass:android --key-pass pass:android \
+            --out AVOcontrol-Fixture-Hunter.apk android/app/build/outputs/apk/debug/app-debug.apk
+          verification="$("$build_tools/apksigner" verify --verbose --print-certs AVOcontrol-Fixture-Hunter.apk)"
+          printf '%s\n' "$verification"
+          expected='certificate SHA-256 digest: e56cef90771a629e83c90ba21133ae2f022a882f225b4656de7eca617ce4bae3'
+          if [[ "$verification" != *"$expected"* ]]; then
+            echo 'APK signing certificate differs from the previous installation. Publication stopped.'
+            exit 1
+          fi
+          "$build_tools/zipalign" -c -P 16 4 AVOcontrol-Fixture-Hunter.apk
       - name: Release metadata
         id: metadata
         run: |

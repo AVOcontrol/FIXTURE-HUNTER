@@ -1,10 +1,10 @@
-# AVOcontrol Fixture Hunter 12.10 · Estudio
+# AVOcontrol Fixture Hunter 12.10.1 · Estudio
 
-Buscador público de aparatos con catálogo completo, filtros combinables, interfaz español/inglés, tabla DMX y descargas de personalidades, PNG y GLB. El diseño Estudio mantiene los datos y las imágenes de la versión 12.8. Las pestañas disponibles son verdes; las que no tienen archivo son rojas.
+Buscador público de aparatos con catálogo completo, filtros combinables, interfaz en diez idiomas, tabla DMX y descargas de personalidades, PNG y GLB. El diseño Estudio mantiene los datos y las imágenes de la versión 12.8. Las pestañas disponibles son verdes; las que no tienen archivo son rojas.
 
 ## Estructura
 
-- `www/index.html`: buscador (español/inglés).
+- `www/index.html`: buscador en diez idiomas.
 - `www/descargar/index.html`: página de descarga.
 - `www/assets/`: catálogo, imágenes y modelos 3D.
 - `d4/`: biblioteca pública de personalidades, conservada del repositorio anterior.
@@ -20,9 +20,9 @@ Se conserva el appId `com.avocontrol.fixturehunter`. Cada build tiene un `versio
 
 Para conservar la firma de las instalaciones anteriores, configurar una sola vez el secreto de Actions `ANDROID_KEYSTORE_BASE64` con el contenido base64 de la clave anterior `android-debug.keystore`. El archivo de firma se conserva localmente y está excluido del repositorio público y del ZIP de código. No poner su contenido en un commit, issue o mensaje. Sin este secreto el flujo se detiene con un mensaje explícito. La firma existente es para instalación manual; no es una entrega para Google Play.
 
-La APK completa incluye la biblioteca .d4 disponible y permite descargarla sin conexión. La web y la APK ligera consultan el directorio público del repositorio para esas descargas y necesitan que se publique. El flujo de Actions incorpora los .d4 después de sincronizar Capacitor, sin añadirlos a la web de Netlify/Cloudflare.
+La APK completa incluye la biblioteca .d4 disponible y permite descargarla sin conexión. La web y las APK ligeras anteriores consultan el directorio público del repositorio para esas descargas. La biblioteca ya está publicada. El flujo de Actions incorpora los .d4 después de sincronizar Capacitor, sin añadirlos a la web de Netlify/Cloudflare.
 
-Las APK locales 12.10 ya están compiladas y firmadas con la clave anterior. La completa incluye los .d4; la ligera conserva catálogo, PNG y GLB locales, con .d4 por Internet. Se han comprobado firmas, alineación, manifiesto y recursos; queda pendiente probar instalación y uso en un teléfono Android real.
+La APK completa 12.10.1 se ha compilado mediante GitHub Actions y firmado con la clave anterior. Las variantes ligeras anteriores se conservan como copia; para la versión actual utiliza la APK completa de Releases. Queda pendiente probar instalación y uso en un teléfono Android real.
 
 La biblioteca recuperada contiene 21.354 archivos .d4. De los 21.608 aparatos del catálogo, 315 no tienen su archivo original disponible; se mantienen sus datos de canales y se desactiva esa descarga. El build vuelve a calcular la disponibilidad cuando se añaden archivos.
 
@@ -54,7 +54,7 @@ El catálogo y los recursos incluidos funcionan sin consultas a una IA. No se ha
 
 ## Windows portable
 
-La entrega `Fixture-Hunter-PC-v12.10.zip` incluye un ejecutable Windows de 64 bits y su motor Electron. Descomprimir todo y abrir `Fixture Hunter.exe`; no necesita VBS ni un servidor Node separado. Incluye los .d4 disponibles para descarga local. El cierre de la ventana termina la aplicación y sus procesos propios; esta ruta se ha probado con el ejecutable real.
+La entrega `Fixture-Hunter-PC-v12.10.1.zip` incluye un ejecutable Windows de 64 bits y su motor Electron. Descomprimir todo y abrir `Fixture Hunter.exe`; no necesita VBS ni un servidor Node separado. Incluye los .d4 disponibles para descarga local. El cierre de la ventana termina la aplicación y sus procesos propios; esta ruta se ha probado con el ejecutable real.
 
 El código de escritorio está en `desktop/`. Para reconstruirlo después de `npm run build`, ejecutar `node scripts/prepare-desktop.mjs` y después:
 
@@ -77,3 +77,7 @@ Referencias: https://capacitorjs.com/docs/v7/getting-started/environment-setup ,
 ## Idiomas de la interfaz
 
 Diez idiomas incluidos sin servicios externos: inglés (predeterminado), español, francés, alemán, italiano, portugués, ruso, chino simplificado, hindi y árabe. El selector conserva la preferencia elegida. Los nombres originales de fabricantes, modelos, modos y atributos DMX se mantienen para identificar los archivos sin ambigüedad. El árabe usa dirección de lectura de derecha a izquierda.
+
+## Portada 12.10.1
+
+La portada cubre toda la ventana, bloquea el scroll y los controles que quedan detrás, y conserva el teclado dentro de los controles visibles. El selector de idioma tiene espacio propio para evitar que tape el logo. Al abrir el buscador se recupera el desplazamiento normal.
